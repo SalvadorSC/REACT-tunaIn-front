@@ -1,4 +1,5 @@
 import React from "react";
+import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,7 +25,7 @@ function HomeButton() {
 export default function App() {
   return (
     <Router>
-      <div>
+      <div className="navbar">
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -42,7 +43,8 @@ export default function App() {
             <Link to="/register">Register</Link>
           </li>
         </ul>
-
+      </div>
+      <div className="main">
         <Switch>
           <Route path="/about">
             <About />
@@ -62,6 +64,8 @@ export default function App() {
         </Switch>
         <HomeButton />
       </div>
+
+
     </Router>
   );
 }
@@ -77,7 +81,7 @@ function About() {
   return <h2>About</h2>;
 }
 function Register() {
-  
+
 }
 
 function Topics() {
