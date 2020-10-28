@@ -77,7 +77,7 @@ function About() {
   return <h2>About</h2>;
 }
 function Register() {
-  
+  //llamada formulario.js create user
 }
 
 function Topics() {
