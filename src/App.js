@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,6 +9,7 @@ import {
   useParams
 } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { RegisterForm } from "./Components/RegisterForm";
 function HomeButton() {
   let history = useHistory();
 
@@ -48,7 +50,7 @@ export default function App() {
             <About />
           </Route>
           <Route path="/register">
-            <Register />
+            <RegisterForm />
           </Route>
           <Route path="/topics">
             <Topics />
@@ -77,7 +79,7 @@ function About() {
   return <h2>About</h2>;
 }
 function Register() {
-  //llamada formulario.js create user
+  <RegisterForm />
 }
 
 function Topics() {
