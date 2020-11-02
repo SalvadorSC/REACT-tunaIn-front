@@ -1,28 +1,21 @@
-.App {
-  text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  padding: 50px;
-}
-
-.App-link {
+.App-h1-logo {
+  font-size: 5rem;
+  margin: 0;
   color: #61dafb;
+
 }
 
-hr {
-  width: 100%;
+.App-ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
 }
 
-li {
-  text-align: left;
+.App-ul li {
+  padding: 5px 20px;
+  font-weight: 700;
 }
 
-/* form {
-  width: 100%;
-} */
+
+

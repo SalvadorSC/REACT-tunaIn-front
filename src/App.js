@@ -27,7 +27,8 @@ export default function App() {
   return (
     <Router>
       <div>
-        <ul>
+        <h1 className="App-h1-logo">TUNA IN</h1>
+        <ul className="App-ul">
           <li>
             <Link to="/">Home</Link>
           </li>
