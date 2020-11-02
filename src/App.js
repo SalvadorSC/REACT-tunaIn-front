@@ -9,6 +9,8 @@ import {
   useParams
 } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import {Userprofile} from "./userProfile";
+import {EditUserProfile} from "./editUserProfile";
 function HomeButton() {
   let history = useHistory();
 
@@ -58,6 +60,9 @@ export default function App() {
           <Route path="/profile">
             <Profile />
           </Route>
+          <Route path="/edituserprofile">
+            <EditProfile />
+          </Route>
           <Route path="/">
             <Home />
           </Route>
@@ -74,7 +79,27 @@ function Home() {
   return <h2>Home</h2>;
 }
 function Profile() {
-  return <h2>Name</h2>;
+  return (
+    <>
+    <Userprofile />
+    
+    <button>
+    <Link to="/editUserProfile">Edit</Link>
+    </button>
+    <br/>
+    <br/>
+    </>
+  );
+}
+function EditProfile() {
+  return (
+    <>
+    <EditUserProfile />
+    <button>Edit</button>
+    <br/>
+    <br/>
+    </>
+  );
 }
 
 function About() {

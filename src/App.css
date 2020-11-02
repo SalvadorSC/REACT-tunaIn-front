@@ -2,9 +2,9 @@
 body {
   margin: 0;
   font-family: "Poppins", Arial, sans-serif !important;
-  background-color: #333;
+  background-color: #f4f4f4;
   font-size: 14px;
-  color: #f4f4f4
+  color: #333
 }
 .App {
   text-align: center;
@@ -26,6 +26,11 @@ body {
   padding: 0;
 }
 
+hr{
+  width: 50%;
+  margin-left: 0;
+}
+
 .navbar a {
   color: white;
   text-decoration: none;
@@ -33,4 +38,45 @@ body {
 
 .main{
   margin: 0 15px;
+}
+
+.profile-picture-box{
+  float: right;
+  display:flex;
+  flex-direction: column;
+  margin-right: 15%;
+}
+
+.profile-picture-box button{
+  width: 50%;
+  margin: 15px auto;
+  background-color: #333;
+  border: 2px solid ;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  height: 50px;
+  transition: 1s;
+  outline: none;
+
+}
+
+.profile-picture-box button:hover {
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+h2{
+  margin:0 !important;
+}
+h4{
+  margin:5 !important;
+}
+hr{
+  margin: 5 !important;
 }
