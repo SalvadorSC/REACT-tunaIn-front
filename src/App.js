@@ -1,9 +1,5 @@
 import React from "react";
-<<<<<<< HEAD
 import "./App.css";
-=======
-import './App.css';
->>>>>>> ce733248ac6cc3c6830337f4d19415dcfc71aa99
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,7 +27,8 @@ export default function App() {
   return (
     <Router>
       <div className="navbar">
-        <ul>
+        <h1 className="App-h1-logo">TUNA IN</h1>
+        <ul className="App-ul">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -86,11 +83,7 @@ function About() {
   return <h2>About</h2>;
 }
 function Register() {
-<<<<<<< HEAD
   <RegisterForm />
-=======
-
->>>>>>> ce733248ac6cc3c6830337f4d19415dcfc71aa99
 }
 
 function Topics() {

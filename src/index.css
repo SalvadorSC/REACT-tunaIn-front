@@ -3,6 +3,16 @@ body {
   font-family: 'Montserrat', "Raleway", sans-serif;
     -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 50px;
 }
 
 h1,
@@ -28,8 +38,17 @@ p {
   font-size: 1rem;
 }
 
+a {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #077594;
+}
+
 button {
-  width: 65%;
+  width: 52%;
   height: 50px;
   margin: 1% auto;
   background-color: #FE8B86;
@@ -38,4 +57,60 @@ button {
   border-radius: 2px;
   font-family: "Raleway", sans-serif;
   font-weight: 700;
+}
+
+button:hover {
+  background-color: rgb(255, 204, 203);
+  color: rgb(255, 117, 112);
+  /* color: white; */
+}
+
+hr {
+  width: 100%;
+}
+
+li {
+  text-align: left;
+}
+
+input {
+  /* color: orange; */
+  color: rgb(173, 177, 180);
+  text-align: left;
+  padding-left: 10px;
+  height: 40px;
+  width: 50%;
+  border-radius: 3px;
+  border: none;
+  font-family: 'Raleway';
+  font-size: 0.9rem;
+  margin: 1% auto;
+}
+
+input[type="radio"] {
+  display:inline-block; 
+  width:15px;
+  height:15px; 
+  margin: auto 10px;
+
+  /* URL de referencia para el estilo de los inputs type="radio" */
+  /* https://stackoverflow.com/questions/18272497/styling-input-radio-with-css/18272642 */
+}
+
+input:checked {
+  background-color: lightslategrey;
+}
+
+label {
+  font-family: 'Raleway';
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.500);
+  vertical-align: middle;
+  margin-right: 20px;
+  cursor:pointer;
+
+}
+
+input[type="radio"]:checked + label span {
+  background: #38454E -57px top no-repeat;
 }
