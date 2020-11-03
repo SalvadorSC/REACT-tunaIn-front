@@ -1,5 +1,9 @@
 import React from "react";
+<<<<<<< HEAD
 import "./App.css";
+=======
+import './App.css';
+>>>>>>> ce733248ac6cc3c6830337f4d19415dcfc71aa99
 import {
   BrowserRouter as Router,
   Switch,
@@ -26,7 +30,7 @@ function HomeButton() {
 export default function App() {
   return (
     <Router>
-      <div>
+      <div className="navbar">
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -44,7 +48,8 @@ export default function App() {
             <Link to="/register">Register</Link>
           </li>
         </ul>
-
+      </div>
+      <div className="main">
         <Switch>
           <Route path="/about">
             <About />
@@ -64,6 +69,8 @@ export default function App() {
         </Switch>
         <HomeButton />
       </div>
+
+
     </Router>
   );
 }
@@ -79,7 +86,11 @@ function About() {
   return <h2>About</h2>;
 }
 function Register() {
+<<<<<<< HEAD
   <RegisterForm />
+=======
+
+>>>>>>> ce733248ac6cc3c6830337f4d19415dcfc71aa99
 }
 
 function Topics() {
