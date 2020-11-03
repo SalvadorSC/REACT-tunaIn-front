@@ -67,6 +67,7 @@ export const RegisterForm = () => {
                 <input type="email" placeholder="Correo electrónico*" onChange={handleEmail} required /> {/*value={email}*/}
                 <input type="password" placeholder="Contraseña*" onChange={handlePassword} required /> {/*value={password}*/}
                 <input type="date" placeholder="Año de nacimiento (AAAA)*" onChange={handleFechaNacimiento} required /> {/*value={fechaNacimiento}*/}
+                <input type="number" min="1900" max="2100" step="1" placeholder="Año de nacimiento (AAAA)*" onChange={handleFechaNacimiento} required /> {/*value={fechaNacimiento}*/}
                 <div>
                     <input type="radio" name="genero" id="hombre" value="hombre" onChange={handleGenero} required />
                     <label htmlFor="hombre">Hombre</label>
