@@ -1,3 +1,4 @@
+import './userProfile.css'
 const user = {
     "nombre": "Jose",
     "username": "Jose17SV",
@@ -11,9 +12,6 @@ export const Userprofile = () => {
     return (
         //setCanales(user.channel),
         <>
-            <div className="profile-picture-box">
-                <img src="https://via.placeholder.com/150" alt="imagen" />
-            </div>
             <h3>Nombre completo</h3><hr></hr>
             <h3>{user.nombre}</h3>
             <h2>Canales</h2><hr></hr>

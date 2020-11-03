@@ -1,0 +1,28 @@
+.registerForm-p {
+    width: 50%;
+    margin: auto auto 40px;
+
+}
+
+.registerForm-button {
+    display: block;
+    height: 40px;
+    border-radius: 30px;
+    font-weight: 700;
+}
+
+.registerForm-button-google {
+    background-color: lightgrey;
+    color: rgb(32, 32, 32);
+}
+
+.registerForm-button-facebook {
+    background-color: #344C7F;
+    color: white;
+}
+
+.registerForm-button-apple {
+    background-color: black;
+    color: white;
+}
+

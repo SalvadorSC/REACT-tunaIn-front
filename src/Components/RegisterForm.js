@@ -1,15 +1,7 @@
-import React from 'react'
-import {useState} from 'react'   
+import React, { useState } from 'react';
+import './RegisterForm.css';
 
-const user = {
-    "nombre": "Jose",
-    "username": "Jose17SV",
-    "email": "user@gmail.com",
-    "password": "1234",
-    "channel": "JoseRadio",
-    "fechaNacimiento": "2000",
-}
-export const EditUserProfile = () => {
+export const RegisterForm = () => {
     const [nombre, setNombre] = useState('nombre');
     const [email, setEmail] = useState('email');
     const [password, setPassword] = useState('password');
@@ -32,6 +24,7 @@ export const EditUserProfile = () => {
     const handleGenero = (e) => {
         setGenero(e.target.value);
     }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const newUser = {
@@ -41,14 +34,38 @@ export const EditUserProfile = () => {
             fechaNacimiento,
             genero
         }
-    };
+
+        // const JSONdata = JSON.stringify(newUser);
+
+        // fetch('http://localhost:3000/user/', {
+        //     method: 'POST',
+        //     mode: 'cors',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //         // 'Content-Type': 'application/x-www-form-urlencoded',
+        //     },
+        //     body: JSONdata
+        // })
+        //     .then(response => response.json())
+        //     .then(data => console.log(data))
+        //     .catch(error => console.log(error));
+
+        // e.target.reset();
+
+    }
 
     return (
         <>
+            <h1>Formulario de registro</h1>
+            <h3>¡Personaliza tu experiencia!</h3>
+            <p className="registerForm-p">Disfruta de una experiencia sin interrupciones en todos los dispositivos y recomendaciones personalizadas basadas en tu escucha. (Solo toma 30 segundos)</p>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder={user.nombre} onChange={handleNombre} required /> {/*value={nombre}*/}
-                <input type="email" placeholder={user.email} onChange={handleEmail} required /> {/*value={email}*/}
-                <input type="password" placeholder={user.password} onChange={handlePassword} required /> {/*value={password}*/}
+                <button className="registerForm-button registerForm-button-google">Continuar con Google</button>
+                <button className="registerForm-button registerForm-button-facebook">Continuar con Facebook</button>
+                <button className="registerForm-button registerForm-button-apple">Continuar con Apple</button>
+                <input type="text" placeholder="Nombre completo*" onChange={handleNombre} required /> {/*value={nombre}*/}
+                <input type="email" placeholder="Correo electrónico*" onChange={handleEmail} required /> {/*value={email}*/}
+                <input type="password" placeholder="Contraseña*" onChange={handlePassword} required /> {/*value={password}*/}
                 <input type="date" placeholder="Año de nacimiento (AAAA)*" onChange={handleFechaNacimiento} required /> {/*value={fechaNacimiento}*/}
                 <input type="number" min="1900" max="2100" step="1" placeholder="Año de nacimiento (AAAA)*" onChange={handleFechaNacimiento} required /> {/*value={fechaNacimiento}*/}
                 <div>
@@ -60,14 +77,8 @@ export const EditUserProfile = () => {
                     <label htmlFor="otro">Otro</label>
                 </div>
                 <br />
+                <button >Regístrate</button>
             </form>
-            
-            <label id="name-label">Nombre Completo</label><br />
-            <input type="text" class="text-input" id="name" name="name" placeholder={user.nombre}></input><br />
-            <label id="fecha-label">Fecha de nacimiento</label><br />
-            <input type="date" class="text-input" id="name" name="name"></input><br />
-            <label id="password-label">Password</label><br />
-            <input type="text" class="text-input" id="name" name="name" placeholder={user.password}></input><br />
 
         </>
     )
