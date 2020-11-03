@@ -82,12 +82,9 @@ function Profile() {
   return (
     <>
     <Userprofile />
-    
     <button>
     <Link to="/editUserProfile">Edit</Link>
     </button>
-    <br/>
-    <br/>
     </>
   );
 }
