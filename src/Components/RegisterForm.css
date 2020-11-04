@@ -14,9 +14,9 @@ margin-top: 15px;
 }
 
 .registerForm-button {
-    /* display: block; */
+    display: block;
     height: 50px;
-    width: 370px;
+    width: 50%;
     border-radius: 40px;
     font-weight: 700;
 }
