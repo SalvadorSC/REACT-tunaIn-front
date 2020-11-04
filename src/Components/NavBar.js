@@ -4,12 +4,20 @@ import {
     Route,
     Link,
 } from "react-router-dom";
+import logo from './logo-tuna-noname.svg'; // with import
+
+
+
+
 export const NavBar = () => {
     return (
         <>
             <div className="navbar">
                 <ul className="App-ul">
-                    <img src="logo-tuna-noname.svg" alt="Logo"/>
+                    <br/>
+                    <img src={logo} alt="Logo"/>
+                    <br/>
+                    <h2 className={"app-name"}>Tuna</h2>
                     <li>
                         <Link to="/">Home</Link>
                     </li>

@@ -30,7 +30,7 @@
   justify-content: flex-start;
   list-style-type: none;
   margin: 0;
-  background-color: #463333;
+  background-color: #857171;
   list-style: none;
   text-decoration: none;
 }
@@ -55,10 +55,27 @@ hr {
   color: #61dafb;
 }
 
+.app-name{
+  text-align: center;
+}
+
+ul{
+  padding-inline-start: 0px ;
+
+}
 
 .App-ul li {
-  padding: 5px 20px;
+  padding: 5px 0px;
+  padding-left: 20px;
   font-weight: 200;
+}
+.App-ul a:hover {
+  color: #333
+}
+.App-ul img {
+  margin: 0 auto;
+  width: 50%;
+  text-align: center;
 }
 
 .profile-picture-box button {
