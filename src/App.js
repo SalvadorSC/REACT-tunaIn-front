@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import { Userprofile } from "./userProfile";
 import { EditUserProfile } from "./editUserProfile";
 import { RegisterForm } from "./Components/RegisterForm";
+import { LogIn } from "./Components/LogIn";
 import { NavBar } from "./Components/NavBar";
 function HomeButton() {
   let history = useHistory();
@@ -35,6 +36,9 @@ export default function App() {
             </Route>
             <Route path="/register">
               <RegisterForm />
+            </Route>
+            <Route path="/login">
+              <LogIn />
             </Route>
             <Route path="/profile">
               <Profile />
