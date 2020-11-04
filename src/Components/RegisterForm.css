@@ -2,14 +2,22 @@
     padding: 30px 80px;
 }
 
+.RegisterForm-wrap input {
+background-color: rgb(240, 240, 240);
+padding: 5px 20px;
+margin-top: 15px;
+  }
+
 .registerForm-p {
     margin: auto auto 40px;
 
 }
 
 .registerForm-button {
-    height: 40px;
-    border-radius: 20px;
+    /* display: block; */
+    height: 50px;
+    width: 370px;
+    border-radius: 40px;
     font-weight: 700;
 }
 
