@@ -1,35 +1,29 @@
 body {
   margin: 0;
-  font-family: 'Montserrat', "Raleway", sans-serif;
-    -webkit-font-smoothing: antialiased;
+  font-family: "Poppins", Arial, sans-serif;
+  font-family: 'Bebas Neue', cursive;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  background-color: #282c34;
+  background-color: #FBFEF9;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   /* justify-content: center; */
   font-size: calc(10px + 2vmin);
-  color: white;
-  padding: 50px;
+  color: #333;
 }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: "Bebas Neue", cursive;
 }
 
 h1 {
   font-size: 3rem;
 }
+
 h2 {
   font-size: 2.5rem;
 }
+
 h3 {
   font-size: 2rem;
 }
@@ -75,7 +69,6 @@ li {
 
 input {
   /* color: orange; */
-  color: rgb(173, 177, 180);
   text-align: left;
   padding-left: 10px;
   height: 40px;
@@ -88,11 +81,10 @@ input {
 }
 
 input[type="radio"] {
-  display:inline-block; 
-  width:15px;
-  height:15px; 
+  display: inline-block;
+  width: 15px;
+  height: 15px;
   margin: auto 10px;
-
   /* URL de referencia para el estilo de los inputs type="radio" */
   /* https://stackoverflow.com/questions/18272497/styling-input-radio-with-css/18272642 */
 }
@@ -104,13 +96,11 @@ input:checked {
 label {
   font-family: 'Raleway';
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.500);
   vertical-align: middle;
   margin-right: 20px;
-  cursor:pointer;
-
+  cursor: pointer;
 }
 
-input[type="radio"]:checked + label span {
+input[type="radio"]:checked+label span {
   background: #38454E -57px top no-repeat;
 }
