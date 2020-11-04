@@ -32,8 +32,7 @@ export const RegisterForm = () => {
             fechaNacimiento,
             genero
         }
-
-
+        console.log(newUser);
     }
 
     return (
