@@ -33,22 +33,6 @@ export const RegisterForm = () => {
             genero
         }
 
-        // const JSONdata = JSON.stringify(newUser);
-
-        // fetch('http://localhost:3000/user/', {
-        //     method: 'POST',
-        //     mode: 'cors',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //         // 'Content-Type': 'application/x-www-form-urlencoded',
-        //     },
-        //     body: JSONdata
-        // })
-        //     .then(response => response.json())
-        //     .then(data => console.log(data))
-        //     .catch(error => console.log(error));
-
-        // e.target.reset();
 
     }
 
