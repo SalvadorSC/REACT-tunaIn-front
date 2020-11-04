@@ -1,37 +1,34 @@
 import React, { useState } from 'react';
 import './RegisterForm.css';
+import { serverRequest } from './urlBack';
 
 export const RegisterForm = () => {
-    const [nombre, setNombre] = useState('nombre');
-    const [email, setEmail] = useState('email');
-    const [password, setPassword] = useState('password');
-    const [fechaNacimiento, setFechaNacimiento] = useState('fechaNacimiento');
-    const [genero, setGenero] = useState(null);
+    // Contiene los valores del formulario:
+    const [newUser, setNewUser] = useState({});
 
-    const handleNombre = (e) => {
-        setNombre(e.target.value);
+    // Maneja el estado del formulario:
+    const handleInputs = (event) => {
+        // Recojo el name y el valor del input:
+        const { value, name } = event.target;
+        setNewUser(prevValue => ({
+            ...prevValue,
+            [name]: value
+        }))
     }
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-    }
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-    }
-    const handleFechaNacimiento = (e) => {
-        setFechaNacimiento(e.target.value);
-    }
-    const handleGenero = (e) => {
-        setGenero(e.target.value);
-    }
+
     const handleSubmit = (e) => {
+        // Prevengo que ser recargue la página:
         e.preventDefault();
-        const newUser = {
-            nombre,
-            email,
-            password,
-            fechaNacimiento,
-            genero
-        }
+        // Hago una petición post al servidor:
+        serverRequest('register', 'POST', newUser)
+            .then(token => {
+                console.log(token);
+                //guardar el token en el localStorage en un campo llamado token:
+                localStorage.setItem('token', token);
+            })
+            .catch(console.log)
+        // Reseteo los campos del formulario:
+        e.target.reset();
         console.log(newUser);
     }
 
@@ -40,24 +37,21 @@ export const RegisterForm = () => {
             <h1>¡Personaliza tu experiencia!</h1>
             <p className="registerForm-p">Disfruta de una experiencia sin interrupciones en todos los dispositivos y recomendaciones personalizadas basadas en tu escucha. (Solo toma 30 segundos)</p>
             <form onSubmit={handleSubmit}>
-                <button className="registerForm-button registerForm-button-google">Continuar con Google</button>
-                <button className="registerForm-button registerForm-button-facebook">Continuar con Facebook</button>
-                <button className="registerForm-button registerForm-button-apple">Continuar con Apple</button>
-                <input type="text" placeholder="Nombre completo*" onChange={handleNombre} required /> {/*value={nombre}*/}
-                <input type="email" placeholder="Correo electrónico*" onChange={handleEmail} required /> {/*value={email}*/}
-                <input type="password" placeholder="Contraseña*" onChange={handlePassword} required /> {/*value={password}*/}
-                <input type="date" placeholder="Año de nacimiento (AAAA)*" onChange={handleFechaNacimiento} required /> {/*value={fechaNacimiento}*/}
-                <input type="number" min="1900" max="2100" step="1" placeholder="Año de nacimiento (AAAA)*" onChange={handleFechaNacimiento} required /> {/*value={fechaNacimiento}*/}
+                <input name="nombre" type="text" placeholder="Nombre completo*" onChange={handleInputs} required /> {/*value={nombre}*/}
+                <input name="username" type="text" placeholder="Nombre de usuario*" onChange={handleInputs} required /> {/*value={nombre}*/}
+                <input name="email" type="email" placeholder="Correo electrónico*" onChange={handleInputs} required /> {/*value={email}*/}
+                <input name="password" type="password" placeholder="Contraseña*" onChange={handleInputs} required /> {/*value={password}*/}
+                <input name="fechaNacimiento" type="date" placeholder="Año de nacimiento (AAAA)*" onChange={handleInputs} required /> {/*value={fechaNacimiento}*/}
                 <div>
-                    <input type="radio" name="genero" id="hombre" value="hombre" onChange={handleGenero} required />
+                    <input type="radio" name="genero" value="hombre" onChange={handleInputs} required />
                     <label htmlFor="hombre">Hombre</label>
-                    <input type="radio" name="genero" id="mujer" value="mujer" onChange={handleGenero} required />
+                    <input type="radio" name="genero" value="mujer" onChange={handleInputs} required />
                     <label htmlFor="mujer">Mujer</label>
-                    <input type="radio" name="genero" id="otro" value="otro" onChange={handleGenero} required />
+                    <input type="radio" name="genero" value="otro" onChange={handleInputs} required />
                     <label htmlFor="otro">Otro</label>
                 </div>
                 <br />
-                <button >Regístrate</button>
+                <button>Regístrate</button>
             </form>
 
         </div>
