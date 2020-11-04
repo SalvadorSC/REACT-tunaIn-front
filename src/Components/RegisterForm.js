@@ -20,11 +20,9 @@ export const RegisterForm = () => {
     const handleFechaNacimiento = (e) => {
         setFechaNacimiento(e.target.value);
     }
-
     const handleGenero = (e) => {
         setGenero(e.target.value);
     }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const newUser = {
@@ -55,9 +53,8 @@ export const RegisterForm = () => {
     }
 
     return (
-        <>
-            <h1>Formulario de registro</h1>
-            <h3>¡Personaliza tu experiencia!</h3>
+        <div className="RegisterForm-wrap">
+            <h1>¡Personaliza tu experiencia!</h1>
             <p className="registerForm-p">Disfruta de una experiencia sin interrupciones en todos los dispositivos y recomendaciones personalizadas basadas en tu escucha. (Solo toma 30 segundos)</p>
             <form onSubmit={handleSubmit}>
                 <button className="registerForm-button registerForm-button-google">Continuar con Google</button>
@@ -80,6 +77,6 @@ export const RegisterForm = () => {
                 <button >Regístrate</button>
             </form>
 
-        </>
+        </div>
     )
 }
