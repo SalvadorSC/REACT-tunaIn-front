@@ -1,15 +1,8 @@
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-} from "react-router-dom";
-import logo from './logo-tuna-noname.svg'; // with import
+import { Link } from "react-router-dom";
+import logo from './logo-tuna-noname.svg';
+import React from "react";
 
-
-
-
-export const NavBar = () => {
+export function NavBar() {
     return (
         <>
             <div className="navbar">

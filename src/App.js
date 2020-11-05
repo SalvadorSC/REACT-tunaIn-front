@@ -1,31 +1,36 @@
 import React from "react";
 import "./App.css";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useHistory
 } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import { Userprofile } from "./userProfile";
-import { EditUserProfile } from "./editUserProfile";
-import { RegisterForm } from "./Components/RegisterForm";
+
+import {Userprofile} from "./userProfile";
+import {EditUserProfile} from "./editUserProfile";
+import {RegisterForm} from "./Components/RegisterForm";
 import { LogIn } from "./Components/LogIn";
-import { NavBar } from "./Components/NavBar";
+import {NavBar} from "./Components/NavBar";
+import {Home} from './home/home';
+
 function HomeButton() {
-  let history = useHistory();
+    let history = useHistory();
 
-  function handleClick() {
-    history.push("/home");
-  }
+    function handleClick() {
+        history.push("/home");
+    }
 
-  return (
-    <button type="button" onClick={handleClick}>
-      Go home
-    </button>
-  );
+    return (
+        <button type="button" onClick={handleClick}>
+            Go home
+        </button>
+    );
 }
+
 export default function App() {
+
   return (
     <Router>
       <div className={"container"}>
@@ -55,36 +60,34 @@ export default function App() {
         <NavBar />
       </div>
 
-    </Router>
-  );
+        </Router>
+    );
 }
 
-function Home() {
-  return (<>
-    <h2>Home</h2>
-  </>)
 
-}
 function Profile() {
-  return (
-    <>
-      <Userprofile />
-      <Link to="/editUserProfile"><button>Edit</button></Link>
-    </>
-  );
+    return (
+        <>
+            <Userprofile/>
+            <Link to="/editUserProfile">
+                <button>Edit</button>
+            </Link>
+        </>
+    );
 }
+
 function EditProfile() {
-  return (
-    <>
-      <EditUserProfile />
-      <button>Edit</button>
-      <br />
-      <br />
-    </>
-  );
+    return (
+        <>
+            <EditUserProfile/>
+            <button>Edit</button>
+            <br/>
+            <br/>
+        </>
+    );
 }
 
 function About() {
-  return <h2>About</h2>;
+    return <h2>About</h2>;
 }
 
