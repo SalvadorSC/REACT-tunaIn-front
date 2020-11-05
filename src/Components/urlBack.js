@@ -7,19 +7,32 @@ export const serverRequest = (resources, method, body) => {
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
-            'Authoritation': token
+            'Authoritation': 'Bearer ' + token
+            // 'Authoritation': token
+            // Authorization: 'Bearer ' + jwtToken
             // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSONBody
     }
-    return fetch(url, options).then(response => {
-        if (response.status > 400) {
-            response.json();
-        } else {
-            console.log(response.status);
-        }
 
-    });
+    let response
+    return fetch(url, options)
+        .catch(error => (error))
+        .then(res => {
+            if (res.status >= 400) {
+                response = res;
+            }
+            return res.json();
+        })
+        .then(resJson => {
+            return new Promise((resolve, reject) => {
+                if (response) {
+                    reject(resJson);
+                } else {
+                    resolve(resJson)
+                }
+            });
+        });
 }
 
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './RegisterForm.css';
 import { serverRequest } from './urlBack';
-import TerminosYCondiciones from '../pages/TerminosYCondiciones';
+// import TerminosYCondiciones from '../pages/TerminosYCondiciones';
 
 export const RegisterForm = () => {
     // Contiene los valores del formulario:
@@ -15,6 +15,8 @@ export const RegisterForm = () => {
             ...prevValue,
             [name]: value
         }))
+        console.log(value);
+
     }
 
     const handleSubmit = (e) => {
