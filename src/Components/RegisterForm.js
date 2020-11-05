@@ -15,7 +15,6 @@ export const RegisterForm = () => {
             ...prevValue,
             [name]: value
         }))
-        console.log(value);
 
     }
 
