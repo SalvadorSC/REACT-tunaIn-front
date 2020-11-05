@@ -1,84 +1,88 @@
 import React from "react";
 import "./App.css";
-
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useHistory
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useHistory
 } from "react-router-dom";
 
-import { Userprofile } from "./userProfile";
-import { EditUserProfile } from "./editUserProfile";
-import { RegisterForm } from "./Components/RegisterForm";
-import { NavBar } from "./Components/NavBar";
-import { Home} from './home/home';
+import {Userprofile} from "./userProfile";
+import {EditUserProfile} from "./editUserProfile";
+import {RegisterForm} from "./Components/RegisterForm";
+import {NavBar} from "./Components/NavBar";
+import {Home} from './home/home';
+
 function HomeButton() {
-  let history = useHistory();
+    let history = useHistory();
 
-  function handleClick() {
-    history.push("/home");
-  }
+    function handleClick() {
+        history.push("/home");
+    }
 
-  return (
-    <button type="button" onClick={handleClick}>
-      Go home
-    </button>
-  );
+    return (
+        <button type="button" onClick={handleClick}>
+            Go home
+        </button>
+    );
 }
-export default function App() {
-  return (
-    <Router>
-      <div className={"container"}>
-        <div className="main">
-          <Switch>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/register">
-              <RegisterForm />
-            </Route>
-            <Route path="/profile">
-              <Profile />
-            </Route>
-            <Route path="/editUserprofile">
-              <EditProfile />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-          <HomeButton />
-        </div>
-        <NavBar />
-      </div>
 
-    </Router>
-  );
+export default function App() {
+    return (
+        <Router>
+            <div className={"container"}>
+                <div className="main">
+                    <Switch>
+                        <Route path="/about">
+                            <About/>
+                        </Route>
+                        <Route path="/register">
+                            <RegisterForm/>
+                        </Route>
+                        <Route path="/profile">
+                            <Profile/>
+                        </Route>
+                        <Route path="/editUserprofile">
+                            <EditProfile/>
+                        </Route>
+                        <Route path="/">
+                            <Home/>
+                        </Route>
+                    </Switch>
+                    <HomeButton/>
+                </div>
+                <NavBar/>
+            </div>
+
+        </Router>
+    );
 }
 
 
 function Profile() {
-  return (
-    <>
-      <Userprofile />
-      <Link to="/editUserProfile"><button>Edit</button></Link>
-    </>
-  );
+    return (
+        <>
+            <Userprofile/>
+            <Link to="/editUserProfile">
+                <button>Edit</button>
+            </Link>
+        </>
+    );
 }
+
 function EditProfile() {
-  return (
-    <>
-      <EditUserProfile />
-      <button>Edit</button>
-      <br />
-      <br />
-    </>
-  );
+    return (
+        <>
+            <EditUserProfile/>
+            <button>Edit</button>
+            <br/>
+            <br/>
+        </>
+    );
 }
 
 function About() {
-  return <h2>About</h2>;
+    return <h2>About</h2>;
 }
 

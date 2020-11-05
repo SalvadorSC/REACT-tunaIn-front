@@ -1,6 +1,6 @@
 import {NavBar} from '../Components/NavBar';
 import React from "react";
-import homeCarousel from '../Components/Slide'
+import Slide from '../Components/Slide/Slide'
 
 export const Home = () => {
 
@@ -8,7 +8,7 @@ export const Home = () => {
         <div>
             <title>TunaIn</title>
             <NavBar />
-            <homeCarousel />
+            <Slide />
 
     </div>
 
