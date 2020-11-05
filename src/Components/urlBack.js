@@ -1,6 +1,8 @@
+import { getToken } from "../util/LocalStorage.utils";
+
 export const serverRequest = (resources, method, body) => {
-    const token = localStorage.getItem('token');
-    const url = `http://localhost:3000/${resources}`;
+    const token = getToken();
+    const url = `http://localhost:3300/${resources}`;
     const JSONBody = JSON.stringify(body);
     const options = {
         method: method,

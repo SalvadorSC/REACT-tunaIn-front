@@ -10,7 +10,7 @@ body {
   /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: #333;
-  padding: 30px 80px;
+  
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: "Bebas Neue", cursive;
@@ -43,7 +43,7 @@ a:hover {
 }
 
 button {
-  width: 52%;
+  width: 50%;
   height: 50px;
   margin: 1% auto;
   background-color: #FE8B86;
@@ -52,6 +52,7 @@ button {
   border: none;
   border-radius: 2px;
   font-family: "Raleway", sans-serif;
+  font-size: 1rem;
   font-weight: 700;
 }
 
@@ -74,7 +75,7 @@ input {
   text-align: left;
   padding-left: 10px;
   height: 40px;
-  width: 50%;
+  width: 100%;
   border-radius: 3px;
   border: none;
   font-family: "Poppins";

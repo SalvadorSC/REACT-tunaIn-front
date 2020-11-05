@@ -1,12 +1,9 @@
 export const setJWT = (token) => {
-    const data = {
-        token,
-    }
-    localStorage.setItem('JWT_KEY', JSON.stringify(data));
+    localStorage.setItem('JWT_KEY', JSON.stringify(token));
 };
 
 export const getToken = () => {
-    return JSON.parse(localStorage.getItem('JWT_KEY') || '{}');
+    return localStorage.getItem('JWT_KEY');
 };
 
 export const deleteToken = () => {
