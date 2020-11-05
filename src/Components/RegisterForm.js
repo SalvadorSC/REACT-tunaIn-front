@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './RegisterForm.css';
 import { serverRequest } from './urlBack';
+import { setJWT } from '../util/LocalStorage.utils';
 // import TerminosYCondiciones from '../pages/TerminosYCondiciones';
 
 export const RegisterForm = () => {
@@ -23,15 +24,13 @@ export const RegisterForm = () => {
         e.preventDefault();
         // Hago una petición post al servidor:
         serverRequest('register', 'POST', newUser)
-            .then(token => {
-                console.log(token);
+            .then(response => {
                 //guardar el token en el localStorage en un campo llamado token:
-                localStorage.setItem('token', token);
+                setJWT(response.token);
             })
             .catch(console.log)
         // Reseteo los campos del formulario:
         e.target.reset();
-        console.log(newUser);
     }
 
     return (
@@ -53,12 +52,16 @@ export const RegisterForm = () => {
                     <label htmlFor="otro">Otro</label>
                 </div>
                 <br />
-                <div className="RegisterForm-buttonSection">
-                    <span>¿Ya eres miembro de TunaIn?</span>
-                    <a>Inicia sesión</a>
-                    <button>Regístrate</button>
+                <div className="RegisterForm-dflex">
+                    <div className="a-login">
+                        <span>¿Ya eres miembro?</span>
+                        <a href="www.google.es">Inicia sesión</a>
+                    </div>
+                    <div>
+                        <button>Regístrate</button>
+                    </div>
                 </div>
-                <span className="RegisterForm-terminos">Al registrar, aceptas nuestros <a>Términos de Servicio y Política de Privacidad</a></span>
+                <span className="RegisterForm-terminos">Al registrar, aceptas nuestros <a href="www.google.es">Términos de Servicio y Política de Privacidad</a></span>
             </form>
 
         </div>

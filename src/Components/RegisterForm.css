@@ -1,5 +1,5 @@
 .RegisterForm-wrap {
-    
+    padding: 30px;
 }
 
 .RegisterForm-wrap input {
@@ -20,27 +20,49 @@ margin-top: 15px;
     font-weight: 700;
 }
 
-.RegisterForm-buttonSection {
-    display: inline;
-    margin: auto auto 40px;
+.RegisterForm-dflex {
+    display: flex;
+    justify-content: center;
 }
 
-.RegisterForm-buttonSection span {
-    font-size: 0.9rem;
+.a-login {
+ text-align: right;
+ padding: 5px 20px;
+}
+
+.RegisterForm-dflex span {
+    display: block;
+    font-size: 0.8rem;
     line-height: 1.1;
-    padding: 5px;
 
 }
-.RegisterForm-buttonSection a {
-    font-size: 0.9rem;
+.RegisterForm-dflex a {
+    font-size: 0.8rem;
     line-height: 1.1;
-    padding: 5px;
+    color: #61dafb;
+}
 
+.RegisterForm-dflex a:hover {
+    color: #077594;
+  }
+
+.RegisterForm-dflex button {
+    /* display: inline-block; */
+    width: 200px;
 }
 
 .RegisterForm-terminos {
-    font-size: 0.6rem;
-    line-height: 1.1;
+    font-size: 0.7rem;
+    line-height: 1.6;
     display: block;
     margin-top: 20px;
+    text-align: center;
 }
+
+.RegisterForm-terminos a {
+    color: #61dafb;
+}
+
+.RegisterForm-terminos a:hover {
+    color: #077594;
+  }

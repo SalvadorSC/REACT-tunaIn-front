@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './LogIn.css';
 import { serverRequest } from './urlBack';
+import { setJWT } from '../util/LocalStorage.utils'
 
 export const LogIn = () => {
     // Contiene los valores del formulario:
     const [loginUser, setLoginUser] = useState({});
-
     // Maneja el estado del formulario:
     const handleInputs = (event) => {
         // Recojo el name y el valor del input:
@@ -20,15 +20,13 @@ export const LogIn = () => {
         e.preventDefault();
         // Hago una petición post al servidor:
         serverRequest('login', 'POST', loginUser)
-            .then(token => {
-                console.log(token);
+            .then(response => {
                 //guardar el token en el localStorage en un campo llamado token:
-                localStorage.setItem('token', token);
+                setJWT(response.token);
             })
             .catch(console.log)
         // Reseteo los campos del formulario:
         e.target.reset();
-        console.log(loginUser);
     }
 
     return (
@@ -41,7 +39,6 @@ export const LogIn = () => {
                 <br />
                 <button >Acceder</button>
             </form>
-
         </div>
     )
 }
