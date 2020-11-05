@@ -1,28 +1,46 @@
+.RegisterForm-wrap {
+    
+}
+
+.RegisterForm-wrap input {
+background-color: rgb(240, 240, 240);
+padding: 5px 20px;
+margin-top: 15px;
+  }
+
 .registerForm-p {
-    width: 50%;
     margin: auto auto 40px;
 
 }
 
 .registerForm-button {
-    display: block;
-    height: 40px;
-    border-radius: 30px;
+    height: 50px;
+    width: 50%;
+    border-radius: 40px;
     font-weight: 700;
 }
 
-.registerForm-button-google {
-    background-color: lightgrey;
-    color: rgb(32, 32, 32);
+.RegisterForm-buttonSection {
+    display: inline;
+    margin: auto auto 40px;
 }
 
-.registerForm-button-facebook {
-    background-color: #344C7F;
-    color: white;
+.RegisterForm-buttonSection span {
+    font-size: 0.9rem;
+    line-height: 1.1;
+    padding: 5px;
+
+}
+.RegisterForm-buttonSection a {
+    font-size: 0.9rem;
+    line-height: 1.1;
+    padding: 5px;
+
 }
 
-.registerForm-button-apple {
-    background-color: black;
-    color: white;
+.RegisterForm-terminos {
+    font-size: 0.6rem;
+    line-height: 1.1;
+    display: block;
+    margin-top: 20px;
 }
-

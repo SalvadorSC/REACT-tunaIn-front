@@ -7,9 +7,9 @@ export function NavBar() {
         <>
             <div className="navbar">
                 <ul className="App-ul">
-                    <br/>
-                    <img src={logo} alt="Logo"/>
-                    <br/>
+                    <br />
+                    <img src={logo} alt="Logo" />
+                    <br />
                     <h2 className={"app-name"}>Tuna</h2>
                     <li>
                         <Link to="/">Home</Link>
@@ -19,6 +19,9 @@ export function NavBar() {
                     </li>
                     <li>
                         <Link to="/profile">Profile</Link>
+                    </li>
+                    <li>
+                        <Link to="/login">Login</Link>
                     </li>
                     <li>
                         <Link to="/register">Register</Link>

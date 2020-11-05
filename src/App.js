@@ -11,6 +11,7 @@ import {
 import {Userprofile} from "./userProfile";
 import {EditUserProfile} from "./editUserProfile";
 import {RegisterForm} from "./Components/RegisterForm";
+import { LogIn } from "./Components/LogIn";
 import {NavBar} from "./Components/NavBar";
 import {Home} from './home/home';
 
@@ -29,31 +30,35 @@ function HomeButton() {
 }
 
 export default function App() {
-    return (
-        <Router>
-            <div className={"container"}>
-                <div className="main">
-                    <Switch>
-                        <Route path="/about">
-                            <About/>
-                        </Route>
-                        <Route path="/register">
-                            <RegisterForm/>
-                        </Route>
-                        <Route path="/profile">
-                            <Profile/>
-                        </Route>
-                        <Route path="/editUserprofile">
-                            <EditProfile/>
-                        </Route>
-                        <Route path="/">
-                            <Home/>
-                        </Route>
-                    </Switch>
-                    <HomeButton/>
-                </div>
-                <NavBar/>
-            </div>
+
+  return (
+    <Router>
+      <div className={"container"}>
+        <div className="main">
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/register">
+              <RegisterForm />
+            </Route>
+            <Route path="/login">
+              <LogIn />
+            </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route path="/edituserprofile">
+              <EditProfile />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+          <HomeButton />
+        </div>
+        <NavBar />
+      </div>
 
         </Router>
     );
