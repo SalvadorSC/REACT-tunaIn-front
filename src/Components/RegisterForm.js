@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './RegisterForm.css';
 import { serverRequest } from './urlBack';
+import TerminosYCondiciones from '../pages/TerminosYCondiciones';
 
 export const RegisterForm = () => {
     // Contiene los valores del formulario:
@@ -51,7 +52,12 @@ export const RegisterForm = () => {
                     <label htmlFor="otro">Otro</label>
                 </div>
                 <br />
-                <button>Regístrate</button>
+                <div className="RegisterForm-buttonSection">
+                    <span>¿Ya eres miembro de TunaIn?</span>
+                    <a>Inicia sesión</a>
+                    <button>Regístrate</button>
+                </div>
+                <span className="RegisterForm-terminos">Al registrar, aceptas nuestros <a>Términos de Servicio y Política de Privacidad</a></span>
             </form>
 
         </div>
