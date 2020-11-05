@@ -1,36 +1,43 @@
 import React, { useState } from 'react';
 import './LogIn.css';
+import { serverRequest } from './urlBack';
 
 export const LogIn = () => {
-    const [email, setEmail] = useState('email');
-    const [password, setPassword] = useState('password');
+    // Contiene los valores del formulario:
+    const [loginUser, setLoginUser] = useState({});
 
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-    }
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
+    // Maneja el estado del formulario:
+    const handleInputs = (event) => {
+        // Recojo el name y el valor del input:
+        const { value, name } = event.target;
+        setLoginUser(prevValue => ({
+            ...prevValue,
+            [name]: value
+        }))
     }
     const handleSubmit = (e) => {
+        // Prevengo que ser recargue la página:
         e.preventDefault();
-        const accesoUser = {
-            email,
-            password,
-        }
-        console.log(accesoUser);
+        // Hago una petición post al servidor:
+        serverRequest('login', 'POST', loginUser)
+            .then(token => {
+                console.log(token);
+                //guardar el token en el localStorage en un campo llamado token:
+                localStorage.setItem('token', token);
+            })
+            .catch(console.log)
+        // Reseteo los campos del formulario:
+        e.target.reset();
+        console.log(loginUser);
     }
 
     return (
         <div className="Login-wrap">
             <h1>¡Hola de nuevo!</h1>
-            <p className="Login-p">Bienvenido de nuevo, accede a tu cuenta para escuchar tus podcasts favoritos.</p>
+            <p className="Login-p">Accede a tu cuenta para escuchar tus podcasts favoritos.</p>
             <form onSubmit={handleSubmit}>
-                <button className="Login-button Login-button-google">Continuar con Google</button>
-                <button className="Login-button Login-button-facebook">Continuar con Facebook</button>
-                <button className="Login-button Login-button-apple">Continuar con Apple</button>
-                <input type="email" placeholder="Correo electrónico*" onChange={handleEmail} required /> {/*value={email}*/}
-                <input type="password" placeholder="Contraseña*" onChange={handlePassword} required /> {/*value={password}*/}
-
+                <input name="email" type="email" placeholder="Correo electrónico*" onChange={handleInputs} required /> {/*value={email}*/}
+                <input name="password" type="password" placeholder="Contraseña*" onChange={handleInputs} required /> {/*value={password}*/}
                 <br />
                 <button >Acceder</button>
             </form>
