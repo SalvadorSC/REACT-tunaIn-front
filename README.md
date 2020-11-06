@@ -9,6 +9,7 @@
 `git branch branch_name` crea una rama con el nombre indicado
 `git checkout branch_name` accedemos a la rama especificada
 `git pull origin master` actualiza git remoto con versión de github (se suele hacer a master)
+`git fetch` actualiza git remoto con otras ramas de compañeros de github
 
 //esto es github!!
 `gh repo create` crea un repositorio en github

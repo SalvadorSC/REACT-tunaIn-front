@@ -1,74 +1,77 @@
-import React from 'react'
-import {useState} from 'react'   
+import './UserProfile.css'
+import React from "react";
+import { useEffect, useState } from 'react'
+import { serverRequest } from './Components/urlBack';
+import { getToken } from "./util/LocalStorage.utils";
 
-const user = {
-    "nombre": "Jose",
-    "username": "Jose17SV",
-    "email": "user@gmail.com",
-    "password": "1234",
-    "channel": "JoseRadio",
-    "fechaNacimiento": "2000",
-}
 export const EditUserProfile = () => {
-    const [nombre, setNombre] = useState('nombre');
-    const [email, setEmail] = useState('email');
-    const [password, setPassword] = useState('password');
-    const [fechaNacimiento, setFechaNacimiento] = useState('fechaNacimiento');
-    const [genero, setGenero] = useState(null);
+    //const [canales, setCanales] = useState("No tienes ningún canal")
+    const [user, setUser] = useState({})
+    const sitio = "data/user/";
+    const id = '5fa4805beb15600cc545123c';
+    //((`${url}+${id}`
+    useEffect(() => {
+        serverRequest(`${sitio}${id}`, 'GET')
+            .then(response => response.json())
+            .then(data => setUser(data))
+            .catch(console.log);
+    }, [id]);
 
-    const handleNombre = (e) => {
-        setNombre(e.target.value);
-    }
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-    }
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-    }
-    const handleFechaNacimiento = (e) => {
-        setFechaNacimiento(e.target.value);
+    // Contiene los valores del formulario:
+    const [editedUser, setEditedUser] = useState({});
+
+    // Maneja el estado del formulario:
+    const handleChanges = (event) => {
+        // Recojo el name y el valor del input:
+        const { value, name } = event.target;
+        setEditedUser(prevValue => ({
+            ...prevValue,
+            [name]: value
+        }))
     }
 
-    const handleGenero = (e) => {
-        setGenero(e.target.value);
-    }
     const handleSubmit = (e) => {
+        // Prevengo que ser recargue la página:
         e.preventDefault();
-        const newUser = {
-            nombre,
-            email,
-            password,
-            fechaNacimiento,
-            genero
-        }
-    };
+        // Hago una petición post al servidor:
+        serverRequest(`${sitio}${id}`, 'PUT', editedUser)
+            .then(data => setUser(editedUser))
+
+            .catch(console.log);
+        // Reseteo los campos del formulario:
+        e.target.reset();
+    }
+
+    // useEffect(() => {
+    //     const bearer = 'Bearer ' + getToken();
+    //     fetch((`${sitio}${id}`), {
+    //         method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+    //         mode: 'cors', // no-cors, *cors, same-origin
+    //         headers: {
+    //             'Authorization': bearer,
+    //             'Content-Type': 'application/json'
+    //             // 'Content-Type': 'application/x-www-form-urlencoded',
+    //         }
+    //     })
+    //         .then(response => response.json())
+    //         .then(data => setUser(data));
+    // }, [id]);
 
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder={user.nombre} onChange={handleNombre} required /> {/*value={nombre}*/}
-                <input type="email" placeholder={user.email} onChange={handleEmail} required /> {/*value={email}*/}
-                <input type="password" placeholder={user.password} onChange={handlePassword} required /> {/*value={password}*/}
-                <input type="date" placeholder="Año de nacimiento (AAAA)*" onChange={handleFechaNacimiento} required /> {/*value={fechaNacimiento}*/}
-                <input type="number" min="1900" max="2100" step="1" placeholder="Año de nacimiento (AAAA)*" onChange={handleFechaNacimiento} required /> {/*value={fechaNacimiento}*/}
-                <div>
-                    <input type="radio" name="genero" id="hombre" value="hombre" onChange={handleGenero} required />
-                    <label htmlFor="hombre">Hombre</label>
-                    <input type="radio" name="genero" id="mujer" value="mujer" onChange={handleGenero} required />
-                    <label htmlFor="mujer">Mujer</label>
-                    <input type="radio" name="genero" id="otro" value="otro" onChange={handleGenero} required />
-                    <label htmlFor="otro">Otro</label>
-                </div>
-                <br />
+                <label id="name-label">Nombre Completo</label><br />
+                <input name="nombre" type="text" onChange={handleChanges} placeholder={user.nombre} /><br />
+                <label id="username-label">Username</label><br />
+                <input name="username" type="text" placeholder={user.username} onChange={handleChanges} /><br />
+                <label id="email-label">Email</label><br />
+                <input name="email" type="email" placeholder={user.email} onChange={handleChanges} /><br />
+                <label id="password-label">Password</label><br />
+                <input name="password" type="password" placeholder={user.password} onChange={handleChanges} /><br />
+                <label id="fechaNacimiento-label">Fecha de nacimiento</label><br />
+                <input name="fechaNacimiento" type="date" onChange={handleChanges} /><br />
+                <button>Save Changes</button>
             </form>
-            
-            <label id="name-label">Nombre Completo</label><br />
-            <input type="text" class="text-input" id="name" name="name" placeholder={user.nombre}></input><br />
-            <label id="fecha-label">Fecha de nacimiento</label><br />
-            <input type="date" class="text-input" id="name" name="name"></input><br />
-            <label id="password-label">Password</label><br />
-            <input type="text" class="text-input" id="name" name="name" placeholder={user.password}></input><br />
-
         </>
     )
 }

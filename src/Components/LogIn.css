@@ -1,19 +1,19 @@
-.RegisterForm-wrap {
+.Login-wrap {
     padding: 30px 80px;
 }
 
-.RegisterForm-wrap input {
+.Login-wrap input {
 background-color: rgb(240, 240, 240);
 padding: 5px 20px;
 margin-top: 15px;
   }
 
-.registerForm-p {
+.Login-p {
     margin: auto auto 40px;
 
 }
 
-.registerForm-button {
+.Login-button {
     display: block;
     height: 50px;
     width: 50%;
@@ -21,17 +21,17 @@ margin-top: 15px;
     font-weight: 700;
 }
 
-.registerForm-button-google {
+.Login-button-google {
     background-color: lightgrey;
     color: rgb(32, 32, 32);
 }
 
-.registerForm-button-facebook {
+.Login-button-facebook {
     background-color: #344C7F;
     color: white;
 }
 
-.registerForm-button-apple {
+.Login-button-apple {
     background-color: black;
     color: white;
 }

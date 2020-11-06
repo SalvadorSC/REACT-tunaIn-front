@@ -4,12 +4,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
 } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { Userprofile } from "./userProfile";
-import { EditUserProfile } from "./editUserProfile";
+import { Userprofile } from "./UserProfile";
+import { EditUserProfile } from "./EditUserProfile";
 import { RegisterForm } from "./Components/RegisterForm";
+import { LogIn } from "./Components/LogIn";
 import { NavBar } from "./Components/NavBar";
 function HomeButton() {
   let history = useHistory();
@@ -36,11 +36,14 @@ export default function App() {
             <Route path="/register">
               <RegisterForm />
             </Route>
+            <Route path="/login">
+              <LogIn />
+            </Route>
             <Route path="/profile">
               <Profile />
             </Route>
             <Route path="/edituserprofile">
-              <EditProfile />
+              <EditUserProfile />
             </Route>
             <Route path="/">
               <Home />
@@ -65,17 +68,7 @@ function Profile() {
   return (
     <>
       <Userprofile />
-      <Link to="/editUserProfile"><button>Edit</button></Link>
-    </>
-  );
-}
-function EditProfile() {
-  return (
-    <>
-      <EditUserProfile />
-      <button>Edit</button>
-      <br />
-      <br />
+     
     </>
   );
 }

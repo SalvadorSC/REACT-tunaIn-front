@@ -1,7 +1,6 @@
 body {
   margin: 0;
   font-family: "Poppins", Arial, sans-serif;
-  font-family: 'Bebas Neue', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #FBFEF9;
@@ -30,10 +29,11 @@ h3 {
 
 p {
   font-size: 1rem;
+
 }
 
 a {
-  color: #61dafb;
+  color: white;
   text-decoration: none;
 }
 
@@ -75,7 +75,7 @@ input {
   width: 50%;
   border-radius: 3px;
   border: none;
-  font-family: 'Raleway';
+  font-family: "Poppins";
   font-size: 0.9rem;
   margin: 1% auto;
 }
@@ -94,7 +94,7 @@ input:checked {
 }
 
 label {
-  font-family: 'Raleway';
+  font-family: "Poppins";
   font-size: 0.9rem;
   vertical-align: middle;
   margin-right: 20px;
