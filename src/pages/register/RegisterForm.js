@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './RegisterForm.css';
 import { serverRequest } from '../../hooks/urlBack';
 import { setJWT } from '../../util/LocalStorage.utils';
-// import TerminosYCondiciones from '../pages/TerminosYCondiciones';
+// import TerminosYCondiciones from '../pages/termsAndConditions/TerminosYCondiciones';
 
 
 export const RegisterForm = () => {
