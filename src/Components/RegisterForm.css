@@ -1,4 +1,5 @@
 .RegisterForm-wrap {
+
     padding: 30px 80px;
 }
 
@@ -21,18 +22,49 @@ margin-top: 15px;
     font-weight: 700;
 }
 
-.registerForm-button-google {
-    background-color: lightgrey;
-    color: rgb(32, 32, 32);
+.RegisterForm-dflex {
+    display: flex;
+    justify-content: center;
 }
 
-.registerForm-button-facebook {
-    background-color: #344C7F;
-    color: white;
+.a-login {
+ text-align: right;
+ padding: 5px 20px;
 }
 
-.registerForm-button-apple {
-    background-color: black;
-    color: white;
+.RegisterForm-dflex span {
+    display: block;
+    font-size: 0.8rem;
+    line-height: 1.1;
+
+}
+.RegisterForm-dflex a {
+    font-size: 0.8rem;
+    line-height: 1.1;
+    color: #61dafb;
 }
 
+.RegisterForm-dflex a:hover {
+    color: #077594;
+  }
+
+.RegisterForm-dflex button {
+    /* display: inline-block; */
+    width: 200px;
+}
+
+.RegisterForm-terminos {
+    font-size: 0.7rem;
+    line-height: 1.6;
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.RegisterForm-terminos a {
+    color: #61dafb;
+}
+
+.RegisterForm-terminos a:hover {
+    color: #077594;
+  }

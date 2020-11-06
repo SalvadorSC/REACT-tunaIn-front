@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './RegisterForm.css';
 import { serverRequest } from './urlBack';
 import { setJWT } from '../util/LocalStorage.utils';
+// import TerminosYCondiciones from '../pages/TerminosYCondiciones';
+
 
 export const RegisterForm = () => {
     // Contiene los valores del formulario:
@@ -50,7 +52,16 @@ export const RegisterForm = () => {
                     <label htmlFor="otro">Otro</label>
                 </div>
                 <br />
-                <button>Regístrate</button>
+                <div className="RegisterForm-dflex">
+                    <div className="a-login">
+                        <span>¿Ya eres miembro?</span>
+                        <a href="www.google.es">Inicia sesión</a>
+                    </div>
+                    <div>
+                        <button>Regístrate</button>
+                    </div>
+                </div>
+                <span className="RegisterForm-terminos">Al registrar, aceptas nuestros <a href="www.google.es">Términos de Servicio y Política de Privacidad</a></span>
             </form>
 
         </div>

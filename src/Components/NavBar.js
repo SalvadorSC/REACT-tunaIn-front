@@ -5,11 +5,10 @@ import {
     Link,
 } from "react-router-dom";
 import logo from '../assets/logo-tuna-noname.svg'; // with import
+import React from "react";
 
 
-
-
-export const NavBar = () => {
+export function NavBar() {
     return (
         <>
             <div className="navbar">

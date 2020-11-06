@@ -1,7 +1,7 @@
 import { getToken } from "../util/LocalStorage.utils";
 export const serverRequest = (resources, method, body) => {
     const token = getToken();
-    const url = `http://localhost:3000/${resources}`;
+    const url = `http://localhost:3300/${resources}`;
     const JSONBody = JSON.stringify(body);
     const options = {
         method: method,
@@ -15,6 +15,7 @@ export const serverRequest = (resources, method, body) => {
         },
         body: JSONBody
     }
+
     let response
     return fetch(url, options)
         .catch(error => (error))
@@ -33,4 +34,5 @@ export const serverRequest = (resources, method, body) => {
                 }
             });
         });
+
 }
