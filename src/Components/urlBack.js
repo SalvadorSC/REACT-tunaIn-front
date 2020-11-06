@@ -1,5 +1,4 @@
 import { getToken } from "../util/LocalStorage.utils";
-
 export const serverRequest = (resources, method, body) => {
     const token = getToken();
     const url = `http://localhost:3300/${resources}`;
@@ -35,6 +34,5 @@ export const serverRequest = (resources, method, body) => {
                 }
             });
         });
+
 }
-
-

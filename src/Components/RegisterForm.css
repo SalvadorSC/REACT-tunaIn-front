@@ -1,5 +1,6 @@
 .RegisterForm-wrap {
-    padding: 30px;
+
+    padding: 30px 80px;
 }
 
 .RegisterForm-wrap input {
@@ -14,6 +15,7 @@ margin-top: 15px;
 }
 
 .registerForm-button {
+    display: block;
     height: 50px;
     width: 50%;
     border-radius: 40px;

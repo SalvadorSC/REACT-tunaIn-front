@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom";
-import logo from './logo-tuna-noname.svg';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+} from "react-router-dom";
+import logo from '../assets/logo-tuna-noname.svg'; // with import
 import React from "react";
+
 
 export function NavBar() {
     return (

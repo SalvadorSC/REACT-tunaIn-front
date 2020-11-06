@@ -1,15 +1,15 @@
 import React from "react";
 import "./App.css";
 import {
+
     BrowserRouter as Router,
     Switch,
     Route,
     Link,
     useHistory
 } from "react-router-dom";
-
-import {Userprofile} from "./userProfile";
-import {EditUserProfile} from "./editUserProfile";
+import {Userprofile} from "./UserProfile";
+import {EditUserProfile} from "./EditUserProfile";
 import {RegisterForm} from "./Components/RegisterForm";
 import { LogIn } from "./Components/LogIn";
 import {NavBar} from "./Components/NavBar";
@@ -49,7 +49,7 @@ export default function App() {
               <Profile />
             </Route>
             <Route path="/edituserprofile">
-              <EditProfile />
+              <EditUserProfile />
             </Route>
             <Route path="/">
               <Home />
@@ -66,25 +66,13 @@ export default function App() {
 
 
 function Profile() {
-    return (
-        <>
-            <Userprofile/>
-            <Link to="/editUserProfile">
-                <button>Edit</button>
-            </Link>
-        </>
-    );
-}
 
-function EditProfile() {
-    return (
-        <>
-            <EditUserProfile/>
-            <button>Edit</button>
-            <br/>
-            <br/>
-        </>
-    );
+  return (
+    <>
+      <Userprofile />
+    </>
+  );
+
 }
 
 function About() {

@@ -4,6 +4,7 @@ import { serverRequest } from './urlBack';
 import { setJWT } from '../util/LocalStorage.utils';
 // import TerminosYCondiciones from '../pages/TerminosYCondiciones';
 
+
 export const RegisterForm = () => {
     // Contiene los valores del formulario:
     const [newUser, setNewUser] = useState({});
@@ -16,7 +17,6 @@ export const RegisterForm = () => {
             ...prevValue,
             [name]: value
         }))
-
     }
 
     const handleSubmit = (e) => {
