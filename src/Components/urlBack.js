@@ -10,7 +10,6 @@ export const serverRequest = (resources, method, body) => {
             'Content-Type': 'application/json',
             'Authoritation': 'Bearer ' + token
             // 'Authoritation': token
-            // Authorization: 'Bearer ' + jwtToken
             // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSONBody
