@@ -1,8 +1,7 @@
-import './UserProfile.css'
-import React from "react";
-import { useEffect, useState } from 'react'
-import { serverRequest } from './Components/urlBack';
-import { getToken } from "./util/LocalStorage.utils";
+import '../userProfile/UserProfile.css'
+import React, { useEffect, useState } from "react";
+import { serverRequest } from '../../hooks/urlBack';
+import { getToken } from '../../util/LocalStorage.utils';
 
 export const EditUserProfile = () => {
     //const [canales, setCanales] = useState("No tienes ningún canal")
@@ -12,6 +11,7 @@ export const EditUserProfile = () => {
     //((`${url}+${id}`
     useEffect(() => {
         serverRequest(`${sitio}${id}`, 'GET')
+        getToken
             .then(response => response.json())
             .then(data => setUser(data))
             .catch(console.log);

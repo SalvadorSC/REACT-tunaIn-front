@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import {
     BrowserRouter as Router,
     Link,
-  } from "react-router-dom";
-import { getToken } from './util/LocalStorage.utils'
+} from "react-router-dom";
+import { getToken } from '../../util/LocalStorage.utils';
 
 export const Userprofile = () => {
     //const [canales, setCanales] = useState("No tienes ningún canal")

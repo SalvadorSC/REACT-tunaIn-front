@@ -1,6 +1,6 @@
-import {NavBar} from '../Components/NavBar';
+import { NavBar } from '../../Components/NavBar/NavBar';
 import React from "react";
-import Slide from '../Components/Slide/Slide'
+import Slide from '../../Components/Slide/Slide';
 
 export const Home = () => {
 
@@ -10,7 +10,7 @@ export const Home = () => {
             <NavBar />
             <Slide />
 
-    </div>
+        </div>
 
     );
 };

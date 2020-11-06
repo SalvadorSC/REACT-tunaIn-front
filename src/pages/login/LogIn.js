@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './LogIn.css';
-import { serverRequest } from './urlBack';
-import { setJWT } from '../util/LocalStorage.utils'
+import { serverRequest } from '../../hooks/urlBack';
+import { setJWT } from '../../util/LocalStorage.utils';
 
 export const LogIn = () => {
     // Contiene los valores del formulario:

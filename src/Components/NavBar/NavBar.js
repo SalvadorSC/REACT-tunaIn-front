@@ -4,9 +4,8 @@ import {
     Route,
     Link,
 } from "react-router-dom";
-import logo from '../assets/logo-tuna-noname.svg'; // with import
+import logo from '../../assets/logo-tuna-noname.svg'; // with import
 import React from "react";
-
 
 export function NavBar() {
     return (

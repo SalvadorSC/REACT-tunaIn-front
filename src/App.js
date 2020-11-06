@@ -1,32 +1,31 @@
 import React from "react";
 import "./App.css";
 import {
-
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useHistory
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory
 } from "react-router-dom";
-import {Userprofile} from "./UserProfile";
-import {EditUserProfile} from "./EditUserProfile";
-import {RegisterForm} from "./Components/RegisterForm";
-import { LogIn } from "./Components/LogIn";
-import {NavBar} from "./Components/NavBar";
-import {Home} from './home/home';
+import { Userprofile } from "./pages/userProfile/UserProfile";
+import { EditUserProfile } from "./pages/editUserProfile/EditUserProfile";
+import { RegisterForm } from "./pages/register/RegisterForm";
+import { LogIn } from "./pages/login/LogIn";
+import { NavBar } from "./Components/NavBar/NavBar";
+import { Home } from './pages/home/home';
 
 function HomeButton() {
-    let history = useHistory();
+  let history = useHistory();
 
-    function handleClick() {
-        history.push("/home");
-    }
+  function handleClick() {
+    history.push("/home");
+  }
 
-    return (
-        <button type="button" onClick={handleClick}>
-            Go home
-        </button>
-    );
+  return (
+    <button type="button" onClick={handleClick}>
+      Go home
+    </button>
+  );
 }
 
 export default function App() {
@@ -60,8 +59,8 @@ export default function App() {
         <NavBar />
       </div>
 
-        </Router>
-    );
+    </Router>
+  );
 }
 
 
@@ -76,6 +75,6 @@ function Profile() {
 }
 
 function About() {
-    return <h2>About</h2>;
+  return <h2>About</h2>;
 }
 

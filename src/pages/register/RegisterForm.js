@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './RegisterForm.css';
-import { serverRequest } from './urlBack';
-import { setJWT } from '../util/LocalStorage.utils';
+import { serverRequest } from '../../hooks/urlBack';
+import { setJWT } from '../../util/LocalStorage.utils';
 // import TerminosYCondiciones from '../pages/TerminosYCondiciones';
 
 
