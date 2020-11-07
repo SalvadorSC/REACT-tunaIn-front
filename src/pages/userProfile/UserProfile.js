@@ -47,7 +47,7 @@ export const UserProfile = () => {
         }, [id]);
     */
   return (
-    <>
+    <div className="UserProfile-wrap">
       <h1>Tu cuenta tunain</h1>
       <p>{user.nombre}</p>
       <p>{user.username}</p>
@@ -58,6 +58,6 @@ export const UserProfile = () => {
       <Link to="/editUserProfile">
         <button>Edit</button>
       </Link>
-    </>
+    </div>
   );
 };

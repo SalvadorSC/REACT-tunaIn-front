@@ -9,7 +9,7 @@
   padding: 0;
   position: fixed;
   right: 0;
-  width: 15%;
+  /* width: 15%; */
 }
 
 .navbar ul {
@@ -27,13 +27,14 @@
 }
 
 .navbar li {
-  font-weight: 200;
+  text-align: center;
   padding: 5px 0px;
-  padding-left: 20px;
+  /* padding-left: 25px; */
 }
 
 .navbar a {
   /* color: white; */
+  font-weight: 400;
   text-decoration: none;
 }
 

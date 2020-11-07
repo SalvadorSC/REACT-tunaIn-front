@@ -15,9 +15,9 @@ export function NavBar() {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/about">About</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/profile">Profile</Link>
           </li>
