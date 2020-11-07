@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import './RegisterForm.css';
+import { Link } from 'react-router-dom'
 import { serverRequest } from '../../hooks/urlBack';
 import { setJWT } from '../../util/LocalStorage.utils';
+import './RegisterForm.css';
 // import TerminosYCondiciones from '../pages/termsAndConditions/TerminosYCondiciones';
 
 
@@ -57,13 +58,14 @@ export const RegisterForm = () => {
                 <div className="RegisterForm-dflex">
                     <div className="a-login">
                         <span>¿Ya eres miembro?</span>
-                        <a href="www.google.es">Inicia sesión</a>
+                        <Link to="/Login">Inicia sesión</Link>
                     </div>
                     <div>
-                        <button>Regístrate</button>
+                        <Link to="/Home"><button>Regístrate</button></Link>
+
                     </div>
                 </div>
-                <span className="RegisterForm-terminos">Al registrar, aceptas nuestros <a href="www.google.es">Términos de Servicio y Política de Privacidad</a></span>
+                <span className="RegisterForm-terminos">Al registrar, aceptas nuestros <Link to="/TerminosYCondiciones">Términos de Servicio y Política de Privacidad</Link></span>
             </form>
 
         </div>
