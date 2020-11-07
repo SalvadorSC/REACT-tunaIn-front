@@ -1,82 +1,82 @@
-import '../userProfile/UserProfile.css'
-// import React, { useEffect, useState } from "react";
-// import { serverRequest } from '../../hooks/urlBack';
-// import { getToken } from '../../util/LocalStorage.utils';
+import React, { useEffect, useState } from "react";
+import { serverRequest } from "../../hooks/urlBack";
+import { DecodeToken } from "../../util/DecodeToken";
+import { getToken } from "../../util/LocalStorage.utils";
+import "./EditUserProfile.css";
 
 export const EditUserProfile = () => {
-    //const [canales, setCanales] = useState("No tienes ningún canal")
-    // const [user, setUser] = useState({})
-    // const sitio = "data/user/";
-    // const id = '5fa4805beb15600cc545123c';
-    // //((`${url}+${id}`
-    // useEffect(() => {
-    //     serverRequest(`${sitio}${id}`, 'GET')
-    //     getToken
-    //         .then(response => response.json())
-    //         .then(data => setUser(data))
-    //         .catch(console.log);
-    // }, [id]);
+  // const [canales, setCanales] = useState("No tienes ningún canal");
+  const [user, setUser] = useState({});
+  const [userId, setUserId] = useState(null);
+  // Contiene los valores del formulario:
+  const [editedUser, setEditedUser] = useState({});
+  const sitio = "data/user";
 
-    // // Contiene los valores del formulario:
-    // const [editedUser, setEditedUser] = useState({});
+  useEffect(() => {
+    const token = getToken();
+    const decodedToken = DecodeToken(token);
+    setUserId(decodedToken.id);
 
-    // // Maneja el estado del formulario:
-    // const handleChanges = (event) => {
-    //     // Recojo el name y el valor del input:
-    //     const { value, name } = event.target;
-    //     setEditedUser(prevValue => ({
-    //         ...prevValue,
-    //         [name]: value
-    //     }))
-    // }
+    serverRequest(`${sitio}/${userId}`, "GET")
+      .then((response) => {
+        setUser(response);
+      })
+      .catch(console.log);
+  }, [userId]);
 
-    // const handleSubmit = (e) => {
-    //     // Prevengo que ser recargue la página:
-    //     e.preventDefault();
-    //     // Hago una petición post al servidor:
-    //     serverRequest(`${sitio}${id}`, 'PUT', editedUser)
-    //         .then(data => setUser(editedUser))
+  // Maneja el estado del formulario:
+  const handleChanges = (event) => {
+    // Recojo el name y el valor del input:
+    const { value, name } = event.target;
+    setEditedUser((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  };
 
-    //         .catch(console.log);
-    //     // Reseteo los campos del formulario:
-    //     e.target.reset();
-    // }
+  const handleSubmit = (e) => {
+    // Prevengo que ser recargue la página:
+    e.preventDefault();
+    // Hago una petición post al servidor:
+    serverRequest(`${sitio}/${userId}`, "PUT", editedUser)
+      .then((response) => setUser(response))
+      .catch(console.log);
+    // Reseteo los campos del formulario:
+    e.target.reset();
+  };
 
-    // // useEffect(() => {
-    // //     const bearer = 'Bearer ' + getToken();
-    // //     fetch((`${sitio}${id}`), {
-    // //         method: 'PUT', // *GET, POST, PUT, DELETE, etc.
-    // //         mode: 'cors', // no-cors, *cors, same-origin
-    // //         headers: {
-    // //             'Authorization': bearer,
-    // //             'Content-Type': 'application/json'
-    // //             // 'Content-Type': 'application/x-www-form-urlencoded',
-    // //         }
-    // //     })
-    // //         .then(response => response.json())
-    // //         .then(data => setUser(data));
-    // // }, [id]);
+  return (
+    <div className="EditUserProfile-wrap">
+      <h1>Edita tu perfil</h1>
+      <form onSubmit={handleSubmit}>
+        <label id="name-label">Nombre Completo</label>
+        <input
+          name="nombre"
+          type="text"
+          onChange={handleChanges}
+          placeholder={user.nombre}
+        />
+        <label id="username-label">Username</label>
+        <input
+          name="username"
+          type="text"
+          placeholder={user.username}
+          onChange={handleChanges}
+        />
+        <label id="fechaNacimiento-label">Fecha de nacimiento</label>
+        <input name="fechaNacimiento" type="date" onChange={handleChanges} />
+        <label id="email-label">Email</label>
+        <input
+          name="email"
+          type="email"
+          placeholder={user.email}
+          onChange={handleChanges}
+        />
+        <label id="password-label">Password</label>
+        <button>Cambiar contraseña</button>
 
-    return (
-        <>
-            <h3>Edita tu perfil</h3>
-        </>
-    )
-    // return (
-    //     <>
-    //         <form onSubmit={handleSubmit}>
-    //             <label id="name-label">Nombre Completo</label><br />
-    //             <input name="nombre" type="text" onChange={handleChanges} placeholder={user.nombre} /><br />
-    //             <label id="username-label">Username</label><br />
-    //             <input name="username" type="text" placeholder={user.username} onChange={handleChanges} /><br />
-    //             <label id="email-label">Email</label><br />
-    //             <input name="email" type="email" placeholder={user.email} onChange={handleChanges} /><br />
-    //             <label id="password-label">Password</label><br />
-    //             <input name="password" type="password" placeholder={user.password} onChange={handleChanges} /><br />
-    //             <label id="fechaNacimiento-label">Fecha de nacimiento</label><br />
-    //             <input name="fechaNacimiento" type="date" onChange={handleChanges} /><br />
-    //             <button>Save Changes</button>
-    //         </form>
-    //     </>
-    // )
-}
+        <button>Guardar cambios</button>
+      </form>
+    </div>
+  );
+};
