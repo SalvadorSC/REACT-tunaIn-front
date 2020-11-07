@@ -48,6 +48,7 @@ export const UserProfile = () => {
     */
   return (
     <>
+      <h1>Tu cuenta tunain</h1>
       <p>{user.nombre}</p>
       <p>{user.username}</p>
       <p>{user.email}</p>

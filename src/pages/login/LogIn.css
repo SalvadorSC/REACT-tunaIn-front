@@ -1,38 +1,15 @@
 .Login-wrap {
-    padding: 30px 80px;
+  /* padding: 30px 80px; */
 }
 
-.Login-wrap input {
-background-color: rgb(240, 240, 240);
-padding: 5px 20px;
-margin-top: 15px;
-  }
-
 .Login-p {
-    margin: auto auto 40px;
-
+  margin: auto auto 40px;
 }
 
 .Login-button {
-    display: block;
-    height: 50px;
-    width: 50%;
-    border-radius: 40px;
-    font-weight: 700;
+  display: block;
+  height: 50px;
+  width: 50%;
+  border-radius: 40px;
+  font-weight: 700;
 }
-
-.Login-button-google {
-    background-color: lightgrey;
-    color: rgb(32, 32, 32);
-}
-
-.Login-button-facebook {
-    background-color: #344C7F;
-    color: white;
-}
-
-.Login-button-apple {
-    background-color: black;
-    color: white;
-}
-

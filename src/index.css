@@ -1,18 +1,23 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: "Poppins", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #FBFEF9;
+  background-color: #fbfef9;
   min-height: 100vh;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: #333;
-  
 }
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Bebas Neue", cursive;
 }
 
@@ -30,7 +35,6 @@ h3 {
 
 p {
   font-size: 1rem;
-
 }
 
 a {
@@ -46,7 +50,7 @@ button {
   width: 50%;
   height: 50px;
   margin: 1% auto;
-  background-color: #FE8B86;
+  background-color: #fe8b86;
   /* background-color: #F99FC9; */
   color: white;
   border: none;
@@ -63,7 +67,11 @@ button:hover {
 }
 
 hr {
-  width: 100%;
+  width: 50%;
+}
+
+ul {
+  padding-inline-start: 0px;
 }
 
 li {
@@ -71,16 +79,16 @@ li {
 }
 
 input {
-  /* color: orange; */
   text-align: left;
-  padding-left: 10px;
+  padding: 5px 20px;
   height: 40px;
   width: 100%;
   border-radius: 3px;
   border: none;
+  background-color: rgb(240, 240, 240);
   font-family: "Poppins";
   font-size: 0.9rem;
-  margin: 1% auto;
+  margin: 10px auto;
 }
 
 input[type="radio"] {
@@ -104,6 +112,6 @@ label {
   cursor: pointer;
 }
 
-input[type="radio"]:checked+label span {
-  background: #38454E -57px top no-repeat;
+input[type="radio"]:checked + label span {
+  background: #38454e -57px top no-repeat;
 }
