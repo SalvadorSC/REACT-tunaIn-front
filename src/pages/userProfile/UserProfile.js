@@ -1,13 +1,10 @@
-import "./UserProfile.css";
 import React from "react";
 import { useEffect, useState } from "react";
-import {
-  // BrowserRouter as Router,
-  Link,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { serverRequest } from "../../hooks/urlBack";
 import { DecodeToken } from "../../util/DecodeToken";
 import { getToken } from "../../util/LocalStorage.utils";
+import "./UserProfile.css";
 
 export const UserProfile = () => {
   const [user, setUser] = useState({});
@@ -56,7 +53,7 @@ export const UserProfile = () => {
       {/* <p>{user.password}</p> */}
       <p>{new Date(user.fechaNacimiento).toLocaleString("es-ES", options)}</p>
       <Link to="/editUserProfile">
-        <button>Edit</button>
+        <button>Editar perfil</button>
       </Link>
     </div>
   );
