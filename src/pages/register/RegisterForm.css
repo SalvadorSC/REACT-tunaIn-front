@@ -7,11 +7,11 @@
 }
 
 .registerForm-button {
+  border-radius: 40px;
   display: block;
+  font-weight: 700;
   height: 50px;
   width: 50%;
-  border-radius: 40px;
-  font-weight: 700;
 }
 
 .RegisterForm-dflex {
@@ -20,8 +20,8 @@
 }
 
 .a-login {
-  text-align: right;
   padding: 5px 20px;
+  text-align: right;
 }
 
 .RegisterForm-dflex span {
@@ -30,9 +30,9 @@
   line-height: 1.1;
 }
 .RegisterForm-dflex a {
+  color: #5badb9;
   font-size: 0.8rem;
   line-height: 1.1;
-  color: #5badb9;
 }
 
 .RegisterForm-dflex a:hover {
@@ -46,8 +46,8 @@
 
 .RegisterForm-terminos {
   font-size: 0.7rem;
-  line-height: 1.6;
   display: block;
+  line-height: 1.6;
   margin-top: 20px;
   text-align: center;
 }

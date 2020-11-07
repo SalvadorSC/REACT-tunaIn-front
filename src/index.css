@@ -1,16 +1,16 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   background-color: #fbfef9;
-  min-height: 100vh;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: calc(10px + 2vmin);
+  color: #333;
   /* display: flex; */
   flex-direction: column;
   /* justify-content: center; */
-  font-size: calc(10px + 2vmin);
-  color: #333;
+  margin: 0;
+  min-height: 100vh;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
 }
 h1,
 h2,
@@ -47,17 +47,17 @@ a:hover {
 }
 
 button {
-  width: 50%;
-  height: 50px;
-  margin: 1% auto;
   background-color: #fe8b86;
   /* background-color: #F99FC9; */
-  color: white;
   border: none;
   border-radius: 2px;
+  color: white;
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   font-weight: 700;
+  height: 50px;
+  margin: 1% auto;
+  width: 50%;
 }
 
 button:hover {
@@ -79,25 +79,23 @@ li {
 }
 
 input {
-  text-align: left;
-  padding: 5px 20px;
-  height: 40px;
-  width: 100%;
-  border-radius: 3px;
-  border: none;
   background-color: rgb(240, 240, 240);
+  border: none;
+  border-radius: 3px;
   font-family: "Poppins";
   font-size: 0.9rem;
+  height: 40px;
   margin: 10px auto;
+  padding: 5px 20px;
+  text-align: left;
+  width: 100%;
 }
 
 input[type="radio"] {
   display: inline-block;
-  width: 15px;
   height: 15px;
   margin: auto 10px;
-  /* URL de referencia para el estilo de los inputs type="radio" */
-  /* https://stackoverflow.com/questions/18272497/styling-input-radio-with-css/18272642 */
+  width: 15px;
 }
 
 input:checked {
@@ -105,11 +103,11 @@ input:checked {
 }
 
 label {
+  cursor: pointer;
   font-family: "Poppins";
   font-size: 0.9rem;
-  vertical-align: middle;
   margin-right: 20px;
-  cursor: pointer;
+  vertical-align: middle;
 }
 
 input[type="radio"]:checked + label span {
