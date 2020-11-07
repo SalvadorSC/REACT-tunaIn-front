@@ -5,18 +5,22 @@ import {
     // BrowserRouter as Router,
     Link,
 } from "react-router-dom";
-//import { getToken } from '../../util/LocalStorage.utils';
 import { serverRequest } from '../../hooks/urlBack';
+import { DecodeToken } from '../../util/DecodeToken';
 
 export const Userprofile = () => {
-    const [user, setUser] = useState({})
-    const id = '5fa5a980030a6306d4629ff5';
+    const [user, setUser] = useState({});
+
     useEffect(() => {
-        serverRequest(`data/user/${id}`, 'GET')
-            .then(console.log)
-            .then(response => setUser(response.JSON))
+        const decodedToken = DecodeToken();
+        const userId = decodedToken.id;
+
+        serverRequest(`data/user/${userId}`, 'GET')
+            .then(response => {
+                setUser(response);
+            })
             .catch(console.log)
-    }, [id])
+    })
     /*
         //const [canales, setCanales] = useState("No tienes ningún canal")
         const [user, setUser] = useState({})

@@ -8,7 +8,7 @@ export const serverRequest = (resources, method, body) => {
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
-            'Authoritation': 'Bearer ' + token
+            'Authorization': 'Bearer ' + JSON.parse(token)
             // 'Authoritation': token
             // 'Content-Type': 'application/x-www-form-urlencoded',
         },
