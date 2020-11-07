@@ -52,7 +52,15 @@ export const UserProfile = () => {
       <p>Contraseña</p>
       {/* <p>{user.password}</p> */}
       <p>{new Date(user.fechaNacimiento).toLocaleString("es-ES", options)}</p>
-      <Link to="/editUserProfile">
+      <Link
+        to={"/editUserProfile"}
+        // to={{
+        //   pathname: "/editUserProfile",
+        //   state: {
+        //     fromNotifications: true,
+        //   },
+        // }}
+      >
         <button>Editar perfil</button>
       </Link>
     </div>

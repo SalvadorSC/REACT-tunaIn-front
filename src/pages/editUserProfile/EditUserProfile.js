@@ -45,6 +45,9 @@ export const EditUserProfile = () => {
     e.target.reset();
   };
 
+  const options = { month: "2-digit", day: "2-digit", year: "numeric" };
+  const fecha = new Date(user.fechaNacimiento).toLocaleString("es-ES", options);
+
   return (
     <div className="EditUserProfile-wrap">
       <h1>Edita tu perfil</h1>
@@ -63,7 +66,7 @@ export const EditUserProfile = () => {
           placeholder={user.username}
           onChange={handleChanges}
         />
-        <label id="fechaNacimiento-label">Fecha de nacimiento</label>
+        <label id="fechaNacimiento-label">Fecha de nacimiento {fecha}</label>
         <input name="fechaNacimiento" type="date" onChange={handleChanges} />
         <label id="email-label">Email</label>
         <input
@@ -73,8 +76,8 @@ export const EditUserProfile = () => {
           onChange={handleChanges}
         />
         <label id="password-label">Password</label>
-        <button>Cambiar contraseña</button>
-
+        <button className="button-cambiar-pss">Cambiar contraseña</button>
+        <br />
         <button>Guardar cambios</button>
       </form>
     </div>
