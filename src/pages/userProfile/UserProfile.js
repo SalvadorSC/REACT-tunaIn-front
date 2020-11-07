@@ -7,12 +7,14 @@ import {
 } from "react-router-dom";
 import { serverRequest } from '../../hooks/urlBack';
 import { DecodeToken } from '../../util/DecodeToken';
+import { getToken } from '../../util/LocalStorage.utils';
 
 export const Userprofile = () => {
     const [user, setUser] = useState({});
 
     useEffect(() => {
-        const decodedToken = DecodeToken();
+        const token = getToken();
+        const decodedToken = DecodeToken(token);
         const userId = decodedToken.id;
 
         serverRequest(`data/user/${userId}`, 'GET')
@@ -21,6 +23,8 @@ export const Userprofile = () => {
             })
             .catch(console.log)
     })
+
+    const options = { month: '2-digit', day: '2-digit', year: 'numeric' };
     /*
         //const [canales, setCanales] = useState("No tienes ningún canal")
         const [user, setUser] = useState({})
@@ -47,8 +51,9 @@ export const Userprofile = () => {
             <p>{user.nombre}</p>
             <p>{user.username}</p>
             <p>{user.email}</p>
-            <p>{user.password}</p>
-            <p>{user.fechaNacimiento}</p>
+            <p>Contraseña</p>
+            {/* <p>{user.password}</p> */}
+            <p>{new Date(user.fechaNacimiento).toLocaleString('es-ES', options)}</p>
             <Link to="/editUserProfile"><button>Edit</button></Link>
         </>
     )
