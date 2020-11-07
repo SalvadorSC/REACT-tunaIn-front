@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './LogIn.css';
 import { serverRequest } from '../../hooks/urlBack';
 import { setJWT } from '../../util/LocalStorage.utils';
 
-export const LogIn = () => {
+export const LogIn = ({ history }) => {
     // Contiene los valores del formulario:
     const [loginUser, setLoginUser] = useState({});
     // Maneja el estado del formulario:
@@ -23,6 +24,7 @@ export const LogIn = () => {
             .then(response => {
                 //guardar el token en el localStorage en un campo llamado token:
                 setJWT(response.token);
+                history.push('/profile');
             })
             .catch(console.log)
         // Reseteo los campos del formulario:

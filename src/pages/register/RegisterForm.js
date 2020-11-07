@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import { serverRequest } from '../../hooks/urlBack';
 import { setJWT } from '../../util/LocalStorage.utils';
 import './RegisterForm.css';
+import { propTypes } from 'react-bootstrap/esm/Image';
 // import TerminosYCondiciones from '../pages/termsAndConditions/TerminosYCondiciones';
 
 
-export const RegisterForm = () => {
+export const RegisterForm = ({ history }) => {
     // Contiene los valores del formulario:
     const [newUser, setNewUser] = useState({});
 
@@ -27,8 +28,8 @@ export const RegisterForm = () => {
         serverRequest('register', 'POST', newUser)
             .then(response => {
                 //guardar el token en el localStorage en un campo llamado token:
-                console.log(response);
                 setJWT(response.token);
+                history.push('/home');
             })
             .catch(console.log)
         // Reseteo los campos del formulario:
@@ -61,7 +62,7 @@ export const RegisterForm = () => {
                         <Link to="/Login">Inicia sesión</Link>
                     </div>
                     <div>
-                        <Link to="/Home"><button>Regístrate</button></Link>
+                        <button>Regístrate</button>
 
                     </div>
                 </div>

@@ -9,7 +9,7 @@ import { serverRequest } from '../../hooks/urlBack';
 import { DecodeToken } from '../../util/DecodeToken';
 import { getToken } from '../../util/LocalStorage.utils';
 
-export const Userprofile = () => {
+export const UserProfile = () => {
     const [user, setUser] = useState({});
 
     useEffect(() => {

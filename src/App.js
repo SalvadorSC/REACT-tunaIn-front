@@ -7,7 +7,7 @@ import {
   // Link,
   useHistory
 } from "react-router-dom";
-import { Userprofile } from "./pages/userProfile/UserProfile";
+import { UserProfile } from "./pages/userProfile/UserProfile";
 import { EditUserProfile } from "./pages/editUserProfile/EditUserProfile";
 import { RegisterForm } from "./pages/register/RegisterForm";
 import { LogIn } from "./pages/login/LogIn";
@@ -30,24 +30,13 @@ export default function App() {
       <div className={"container"}>
         <div className="main">
           <Switch>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/register">
-              <RegisterForm />
-            </Route>
-            <Route path="/login">
-              <LogIn />
-            </Route>
-            <Route path="/profile">
-              <Profile />
-            </Route>
-            <Route path="/edituserprofile">
-              <EditUserProfile />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
+            <Route path="/about" component={About} />
+            <Route path="/register" component={RegisterForm} />
+            <Route path="/login" component={LogIn} />
+            <Route path="/profile" component={UserProfile} />
+            <Route path="/edituserprofile" component={EditUserProfile} />
+            <Route path="/" component={Home} />
+
           </Switch>
           <HomeButton />
         </div>
@@ -58,16 +47,45 @@ export default function App() {
   );
 }
 
+{/* <Router>
+<div className={"container"}>
+  <div className="main">
+    <Switch>
+      <Route path="/about">
+        <About />
+      </Route>
+      <Route path="/register">
+       <RegisterForm />
+      </Route> 
+      <Route path="/login">
+        <LogIn />
+      </Route>
+      <Route path="/profile">
+        <UserProfile />
+      </Route>
+      <Route path="/edituserprofile">
+        <EditUserProfile />
+      </Route>
+      <Route path="/">
+        <Home />
+      </Route>
+    </Switch>
+    <HomeButton />
+  </div>
+  <NavBar />
+</div>
 
-function Profile() {
+</Router> */}
 
-  return (
-    <>
-      <Userprofile />
-    </>
-  );
+// function Profile() {
 
-}
+//   return (
+//     <>
+//       <Userprofile />
+//     </>
+//   );
+
+// }
 
 function About() {
   return <h2>About</h2>;
