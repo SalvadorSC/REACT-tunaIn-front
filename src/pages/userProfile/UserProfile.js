@@ -2,7 +2,7 @@ import './UserProfile.css'
 import React from "react";
 import { useEffect, useState } from 'react'
 import {
-    BrowserRouter as Router,
+    // BrowserRouter as Router,
     Link,
 } from "react-router-dom";
 import { getToken } from '../../util/LocalStorage.utils';

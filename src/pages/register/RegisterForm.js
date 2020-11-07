@@ -26,12 +26,14 @@ export const RegisterForm = () => {
         serverRequest('register', 'POST', newUser)
             .then(response => {
                 //guardar el token en el localStorage en un campo llamado token:
+                console.log(response);
                 setJWT(response.token);
             })
             .catch(console.log)
         // Reseteo los campos del formulario:
         e.target.reset();
     }
+
 
     return (
         <div className="RegisterForm-wrap">

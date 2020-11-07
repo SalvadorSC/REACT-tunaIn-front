@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
+  // Link,
   useHistory
 } from "react-router-dom";
 import { Userprofile } from "./pages/userProfile/UserProfile";
@@ -14,17 +14,12 @@ import { LogIn } from "./pages/login/LogIn";
 import { NavBar } from "./Components/NavBar/NavBar";
 import { Home } from './pages/home/home';
 
-function HomeButton() {
+const HomeButton = () => {
   let history = useHistory();
-
-  function handleClick() {
-    history.push("/home");
-  }
+  const handleClick = () => history.push("/home");
 
   return (
-    <button type="button" onClick={handleClick}>
-      Go home
-    </button>
+    <button type="button" onClick={handleClick}>Go home</button>
   );
 }
 
