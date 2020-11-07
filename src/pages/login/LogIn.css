@@ -7,9 +7,9 @@
 }
 
 .Login-button {
+  border-radius: 40px;
   display: block;
+  font-weight: 700;
   height: 50px;
   width: 50%;
-  border-radius: 40px;
-  font-weight: 700;
 }
