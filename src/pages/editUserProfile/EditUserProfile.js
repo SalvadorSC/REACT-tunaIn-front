@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { serverRequest } from "../../hooks/urlBack";
+import { serverRequest } from "../../helpers/urlBack";
 import { DecodeToken } from "../../util/DecodeToken";
 import { getToken } from "../../util/LocalStorage.utils";
 import "./EditUserProfile.css";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./LogIn.css";
 import "../../Components/MensajeError/MensajeError.css";
-import { serverRequest } from "../../hooks/urlBack";
+import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
 
