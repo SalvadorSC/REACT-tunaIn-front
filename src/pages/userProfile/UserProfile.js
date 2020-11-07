@@ -1,31 +1,31 @@
-import './UserProfile.css'
+import "./UserProfile.css";
 import React from "react";
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 import {
-    // BrowserRouter as Router,
-    Link,
+  // BrowserRouter as Router,
+  Link,
 } from "react-router-dom";
-import { serverRequest } from '../../hooks/urlBack';
-import { DecodeToken } from '../../util/DecodeToken';
-import { getToken } from '../../util/LocalStorage.utils';
+import { serverRequest } from "../../hooks/urlBack";
+import { DecodeToken } from "../../util/DecodeToken";
+import { getToken } from "../../util/LocalStorage.utils";
 
 export const UserProfile = () => {
-    const [user, setUser] = useState({});
+  const [user, setUser] = useState({});
 
-    useEffect(() => {
-        const token = getToken();
-        const decodedToken = DecodeToken(token);
-        const userId = decodedToken.id;
+  useEffect(() => {
+    const token = getToken();
+    const decodedToken = DecodeToken(token);
+    const userId = decodedToken.id;
 
-        serverRequest(`data/user/${userId}`, 'GET')
-            .then(response => {
-                setUser(response);
-            })
-            .catch(console.log)
-    })
+    serverRequest(`data/user/${userId}`, "GET")
+      .then((response) => {
+        setUser(response);
+      })
+      .catch(console.log);
+  }, []);
 
-    const options = { month: '2-digit', day: '2-digit', year: 'numeric' };
-    /*
+  const options = { month: "2-digit", day: "2-digit", year: "numeric" };
+  /*
         //const [canales, setCanales] = useState("No tienes ningún canal")
         const [user, setUser] = useState({})
         const url = "http://localhost:3000/data/user/";
@@ -46,15 +46,17 @@ export const UserProfile = () => {
                 .then(data => setUser(data));
         }, [id]);
     */
-    return (
-        <>
-            <p>{user.nombre}</p>
-            <p>{user.username}</p>
-            <p>{user.email}</p>
-            <p>Contraseña</p>
-            {/* <p>{user.password}</p> */}
-            <p>{new Date(user.fechaNacimiento).toLocaleString('es-ES', options)}</p>
-            <Link to="/editUserProfile"><button>Edit</button></Link>
-        </>
-    )
-}
+  return (
+    <>
+      <p>{user.nombre}</p>
+      <p>{user.username}</p>
+      <p>{user.email}</p>
+      <p>Contraseña</p>
+      {/* <p>{user.password}</p> */}
+      <p>{new Date(user.fechaNacimiento).toLocaleString("es-ES", options)}</p>
+      <Link to="/editUserProfile">
+        <button>Edit</button>
+      </Link>
+    </>
+  );
+};
