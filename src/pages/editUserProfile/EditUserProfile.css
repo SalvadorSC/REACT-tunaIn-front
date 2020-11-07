@@ -1,3 +1,13 @@
 .EditUserProfile-wrap {
   padding-top: 50px;
+  /* display: flex;
+  flex-direction: row; */
+}
+
+.EditUserProfile-wrap label {
+  margin-bottom: 0;
+}
+
+.button-cambiar-pss {
+  margin: 30px auto;
 }
