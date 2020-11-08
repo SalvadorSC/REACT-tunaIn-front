@@ -12,7 +12,7 @@ export const UserProfile = () => {
   useEffect(() => {
     const token = getToken();
     const decodedToken = DecodeToken(token);
-    const userId = decodedToken.id;
+    const  userId = decodedToken.id;
 
     serverRequest(`data/user/${userId}`, "GET")
       .then((response) => {
@@ -22,27 +22,7 @@ export const UserProfile = () => {
   }, []);
 
   const options = { month: "2-digit", day: "2-digit", year: "numeric" };
-  /*
-        //const [canales, setCanales] = useState("No tienes ningún canal")
-        const [user, setUser] = useState({})
-        const url = "http://localhost:3000/data/user/";
-        const id = '5fa47b8ef73fa9088fd050de';
-        //((`${url}+${id}`
-        useEffect(() => {
-            const bearer = 'Bearer ' + getToken();
-            fetch((`${url}${id}`), {
-                method: 'GET', // *GET, POST, PUT, DELETE, etc.
-                mode: 'cors', // no-cors, *cors, same-origin
-                headers: {
-                    'Authorization': bearer,
-                    'Content-Type': 'application/json'
-                    // 'Content-Type': 'application/x-www-form-urlencoded',
-                }
-            })
-                .then(response => response.json())
-                .then(data => setUser(data));
-        }, [id]);
-    */
+
   return (
     <div className="UserProfile-wrap">
       <h1>Tu cuenta tunain</h1>
@@ -53,13 +33,10 @@ export const UserProfile = () => {
       {/* <p>{user.password}</p> */}
       <p>{new Date(user.fechaNacimiento).toLocaleString("es-ES", options)}</p>
       <Link
-        to={"/editUserProfile"}
-        // to={{
-        //   pathname: "/editUserProfile",
-        //   state: {
-        //     fromNotifications: true,
-        //   },
-        // }}
+        to={{
+          pathname: "/editUserProfile",
+          state: {user},
+        }}
       >
         <button>Editar perfil</button>
       </Link>
