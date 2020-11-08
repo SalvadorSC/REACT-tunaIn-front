@@ -10,7 +10,7 @@ export const EditUserProfile = (props) => {
 
   useEffect(() => {
     setUser(props.location.state.user);
-    console.log(props.location.state.user);
+    // console.log(props.location.state.user);
   }, []);
 
   // Maneja el estado del formulario:
@@ -65,10 +65,11 @@ export const EditUserProfile = (props) => {
           onChange={handleChanges}
         />
         <label id="password-label">Password</label>
-        <button className="button-cambiar-pss">Cambiar contraseña</button>
+        <button className="button-change-pss">Cambiar contraseña</button>
         <br />
         <button>Guardar cambios</button>
       </form>
+      <button className="button-delete">Eliminar cuenta</button>
     </div>
   );
 };

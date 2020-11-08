@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./LogIn.css";
-import "../../Components/MensajeError/MensajeError.css";
+import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
+import "./LogIn.css";
 
 export const LogIn = ({ history }) => {
   // Contiene los valores del formulario:
@@ -58,7 +58,19 @@ export const LogIn = ({ history }) => {
         {/*value={password}*/}
         <br />
         <MensajeError flag={loginFail} />
-        <button>Acceder</button>
+        <div className="Login-dflex">
+          <div className="a-register">
+            <span>¿Aún no eres miembro?</span>
+            <Link to="/register">Regístrate</Link>
+          </div>
+          <div>
+            <button>Acceder</button>
+          </div>
+        </div>
+        <span className="Login-terminos">
+          Al iniciar sesión, aceptas nuestros{" "}
+          <Link to="/terms">Términos de Servicio y Política de Privacidad</Link>
+        </span>
       </form>
     </div>
   );
