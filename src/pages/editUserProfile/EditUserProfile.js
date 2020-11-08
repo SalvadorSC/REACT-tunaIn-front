@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
-import { DecodeToken } from "../../util/DecodeToken";
-import { getToken } from "../../util/LocalStorage.utils";
 import "./EditUserProfile.css";
 
-export const EditUserProfile = () => {
+export const EditUserProfile = (props) => {
   // const [canales, setCanales] = useState("No tienes ningún canal");
   const [user, setUser] = useState({});
-  const [userId, setUserId] = useState(null);
-  // Contiene los valores del formulario:
   const [editedUser, setEditedUser] = useState({});
   const sitio = "data/user";
 
   useEffect(() => {
-    const token = getToken();
-    const decodedToken = DecodeToken(token);
-    setUserId(decodedToken.id);
-
-    serverRequest(`${sitio}/${userId}`, "GET")
-      .then((response) => {
-        setUser(response);
-      })
-      .catch(console.log);
-  }, [userId]);
+    setUser(props.location.state.user);
+    console.log(props.location.state.user);
+  }, []);
 
   // Maneja el estado del formulario:
   const handleChanges = (event) => {
@@ -38,7 +27,7 @@ export const EditUserProfile = () => {
     // Prevengo que ser recargue la página:
     e.preventDefault();
     // Hago una petición post al servidor:
-    serverRequest(`${sitio}/${userId}`, "PUT", editedUser)
+    serverRequest(`${sitio}/${user._id}`, "PUT", editedUser)
       .then((response) => setUser(response))
       .catch(console.log);
     // Reseteo los campos del formulario:
