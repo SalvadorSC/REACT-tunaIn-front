@@ -13,3 +13,49 @@
   height: 50px;
   width: 50%;
 }
+
+.Login-dflex {
+  display: flex;
+  justify-content: center;
+}
+
+.a-register {
+  padding: 5px 20px;
+  text-align: right;
+}
+
+.Login-dflex span {
+  display: block;
+  font-size: 0.8rem;
+  line-height: 1.1;
+}
+.Login-dflex a {
+  color: #5badb9;
+  font-size: 0.8rem;
+  line-height: 1.1;
+}
+
+.Login-dflex a:hover {
+  color: #077594;
+}
+
+.Login-dflex button {
+  /* display: inline-block; */
+  width: 200px;
+}
+
+.Login-terminos {
+  font-size: 0.7rem;
+  display: block;
+  line-height: 1.6;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.Login-terminos a {
+  color: #5badb9;
+}
+
+.Login-terminos a:hover {
+  color: #077594;
+}
