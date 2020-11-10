@@ -6,7 +6,7 @@ const Slide = () => (
     <Carousel.Item>
       <img
         className="d-block w-100"
-        src="https://images.unsplash.com/photo-1504472478235-9bc48ba4d60f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2551&q=80"
+        src="https://images.unsplash.com/photo-1603502142164-9e3e61b01e5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1275&q=80"
         width="85%"
         height="400px"
         alt="First slide"
@@ -19,7 +19,7 @@ const Slide = () => (
     <Carousel.Item>
       <img
         className="d-block w-100"
-        src="https://images.unsplash.com/photo-1513040260736-63dd0617fb66?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2519&q=80"
+        src="https://images.unsplash.com/photo-1482442120256-9c03866de390?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80"
         width="85%"
         height="400px"
         alt="Third slide"
@@ -33,7 +33,7 @@ const Slide = () => (
     <Carousel.Item>
       <img
         className="d-block w-100"
-        src="https://images.unsplash.com/photo-1513039464749-94912b3841ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2502&q=80"
+        src="https://images.unsplash.com/photo-1534327737286-52d27a912124?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2551&q=80"
         width="85%"
         height="400px"
         alt="Third slide"
