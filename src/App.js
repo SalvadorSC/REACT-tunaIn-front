@@ -21,7 +21,7 @@ export default function App() {
       <div className={"container"}>
         <div className="main">
           <Switch>
-            <Route path="/about" component={About} />
+            {/* <Route path="/about" component={About} /> */}
             <Route path="/register" component={RegisterForm} />
             <Route path="/login" component={LogIn} />
             <Route path="/profile" component={UserProfile} />
@@ -43,8 +43,4 @@ export default function App() {
       </div>
     </Router>
   );
-}
-
-function About() {
-  return <h2>About</h2>;
 }

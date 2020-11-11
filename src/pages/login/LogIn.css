@@ -1,38 +1,61 @@
 .Login-wrap {
-    padding: 30px 80px;
+  padding-top: 50px;
 }
 
-.Login-wrap input {
-background-color: rgb(240, 240, 240);
-padding: 5px 20px;
-margin-top: 15px;
-  }
-
 .Login-p {
-    margin: auto auto 40px;
-
+  margin: auto auto 40px;
 }
 
 .Login-button {
-    display: block;
-    height: 50px;
-    width: 50%;
-    border-radius: 40px;
-    font-weight: 700;
+  border-radius: 40px;
+  display: block;
+  font-weight: 700;
+  height: 50px;
+  width: 50%;
 }
 
-.Login-button-google {
-    background-color: lightgrey;
-    color: rgb(32, 32, 32);
+.Login-dflex {
+  display: flex;
+  justify-content: center;
 }
 
-.Login-button-facebook {
-    background-color: #344C7F;
-    color: white;
+.a-register {
+  padding: 5px 20px;
+  text-align: right;
 }
 
-.Login-button-apple {
-    background-color: black;
-    color: white;
+.Login-dflex span {
+  display: block;
+  font-size: 0.8rem;
+  line-height: 1.1;
+}
+.Login-dflex a {
+  color: #5badb9;
+  font-size: 0.8rem;
+  line-height: 1.1;
 }
 
+.Login-dflex a:hover {
+  color: #077594;
+}
+
+.Login-dflex button {
+  /* display: inline-block; */
+  width: 200px;
+}
+
+.Login-terminos {
+  font-size: 0.7rem;
+  display: block;
+  line-height: 1.6;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.Login-terminos a {
+  color: #5badb9;
+}
+
+.Login-terminos a:hover {
+  color: #077594;
+}

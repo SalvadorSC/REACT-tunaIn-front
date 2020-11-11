@@ -1,0 +1,38 @@
+.EditUserProfile-wrap {
+  padding-top: 50px;
+  /* display: flex;
+  flex-direction: row; */
+}
+
+.EditUserProfile-wrap label {
+  margin-bottom: 0;
+}
+
+.button-cambiar-pss {
+  margin: 30px auto;
+}
+
+.button-change-pss {
+  background-color: #fbfef9;
+  border: solid 2px #fe8b86;
+  color: #ff7a75;
+  width: 382px;
+}
+
+.button-change-pss:hover {
+  background-color: #fe8b86;
+  border: none;
+  color: #fbfef9;
+}
+
+.button-delete {
+  background-color: #fbfef9;
+  border: solid 2px #fe8b86;
+  color: #ff7a75;
+}
+
+.button-delete:hover {
+  background-color: #b6241f;
+  border: none;
+  color: white;
+}
