@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./LogIn.css";
-import "../../Components/EstiloErrores/EstiloError.css";
+//import "../../Components/EstiloErrores/EstiloError.css";
 import { serverRequest } from "../../hooks/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
