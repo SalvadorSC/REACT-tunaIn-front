@@ -24,7 +24,6 @@ const Slide = () => (
         height="400px"
         alt="Third slide"
       />
-
       <Carousel.Caption>
         <h3>Second slide label</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -38,7 +37,6 @@ const Slide = () => (
         height="400px"
         alt="Third slide"
       />
-
       <Carousel.Caption>
         <h3>Third slide label</h3>
         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
