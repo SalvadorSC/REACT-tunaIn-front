@@ -1,10 +1,11 @@
 import React from "react";
+import './Terms.css';
 
 export const Terms = () => {
   return (
-    <>
+    <div className="Terms-wrap">
       <h1>TERMS OF SERVICE</h1>
-      <hr />
+      <br />
       <h3>OVERVIEW</h3>
       <p>
         This website is operated by TunaIn. Throughout the site, the terms “we”,
@@ -36,7 +37,7 @@ export const Terms = () => {
         our products and services to you.
       </p>
 
-      <h3>SECTION 1 - ONLINE STORE TERMS</h3>
+      <h4>SECTION 1 - ONLINE STORE TERMS</h4>
 
       <p>
         By agreeing to these Terms of Service, you represent that you are at
@@ -51,7 +52,7 @@ export const Terms = () => {
         immediate termination of your Services.
       </p>
 
-      <h3>SECTION 2 - GENERAL CONDITIONS</h3>
+      <h4>SECTION 2 - GENERAL CONDITIONS</h4>
 
       <p>
         We reserve the right to refuse service to anyone for any reason at any
@@ -68,7 +69,7 @@ export const Terms = () => {
         otherwise affect these Terms.
       </p>
 
-      <h3>SECTION 3 - ACCURACY, COMPLETENESS AND TIMELINESS OF INFORMATION</h3>
+      <h4>SECTION 3 - ACCURACY, COMPLETENESS AND TIMELINESS OF INFORMATION</h4>
 
       <p>
         We are not responsible if information made available on this site is not
@@ -84,7 +85,7 @@ export const Terms = () => {
         that it is your responsibility to monitor changes to our site.
       </p>
 
-      <h3>SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES</h3>
+      <h4>SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES</h4>
       <p>
         Prices for our products are subject to change without notice. We reserve
         the right at any time to modify or discontinue the Service (or any part
@@ -93,7 +94,7 @@ export const Terms = () => {
         suspension or discontinuance of the Service.
       </p>
 
-      <h3>SECTION 5 - PRODUCTS OR SERVICES (if applicable)</h3>
+      <h4>SECTION 5 - PRODUCTS OR SERVICES (if applicable)</h4>
       <p>
         Certain products or services may be available exclusively online through
         the website. These products or services may have limited quantities and
@@ -115,7 +116,7 @@ export const Terms = () => {
         corrected.
       </p>
 
-      <h3>SECTION 6 - ACCURACY OF BILLING AND ACCOUNT INFORMATION</h3>
+      <h4>SECTION 6 - ACCURACY OF BILLING AND ACCOUNT INFORMATION</h4>
       <p>
         We reserve the right to refuse any order you place with us. We may, in
         our sole discretion, limit or cancel quantities purchased per person,
@@ -134,7 +135,7 @@ export const Terms = () => {
         you as needed. For more detail, please review our Returns Policy.
       </p>
 
-      <h3>SECTION 7 - OPTIONAL TOOLS</h3>
+      <h4>SECTION 7 - OPTIONAL TOOLS</h4>
       <p>
         We may provide you with access to third-party tools over which we
         neither monitor nor have any control nor input. You acknowledge and
@@ -151,7 +152,7 @@ export const Terms = () => {
         to these Terms of Service.
       </p>
 
-      <h3>SECTION 8 - THIRD-PARTY LINKS</h3>
+      <h4>SECTION 8 - THIRD-PARTY LINKS</h4>
       <p>
         Certain content, products and services available via our Service may
         include materials from third-parties. Third-party links on this site may
@@ -168,7 +169,7 @@ export const Terms = () => {
         third-party products should be directed to the third-party.
       </p>
 
-      <h3>SECTION 9 - USER COMMENTS, FEEDBACK AND OTHER SUBMISSIONS</h3>
+      <h4>SECTION 9 - USER COMMENTS, FEEDBACK AND OTHER SUBMISSIONS</h4>
       <p>
         If, at our request, you send certain specific submissions (for example
         contest entries) or without a request from us you send creative ideas,
@@ -196,13 +197,13 @@ export const Terms = () => {
         posted by you or any third-party.
       </p>
 
-      <h3>SECTION 10 - PERSONAL INFORMATION</h3>
+      <h4>SECTION 10 - PERSONAL INFORMATION</h4>
       <p>
         Your submission of personal information through the store is governed by
         our Privacy Policy. To view our Privacy Policy.
       </p>
 
-      <h3>SECTION 11 - ERRORS, INACCURACIES AND OMISSIONS</h3>
+      <h4>SECTION 11 - ERRORS, INACCURACIES AND OMISSIONS</h4>
       <p>
         Occasionally there may be information on our site or in the Service that
         contains typographical errors, inaccuracies or omissions that may relate
@@ -220,7 +221,7 @@ export const Terms = () => {
         modified or updated.
       </p>
 
-      <h3>SECTION 12 - PROHIBITED USES</h3>
+      <h4>SECTION 12 - PROHIBITED USES</h4>
 
       <p>
         In addition to other prohibitions as set forth in the Terms of Service,
@@ -244,7 +245,7 @@ export const Terms = () => {
         any related website for violating any of the prohibited uses.
       </p>
 
-      <h3>SECTION 13 - DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY</h3>
+      <h4>SECTION 13 - DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY</h4>
       <p>
         We do not guarantee, represent or warrant that your use of our service
         will be uninterrupted, timely, secure or error-free. We do not warrant
@@ -278,7 +279,7 @@ export const Terms = () => {
         shall be limited to the maximum extent permitted by law.
       </p>
 
-      <h3>SECTION 14 - INDEMNIFICATION</h3>
+      <h4>SECTION 14 - INDEMNIFICATION</h4>
       <p>
         You agree to indemnify, defend and hold harmless TunaIn and our parent,
         subsidiaries, affiliates, partners, officers, directors, agents,
@@ -290,7 +291,7 @@ export const Terms = () => {
         a third-party.
       </p>
 
-      <h3>SECTION 15 - SEVERABILITY</h3>
+      <h4>SECTION 15 - SEVERABILITY</h4>
       <p>
         In the event that any provision of these Terms of Service is determined
         to be unlawful, void or unenforceable, such provision shall nonetheless
@@ -300,7 +301,7 @@ export const Terms = () => {
         enforceability of any other remaining provisions.
       </p>
 
-      <h3>SECTION 16 - TERMINATION</h3>
+      <h4>SECTION 16 - TERMINATION</h4>
       <p>
         The obligations and liabilities of the parties incurred prior to the
         termination date shall survive the termination of this agreement for all
@@ -315,7 +316,7 @@ export const Terms = () => {
         access to our Services (or any part thereof).
       </p>
 
-      <h3>SECTION 17 - ENTIRE AGREEMENT</h3>
+      <h4>SECTION 17 - ENTIRE AGREEMENT</h4>
       <p>
         The failure of us to exercise or enforce any right or provision of these
         Terms of Service shall not constitute a waiver of such right or
@@ -329,14 +330,14 @@ export const Terms = () => {
         Service shall not be construed against the drafting party.
       </p>
 
-      <h3>SECTION 18 - GOVERNING LAW</h3>
+      <h4>SECTION 18 - GOVERNING LAW</h4>
       <p>
         These Terms of Service and any separate agreements whereby we provide
         you Services shall be governed by and construed in accordance with the
         laws of Carrer de Padilla, 287, Barcelona, CT, 08025, Spain.
       </p>
 
-      <h3>SECTION 19 - CHANGES TO TERMS OF SERVICE</h3>
+      <h4>SECTION 19 - CHANGES TO TERMS OF SERVICE</h4>
       <p>
         You can review the most current version of the Terms of Service at any
         time at this page. We reserve the right, at our sole discretion, to
@@ -347,11 +348,11 @@ export const Terms = () => {
         Terms of Service constitutes acceptance of those changes.
       </p>
 
-      <h3>SECTION 20 - CONTACT INFORMATION</h3>
+      <h4>SECTION 20 - CONTACT INFORMATION</h4>
       <p>
         Questions about the Terms of Service should be sent to us at
         hello@tunain.com.
       </p>
-    </>
+    </div>
   );
 };
