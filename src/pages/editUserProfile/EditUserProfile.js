@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
 import "./EditUserProfile.css";
+import { ModalCambiarPassword } from "../../Components/ModalCambiarPassword/ModalCambiarPassword";
+import { MensajeError } from "../../Components/MensajeError/MensajeError";
 
 export const EditUserProfile = (props) => {
   // const [canales, setCanales] = useState("No tienes ningún canal");
   const [user, setUser] = useState({});
   const [editedUser, setEditedUser] = useState({});
+  const [editFailed, setEditFailed] = useState(null);
   const sitio = "data/user";
 
   useEffect(() => {
@@ -28,8 +31,11 @@ export const EditUserProfile = (props) => {
     e.preventDefault();
     // Hago una petición post al servidor:
     serverRequest(`${sitio}/${user._id}`, "PUT", editedUser)
-      .then((response) => setUser(response))
-      .catch(console.log);
+      .then((response) => {
+        setUser(response);
+        setEditFailed(response.message);
+      })
+      .catch((response => setEditFailed(response)));
     // Reseteo los campos del formulario:
     e.target.reset();
   };
@@ -65,8 +71,10 @@ export const EditUserProfile = (props) => {
           onChange={handleChanges}
         />
         <label id="password-label">Password</label>
-        <button className="button-change-pss">Cambiar contraseña</button>
+        {/* <button className="button-change-pss">Cambiar contraseña</button> */}
+        <ModalCambiarPassword />
         <br />
+        <MensajeError flag={editFailed} />
         <button>Guardar cambios</button>
       </form>
       <button className="button-delete">Eliminar cuenta</button>

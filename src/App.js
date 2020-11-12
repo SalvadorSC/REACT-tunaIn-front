@@ -8,11 +8,10 @@ import { LogIn } from "./pages/login/LogIn";
 import { NavBar } from "./Components/NavBar/NavBar";
 import { Home } from "./pages/home/home";
 import { Terms } from "./pages/terms/Terms";
-import { HOME, USER, PODCAST, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, USERPODCASTLIST } from "./routes/routes";
 import { UserPodcastList } from "./pages/userPodcastList/UserPodcastList";
+import { HOME, USER, PODCAST, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, USERPODCASTLIST } from "./routes/routes";
 
 export default function App() {
-
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <Router>
