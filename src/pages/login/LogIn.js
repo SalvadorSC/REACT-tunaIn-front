@@ -5,6 +5,7 @@ import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
 import { Modal } from "../../Components/Modal/Modal";
+
 import "./LogIn.css";
 
 export const LogIn = ({ history, handleClose }) => {
@@ -30,6 +31,8 @@ export const LogIn = ({ history, handleClose }) => {
         //guardar el token en el localStorage en un campo llamado token:
         setJWT(response.token);
         history.push("/profile");
+        // pasar loginFail por aquí y después pasar a MessageError
+        setLoginFail(response.message);
       })
       .catch((response) => setLoginFail(response.message));
     // Reseteo los campos del formulario:
@@ -70,12 +73,12 @@ export const LogIn = ({ history, handleClose }) => {
             <button>Acceder</button>
           </div>
         </div>
-        
         <span className="Login-terminos">
           Al iniciar sesión, aceptas nuestros{" "}
           <Link to="/terms">Términos de Servicio y Política de Privacidad</Link>
         </span>
       </form>
+
       <Modal />
 
     </div>

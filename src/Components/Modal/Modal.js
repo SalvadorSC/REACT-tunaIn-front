@@ -4,21 +4,25 @@ import { RegisterForm } from '../../pages/register/RegisterForm';
 
 export const Modal = () => {
   const [openModal, setOpenModal] = useState(false);
-  
-  const handleOpen = () => {
+
+  const handleOpen = (e) => {
     setOpenModal(!openModal);
   }
-  
-  const handleClose = () => {
+
+  const handleClose = (e) => {
+    const { className: el } = e.target;
+    if (el !== 'backdrop' && el !== 'fas fa-times') return;
     setOpenModal(!openModal);
   }
 
   return (
     <div>
       <button type="button" onClick={handleOpen}>Open Modal</button>
-  {openModal && <ModalContent handleClose={handleClose}>
-    <RegisterForm />
-  </ModalContent>}
+      {openModal &&
+        <ModalContent handleClose={handleClose}>
+          <RegisterForm />
+        </ModalContent>
+      }
     </div>
   )
 }

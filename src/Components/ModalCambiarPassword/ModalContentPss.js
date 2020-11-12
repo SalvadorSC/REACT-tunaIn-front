@@ -1,7 +1,7 @@
 import React from 'react'
-import './ModalContent.css';
+import './ModalContentPss.css';
 
-export const ModalContent = ({ openModal, handleClose, children }) => {
+export const ModalContentPss = ({ openModal, handleClose, children }) => {
 
   return (
     <div className="backdrop" onClick={handleClose}>
@@ -12,7 +12,6 @@ export const ModalContent = ({ openModal, handleClose, children }) => {
         </div>
       </div>
     </div>
-
   )
 }
 
