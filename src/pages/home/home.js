@@ -5,12 +5,21 @@ import Slide from '../../Components/Slide/Slide';
 export const Home = () => {
 
     return (
-        <div>
-            <title>TunaIn</title>
-            <NavBar />
+        <>
+            {/* <title>TunaIn</title> */}
+            {/* <NavBar /> */}
             <Slide />
+            {/* 
+            <Buscador />
+            <CallToAction />
+            <PodcastsDestacados />
+            <Premium />
+            <Dispositivos />
+            <CallToAction />
+            <Footer />
+            */}
 
-        </div>
+        </>
 
     );
 };
