@@ -8,18 +8,8 @@ import { LogIn } from "./pages/login/LogIn";
 import { NavBar } from "./Components/NavBar/NavBar";
 import { Home } from "./pages/home/home";
 import { Terms } from "./pages/terms/Terms";
-import {
-  HOME,
-  USER,
-  PODCAST,
-  REGISTER,
-  LOGIN,
-  PROFILE,
-  EDITUSERPROFILE,
-  TERMS,
-} from "./routes/routes";
-import { CenterModal } from "./Components/CenterModal/CenterModal";
-import { Button } from "react-bootstrap";
+import { UserPodcastList } from "./pages/userPodcastList/UserPodcastList";
+import { HOME, USER, PODCAST, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, USERPODCASTLIST } from "./routes/routes";
 
 export default function App() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -35,15 +25,10 @@ export default function App() {
             <Route exact path={EDITUSERPROFILE} component={EditUserProfile} />
             <Route exact path={HOME} component={Home} />
             <Route exact path={TERMS} component={Terms} />
+            <Route exact path={USERPODCASTLIST} component={UserPodcastList} />
           </Switch>
         </div>
         <NavBar />
-        {/* <Button variant="primary" onClick={() => setModalShow(true)}>
-         TunaIn Podcast Player
-        </Button> */}
-
-        <CenterModal show={modalShow} onHide={() => setModalShow(false)} />
-        <CenterModal />
       </div>
     </Router>
   );
