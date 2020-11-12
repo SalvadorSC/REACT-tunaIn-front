@@ -8,7 +8,8 @@ import { LogIn } from "./pages/login/LogIn";
 import { NavBar } from "./Components/NavBar/NavBar";
 import { Home } from "./pages/home/home";
 import { Terms } from "./pages/terms/Terms";
-import { HOME, USER, PODCAST, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS } from "./routes/routes";
+import { HOME, USER, PODCAST, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, USERPODCASTLIST } from "./routes/routes";
+import { UserPodcastList } from "./pages/userPodcastList/UserPodcastList";
 
 export default function App() {
 
@@ -25,6 +26,7 @@ export default function App() {
             <Route exact path={EDITUSERPROFILE} component={EditUserProfile} />
             <Route exact path={HOME} component={Home} />
             <Route exact path={TERMS} component={Terms} />
+            <Route exact path={USERPODCASTLIST} component={UserPodcastList} />
           </Switch>
         </div>
         <NavBar />
