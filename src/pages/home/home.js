@@ -5,6 +5,7 @@ import {Button} from "react-bootstrap";
 import {CenterModal} from "../../Components/CenterModal/CenterModal";
 import styles from "./home.css"
 import { Buscador } from "../../Components/Buscador/Buscador";
+import { CallToAction } from "../../Components/CallToAction/CallToAction";
 
 
 export const Home = () => {
@@ -15,9 +16,8 @@ export const Home = () => {
             {/* <NavBar /> */}
             <Slide />
             <Buscador />
-            
-            {/* 
             <CallToAction />
+            {/* 
             <PodcastsDestacados />
             <Premium />
             <Dispositivos />
