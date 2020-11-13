@@ -10,6 +10,7 @@ import { Home } from "./pages/home/home";
 import { Terms } from "./pages/terms/Terms";
 
 export default function App() {
+
   return (
     <Router>
       <div className={"container"}>

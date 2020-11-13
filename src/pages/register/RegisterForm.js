@@ -5,6 +5,8 @@ import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
 import "./RegisterForm.css";
 
+
+
 export const RegisterForm = ({ history }) => {
   // Contiene los valores del formulario:
   const [newUser, setNewUser] = useState({});

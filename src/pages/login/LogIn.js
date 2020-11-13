@@ -42,11 +42,13 @@ export const LogIn = ({ history }) => {
         setJWT(response.token);
         history.push("/profile");
       })
-      .catch((response) => setLoginFail(response.message));
+      .catch((response) => {
+        debugger;
+        setLoginFail(response.message);
+      });
     // Reseteo los campos del formulario:
     e.target.reset();
   };
-
 
 
 

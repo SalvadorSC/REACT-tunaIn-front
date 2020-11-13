@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
 import "./EditUserProfile.css";
+import swal from 'sweetalert';
+
 
 export const EditUserProfile = (props) => {
   // const [canales, setCanales] = useState("No tienes ningún canal");
   const [user, setUser] = useState({});
   const [editedUser, setEditedUser] = useState({});
+  const [deletedUser, setDeletedUser] = useState({});
   const sitio = "data/user";
 
   useEffect(() => {
@@ -33,6 +36,21 @@ export const EditUserProfile = (props) => {
     // Reseteo los campos del formulario:
     e.target.reset();
   };
+
+
+  // eliminar mi cuenta de usuario
+  const handleDelete = (e) => {
+    e.preventDefault();
+    // Hago una petición post al servidor con el metodo "DELETE"
+    serverRequest(`${sitio}/${user._id}`, "DELETE", deletedUser)
+    
+      .then((response) => setDeletedUser(response))
+     
+      .catch(console.log);
+    
+ 
+  };
+
 
   const options = { month: "2-digit", day: "2-digit", year: "numeric" };
   const fecha = new Date(user.fechaNacimiento).toLocaleString("es-ES", options);
@@ -69,7 +87,12 @@ export const EditUserProfile = (props) => {
         <br />
         <button>Guardar cambios</button>
       </form>
-      <button className="button-delete">Eliminar cuenta</button>
+
+
+
+      <form onSubmit={handleDelete}>
+        <button className="button-delete">Eliminar cuenta</button>
+      </form> 
     </div>
   );
 };
