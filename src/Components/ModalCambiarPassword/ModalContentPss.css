@@ -16,9 +16,9 @@
   color: rgb(51, 51, 51);
   display: inline;
   /* display: flex; */
-  height: 70%;
+  height: 300px;
   width: 50%;
-  max-height: 620px;
+  /* max-height: 620px; */
   max-width: 500px;
   outline: none;
   padding: 10px;
@@ -34,6 +34,6 @@
   /* display: inline; */
 }
 
-/* .modal-message {
-  display: inline;
-} */
+.child {
+  padding: 50px;
+}

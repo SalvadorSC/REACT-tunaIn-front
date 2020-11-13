@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-//import "../../Components/EstiloErrores/EstiloError.css";
 import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
 import { Modal } from "../../Components/Modal/Modal";
+import { PROFILE } from "../../routes/routes";
 
 import "./LogIn.css";
 
-export const LogIn = ({ history, handleClose }) => {
+export const LogIn = ({ history }) => {
   // Contiene los valores del formulario:
   const [loginUser, setLoginUser] = useState({});
   const [loginFail, setLoginFail] = useState(null);
@@ -30,9 +30,11 @@ export const LogIn = ({ history, handleClose }) => {
       .then((response) => {
         //guardar el token en el localStorage en un campo llamado token:
         setJWT(response.token);
-        history.push("/profile");
+        // history.push("/profile");
+        history.push(PROFILE);
+        
         // pasar loginFail por aquí y después pasar a MessageError
-        setLoginFail(response.message);
+        // setLoginFail(response.message);
       })
       .catch((response) => setLoginFail(response.message));
     // Reseteo los campos del formulario:
