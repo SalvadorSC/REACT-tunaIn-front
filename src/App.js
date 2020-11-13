@@ -12,7 +12,7 @@ import { UserPodcastList } from "./pages/userPodcastList/UserPodcastList";
 import { HOME, USER, PODCAST, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, USERPODCASTLIST } from "./routes/routes";
 
 export default function App() {
-  const [modalShow, setModalShow] = React.useState(false);
+
   return (
     <Router>
       <div className={"container"}>
