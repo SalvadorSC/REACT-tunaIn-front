@@ -12,7 +12,6 @@ import { HOME, USER, PODCAST, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS }
 
 export default function App() {
 
-  const [modalShow, setModalShow] = React.useState(false);
   return (
     <Router>
       <div className={"container"}>
