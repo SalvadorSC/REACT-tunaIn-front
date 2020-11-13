@@ -3,7 +3,7 @@ import React from "react";
 import Slide from "../../Components/Slide/Slide";
 import { Button } from "react-bootstrap";
 import { CenterModal } from "../../Components/CenterModal/CenterModal";
-import styles from "./home.css";
+import "./home.css";
 import { Buscador } from "../../Components/Buscador/Buscador";
 import { CallToAction } from "../../Components/CallToAction/CallToAction";
 import { PodcastsDestacados } from "../../Components/PodcastsDestacados/PodcastsDestacados";

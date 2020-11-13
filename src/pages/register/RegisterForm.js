@@ -5,8 +5,8 @@ import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
 import { HOME } from "../../routes/routes";
 import "./RegisterForm.css";
-import { validateMinLength, existNumber, existUppercase } from "../../util/Validator";
-import { FormValidator } from "../../util/FormValidator";
+// import { validateMinLength, existNumber, existUppercase } from "../../util/Validator";
+// import { FormValidator } from "../../util/FormValidator";
 
 export const RegisterForm = ({ history }) => {
   // Contiene los valores del formulario:
@@ -23,11 +23,11 @@ export const RegisterForm = ({ history }) => {
     }));
   };
 
-  const validPass = () => {
-    const validators = [validateMinLength, existNumber, existUppercase];
-    FormValidator(value, validators);
-  }
-  console.log(validPass);
+  // const validPass = () => {
+  //   const validators = [validateMinLength, existNumber, existUppercase];
+  //   FormValidator(value, validators);
+  // }
+  // console.log(validPass);
 
   const handleSubmit = (e) => {
     // Prevengo que ser recargue la página:
@@ -61,44 +61,35 @@ export const RegisterForm = ({ history }) => {
           placeholder="Nombre completo*"
           onChange={handleInputs}
           required
-        />{" "}
-
-        {/*value={nombre}*/}
+        />
         <input
           name="username"
           type="text"
           placeholder="Nombre de usuario*"
           onChange={handleInputs}
           required
-        />{" "}
-        {/*value={nombre}*/}
-
+        />
         <input
           name="email"
           type="email"
           placeholder="Correo electrónico*"
           onChange={handleInputs}
           required
-        />{" "}
-        {/*value={email}*/}
-
+        />
         <input
           name="password"
           type="password"
           placeholder="Contraseña*"
           onChange={handleInputs}
           required
-        />{" "}
-        {/*value={password}*/}
-
+        />
         <input
           name="fechaNacimiento"
           type="date"
           placeholder="Año de nacimiento (AAAA)*"
           onChange={handleInputs}
           required
-        />{" "}
-        {/*value={fechaNacimiento}*/}
+        />
 
         <div>
           <input
@@ -108,9 +99,7 @@ export const RegisterForm = ({ history }) => {
             onChange={handleInputs}
             required
           />
-
           <label htmlFor="hombre">Hombre</label>
-
           <input
             type="radio"
             name="genero"
@@ -118,9 +107,7 @@ export const RegisterForm = ({ history }) => {
             onChange={handleInputs}
             required
           />
-
           <label htmlFor="mujer">Mujer</label>
-
           <input
             type="radio"
             name="genero"
@@ -128,7 +115,6 @@ export const RegisterForm = ({ history }) => {
             onChange={handleInputs}
             required
           />
-
           <label htmlFor="otro">Otro</label>
 
         </div>
