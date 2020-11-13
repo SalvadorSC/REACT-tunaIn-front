@@ -9,6 +9,7 @@ import { PROFILE } from "../../routes/routes";
 import "./LogIn.css";
 
 export const LogIn = ({ history }) => {
+
   // Contiene los valores del formulario:
   const [loginUser, setLoginUser] = useState({});
   const [loginFail, setLoginFail] = useState(null);
@@ -22,6 +23,7 @@ export const LogIn = ({ history }) => {
       [name]: value,
     }));
   };
+
   const handleSubmit = (e) => {
     // Prevengo que ser recargue la página:
     e.preventDefault();
@@ -32,22 +34,27 @@ export const LogIn = ({ history }) => {
         setJWT(response.token);
         // history.push("/profile");
         history.push(PROFILE);
-        
         // pasar loginFail por aquí y después pasar a MessageError
         // setLoginFail(response.message);
       })
-      .catch((response) => setLoginFail(response.message));
+      .catch((response) => {
+        setLoginFail(response.message);
+      });
     // Reseteo los campos del formulario:
     e.target.reset();
   };
 
   return (
     <div className="Login-wrap">
+
       <h1>¡Hola de nuevo!</h1>
+
       <p className="Login-p">
         Accede a tu cuenta para escuchar tus podcasts favoritos.
       </p>
+
       <form onSubmit={handleSubmit}>
+
         <input
           name="email"
           type="email"
@@ -55,6 +62,8 @@ export const LogIn = ({ history }) => {
           onChange={handleInputs}
           required
         />{" "}
+
+
         {/*value={email}*/}
         <input
           name="password"
@@ -65,20 +74,25 @@ export const LogIn = ({ history }) => {
         />{" "}
         {/*value={password}*/}
         <br />
+        
         <MensajeError flag={loginFail} />
+
         <div className="Login-dflex">
           <div className="a-register">
             <span>¿Aún no eres miembro?</span>
             <Link to="/register">Regístrate</Link>
           </div>
+
           <div>
             <button>Acceder</button>
           </div>
         </div>
+
         <span className="Login-terminos">
           Al iniciar sesión, aceptas nuestros{" "}
           <Link to="/terms">Términos de Servicio y Política de Privacidad</Link>
         </span>
+
       </form>
 
       <Modal />

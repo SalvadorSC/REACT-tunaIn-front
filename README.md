@@ -2,6 +2,7 @@
 
 `git init` inicia un repositorio
 
+
 `git status` muestra estado del repositorio (guardado o no)
 `git add .` guarda todos los cambios de todos los archivos en el "stage"
 `git commit -m "mensaje"` permite guardar el punto de control con un mensaje

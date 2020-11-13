@@ -8,9 +8,9 @@ export function NavBar() {
     <>
       <div className="navbar">
         <ul>
-          <br />
+        
           <img src={logo} alt="Logo" />
-          <br />
+     
           <h2 className="navbar-LogoName">Tuna</h2>
           <li>
             <Link to="/">Home</Link>
