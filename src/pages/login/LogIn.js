@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-
 //import "../../Components/EstiloErrores/EstiloError.css";
 import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
-
 import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
+import { Modal } from "../../Components/Modal/Modal";
+
 import "./LogIn.css";
 
-export const LogIn = ({ history }) => {
+export const LogIn = ({ history, handleClose }) => {
   // Contiene los valores del formulario:
   const [loginUser, setLoginUser] = useState({});
   const [loginFail, setLoginFail] = useState(null);
+
   // Maneja el estado del formulario:
   const handleInputs = (event) => {
     // Recojo el name y el valor del input:
@@ -30,6 +31,8 @@ export const LogIn = ({ history }) => {
         //guardar el token en el localStorage en un campo llamado token:
         setJWT(response.token);
         history.push("/profile");
+        // pasar loginFail por aquí y después pasar a MessageError
+        setLoginFail(response.message);
       })
       .catch((response) => setLoginFail(response.message));
     // Reseteo los campos del formulario:
@@ -75,6 +78,9 @@ export const LogIn = ({ history }) => {
           <Link to="/terms">Términos de Servicio y Política de Privacidad</Link>
         </span>
       </form>
+
+      <Modal />
+
     </div>
   );
 };

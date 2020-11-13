@@ -111,6 +111,7 @@ export const RegisterForm = ({ history }) => {
         </div>
         <br />
         <MensajeError flag={registerFail} />
+        {/* <Modal /> */}
         <div className="RegisterForm-dflex">
           <div className="a-login">
             <span>¿Ya eres miembro?</span>
