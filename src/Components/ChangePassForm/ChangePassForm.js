@@ -50,7 +50,7 @@ export const ChangePassForm = () => {
                     onChange={handleNewPssRepeated}
                     required
                 />
-                {(newPss !== repeatNewPss) ? <p>Las contraseñas no coinciden</p> : <button>Guardar contraseña</button>}
+                {(newPss !== repeatNewPss) ? <p>*Las contraseñas no coinciden</p> : <button>Guardar contraseña</button>}
             </form>
         </div>
     );

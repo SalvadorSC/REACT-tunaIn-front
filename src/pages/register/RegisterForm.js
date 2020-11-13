@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
+import { HOME } from "../../routes/routes";
 import "./RegisterForm.css";
 
 export const RegisterForm = ({ history }) => {
@@ -27,7 +28,7 @@ export const RegisterForm = ({ history }) => {
       .then((response) => {
         //guardar el token en el localStorage en un campo llamado token:
         setJWT(response.token);
-        history.push("/home");
+        history.push(HOME);
       })
       .catch((response) => setRegisterFail(response.error));
     // Reseteo los campos del formulario:
