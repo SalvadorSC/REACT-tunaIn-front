@@ -5,6 +5,8 @@ import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
 import { HOME } from "../../routes/routes";
 import "./RegisterForm.css";
+import { validateMinLength, existNumber, existUppercase } from "../../util/Validator";
+import { FormValidator } from "../../util/FormValidator";
 
 export const RegisterForm = ({ history }) => {
   // Contiene los valores del formulario:
@@ -19,6 +21,12 @@ export const RegisterForm = ({ history }) => {
       [name]: value,
     }));
   };
+
+  const validPass = () => {
+    const validators = [validateMinLength, existNumber, existUppercase];
+    FormValidator(value, validators);
+  }
+  console.log(validPass);
 
   const handleSubmit = (e) => {
     // Prevengo que ser recargue la página:
