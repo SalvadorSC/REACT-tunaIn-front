@@ -27,6 +27,9 @@ export function NavBar() {
           <li>
             <Link to="/register">Register</Link>
           </li>
+          <li>
+          <Link to='/userPodcastList'>User Podcast List</Link>
+          </li>
         </ul>
       </div>
     </>

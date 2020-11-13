@@ -3,19 +3,15 @@ import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
+import { HOME } from "../../routes/routes";
 import "./RegisterForm.css";
-
-
 
 export const RegisterForm = ({ history }) => {
   // Contiene los valores del formulario:
   const [newUser, setNewUser] = useState({});
-
   const [registerFail, setRegisterFail] = useState(null);
+  
   // Maneja el estado del formulario:
-
-
-
   const handleInputs = (event) => {
     // Recojo el name y el valor del input:
     const { value, name } = event.target;
@@ -25,25 +21,20 @@ export const RegisterForm = ({ history }) => {
     }));
   };
 
-
-
   const handleSubmit = (e) => {
     // Prevengo que ser recargue la página:
     e.preventDefault();
     // Hago una petición post al servidor:
     serverRequest("register", "POST", newUser)
-
       .then((response) => {
         //guardar el token en el localStorage en un campo llamado token:
         setJWT(response.token);
-        history.push("/home");
+        history.push(HOME);
       })
       .catch((response) => setRegisterFail(response.error));
     // Reseteo los campos del formulario:
     e.target.reset();
   };
-
-
 
   return (
 
@@ -55,7 +46,6 @@ export const RegisterForm = ({ history }) => {
         segundos)
       </p>
 
-
       <form onSubmit={handleSubmit}>
         <input
           name="nombre"
@@ -64,7 +54,6 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />{" "}
-
 
         {/*value={nombre}*/}
         <input
@@ -76,9 +65,6 @@ export const RegisterForm = ({ history }) => {
         />{" "}
         {/*value={nombre}*/}
 
-
-
-
         <input
           name="email"
           type="email"
@@ -87,9 +73,6 @@ export const RegisterForm = ({ history }) => {
           required
         />{" "}
         {/*value={email}*/}
-
-
-
 
         <input
           name="password"
@@ -100,10 +83,6 @@ export const RegisterForm = ({ history }) => {
         />{" "}
         {/*value={password}*/}
 
-
-
-
-
         <input
           name="fechaNacimiento"
           type="date"
@@ -113,8 +92,6 @@ export const RegisterForm = ({ history }) => {
         />{" "}
         {/*value={fechaNacimiento}*/}
 
-
-
         <div>
           <input
             type="radio"
@@ -123,8 +100,6 @@ export const RegisterForm = ({ history }) => {
             onChange={handleInputs}
             required
           />
-
-
 
           <label htmlFor="hombre">Hombre</label>
 
@@ -136,7 +111,6 @@ export const RegisterForm = ({ history }) => {
             required
           />
 
-
           <label htmlFor="mujer">Mujer</label>
 
           <input
@@ -147,16 +121,14 @@ export const RegisterForm = ({ history }) => {
             required
           />
 
-
           <label htmlFor="otro">Otro</label>
 
-
         </div>
-
 
         <br />
         <MensajeError flag={registerFail} />
 
+        {/* <Modal /> */}
 
         <div className="RegisterForm-dflex">
           <div className="a-login">
@@ -167,7 +139,6 @@ export const RegisterForm = ({ history }) => {
             <button>Regístrate</button>
           </div>
         </div>
-
 
         <span className="RegisterForm-terminos">
           Al registrarte, aceptas nuestros{" "}

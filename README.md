@@ -17,8 +17,6 @@
 `gh pr create` genera un pull request en github
 `gh pr merge` merge de la rama con el master en github
 
-## Sprint2 started
-
 # LINEA DE TRABAJO
 
 - GIT BRANCH CREO UNA RAMA

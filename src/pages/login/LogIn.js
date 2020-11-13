@@ -3,34 +3,26 @@ import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
+import { Modal } from "../../Components/Modal/Modal";
+import { PROFILE } from "../../routes/routes";
+
 import "./LogIn.css";
 
 export const LogIn = ({ history }) => {
 
-  
   // Contiene los valores del formulario:
   const [loginUser, setLoginUser] = useState({});
   const [loginFail, setLoginFail] = useState(null);
 
-
   // Maneja el estado del formulario:
   const handleInputs = (event) => {
-
-
     // Recojo el name y el valor del input:
     const { value, name } = event.target;
-
-
-
     setLoginUser((prevValue) => ({
       ...prevValue,
       [name]: value,
     }));
   };
-
-
-
-
 
   const handleSubmit = (e) => {
     // Prevengo que ser recargue la página:
@@ -40,18 +32,17 @@ export const LogIn = ({ history }) => {
       .then((response) => {
         //guardar el token en el localStorage en un campo llamado token:
         setJWT(response.token);
-        history.push("/profile");
+        // history.push("/profile");
+        history.push(PROFILE);
+        // pasar loginFail por aquí y después pasar a MessageError
+        // setLoginFail(response.message);
       })
       .catch((response) => {
-        debugger;
         setLoginFail(response.message);
       });
     // Reseteo los campos del formulario:
     e.target.reset();
   };
-
-
-
 
   return (
     <div className="Login-wrap">
@@ -86,7 +77,6 @@ export const LogIn = ({ history }) => {
         
         <MensajeError flag={loginFail} />
 
-
         <div className="Login-dflex">
           <div className="a-register">
             <span>¿Aún no eres miembro?</span>
@@ -98,14 +88,15 @@ export const LogIn = ({ history }) => {
           </div>
         </div>
 
-
         <span className="Login-terminos">
           Al iniciar sesión, aceptas nuestros{" "}
           <Link to="/terms">Términos de Servicio y Política de Privacidad</Link>
         </span>
 
-
       </form>
+
+      <Modal />
+
     </div>
   );
 };
