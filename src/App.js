@@ -7,6 +7,7 @@ import { RegisterForm } from "./pages/register/RegisterForm";
 import { LogIn } from "./pages/login/LogIn";
 import { NavBar } from "./Components/NavBar/NavBar";
 import { Home } from "./pages/home/home";
+import { UploadPodcast } from "./pages/uploadPodcast/UploadPodcast";
 import { Terms } from "./pages/terms/Terms";
 
 export default function App() {
@@ -20,8 +21,9 @@ export default function App() {
             <Route path="/login" component={LogIn} />
             <Route path="/profile" component={UserProfile} />
             <Route path="/edituserprofile" component={EditUserProfile} />
-            <Route path="/" component={Home} />
+            <Route exact path="/" component={Home} />
             <Route path="/terms" component={Terms} />
+            <Route path="/uploadpodcast" component={UploadPodcast} />
           </Switch>
         </div>
         <NavBar />
