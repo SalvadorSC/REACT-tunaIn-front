@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
-import { MensajeError } from "../../Components/MensajeError/MensajeError";
+import { Avisos } from "../../Components/Avisos/Avisos";
 import { HOME } from "../../routes/routes";
-import "./RegisterForm.css";
 import { existNumber, existUppercase, validateMaxLength, validateMinLength } from "../../util/FormValidator";
 import { inputValidation } from "../../controllers/inputValidation";
+import "./RegisterForm.css";
 
 export const RegisterForm = ({ history }) => {
   // Contiene los valores del formulario:
   const [newUser, setNewUser] = useState({});
-  const [registerFail, setRegisterFail] = useState(null);
+  const [registerFail, setRegisterFail] = useState({ message: null, color: null });
   const [errors, setErrors] = useState('');
   const inputValidators = {
     password: [validateMaxLength, existNumber, existUppercase],
@@ -26,15 +26,13 @@ export const RegisterForm = ({ history }) => {
       ...prevValue,
       [name]: value,
     }));
-    if(!value) return setErrors(prevErrors => ({...prevErrors, [name]: ''}))
-    const error = inputValidation(value, inputValidators[name], {minLength: 8, maxLength: 12});
+    if (!value) return setErrors(prevErrors => ({ ...prevErrors, [name]: '' }))
+    const error = inputValidation(value, inputValidators[name], { minLength: 8, maxLength: 12 });
     setErrors(prevErrors => ({
       ...prevErrors,
       [name]: error
     }));
   };
-  
-  // const validatePassword = (value, validators, options) => { }
 
   const handleSubmit = (e) => {
     // Prevengo que ser recargue la página:
@@ -44,7 +42,10 @@ export const RegisterForm = ({ history }) => {
       .then((response) => {
         //guardar el token en el localStorage en un campo llamado token:
         setJWT(response.token);
-        history.push(HOME);
+        setRegisterFail({ message: "Bienvenido a TunaIn", color: 'success' });
+        setTimeout(() => {
+          history.push(HOME);
+        }, 2000);
       })
       .catch((response) => setRegisterFail(response.error));
     // Reseteo los campos del formulario:
@@ -69,7 +70,7 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />
-          <MensajeError flag={errors.nombre} />
+        <Avisos flag={errors.nombre} />
         <input
           name="username"
           type="text"
@@ -77,7 +78,7 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />
-          <MensajeError flag={errors.username} />
+        <Avisos flag={errors.username} />
         <input
           name="email"
           type="email"
@@ -92,7 +93,7 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />
-        <MensajeError flag={errors.password} />
+        <Avisos flag={errors.password} />
 
         <input
           name="fechaNacimiento"
@@ -131,7 +132,7 @@ export const RegisterForm = ({ history }) => {
         </div>
 
         <br />
-        <MensajeError flag={registerFail} />
+        <Avisos flag={registerFail.message} type={registerFail.color} />
 
         <div className="RegisterForm-dflex">
           <div className="a-login">
@@ -147,7 +148,7 @@ export const RegisterForm = ({ history }) => {
           Al registrarte, aceptas nuestros{" "}
           <Link to="/terms">Términos de Servicio y Política de Privacidad</Link>
         </span>
-        
+
       </form>
     </div>
   );

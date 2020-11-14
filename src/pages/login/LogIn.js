@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
-import { MensajeError } from "../../Components/MensajeError/MensajeError";
+import { Avisos } from "../../Components/Avisos/Avisos";
 import { Modal } from "../../Components/Modal/Modal";
 import { PROFILE } from "../../routes/routes";
 
@@ -12,7 +12,8 @@ export const LogIn = ({ history }) => {
 
   // Contiene los valores del formulario:
   const [loginUser, setLoginUser] = useState({});
-  const [loginFail, setLoginFail] = useState(null);
+  const [loginFail, setLoginFail] = useState({ message: null, color: null });
+
 
   // Maneja el estado del formulario:
   const handleInputs = (event) => {
@@ -32,13 +33,14 @@ export const LogIn = ({ history }) => {
       .then((response) => {
         //guardar el token en el localStorage en un campo llamado token:
         setJWT(response.token);
-        // history.push("/profile");
-        history.push(PROFILE);
-        // pasar loginFail por aquí y después pasar a MessageError
-        // setLoginFail(response.message);
+        //mensaje success
+        setLoginFail({ message: "Bienvenido de nuevo", color: 'success' });
+        setTimeout(() => {
+          history.push(PROFILE);
+        }, 2000);
       })
       .catch((response) => {
-        setLoginFail(response.message);
+        setLoginFail({ message: response.message, color: 'error' });
       });
     // Reseteo los campos del formulario:
     e.target.reset();
@@ -74,8 +76,8 @@ export const LogIn = ({ history }) => {
         />{" "}
         {/*value={password}*/}
         <br />
-        
-        <MensajeError flag={loginFail} />
+
+        <Avisos flag={loginFail.message} type={loginFail.color} />
 
         <div className="Login-dflex">
           <div className="a-register">

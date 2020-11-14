@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
 import "./EditUserProfile.css";
 import { ModalCambiarPassword } from "../../Components/ModalCambiarPassword/ModalCambiarPassword";
-import { MensajeError } from "../../Components/MensajeError/MensajeError";
+import { Avisos } from "../../Components/Avisos/Avisos";
+import { HOME } from "../../routes/routes";
+
 
 export const EditUserProfile = (props) => {
   // const [canales, setCanales] = useState("No tienes ningún canal");
   const [user, setUser] = useState({});
   const [editedUser, setEditedUser] = useState({});
   const [deletedUser, setDeletedUser] = useState({});
-  const [editFailed, setEditFailed] = useState(null);
+  const [editFailed, setEditFailed] = useState({ message: null, color: null });
+  const [deleteFailed, setDeleteFailed] = useState({ message: null, color: null });
   const sitio = "data/user";
 
   useEffect(() => {
@@ -34,9 +37,9 @@ export const EditUserProfile = (props) => {
     serverRequest(`${sitio}/${user._id}`, "PUT", editedUser)
       .then((response) => {
         setUser(response);
-        setEditFailed(response.message);
+        setEditFailed({ message: "Perfil actualizado correctamente", color: 'success' });
       })
-      .catch((response => setEditFailed(response)));
+      .catch((response => setEditFailed({ message: response.message, color: 'error' })));
     // Reseteo los campos del formulario:
     e.target.reset();
   };
@@ -46,8 +49,14 @@ export const EditUserProfile = (props) => {
     e.preventDefault();
     // Hago una petición post al servidor con el metodo "DELETE"
     serverRequest(`${sitio}/${user._id}`, "DELETE", deletedUser)
-      .then((response) => setDeletedUser(response))
-      .catch(console.log);
+      .then((response) => {
+        setDeletedUser(response)
+        setDeleteFailed({ message: "Perfil eliminado", color: 'warning' });
+        setTimeout(() => {
+          props.history.push(HOME);
+        }, 2000);
+      })
+      .catch((response) => setDeleteFailed({ message: response.message, color: 'error' }));
   };
 
   const options = { month: "2-digit", day: "2-digit", year: "numeric" };
@@ -84,13 +93,14 @@ export const EditUserProfile = (props) => {
         {/* <button className="button-change-pss">Cambiar contraseña</button> */}
         <ModalCambiarPassword />
         <br />
-        <MensajeError flag={editFailed} />
+        <Avisos flag={editFailed.message} type={editFailed.color} />
         <button>Guardar cambios</button>
       </form>
 
       <form onSubmit={handleDelete}>
         <button className="button-delete">Eliminar cuenta</button>
-      </form> 
+        <Avisos flag={deleteFailed.message} type={deleteFailed.color} />
+      </form>
     </div>
   );
 };
