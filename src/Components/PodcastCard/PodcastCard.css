@@ -1,12 +1,38 @@
 .PodcastCard-wrap {
-  width: 100px;
+  width: 200px;
   height: auto;
-  border-radius: 1px solid lightgray;
-  box-shadow: 1px 1px 3px rgb(240, 240, 240);
+  border-radius: 1px solid rgb(187, 187, 187);
+  box-shadow: 2px 2px 6px rgba(128, 128, 128, 0.5);
+  display: flex;
+  flex-direction: column;
+  z-index: -1;
+  margin-bottom: 50px;
 }
 
 .PodcastCard-img {
-  width: 100px;
-  height: 100px;
-  color: rgb(125, 170, 238);
+  width: 200px;
+  height: 200px;
+  background-color: #5bacb98c;
+  display: flex;
+  flex-direction: row;
+}
+
+.icons {
+  background-color: white;
+}
+
+.PodcastCard-text {
+  margin: 10px;
+}
+
+.PodcastCard-text p {
+  margin: 0;
+}
+
+.PostcastCard-author {
+  font-size: 0.8rem;
+}
+
+.PostcastCard-duration {
+  color: rgb(167, 167, 167);
 }
