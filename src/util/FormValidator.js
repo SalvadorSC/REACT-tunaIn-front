@@ -1,22 +1,75 @@
-import {validateMaxLength, validateMinLength} from "./Validator";
-export const FormValidator = (value, requirements, validators) => {
-    const error = [];
+export const existNumber = (string) => {
+    const regex = RegExp("[0-9]");
+    if (!regex.test(string)) {
+        return ("un número");
+    }
+};
 
+export const existUppercase = (string) => {
+    const regex = new RegExp("[A-Z]");
+    if (!regex.test(string)) {
+        return ("una mayúscula");
+    }
+};
+
+export const validateMaxLength = (string, maxLength) => {
+    if (string.length >= maxLength) {
+        return (`máximo ${maxLength} carácteres`);
+    }
+};
+
+export const validateMinLength = (string, minLength) => {
+    if (string.length <= minLength) {
+        return (`mínimo ${minLength} carácteres`);
+    }
+};
+
+export const checkFormErrors = (value, validators, options) => {
+    const errors = [];
+    if(!value || !validators) return;
+    if(!(validators instanceof Array)) return;
     validators.forEach(validator => {
-        if (validator === validateMaxLength) {
-            validator(value, requirements.maxLength)
-            if (!validator(value, requirements.maxLength)) {
-                // return false;
-                return error.push(validator)
-            }
-        } else if (validator === validateMinLength) {
-            validator(value, requirements.minLength)
-            if (!validator(value, requirements.minLength)) {
-                return error.push(validator)
-            }
-        } else if (!validator(value)) {
-            // return false;
-            return error.push(validator)
-        } return true;
+        if (validator === validateMaxLength && options) {
+            const error = validator(value, options.maxLength) 
+            error && errors.push(error)
+        } else if (validator === validateMinLength && options) {
+            const error = validator(value, options.minLength)
+            error && errors.push(error)
+        } else {
+            const error = validator(value)
+            error && errors.push(error)
+        } 
     });
+    return errors;
 }
+
+export const concatErrorString = (errors) => {
+    let result = ''
+    if(!errors.length) return result;
+    errors.forEach((error, index) => {
+        if(index < errors.length - 2){
+            result += error + ', ';
+        } else if (index < errors.length - 1) {
+            result += error + ' y '
+        } else {
+            result += error
+        }
+    })
+
+    return "Este campo debe contener " + result;
+}
+
+
+
+const newUser = {
+    password: 99999999999
+}
+
+
+
+
+// const formErrors = checkFormErrors(value, validators, options);
+// if(formErrors && formErrors.length){
+//     const result = concatErrorString(formErrors);
+//     console.log(result)
+// }
