@@ -1,14 +1,19 @@
 import React from "react";
+import './PodcastCard.css';
 
-export const PodcastCard = ({ title, duration }) => {
+export const PodcastCard = ( {title, duration, author} ) => {
   return (
     <div className="PodcastCard-wrap">
-      <div className="PodcastCard-img"></div>
-      <p>{title}</p>
-      <p>{duration}</p>
-      <i className="fas fa-share-alt" />
-      <i className="far fa-play-circle" />
-      <i class="far fa-heart"></i>
+      <div className="PodcastCard-img">
+        <i className="fas fa-share-alt icons" />
+        <i className="far fa-play-circle icons" />
+        <i className="far fa-heart icons" />
+      </div>
+      <div className="PodcastCard-text">
+        <p className="PostcastCard-title">{title}</p>
+        <p className="PostcastCard-author">{author}</p>
+        <p className="PostcastCard-duration">{duration}</p>
+      </div>
     </div>
   );
 };
