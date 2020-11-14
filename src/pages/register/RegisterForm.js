@@ -5,14 +5,19 @@ import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
 import { HOME } from "../../routes/routes";
 import "./RegisterForm.css";
-// import { validateMinLength, existNumber, existUppercase } from "../../util/Validator";
-// import { FormValidator } from "../../util/FormValidator";
+import { existNumber, existUppercase, validateMaxLength, validateMinLength } from "../../util/FormValidator";
+import { inputValidation } from "../../controllers/inputValidation";
 
 export const RegisterForm = ({ history }) => {
   // Contiene los valores del formulario:
   const [newUser, setNewUser] = useState({});
   const [registerFail, setRegisterFail] = useState(null);
-  
+  const [errors, setErrors] = useState('');
+  const inputValidators = {
+    password: [validateMaxLength, existNumber, existUppercase],
+    username: [validateMinLength],
+    nombre: [validateMinLength]
+  }
   // Maneja el estado del formulario:
   const handleInputs = (event) => {
     // Recojo el name y el valor del input:
@@ -21,13 +26,15 @@ export const RegisterForm = ({ history }) => {
       ...prevValue,
       [name]: value,
     }));
+    if(!value) return setErrors(prevErrors => ({...prevErrors, [name]: ''}))
+    const error = inputValidation(value, inputValidators[name], {minLength: 8, maxLength: 12});
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      [name]: error
+    }));
   };
-
-  // const validPass = () => {
-  //   const validators = [validateMinLength, existNumber, existUppercase];
-  //   FormValidator(value, validators);
-  // }
-  // console.log(validPass);
+  
+  // const validatePassword = (value, validators, options) => { }
 
   const handleSubmit = (e) => {
     // Prevengo que ser recargue la página:
@@ -62,6 +69,7 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />
+          <MensajeError flag={errors.nombre} />
         <input
           name="username"
           type="text"
@@ -69,6 +77,7 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />
+          <MensajeError flag={errors.username} />
         <input
           name="email"
           type="email"
@@ -83,6 +92,8 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />
+        <MensajeError flag={errors.password} />
+
         <input
           name="fechaNacimiento"
           type="date"
@@ -121,8 +132,6 @@ export const RegisterForm = ({ history }) => {
 
         <br />
         <MensajeError flag={registerFail} />
-
-        {/* <Modal /> */}
 
         <div className="RegisterForm-dflex">
           <div className="a-login">
