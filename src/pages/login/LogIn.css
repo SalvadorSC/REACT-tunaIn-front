@@ -3,7 +3,7 @@
 }
 
 .Login-p {
-  margin: auto auto 40px;
+  margin: auto auto 20px;
 }
 
 .Login-button {
@@ -17,6 +17,7 @@
 .Login-dflex {
   display: flex;
   justify-content: center;
+  margin-top: 30px;
 }
 
 .a-register {
