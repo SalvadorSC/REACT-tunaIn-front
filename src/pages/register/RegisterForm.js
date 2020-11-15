@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
+import { HOME } from "../../routes/routes";
 import "./RegisterForm.css";
 
 export const RegisterForm = ({ history }) => {
   // Contiene los valores del formulario:
   const [newUser, setNewUser] = useState({});
   const [registerFail, setRegisterFail] = useState(null);
+  
   // Maneja el estado del formulario:
   const handleInputs = (event) => {
     // Recojo el name y el valor del input:
@@ -27,7 +29,7 @@ export const RegisterForm = ({ history }) => {
       .then((response) => {
         //guardar el token en el localStorage en un campo llamado token:
         setJWT(response.token);
-        history.push("/home");
+        history.push(HOME);
       })
       .catch((response) => setRegisterFail(response.error));
     // Reseteo los campos del formulario:
@@ -35,6 +37,7 @@ export const RegisterForm = ({ history }) => {
   };
 
   return (
+
     <div className="RegisterForm-wrap">
       <h1>¡Personaliza tu experiencia!</h1>
       <p className="registerForm-p">
@@ -42,6 +45,7 @@ export const RegisterForm = ({ history }) => {
         y recomendaciones personalizadas basadas en tu escucha. (Solo toma 30
         segundos)
       </p>
+
       <form onSubmit={handleSubmit}>
         <input
           name="nombre"
@@ -50,6 +54,7 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />{" "}
+
         {/*value={nombre}*/}
         <input
           name="username"
@@ -59,6 +64,7 @@ export const RegisterForm = ({ history }) => {
           required
         />{" "}
         {/*value={nombre}*/}
+
         <input
           name="email"
           type="email"
@@ -67,6 +73,7 @@ export const RegisterForm = ({ history }) => {
           required
         />{" "}
         {/*value={email}*/}
+
         <input
           name="password"
           type="password"
@@ -75,6 +82,7 @@ export const RegisterForm = ({ history }) => {
           required
         />{" "}
         {/*value={password}*/}
+
         <input
           name="fechaNacimiento"
           type="date"
@@ -83,6 +91,7 @@ export const RegisterForm = ({ history }) => {
           required
         />{" "}
         {/*value={fechaNacimiento}*/}
+
         <div>
           <input
             type="radio"
@@ -91,7 +100,9 @@ export const RegisterForm = ({ history }) => {
             onChange={handleInputs}
             required
           />
+
           <label htmlFor="hombre">Hombre</label>
+
           <input
             type="radio"
             name="genero"
@@ -99,7 +110,9 @@ export const RegisterForm = ({ history }) => {
             onChange={handleInputs}
             required
           />
+
           <label htmlFor="mujer">Mujer</label>
+
           <input
             type="radio"
             name="genero"
@@ -107,10 +120,16 @@ export const RegisterForm = ({ history }) => {
             onChange={handleInputs}
             required
           />
+
           <label htmlFor="otro">Otro</label>
+
         </div>
+
         <br />
         <MensajeError flag={registerFail} />
+
+        {/* <Modal /> */}
+
         <div className="RegisterForm-dflex">
           <div className="a-login">
             <span>¿Ya eres miembro?</span>
@@ -120,10 +139,12 @@ export const RegisterForm = ({ history }) => {
             <button>Regístrate</button>
           </div>
         </div>
+
         <span className="RegisterForm-terminos">
           Al registrarte, aceptas nuestros{" "}
           <Link to="/terms">Términos de Servicio y Política de Privacidad</Link>
         </span>
+        
       </form>
     </div>
   );
