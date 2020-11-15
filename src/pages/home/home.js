@@ -7,6 +7,7 @@ import "./home.css";
 import { Buscador } from "../../Components/Buscador/Buscador";
 import { CallToAction } from "../../Components/CallToAction/CallToAction";
 import { PodcastsDestacados } from "../../Components/PodcastsDestacados/PodcastsDestacados";
+import { Premium } from "../../Components/Premium/Premium";
 
 export const Home = () => {
   const [modalShow, setModalShow] = React.useState(false);
@@ -18,8 +19,9 @@ export const Home = () => {
       <Buscador />
       <CallToAction />
       <PodcastsDestacados />
+      <Premium />
+
       {/* 
-            <Premium />
             <Dispositivos />
             <CallToAction />
             <Footer />
