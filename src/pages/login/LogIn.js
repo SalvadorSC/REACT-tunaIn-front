@@ -63,19 +63,15 @@ export const LogIn = ({ history }) => {
           placeholder="Correo electrónico*"
           onChange={handleInputs}
           required
-        />{" "}
+        />
 
-
-        {/*value={email}*/}
         <input
           name="password"
           type="password"
           placeholder="Contraseña*"
           onChange={handleInputs}
           required
-        />{" "}
-        {/*value={password}*/}
-        <br />
+        />
 
         <Avisos flag={loginFail.message} type={loginFail.color} />
 

@@ -12,10 +12,10 @@ export const RegisterForm = ({ history }) => {
   // Contiene los valores del formulario:
   const [newUser, setNewUser] = useState({});
   const [registerFail, setRegisterFail] = useState({ message: null, color: null });
-  const [errors, setErrors] = useState('');
+  const [errors, setErrors] = useState({ message: null, color: null });
   const inputValidators = {
-    password: [validateMaxLength, existNumber, existUppercase],
-    username: [validateMinLength],
+    password: [validateMinLength, existNumber, existUppercase],
+    username: [validateMinLength, validateMaxLength],
     nombre: [validateMinLength]
   }
   // Maneja el estado del formulario:
@@ -70,7 +70,7 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />
-        <Avisos flag={errors.nombre} />
+        <Avisos flag={errors.nombre} type={errors.nombre && 'warning'} />
         <input
           name="username"
           type="text"
@@ -78,7 +78,7 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />
-        <Avisos flag={errors.username} />
+        <Avisos flag={errors.username} type={errors.username && 'warning'} />
         <input
           name="email"
           type="email"
@@ -93,7 +93,7 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />
-        <Avisos flag={errors.password} />
+        <Avisos flag={errors.password} type={errors.password && 'warning'} />
 
         <input
           name="fechaNacimiento"
@@ -128,10 +128,8 @@ export const RegisterForm = ({ history }) => {
             required
           />
           <label htmlFor="otro">Otro</label>
-
         </div>
 
-        <br />
         <Avisos flag={registerFail.message} type={registerFail.color} />
 
         <div className="RegisterForm-dflex">
