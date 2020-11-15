@@ -4,7 +4,7 @@ import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
 import { DecodeToken } from "../../util/DecodeToken";
 import { getToken } from "../../util/LocalStorage.utils";
-import { MensajeError } from "../../Components/MensajeError/MensajeError";
+import { Avisos } from "../../Components/Avisos/Avisos";
 import "./UploadPodcast.css";
 
 export const UploadPodcast = ({ history }) => {
@@ -28,10 +28,10 @@ export const UploadPodcast = ({ history }) => {
     const userId = decodedToken.id;
     const newPodcastWithUserID = {
       ...newPodcast,
-      "id_user": userId
+      "id_author": userId
     }
     // Hago una petición post al servidor:
-    serverRequest("data/podcasts", "POST", newPodcastWithUserID)
+    serverRequest("data/podcast", "POST", newPodcastWithUserID)
       .then((response) => {
         if (response.ok) { history.push("/home"); }
         //guardar el token en el localStorage en un campo llamado token:
@@ -84,7 +84,7 @@ export const UploadPodcast = ({ history }) => {
 
         />{" "}
         <br />
-        <MensajeError flag={registerFail} />
+        <Avisos flag={registerFail} />
         <div className="RegisterForm-dflex">
           <div>
             <button>Submit</button>
