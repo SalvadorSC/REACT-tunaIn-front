@@ -17,7 +17,7 @@ export const Modal = () => {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>Open Modal</button>
+      <button type="button" onClick={handleOpen}>Registro en formato Modal</button>
       {openModal &&
         <ModalContent handleClose={handleClose}>
           <RegisterForm />

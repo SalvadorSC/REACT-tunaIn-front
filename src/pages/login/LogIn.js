@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
 import { Avisos } from "../../Components/Avisos/Avisos";
-import { Modal } from "../../Components/Modal/Modal";
 import { PROFILE } from "../../routes/routes";
 
 import "./LogIn.css";
@@ -13,7 +12,6 @@ export const LogIn = ({ history }) => {
   // Contiene los valores del formulario:
   const [loginUser, setLoginUser] = useState({});
   const [loginFail, setLoginFail] = useState({ message: null, color: null });
-
 
   // Maneja el estado del formulario:
   const handleInputs = (event) => {
@@ -48,15 +46,11 @@ export const LogIn = ({ history }) => {
 
   return (
     <div className="Login-wrap">
-
       <h1>¡Hola de nuevo!</h1>
-
       <p className="Login-p">
         Accede a tu cuenta para escuchar tus podcasts favoritos.
       </p>
-
       <form onSubmit={handleSubmit}>
-
         <input
           name="email"
           type="email"
@@ -64,7 +58,6 @@ export const LogIn = ({ history }) => {
           onChange={handleInputs}
           required
         />
-
         <input
           name="password"
           type="password"
@@ -80,7 +73,6 @@ export const LogIn = ({ history }) => {
             <span>¿Aún no eres miembro?</span>
             <Link to="/register">Regístrate</Link>
           </div>
-
           <div>
             <button>Acceder</button>
           </div>
@@ -92,9 +84,6 @@ export const LogIn = ({ history }) => {
         </span>
 
       </form>
-
-      <Modal />
-
     </div>
   );
 };
