@@ -1,0 +1,57 @@
+.Dispositivos-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.Dispositivos-img {
+    background-size: cover;
+    height: auto;
+    width: 200px;
+}
+
+.Dispositivos-wrap img {
+    width: 50%;
+    height: auto; 
+}
+
+.Dispositivos-text {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.Dispositivos-text p {
+    margin: 20px auto;
+}
+
+.Dispositivos-text button {
+    margin: 0;
+}
+
+.download-apple {
+    background-color: black;
+    border: none;
+    color: white;
+}
+
+.download-apple:hover {
+    background-color: #fbfef9;
+    border: solid 2px black;
+    color: black;
+}
+
+.download-google {
+    background-color: #077594;
+    color: white;
+    border: none;
+}
+  
+.download-google:hover {
+    background-color: #fbfef9;
+    border: solid 2px #077594;
+    color: #077594;
+}

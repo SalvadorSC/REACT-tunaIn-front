@@ -8,6 +8,7 @@ import { Buscador } from "../../Components/Buscador/Buscador";
 import { CallToAction } from "../../Components/CallToAction/CallToAction";
 import { PodcastsDestacados } from "../../Components/PodcastsDestacados/PodcastsDestacados";
 import { Premium } from "../../Components/Premium/Premium";
+import { Dispositivos } from "../../Components/Dispositivos/Dispositivos";
 
 export const Home = () => {
   const [modalShow, setModalShow] = React.useState(false);
@@ -20,9 +21,9 @@ export const Home = () => {
       <CallToAction />
       <PodcastsDestacados />
       <Premium />
+      <Dispositivos />
 
       {/* 
-            <Dispositivos />
             <CallToAction />
             <Footer />
         */}
