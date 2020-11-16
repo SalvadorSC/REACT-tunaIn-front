@@ -39,7 +39,7 @@ export const UploadPodcast = ({ history }) => {
       })
       .catch((response) => setRegisterFail(response.error));
     // Reseteo los campos del formulario:
-    //e.target.reset();
+    e.target.reset();
   };
 
   return (
