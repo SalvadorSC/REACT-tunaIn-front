@@ -43,6 +43,7 @@ export const RegisterForm = ({ history }) => {
       .then((response) => {
         //guardar el token en el localStorage en un campo llamado token:
         setJWT(response.token);
+        console.log(newUser);
         setRegisterFail({ message: "Bienvenido a TunaIn", color: 'success' });
         setTimeout(() => {
           history.push(HOME);
