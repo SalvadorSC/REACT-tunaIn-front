@@ -9,8 +9,7 @@ export const EditUserProfile = (props) => {
   // const [canales, setCanales] = useState("No tienes ningún canal");
   const [user, setUser] = useState({});
   const [editedUser, setEditedUser] = useState({});
-  const [deletedUser, setDeletedUser] = useState({});
-  const [newPss, setNewPss] = useState({});
+  const [newPass, setNewPass] = useState({});
   const [editFailed, setEditFailed] = useState({ message: null, color: null });
   const [deleteFailed, setDeleteFailed] = useState({ message: null, color: null });
   const [openModal, setOpenModal] = useState(false);
@@ -26,13 +25,13 @@ export const EditUserProfile = (props) => {
     setOpenModal(!openModal);
   }
 
+  //Recoje los datos del usuario del fetch realizado en userProfile
   useEffect(() => {
     setUser(props.location.state.user);
   }, []);
 
   // Maneja el estado del formulario:
   const handleChanges = (event) => {
-    // Recojo el name y el valor del input:
     const { value, name } = event.target;
     setEditedUser((prevValue) => ({
       ...prevValue,
@@ -41,22 +40,37 @@ export const EditUserProfile = (props) => {
   };
 
   // Maneja el estado del input newPass
-  const handleNewPss = (e) => {
-    setNewPss(e.target.value);
+  const handleNewPass = (e) => {
+    setNewPass(e.target.value);
   };
 
+  //
   const handleSubmit = (e) => {
-    // Prevengo que ser recargue la página:
     e.preventDefault();
-    // Hago una petición post al servidor:
     serverRequest(`${sitio}/${user._id}`, "PUT", editedUser)
       .then((response) => {
         setUser(response);
         setEditFailed({ message: "Perfil actualizado correctamente", color: 'success' });
+        setTimeout(() => {
+          setEditFailed({ message: null, color: null })
+        }, 3000)
       })
       .catch((response => setEditFailed({ message: response.message, color: 'error' })));
-    // Reseteo los campos del formulario:
     e.target.reset();
+  };
+
+  const handleSubmitPassword = (e) => {
+    e.preventDefault();
+    serverRequest(`${sitio}/${user._id}`, "PUT", editedUser)
+      .then((response) => {
+        setUser(response);
+        setEditFailed({ message: "Perfil actualizado correctamente", color: 'success' });
+        setTimeout(() => {
+          setEditFailed({ message: null, color: null });
+          setOpenModal(!openModal);
+        }, 2000)
+      })
+      .catch((response => setEditFailed({ message: response.message, color: 'error' })));
   };
 
   // eliminar mi cuenta de usuario
@@ -114,17 +128,18 @@ export const EditUserProfile = (props) => {
               name="password"
               type="password"
               placeholder='Nueva contraseña*'
-              onChange={handleNewPss}
+              onChange={handleNewPass}
               required
             />
             <input
               name="password"
               type="password"
               placeholder='Repite la nueva contraseña*'
-              onChange={handleNewPss}
+              onChange={handleChanges}
               required
             />
-            {(newPss !== editedUser.password) ? <p>*Las contraseñas no coinciden</p> : <button onClick={handleSubmit, handleClose} >Guardar contraseña</button>}
+            {(newPass !== editedUser.password) ? <p>*Las contraseñas no coinciden</p> : <button onClick={handleSubmitPassword}>Guardar contraseña</button>}
+            <Avisos flag={editFailed.message} type={editFailed.color} />
           </Modal>
         }
         <br />
