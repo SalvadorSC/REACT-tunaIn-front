@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
 import "./EditUserProfile.css";
-// import { ModalCambiarPassword } from "../../Components/ModalCambiarPassword/ModalCambiarPassword";
 import { Avisos } from "../../Components/Avisos/Avisos";
 import { HOME } from "../../routes/routes";
 import { Modal } from "../../Components/Modal/Modal";
-
 
 export const EditUserProfile = (props) => {
   // const [canales, setCanales] = useState("No tienes ningún canal");
@@ -30,7 +28,6 @@ export const EditUserProfile = (props) => {
 
   useEffect(() => {
     setUser(props.location.state.user);
-    // console.log(props.location.state.user);
   }, []);
 
   // Maneja el estado del formulario:
@@ -59,22 +56,21 @@ export const EditUserProfile = (props) => {
       })
       .catch((response => setEditFailed({ message: response.message, color: 'error' })));
     // Reseteo los campos del formulario:
-    //e.target.reset();
+    e.target.reset();
   };
 
   // eliminar mi cuenta de usuario
   const handleDelete = (e) => {
     e.preventDefault();
     // Hago una petición post al servidor con el metodo "DELETE"
-    serverRequest(`${sitio}/${user._id}`, "DELETE", deletedUser)
-      .then((response) => {
-        setDeletedUser(response)
-        setDeleteFailed({ message: "Perfil eliminado", color: 'warning' });
+    serverRequest(`${sitio}/${user._id}`, "DELETE")
+      .then(response => console.log)
+      .catch((response) => {
+        setDeleteFailed({ message: "Perfil eliminado", color: 'warning' })
         setTimeout(() => {
           props.history.push(HOME);
         }, 2000);
-      })
-      .catch((response) => setDeleteFailed({ message: response.message, color: 'error' }));
+      });
   };
 
   const options = { month: "2-digit", day: "2-digit", year: "numeric" };
