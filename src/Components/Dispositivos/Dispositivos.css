@@ -7,13 +7,12 @@
 
 .Dispositivos-img {
     background-size: cover;
-    height: auto;
-    width: 200px;
+    overflow: hidden;
 }
 
 .Dispositivos-wrap img {
-    width: 50%;
-    height: auto; 
+    width: 40%;
+    height: auto;
 }
 
 .Dispositivos-text {
@@ -21,7 +20,10 @@
     flex-direction: column;
     padding: 50px;
     align-items: flex-start;
-    justify-content: space-evenly;
+}
+
+.Dispositivos-text h4 {
+    margin: 0;
 }
 
 .Dispositivos-text p {
@@ -29,7 +31,7 @@
 }
 
 .Dispositivos-text button {
-    margin: 0;
+    margin: 20px 0 0;
 }
 
 .download-apple {
