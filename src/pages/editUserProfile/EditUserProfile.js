@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
 import "./EditUserProfile.css";
-import { ModalCambiarPassword } from "../../Components/ModalCambiarPassword/ModalCambiarPassword";
+// import { ModalCambiarPassword } from "../../Components/ModalCambiarPassword/ModalCambiarPassword";
 import { Avisos } from "../../Components/Avisos/Avisos";
 import { HOME } from "../../routes/routes";
+import { Modal } from "../../Components/Modal/Modal";
 
 
 export const EditUserProfile = (props) => {
@@ -11,9 +12,21 @@ export const EditUserProfile = (props) => {
   const [user, setUser] = useState({});
   const [editedUser, setEditedUser] = useState({});
   const [deletedUser, setDeletedUser] = useState({});
+  const [newPss, setNewPss] = useState({});
   const [editFailed, setEditFailed] = useState({ message: null, color: null });
   const [deleteFailed, setDeleteFailed] = useState({ message: null, color: null });
+  const [openModal, setOpenModal] = useState(false);
   const sitio = "data/user";
+
+  const handleOpen = (e) => {
+    setOpenModal(!openModal);
+  }
+
+  const handleClose = (e) => {
+    const { className: el } = e.target;
+    if (el !== 'backdrop' && el !== 'fas fa-times') return;
+    setOpenModal(!openModal);
+  }
 
   useEffect(() => {
     setUser(props.location.state.user);
@@ -30,6 +43,11 @@ export const EditUserProfile = (props) => {
     }));
   };
 
+  // Maneja el estado del input newPass
+  const handleNewPss = (e) => {
+    setNewPss(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     // Prevengo que ser recargue la página:
     e.preventDefault();
@@ -41,7 +59,7 @@ export const EditUserProfile = (props) => {
       })
       .catch((response => setEditFailed({ message: response.message, color: 'error' })));
     // Reseteo los campos del formulario:
-    e.target.reset();
+    //e.target.reset();
   };
 
   // eliminar mi cuenta de usuario
@@ -91,7 +109,28 @@ export const EditUserProfile = (props) => {
         />
         <label id="password-label">Password</label>
         {/* <button className="button-change-pss">Cambiar contraseña</button> */}
-        <ModalCambiarPassword />
+        {/* <ModalCambiarPassword /> */}
+        <button type="button" onClick={handleOpen} className="button-change-pss">Cambiar contraseña</button>
+
+        {openModal &&
+          <Modal handleClose={handleClose}>
+            <input
+              name="password"
+              type="password"
+              placeholder='Nueva contraseña*'
+              onChange={handleNewPss}
+              required
+            />
+            <input
+              name="password"
+              type="password"
+              placeholder='Repite la nueva contraseña*'
+              onChange={handleNewPss}
+              required
+            />
+            {(newPss !== editedUser.password) ? <p>*Las contraseñas no coinciden</p> : <button onClick={handleSubmit, handleClose} >Guardar contraseña</button>}
+          </Modal>
+        }
         <br />
         <Avisos flag={editFailed.message} type={editFailed.color} />
         <button>Guardar cambios</button>
