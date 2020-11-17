@@ -9,9 +9,7 @@ export const EditUserProfile = (props) => {
   // const [canales, setCanales] = useState("No tienes ningún canal");
   const [user, setUser] = useState({});
   const [editedUser, setEditedUser] = useState({});
-  // const [deletedUser, setDeletedUser] = useState({});
   const [newPass, setNewPass] = useState({});
-  const [newPassRepe, setNewPassRepe] = useState({});
   const [editFailed, setEditFailed] = useState({ message: null, color: null });
   const [deleteFailed, setDeleteFailed] = useState({ message: null, color: null });
   const [openModal, setOpenModal] = useState(false);
@@ -63,14 +61,16 @@ export const EditUserProfile = (props) => {
 
   const handleSubmitPassword = (e) => {
     e.preventDefault();
-    console.log(editedUser.password);
     serverRequest(`${sitio}/${user._id}`, "PUT", editedUser)
       .then((response) => {
         setUser(response);
         setEditFailed({ message: "Perfil actualizado correctamente", color: 'success' });
+        setTimeout(() => {
+          setEditFailed({ message: null, color: null });
+          setOpenModal(!openModal);
+        }, 2000)
       })
       .catch((response => setEditFailed({ message: response.message, color: 'error' })));
-    e.target.reset();
   };
 
   // eliminar mi cuenta de usuario
@@ -124,24 +124,22 @@ export const EditUserProfile = (props) => {
 
         {openModal &&
           <Modal handleClose={handleClose}>
-            <form onSubmit={handleSubmitPassword}>
-              <input
-                name="password"
-                type="password"
-                placeholder='Nueva contraseña*'
-                onChange={handleNewPass}
-                required
-              />
-              <input
-                name="password"
-                type="password"
-                placeholder='Repite la nueva contraseña*'
-                onChange={handleChanges}
-                required
-              />
-              {(newPass !== editedUser.password) ? <p>*Las contraseñas no coinciden</p> : <button onClick={handleClose}>Guardar contraseña</button>}
-              <Avisos flag={editFailed.message} type={editFailed.color} />
-            </form>
+            <input
+              name="password"
+              type="password"
+              placeholder='Nueva contraseña*'
+              onChange={handleNewPass}
+              required
+            />
+            <input
+              name="password"
+              type="password"
+              placeholder='Repite la nueva contraseña*'
+              onChange={handleChanges}
+              required
+            />
+            {(newPass !== editedUser.password) ? <p>*Las contraseñas no coinciden</p> : <button onClick={handleSubmitPassword}>Guardar contraseña</button>}
+            <Avisos flag={editFailed.message} type={editFailed.color} />
           </Modal>
         }
         <br />
