@@ -4,20 +4,21 @@ import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
 import { Avisos } from "../../Components/Avisos/Avisos";
 import { HOME } from "../../routes/routes";
-import { existNumber, existUppercase, validateMaxLength, validateMinLength } from "../../util/FormValidator";
-import { inputValidation } from "../../controllers/inputValidation";
+// import { existNumber, existUppercase, validateMaxLength, validateMinLength } from "../../util/FormValidator";
+// import { inputValidation } from "../../controllers/inputValidation";
 import "./RegisterForm.css";
 
 export const RegisterForm = ({ history }) => {
   // Contiene los valores del formulario:
   const [newUser, setNewUser] = useState({});
   const [registerFail, setRegisterFail] = useState({ message: null, color: null });
-  const [errors, setErrors] = useState({ message: null, color: null });
-  const inputValidators = {
-    password: [validateMinLength, existNumber, existUppercase],
-    username: [validateMinLength, validateMaxLength],
-    nombre: [validateMinLength]
-  }
+  // const [errors, setErrors] = useState({ message: null, color: null });
+  // const inputValidators = {
+  //   password: [validateMinLength, existNumber, existUppercase],
+  //   username: [validateMinLength, validateMaxLength],
+  //   nombre: [validateMinLength]
+  // }
+
   // Maneja el estado del formulario:
   const handleInputs = (event) => {
     // Recojo el name y el valor del input:
@@ -26,12 +27,12 @@ export const RegisterForm = ({ history }) => {
       ...prevValue,
       [name]: value,
     }));
-    if (!value) return setErrors(prevErrors => ({ ...prevErrors, [name]: '' }))
-    const error = inputValidation(value, inputValidators[name], { minLength: 8, maxLength: 12 });
-    setErrors(prevErrors => ({
-      ...prevErrors,
-      [name]: error
-    }));
+    // if (!value) return setErrors(prevErrors => ({ ...prevErrors, [name]: '' }))
+    // const error = inputValidation(value, inputValidators[name], { minLength: 8, maxLength: 12 });
+    // setErrors(prevErrors => ({
+    //   ...prevErrors,
+    //   [name]: error
+    // }));
   };
 
   const handleSubmit = (e) => {
@@ -70,7 +71,7 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />
-        <Avisos flag={errors.nombre} type={errors.nombre && 'warning'} />
+        {/* <Avisos flag={errors.nombre} type={errors.nombre && 'warning'} /> */}
         <input
           name="username"
           type="text"
@@ -78,7 +79,7 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />
-        <Avisos flag={errors.username} type={errors.username && 'warning'} />
+        {/* <Avisos flag={errors.username} type={errors.username && 'warning'} /> */}
         <input
           name="email"
           type="email"
@@ -93,7 +94,7 @@ export const RegisterForm = ({ history }) => {
           onChange={handleInputs}
           required
         />
-        <Avisos flag={errors.password} type={errors.password && 'warning'} />
+        {/* <Avisos flag={errors.password} type={errors.password && 'warning'} /> */}
 
         <input
           name="fechaNacimiento"
