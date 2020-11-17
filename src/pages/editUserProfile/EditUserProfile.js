@@ -152,8 +152,8 @@ export const EditUserProfile = (props) => {
         <Modal handleClose={handleCloseDelete}>
           <h3>Eliminar cuenta</h3>
           <p>¿Estás seguro que quieres eliminar tu cuenta?</p>
-          <button onClick={handleDelete} className="button-delete">Eliminar</button>
-          <button onClick={handleOpenDelete} className="button-tunain">Seguir en Tuna In</button>
+          <button onClick={handleDelete} className="button-confirm-delete">Eliminar</button>
+          <button onClick={handleOpenDelete} className="button-tunain">Cancelar</button>
           <Avisos flag={deleteFailed.message} type={deleteFailed.color} />
         </Modal>
       }
