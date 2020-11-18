@@ -18,6 +18,7 @@ export const RegisterForm = ({ history }) => {
     username: [validateMinLength, validateMaxLength],
     nombre: [validateMinLength]
   }
+
   // Maneja el estado del formulario:
   const handleInputs = (event) => {
     // Recojo el name y el valor del input:

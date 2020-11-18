@@ -42,6 +42,7 @@ export default function App() {
             <PrivateRoute exact path={PROFILE} component={UserProfile} />
             <PrivateRoute exact path={PODCASTINFORMATION} component={PodcastInformation} />
             <PrivateRoute exact path={USERPODCASTLIST} component={UserPodcastList} />
+
           </Switch>
         </div>
         <NavBar />
