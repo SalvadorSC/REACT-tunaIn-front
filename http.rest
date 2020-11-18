@@ -1,0 +1,30 @@
+@url = http://localhost:3300/login
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYWZlYWI4NDliYTYzMGNkNTVlMDNiZCIsInJvbGVzIjpbXSwiaWF0IjoxNjA1MzY0NDY0fQ.TRtlT632e9XlATsCQl1zgQ8f8meB-vup8SEkwK0dexI
+
+GET {{url}}
+Authorization: Bearer {{token}}
+
+###
+GET {{url}}5fb3f4db85460f098aad4aaf
+Authorization: Bearer {{token}}
+
+###
+POST {{url}}
+Content-Type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "test"
+}
+
+###
+PUT {{url}}
+Content-Type: application/json
+
+{
+    "title": ""
+}
+
+###
+DELETE {{url}}5fb3e90085460f098aad4aaa
+
