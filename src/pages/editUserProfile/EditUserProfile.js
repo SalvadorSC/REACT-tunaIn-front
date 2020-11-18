@@ -4,6 +4,7 @@ import "./EditUserProfile.css";
 import { Avisos } from "../../Components/Avisos/Avisos";
 import { HOME } from "../../routes/routes";
 import { Modal } from "../../Components/Modal/Modal";
+import { setJWT } from "../../util/LocalStorage.utils";
 
 export const EditUserProfile = (props) => {
   const [user, setUser] = useState({});
@@ -64,13 +65,15 @@ export const EditUserProfile = (props) => {
   // Cambiar la contraseña
   const handleSubmitPassword = (e) => {
     e.preventDefault();
-    serverRequest(`${sitio}/${user._id}`, "PUT", editedUser)
+    console.log(newPass)
+    serverRequest(`edituserprofile/${user._id}`, "PATCH", { password: newPass })
       .then((response) => {
-        setUser(response);
+        setJWT(response.token);
+        // setUser(response);
         setEditFailed({ message: "Perfil actualizado correctamente", color: 'success' });
+        setOpenModalPass(!openModalPass);
         setTimeout(() => {
           setEditFailed({ message: null, color: null });
-          setOpenModalPass(!openModalPass);
         }, 2000)
       })
       .catch((response => setEditFailed({ message: response.message, color: 'error' })));
@@ -140,7 +143,7 @@ export const EditUserProfile = (props) => {
               required
             />
             {(newPass !== editedUser.password) ? <p>*Las contraseñas no coinciden</p> : <button onClick={handleSubmitPassword}>Guardar contraseña</button>}
-            <Avisos flag={editFailed.message} type={editFailed.color} />
+            {/* <Avisos flag={editFailed.message} type={editFailed.color} /> */}
           </Modal>
         }
         <br />
