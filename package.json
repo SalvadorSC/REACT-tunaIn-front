@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "axios": "^0.21.0",
     "react-audio-player": "^0.14.0"
   }
 }
