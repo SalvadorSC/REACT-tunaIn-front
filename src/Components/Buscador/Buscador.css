@@ -16,7 +16,19 @@
 }
 
 .buscador-input {
+  outline: none;
   border: none;
   background-color: none;
   border-radius: none;
+}
+.buscador-dropdown-input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  background-color: none;
+  border-radius: none;
+}
+
+option{
+  border: none;
 }

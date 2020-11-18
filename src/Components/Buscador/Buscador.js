@@ -19,8 +19,13 @@ export const Buscador = () => {
     
     <form onSubmit={handleSubmit}>
       <div className="buscador">
-      <i className="fas fa-search fa-2x" />
+      <select type="text" className="buscador-dropdown-input" id="dropdown">
+        <option disabled selected value>Select an option</option>
+        <option>Role 1</option>
+        <option>Role 2</option>
+      </select>
       <input placeholder="Buscar podcasts, radios y mucho más" onChange={handleSearch} className='buscador-input' />
+      <i className="fas fa-search fa-2x" />
       </div>
     </form>
     

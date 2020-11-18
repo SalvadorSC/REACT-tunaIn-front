@@ -6,4 +6,6 @@ export const LOGIN = '/login';
 export const PROFILE = '/profile';
 export const EDITUSERPROFILE = '/edituserprofile';
 export const TERMS = '/terms';
+export const MYPODCASTS = '/myPodcasts';
+export const PODCASTINFORMATION = '/podcastInformation/:podcastId';
 export const USERPODCASTLIST = '/userPodcastList';

@@ -4,16 +4,17 @@
 
 .navbar {
   /*border-bottom: 6px solid #F99FC9;*/
-  color: #1d213c;
   font-size: calc(8px + 1vmin);
   padding: 0;
   position: fixed;
   right: 0;
-  /* width: 15%; */
+  width: 15%; 
+  background-color: #333;
+  display: flex;
+  justify-content: center;
 }
 
 .navbar ul {
-  background-color: #5badb9;
   color: white;
   display: flex;
   flex-direction: column;
@@ -39,7 +40,7 @@
 }
 
 .navbar a:hover {
-  color: #333;
+  color: #5badb9;
 }
 
 .navbar img {
