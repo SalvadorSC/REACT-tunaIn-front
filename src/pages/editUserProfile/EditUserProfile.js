@@ -3,6 +3,9 @@ import { serverRequest } from "../../helpers/urlBack";
 import "./EditUserProfile.css";
 import { ModalCambiarPassword } from "../../Components/ModalCambiarPassword/ModalCambiarPassword";
 import { MensajeError } from "../../Components/MensajeError/MensajeError";
+import { Alert } from "react-bootstrap";
+import { faCode } from "@fortawesome/free-solid-svg-icons";
+
 
 export const EditUserProfile = (props) => {
   // const [canales, setCanales] = useState("No tienes ningún canal");
@@ -48,6 +51,7 @@ export const EditUserProfile = (props) => {
     serverRequest(`${sitio}/${user._id}`, "DELETE", deletedUser)
       .then((response) => setDeletedUser(response))
       .catch(console.log);
+      alert("estas seguro que deseas elinimar tu cuenta ?");
   };
 
   const options = { month: "2-digit", day: "2-digit", year: "numeric" };
@@ -89,8 +93,24 @@ export const EditUserProfile = (props) => {
       </form>
 
       <form onSubmit={handleDelete}>
-        <button className="button-delete">Eliminar cuenta</button>
-      </form> 
+     
+
+
+
+     
+        <button 
+        className="button-delete"
+         id="handleDelete"
+         onClick="return confirmDelete ()"> 
+         Eliminar cuenta
+        </button>
+        
+     
+      
+      </form>
+
     </div>
+
+
   );
 };
