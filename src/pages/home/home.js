@@ -9,6 +9,9 @@ import {PodcastsDestacados} from "../../Components/PodcastsDestacados/PodcastsDe
 import {Premium} from "../../Components/Premium/Premium";
 import Carousel from '../../Components/Carousel/Carousel';
 import axios from 'axios';
+import { Dispositivos } from "../../Components/Dispositivos/Dispositivos";
+import { Footer } from "../../Components/Footer/Footer";
+
 
 const SPLASHBASE_URL = 'http://www.splashbase.co/api/v1/images/search';
 
@@ -42,21 +45,54 @@ export const Home = () => {
             }
 
             <Buscador/>
-            <CallToAction/>
-            <PodcastsDestacados/>
-            <Premium/>
+         <CallToAction
+        title="TU PLATAFORMA DE REFERENCIA"
+        text1="Escucha los mejores podcasts cerca de ti, accede a las cadenas de radio más populares y también las alternativas. Contenido de tu interés sobre música, deportes, política, humor y mucho más."
+        text2="Fácil, rápido y siempre a tu lado."
+        buttonText="Escuchar ahora"
+      />
+      <PodcastsDestacados />
+      <Premium />
+      <Dispositivos />
+      <CallToAction
+        title="MÚSICA, DEPORTES, NOTICIAS Y MUCHO MÁS"
+        text1="Escucha los mejores podcasts cerca de ti, accede a las cadenas de radio más populares y también las alternativas. Contenido de tu interés sobre música, deportes, política, humor y mucho más."
+        text2="Fácil, rápido y siempre a tu lado."
+        buttonText="Escuchar ahora"
+      />
+      {/* <Button variant="primary" onClick={() => setModalShow(true)}>
+        TunaIn Podcast Player
+      </Button>
 
-            {/*
-            <Dispositivos />
-            <CallToAction />
-            <Footer />
-        */}
-            <Button variant="primary" onClick={() => setModalShow(true)}>
-                TunaIn Podcast Player
-            </Button>
-
-            <CenterModal show={modalShow} onHide={() => setModalShow(false)}/>
-            <CenterModal/>
+      <CenterModal show={modalShow} onHide={() => setModalShow(false)} />
+      <CenterModal /> */}
+      <Footer />
         </>
     );
+
+
+        title="TU PLATAFORMA DE REFERENCIA"
+        text1="Escucha los mejores podcasts cerca de ti, accede a las cadenas de radio más populares y también las alternativas. Contenido de tu interés sobre música, deportes, política, humor y mucho más."
+        text2="Fácil, rápido y siempre a tu lado."
+        buttonText="Escuchar ahora"
+      />
+      <PodcastsDestacados />
+      <Premium />
+      <Dispositivos />
+      <CallToAction
+        title="MÚSICA, DEPORTES, NOTICIAS Y MUCHO MÁS"
+        text1="Escucha los mejores podcasts cerca de ti, accede a las cadenas de radio más populares y también las alternativas. Contenido de tu interés sobre música, deportes, política, humor y mucho más."
+        text2="Fácil, rápido y siempre a tu lado."
+        buttonText="Escuchar ahora"
+      />
+      {/* <Button variant="primary" onClick={() => setModalShow(true)}>
+        TunaIn Podcast Player
+      </Button>
+
+      <CenterModal show={modalShow} onHide={() => setModalShow(false)} />
+      <CenterModal /> */}
+      <Footer />
+    </>
+
+  );
 };

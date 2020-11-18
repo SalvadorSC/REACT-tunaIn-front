@@ -7,6 +7,7 @@ import { RegisterForm } from "./pages/register/RegisterForm";
 import { LogIn } from "./pages/login/LogIn";
 import { NavBar } from "./Components/NavBar/NavBar";
 import { Home } from "./pages/home/home";
+import { UploadPodcast } from "./pages/uploadPodcast/UploadPodcast";
 import { Terms } from "./pages/terms/Terms";
 import { UserPodcastList } from "./pages/userPodcastList/UserPodcastList";
 import { HOME, USER, PODCAST, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, USERPODCASTLIST } from "./routes/routes";
@@ -28,6 +29,8 @@ export default function App() {
         <div className="main">
           <Switch>
             {/* <Route path="/about" component={About} /> */}
+
+            <Route path="/uploadpodcast" component={UploadPodcast} />
             <Route exact path={REGISTER} component={RegisterForm} />
             <Route exact path={LOGIN} component={LogIn} />
             {/* <Route exact path={PROFILE} component={UserProfile} /> */}

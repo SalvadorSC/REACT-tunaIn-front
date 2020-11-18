@@ -1,28 +1,18 @@
-import React, { useState } from 'react';
-import { ModalContent } from './ModalContent';
-import { RegisterForm } from '../../pages/register/RegisterForm';
+import React from 'react'
+import './Modal.css';
 
-export const Modal = () => {
-  const [openModal, setOpenModal] = useState(false);
-
-  const handleOpen = (e) => {
-    setOpenModal(!openModal);
-  }
-
-  const handleClose = (e) => {
-    const { className: el } = e.target;
-    if (el !== 'backdrop' && el !== 'fas fa-times') return;
-    setOpenModal(!openModal);
-  }
+export const Modal = ({ handleClose, children }) => {
 
   return (
-    <div>
-      <button type="button" onClick={handleOpen}>Registro en formato Modal</button>
-      {openModal &&
-        <ModalContent handleClose={handleClose}>
-          <RegisterForm />
-        </ModalContent>
-      }
+    <div className="backdrop" onClick={handleClose}>
+      <div className="modal-div">
+        <i className="fas fa-times" />
+        <div className="child">
+          {children}
+        </div>
+      </div>
     </div>
+
   )
 }
+

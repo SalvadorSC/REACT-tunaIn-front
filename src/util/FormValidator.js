@@ -58,18 +58,3 @@ export const concatErrorString = (errors) => {
 
     return "Este campo debe contener " + result;
 }
-
-
-
-const newUser = {
-    password: 99999999999
-}
-
-
-
-
-// const formErrors = checkFormErrors(value, validators, options);
-// if(formErrors && formErrors.length){
-//     const result = concatErrorString(formErrors);
-//     console.log(result)
-// }
