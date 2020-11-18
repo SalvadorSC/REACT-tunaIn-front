@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
-import { MensajeError } from "../../Components/MensajeError/MensajeError";
-import { Modal } from "../../Components/Modal/Modal";
+import { Avisos } from "../../Components/Avisos/Avisos";
 import { PROFILE } from "../../routes/routes";
 
 import "./LogIn.css";
@@ -12,7 +11,7 @@ export const LogIn = ({ history }) => {
 
   // Contiene los valores del formulario:
   const [loginUser, setLoginUser] = useState({});
-  const [loginFail, setLoginFail] = useState(null);
+  const [loginFail, setLoginFail] = useState({ message: null, color: null });
 
   // Maneja el estado del formulario:
   const handleInputs = (event) => {
@@ -32,13 +31,14 @@ export const LogIn = ({ history }) => {
       .then((response) => {
         //guardar el token en el localStorage en un campo llamado token:
         setJWT(response.token);
-        // history.push("/profile");
-        history.push(PROFILE);
-        // pasar loginFail por aquí y después pasar a MessageError
-        // setLoginFail(response.message);
+        //mensaje success
+        setLoginFail({ message: "Bienvenido de nuevo", color: 'success' });
+        setTimeout(() => {
+          history.push(PROFILE);
+        }, 2000);
       })
       .catch((response) => {
-        setLoginFail(response.message);
+        setLoginFail({ message: response.message, color: 'error' });
       });
     // Reseteo los campos del formulario:
     e.target.reset();
@@ -46,43 +46,33 @@ export const LogIn = ({ history }) => {
 
   return (
     <div className="Login-wrap">
-
       <h1>¡Hola de nuevo!</h1>
-
       <p className="Login-p">
         Accede a tu cuenta para escuchar tus podcasts favoritos.
       </p>
-
       <form onSubmit={handleSubmit}>
-
         <input
           name="email"
           type="email"
           placeholder="Correo electrónico*"
           onChange={handleInputs}
           required
-        />{" "}
-
-
-        {/*value={email}*/}
+        />
         <input
           name="password"
           type="password"
           placeholder="Contraseña*"
           onChange={handleInputs}
           required
-        />{" "}
-        {/*value={password}*/}
-        <br />
-        
-        <MensajeError flag={loginFail} />
+        />
+
+        <Avisos flag={loginFail.message} type={loginFail.color} />
 
         <div className="Login-dflex">
           <div className="a-register">
             <span>¿Aún no eres miembro?</span>
             <Link to="/register">Regístrate</Link>
           </div>
-
           <div>
             <button>Acceder</button>
           </div>
@@ -94,9 +84,6 @@ export const LogIn = ({ history }) => {
         </span>
 
       </form>
-
-      <Modal />
-
     </div>
   );
 };

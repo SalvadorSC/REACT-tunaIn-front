@@ -3,7 +3,7 @@
 }
 
 .registerForm-p {
-  margin: auto auto 20px;
+  margin: auto auto 40px;
 }
 
 .registerForm-button {
@@ -17,7 +17,6 @@
 .RegisterForm-dflex {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
 }
 
 .a-login {

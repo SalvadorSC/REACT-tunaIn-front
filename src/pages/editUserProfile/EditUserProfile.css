@@ -36,3 +36,34 @@
   border: none;
   color: white;
 }
+
+.button-confirm-delete {
+  background-color: #b6241f;
+  border: none;
+  color: white;
+  width: 45%;
+}
+
+.button-confirm-delete:hover {
+  background-color: #fbfef9;
+  border: solid 2px #b6241f;
+  color: #b6241f;
+  width: 45%;
+}
+
+
+.button-tunain {
+  background-color: #fbfef9;
+  border: solid 2px #077594;
+  color: #077594;
+  width: 45%;
+  margin-left: 20px;
+}
+
+.button-tunain:hover {
+  background-color: #077594;
+  color: white;
+  border: none;
+  width: 45%;
+  margin-left: 20px;
+}
