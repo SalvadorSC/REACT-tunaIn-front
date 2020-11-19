@@ -1,8 +1,8 @@
 // import { NavBar } from '../../Components/NavBar/NavBar';
-import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
-import { CenterModal } from "../../Components/CenterModal/CenterModal";
-import styles from "./home.css";
+import React /*, { useEffect, useState } */ from "react";
+// import { Button } from "react-bootstrap";
+// import { CenterModal } from "../../Components/CenterModal/CenterModal";
+import "./home.css";
 import { Buscador } from "../../Components/Buscador/Buscador";
 import { CallToAction } from "../../Components/CallToAction/CallToAction";
 import { PodcastsDestacados } from "../../Components/PodcastsDestacados/PodcastsDestacados";
@@ -12,11 +12,11 @@ import { Carousel } from '../../Components/Carousel/Carousel';
 import { Dispositivos } from "../../Components/Dispositivos/Dispositivos";
 import { Footer } from "../../Components/Footer/Footer";
 
-const SPLASHBASE_URL = new URL('http://www.splashbase.co/api/v1/images/search?query=music');
+// const SPLASHBASE_URL = new URL('http://www.splashbase.co/api/v1/images/search?query=music');
 
 export const Home = () => {
-    const [imgList, setImgList] = useState([]);
-    const [modalShow, setModalShow] = React.useState(false);
+    // const [imgList, setImgList] = useState([]);
+    // const [modalShow, setModalShow] = React.useState(false);
     return (
         <>
             <Carousel />

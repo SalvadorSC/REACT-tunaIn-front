@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { UserProfile } from "./pages/userProfile/UserProfile";
@@ -14,23 +13,23 @@ import { MyPodcasts } from "./pages/myPodcasts/MyPodcasts";
 import { PodcastInformation } from "./pages/podcastInformation/PodcastInformation";
 import { EditPodcastInformation } from "./pages/editPodcastInformation/EditPodcastInformation";
 import { PodcastList } from "./pages/podcastList/PodcastList";
-import { HOME, USER, PODCAST, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST } from "./routes/routes";
+import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST } from "./routes/routes";
 import { getToken } from "./util/LocalStorage.utils";
 
 export default function App() {
 
-  const PrivateRoute = ({component: Component, path}) => (
-    <Route  
+  const PrivateRoute = ({ component: Component, path }) => (
+    <Route
       path={path}
-      render={() => getToken() ? <Component /> : <Redirect to={LOGIN}/>}
+      render={() => getToken() ? <Component /> : <Redirect to={LOGIN} />}
     />
   )
-  
+
   const [containerClass, setContainerClass] = useState();
-  
+
   return (
     <Router>
-        <NavBar setContainerClass={setContainerClass} />
+      <NavBar setContainerClass={setContainerClass} />
       <div className={containerClass}>
         <div className="main">
           <Switch>

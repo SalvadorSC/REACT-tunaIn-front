@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
-import { setJWT } from "../../util/LocalStorage.utils";
 import { DecodeToken } from "../../util/DecodeToken";
 import { getToken } from "../../util/LocalStorage.utils";
 import { Avisos } from "../../Components/Avisos/Avisos";

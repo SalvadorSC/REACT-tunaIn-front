@@ -2,17 +2,14 @@ import React, { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
 import "./EditPodcastInformation.css";
 import { Avisos } from "../../Components/Avisos/Avisos";
-import { HOME, MYPODCASTS } from "../../routes/routes";
+import { MYPODCASTS } from "../../routes/routes";
 import { Modal } from "../../Components/Modal/Modal";
-import { setJWT } from "../../util/LocalStorage.utils";
-import { Link, useHistory, useParams } from "react-router-dom";
-import { MyPodcasts } from "../myPodcasts/MyPodcasts";
+import { useHistory, useParams } from "react-router-dom";
 
 
 export const EditPodcastInformation = () => {
   const history = useHistory();
 
-  const [user, setUser] = useState({});
   const [podcast, setPodcast] = useState({});
   const [editedPodcast, setEditedPodcast] = useState({});
   const [editFailed, setEditFailed] = useState({ message: null, color: null });
@@ -104,7 +101,7 @@ export const EditPodcastInformation = () => {
           onChange={handleInputs}
           required
         />
-        <button>Guardar cambios</button>  
+        <button>Guardar cambios</button>
       </form>
 
       <button type="button" onClick={handleOpenDelete} className="button-delete">Eliminar Podcast</button>
@@ -112,7 +109,7 @@ export const EditPodcastInformation = () => {
         <Modal handleClose={handleCloseDelete}>
           <h3>Eliminar podcast</h3>
           <p>¿Estás seguro que quieres eliminar este podcast?</p>
-           <button onClick={handleDelete} className="button-confirm-delete">Eliminar</button>
+          <button onClick={handleDelete} className="button-confirm-delete">Eliminar</button>
           <button onClick={handleOpenDelete} className="button-tunain">Cancelar</button>
           <Avisos flag={deleteFailed.message} type={deleteFailed.color} />
         </Modal>

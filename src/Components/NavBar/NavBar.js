@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 export function NavBar({ setContainerClass }) {
   const [navbarClass, setNavbarClass] = useState('');
-  const url = window.location.href;
+  // const url = window.location.href;
   const location = useLocation();
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export function NavBar({ setContainerClass }) {
     <>
       <div className={navbarClass}>
         <ul>
-          
+
           <img src={logo} alt="Logo" />
 
           <li>
@@ -45,10 +45,10 @@ export function NavBar({ setContainerClass }) {
             <Link to="/register">Register</Link>
           </li>
           <li>
-          <Link to='/myPodcasts'>My Podcasts</Link>
+            <Link to='/myPodcasts'>My Podcasts</Link>
           </li>
           <li>
-          <Link to='/PodcastList'>Podcasts</Link>
+            <Link to='/PodcastList'>Podcasts</Link>
           </li>
         </ul>
       </div>
