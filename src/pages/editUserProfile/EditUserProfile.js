@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
 import "./EditUserProfile.css";
 import { Avisos } from "../../Components/Avisos/Avisos";
-import { HOME } from "../../routes/routes";
+import { MYPODCASTS } from "../../routes/routes";
 import { Modal } from "../../Components/Modal/Modal";
 import { setJWT } from "../../util/LocalStorage.utils";
 
@@ -87,7 +87,7 @@ export const EditUserProfile = (props) => {
       .catch((response) => {
         setDeleteFailed({ message: "Perfil eliminado", color: 'warning' })
         setTimeout(() => {
-          props.history.push(HOME);
+          props.history.push(MYPODCASTS);
         }, 2000);
       });
   };

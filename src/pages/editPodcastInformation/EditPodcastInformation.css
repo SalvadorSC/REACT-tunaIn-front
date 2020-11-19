@@ -1,0 +1,69 @@
+.EditUserProfile-wrap {
+  padding-top: 50px;
+  /* display: flex;
+  flex-direction: row; */
+}
+
+.EditUserProfile-wrap label {
+  margin-bottom: 0;
+}
+
+.button-cambiar-pss {
+  margin: 30px auto;
+}
+
+.button-change-pss {
+  background-color: #fbfef9;
+  border: solid 2px #fe8b86;
+  color: #ff7a75;
+  width: 382px;
+}
+
+.button-change-pss:hover {
+  background-color: #fe8b86;
+  border: none;
+  color: #fbfef9;
+}
+
+.button-delete {
+  background-color: #fbfef9;
+  border: solid 2px #fe8b86;
+  color: #ff7a75;
+}
+
+.button-delete:hover {
+  background-color: #b6241f;
+  border: none;
+  color: white;
+}
+
+.button-confirm-delete {
+  background-color: #b6241f;
+  border: none;
+  color: white;
+  width: 45%;
+}
+
+.button-confirm-delete:hover {
+  background-color: #fbfef9;
+  border: solid 2px #b6241f;
+  color: #b6241f;
+  width: 45%;
+}
+
+
+.button-tunain {
+  background-color: #fbfef9;
+  border: solid 2px #077594;
+  color: #077594;
+  width: 45%;
+  margin-left: 20px;
+}
+
+.button-tunain:hover {
+  background-color: #077594;
+  color: white;
+  border: none;
+  width: 45%;
+  margin-left: 20px;
+}
