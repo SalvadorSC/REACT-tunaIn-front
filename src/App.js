@@ -27,21 +27,10 @@ export default function App() {
   )
   
   const [containerClass, setContainerClass] = useState();
-  const url = window.location.href;
-
-  useEffect(() => {
-    if (url === "http://localhost:3000/") {
-      setContainerClass("container-home");
-    }
-    else {
-      setContainerClass("container");
-    }
-  }, [url]);
-
   
   return (
     <Router>
-        <NavBar />
+        <NavBar setContainerClass={setContainerClass} />
       <div className={containerClass}>
         <div className="main">
           <Switch>
