@@ -8,12 +8,11 @@ import { CallToAction } from "../../Components/CallToAction/CallToAction";
 import { PodcastsDestacados } from "../../Components/PodcastsDestacados/PodcastsDestacados";
 import { Premium } from "../../Components/Premium/Premium";
 import { Carousel } from '../../Components/Carousel/Carousel';
+
 import { Dispositivos } from "../../Components/Dispositivos/Dispositivos";
 import { Footer } from "../../Components/Footer/Footer";
 
-
-const SPLASHBASE_URL = 'http://www.splashbase.co/api/v1/images/search';
-
+const SPLASHBASE_URL = new URL('http://www.splashbase.co/api/v1/images/search?query=music');
 
 export const Home = () => {
     const [imgList, setImgList] = useState([]);
@@ -38,6 +37,7 @@ export const Home = () => {
                 buttonText="Escuchar ahora"
             />
             {/* <Button variant="primary" onClick={() => setModalShow(true)}>
+
         TunaIn Podcast Player
       </Button>
 
