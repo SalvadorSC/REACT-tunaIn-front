@@ -1,17 +1,17 @@
 import React from "react";
 import './PodcastCard.css';
-import { Link } from "react-router-dom";
-import { useEffect, useState, useParams, useHistory } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
-export const PodcastCard = ({ title, categories, author, img, id, description }) => {
+export const PodcastCard = ({ title, categories, author, img, podcastId, description }) => {
 
   const [podcastWrapClass, setPodcastWrapClass] = useState();
   const url = window.location.href;
   let history = useHistory();
 
   function handleClick() {
-    history.push(`/podcastInformation/${id}`);
+    history.push(`/PodcastInformation/${podcastId}`);
   }
 
   useEffect(() => {
@@ -34,11 +34,11 @@ export const PodcastCard = ({ title, categories, author, img, id, description })
         <i className="far fa-heart" />
       </div>
       <div className="PodcastCard-text">
-        <Link to={{ pathname: `PodcastInformation` }} className="PostcastCard-title" onClick={handleClick}>{title}</Link>
+        <Link className="PostcastCard-title" onClick={handleClick}>{title}</Link>
         <p className="PostcastCard-author">{author}</p>
         <p className="PostcastCard-duration">{categories}</p>
         <p className="PostcastCard-description">{description}</p>
-        <p className="PostcastCard-description">{id}</p>
+        <p className="PostcastCard-description">{podcastId}</p>
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
-import "./UserPodcastList.css";
+import "./PodcastList.css";
 import { PodcastsUser } from "../../Components/PodcastsUser/PodcastsUser";
 import { Buscador } from "../../Components/Buscador/Buscador";
 
 
-export const UserPodcastList = () => {
+export const PodcastList = () => {
     //const [modalShow, setModalShow] = React.useState(false);
   return (
       <> 

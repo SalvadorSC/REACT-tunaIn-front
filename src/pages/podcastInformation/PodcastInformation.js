@@ -1,6 +1,6 @@
 import React from "react";
-import { useEffect, useState, useParams } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { DecodeToken } from "../../util/DecodeToken";
 import { getToken } from "../../util/LocalStorage.utils";
@@ -10,43 +10,67 @@ import "./PodcastInformation.css";
 export const PodcastInformation = () => {
   const [user, setUser] = useState({});
   const [podcast, setPodcast] = useState({});
-  const [listaPodcastsUser, setListaPodcastsUser] = useState([]);
+  let history = useHistory();
+
+  function handleClick() {
+    history.push(`/editPodcastInformation/${podcastId}`);
+  }
 
   let { podcastId } = useParams();
 
   useEffect(() => {
-    serverRequest(`data/podcast/5fb2cb931cb42b40b4e375c9`, "GET")
+    serverRequest(`data/podcast/${podcastId}`, "GET")
       .then((response) => {
         setPodcast(response)
       })
       .catch(console.log);
   }, []);
 
+
+  useEffect(() => {
+    const token = getToken();
+    const decodedToken = DecodeToken(token);
+    const userId = decodedToken.id;
+
+    serverRequest(`data/user/${userId}`, "GET")
+      .then((response) => {
+        setUser(response);
+      })
+      .catch(console.log);
+  }, []);
+
+  const editPodcastLink = () => {
+    if (user._id === podcast.id_author) {
+      return (
+        <>
+          <div>
+          <Link onClick={handleClick}><button>Editar podcast</button></Link>            
+          </div>
+        </>)
+    }
+  }
+
   return (
     <>
       <div className="PodcastsUser-wrap">
-        {listaPodcastsUser.map(podcast =>
-          (
-            <PodcastCard
-              id={podcast._id}
-              title={podcast.title}
-              categories={podcast.categories}
-              author={podcast.author}
-              description={podcast.description}
-              img={"https://images.unsplash.com/photo-1604160450925-0eecf551fa86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2551&q=80"}
-            />
-          ))}
+        <br />
+        <h1>{podcast.title}</h1>
+        <p>{podcast.categories}</p>
+        <p>{podcast.description}</p>
+        <p>podcast id</p>
+        <p>{podcast._id}</p>
+        <p>author</p>
+        <p>{podcast.id_author}</p>
+        <br />
+        <br />
+        <br />
+        <p>{user.nombre}</p>
+        <p>{user.username}</p>
+        <p>{user.email}</p>
+        <p>{user._id}</p>
+        {editPodcastLink()}
       </div>
-      <div>
-        <Link
-          to={{
-            pathname: "/",
-            state: { user },
-          }}
-        >
-          <button>Editar podcast</button>
-        </Link>
-      </div>
+      {}
     </>
   );
 };

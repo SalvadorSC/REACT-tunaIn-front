@@ -7,30 +7,42 @@ import { DecodeToken } from "../../util/DecodeToken";
 import { getToken } from "../../util/LocalStorage.utils";
 
 export const PodcastsUser = () => {
-  const [user, setUser] = useState({});
   const [listaPodcastsUser, setListaPodcastsUser] = useState([]);
+  const url = window.location.href;
   useEffect(() => {
     const token = getToken();
     const decodedToken = DecodeToken(token);
     const userId = decodedToken.id;
 
-    serverRequest(`data/podcast/?id_author=${userId}`, "GET")
+
+    if (url === "http://localhost:3000/myPodcasts") {
+      serverRequest(`data/podcast/?id_author=${userId}`, "GET")
+        .then((response) => {
+          setListaPodcastsUser(response)
+        })
+        .catch(console.log);
+    }
+    else {
+      serverRequest(`data/podcast/`, "GET")
       .then((response) => {
         setListaPodcastsUser(response)
       })
       .catch(console.log);
-  }, []);
+    }
+
+
+  }, [url]);
 
   return (
     <div className="PodcastsUser-wrap">
       {listaPodcastsUser.map(podcast =>
         (
           <PodcastCard
-            id={podcast._id}
+            podcastId={podcast._id}
             title={podcast.title}
             categories={podcast.categories}
             description={podcast.description}
-            author={podcast.author}
+            author={podcast.id_author}
             img={"https://images.unsplash.com/photo-1604160450925-0eecf551fa86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2551&q=80"}
           />
         ))}

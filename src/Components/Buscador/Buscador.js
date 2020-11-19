@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { serverRequest } from '../../helpers/urlBack';
 import './Buscador.css';
 
@@ -15,10 +15,21 @@ export const Buscador = () => {
       .catch(response => console.log(response))
   }
 
+  const [buscadorClass, setBuscadorClass] = useState();
+  const url = window.location.href;
+
+  useEffect(() => {
+    if (url === "http://localhost:3000/") {
+      setBuscadorClass("buscador-home");
+    }
+    else {
+      setBuscadorClass("buscador");
+    }
+  }, [url]);
   return (
     
     <form onSubmit={handleSubmit}>
-      <div className="buscador">
+      <div className={buscadorClass}>
       <select type="text" className="buscador-dropdown-input" id="dropdown">
         <option disabled selected value>Select an option</option>
         <option>Role 1</option>

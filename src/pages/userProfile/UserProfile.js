@@ -12,7 +12,7 @@ export const UserProfile = () => {
   useEffect(() => {
     const token = getToken();
     const decodedToken = DecodeToken(token);
-    const  userId = decodedToken.id;
+    const userId = decodedToken.id;
 
     serverRequest(`data/user/${userId}`, "GET")
       .then((response) => {
@@ -35,7 +35,7 @@ export const UserProfile = () => {
       <Link
         to={{
           pathname: "/editUserProfile",
-          state: {user},
+          state: { user },
         }}
       >
         <button>Editar perfil</button>

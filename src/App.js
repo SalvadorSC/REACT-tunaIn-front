@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { UserProfile } from "./pages/userProfile/UserProfile";
@@ -11,8 +12,9 @@ import { UploadPodcast } from "./pages/uploadPodcast/UploadPodcast";
 import { Terms } from "./pages/terms/Terms";
 import { MyPodcasts } from "./pages/myPodcasts/MyPodcasts";
 import { PodcastInformation } from "./pages/podcastInformation/PodcastInformation";
-import { UserPodcastList } from "./pages/userPodcastList/UserPodcastList";
-import { HOME, USER, PODCAST, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, USERPODCASTLIST } from "./routes/routes";
+import { EditPodcastInformation } from "./pages/editPodcastInformation/EditPodcastInformation";
+import { PodcastList } from "./pages/podcastList/PodcastList";
+import { HOME, USER, PODCAST, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST } from "./routes/routes";
 import { getToken } from "./util/LocalStorage.utils";
 
 export default function App() {
@@ -24,10 +26,23 @@ export default function App() {
     />
   )
   
+  const [containerClass, setContainerClass] = useState();
+  const url = window.location.href;
 
+  useEffect(() => {
+    if (url === "http://localhost:3000/") {
+      setContainerClass("container-home");
+    }
+    else {
+      setContainerClass("container");
+    }
+  }, [url]);
+
+  
   return (
     <Router>
-      <div className={"container"}>
+        <NavBar />
+      <div className={containerClass}>
         <div className="main">
           <Switch>
             {/* <Route path="/about" component={About} /> */}
@@ -40,12 +55,12 @@ export default function App() {
             <Route exact path={TERMS} component={Terms} />
             <Route exact path={MYPODCASTS} component={MyPodcasts} />
             <PrivateRoute exact path={PROFILE} component={UserProfile} />
+            <PrivateRoute exact path={PODCASTLIST} component={PodcastList} />
             <PrivateRoute exact path={PODCASTINFORMATION} component={PodcastInformation} />
-            <PrivateRoute exact path={USERPODCASTLIST} component={UserPodcastList} />
+            <PrivateRoute exact path={EDITPODCASTINFORMATION} component={EditPodcastInformation} />
 
           </Switch>
         </div>
-        <NavBar />
       </div>
     </Router>
   );
