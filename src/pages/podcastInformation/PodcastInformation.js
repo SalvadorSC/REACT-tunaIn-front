@@ -4,7 +4,6 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { DecodeToken } from "../../util/DecodeToken";
 import { getToken } from "../../util/LocalStorage.utils";
-import { PodcastCard } from "../../Components/PodcastCard/PodcastCard";
 import "./PodcastInformation.css";
 
 export const PodcastInformation = () => {
@@ -44,7 +43,7 @@ export const PodcastInformation = () => {
       return (
         <>
           <div>
-          <Link onClick={handleClick}><button>Editar podcast</button></Link>            
+            <Link onClick={handleClick}><button>Editar podcast</button></Link>
           </div>
         </>)
     }

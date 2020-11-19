@@ -1,6 +1,6 @@
 import React from "react";
 import './PodcastCard.css';
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
