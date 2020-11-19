@@ -11,10 +11,7 @@ import Carousel from '../../Components/Carousel/Carousel';
 import { Dispositivos } from "../../Components/Dispositivos/Dispositivos";
 import { Footer } from "../../Components/Footer/Footer";
 
-const SPLASHBASE_URL = new URL('http://www.splashbase.co/api/v1/images/search'),
-    params = { query: "music"}
-Object.keys(params).forEach(key => SPLASHBASE_URL.searchParams.append(key, params[key]))
-
+const SPLASHBASE_URL = new URL('http://www.splashbase.co/api/v1/images/search?query=music');
 
 export const Home = () => {
     const [imgList, setImgList] = useState([]);
