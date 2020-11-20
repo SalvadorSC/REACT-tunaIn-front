@@ -15,6 +15,7 @@ import { EditPodcastInformation } from "./pages/editPodcastInformation/EditPodca
 import { PodcastList } from "./pages/podcastList/PodcastList";
 import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST } from "./routes/routes";
 import { getToken } from "./util/LocalStorage.utils";
+import { Footer } from "./Components/Footer/Footer";
 
 export default function App() {
 
@@ -50,6 +51,7 @@ export default function App() {
           </Switch>
         </div>
       </div>
+        <Footer />
     </Router>
   );
 }

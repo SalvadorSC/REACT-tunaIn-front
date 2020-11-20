@@ -8,9 +8,7 @@ import { CallToAction } from "../../Components/CallToAction/CallToAction";
 import { PodcastsDestacados } from "../../Components/PodcastsDestacados/PodcastsDestacados";
 import { Premium } from "../../Components/Premium/Premium";
 import { Carousel } from '../../Components/Carousel/Carousel';
-
 import { Dispositivos } from "../../Components/Dispositivos/Dispositivos";
-import { Footer } from "../../Components/Footer/Footer";
 
 // const SPLASHBASE_URL = new URL('http://www.splashbase.co/api/v1/images/search?query=music');
 
@@ -43,7 +41,6 @@ export const Home = () => {
 
       <CenterModal show={modalShow} onHide={() => setModalShow(false)} />
       <CenterModal /> */}
-            <Footer />
         </>
     );
 };
