@@ -1,9 +1,30 @@
 import React from "react";
 import './PodcastCard.css';
+import { Link, useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-export const PodcastCard = ({ title, duration, author, img }) => {
+
+export const PodcastCard = ({ title, categories, author, img, podcastId, description }) => {
+
+  const [podcastWrapClass, setPodcastWrapClass] = useState();
+  const url = window.location.href;
+  let history = useHistory();
+
+  function handleClick() {
+    history.push(`/PodcastInformation/${podcastId}`);
+  }
+
+  useEffect(() => {
+    if (url === "http://localhost:3000/") {
+      setPodcastWrapClass("PodcastCard-wrap");
+    }
+    else {
+      setPodcastWrapClass("PodcastCard-wrap-MyPodcasts");
+    }
+  }, [url]);
+
   return (
-    <div className="PodcastCard-wrap">
+    <div className={podcastWrapClass}>
       <div style={{ backgroundImage: `url(${img})` }} className="PodcastCard-img">
         {/* <img src={img} alt={title} /> */}
       </div>
@@ -13,9 +34,11 @@ export const PodcastCard = ({ title, duration, author, img }) => {
         <i className="far fa-heart" />
       </div>
       <div className="PodcastCard-text">
-        <p className="PostcastCard-title">{title}</p>
+        <Link className="PostcastCard-title" onClick={handleClick}>{title}</Link>
         <p className="PostcastCard-author">{author}</p>
-        <p className="PostcastCard-duration">{duration}</p>
+        <p className="PostcastCard-duration">{categories}</p>
+        <p className="PostcastCard-description">{description}</p>
+        <p className="PostcastCard-description">{podcastId}</p>
       </div>
     </div>
   );
