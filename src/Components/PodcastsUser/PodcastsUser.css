@@ -1,0 +1,88 @@
+.PodcastsDestados-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px;
+}
+
+.PodcastsUser-wrap{
+  justify-content: space-evenly;
+}
+
+.PodcastCard-wrap {
+  width: 200px;
+  height: auto;
+  border-radius: 1px solid rgb(187, 187, 187);
+  box-shadow: 2px 2px 6px rgba(128, 128, 128, 0.5);
+  display: flex;
+  flex-direction: column;
+  margin:0;
+  margin-bottom: 30px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 5px;
+}
+
+.PodcastCard-img {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  transition: all ease 700ms;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  transition: all 250ms ease;
+}
+
+.icon-wrapper {
+  width: 200px;
+  height: 200px;
+  top: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  /* z-index: 10; */
+  color: transparent;
+  transition: all 250ms ease;
+}
+
+.play-icon {
+  transform: translateX(2px) scale(1.3);
+}
+.icon-mini {
+  transform: scale(0.8);
+}
+
+.icon-wrapper:hover {
+  color: #fff;
+  background-color: #23232390;
+  backdrop-filter: blur(4px);
+}
+
+.PodcastCard-text {
+  padding: 10px;
+  background-color: #fff;
+  z-index: 1;
+  margin-left: 10PX;
+}
+
+.PodcastCard-text p {
+  margin: 0;
+}
+
+.PostcastCard-author {
+  font-size: 0.8rem;
+}
+
+.PostcastCard-duration {
+  color: rgb(167, 167, 167);
+}
+
+.PostcastCard-title{
+  color: #333;
+}
+.PostcastCard-title:hover{
+  color: #333;
+  text-decoration: none;
+}

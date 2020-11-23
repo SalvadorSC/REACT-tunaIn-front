@@ -1,21 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
 import "./EditUserProfile.css";
+import { Avisos } from "../../Components/Avisos/Avisos";
+import { MYPODCASTS } from "../../routes/routes";
+import { Modal } from "../../Components/Modal/Modal";
+import { setJWT } from "../../util/LocalStorage.utils";
 
 export const EditUserProfile = (props) => {
-  // const [canales, setCanales] = useState("No tienes ningún canal");
   const [user, setUser] = useState({});
   const [editedUser, setEditedUser] = useState({});
+  const [newPass, setNewPass] = useState({});
+  const [editFailed, setEditFailed] = useState({ message: null, color: null });
+  const [deleteFailed, setDeleteFailed] = useState({ message: null, color: null });
+  const [openModalPass, setOpenModalPass] = useState(false);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
   const sitio = "data/user";
 
+  const handleOpenPass = () => setOpenModalPass(!openModalPass);
+  const handleOpenDelete = () => setOpenModalDelete(!openModalDelete);
+
+  const handleClosePass = (e) => {
+    const { className: el } = e.target;
+    if (el !== 'backdrop' && el !== 'fas fa-times') return;
+    setOpenModalPass(!openModalPass);
+  }
+
+  const handleCloseDelete = (e) => {
+    const { className: el } = e.target;
+    if (el !== 'backdrop' && el !== 'fas fa-times') return;
+    setOpenModalDelete(!openModalDelete);
+  }
+
+  //Recoje los datos del usuario del fetch realizado en userProfile
   useEffect(() => {
     setUser(props.location.state.user);
-    // console.log(props.location.state.user);
   }, []);
 
   // Maneja el estado del formulario:
   const handleChanges = (event) => {
-    // Recojo el name y el valor del input:
     const { value, name } = event.target;
     setEditedUser((prevValue) => ({
       ...prevValue,
@@ -23,15 +45,51 @@ export const EditUserProfile = (props) => {
     }));
   };
 
+  // Maneja el estado del input newPass
+  const handleNewPass = (e) => setNewPass(e.target.value);
+
   const handleSubmit = (e) => {
-    // Prevengo que ser recargue la página:
     e.preventDefault();
-    // Hago una petición post al servidor:
     serverRequest(`${sitio}/${user._id}`, "PUT", editedUser)
-      .then((response) => setUser(response))
-      .catch(console.log);
-    // Reseteo los campos del formulario:
+      .then((response) => {
+        setUser(response);
+        setEditFailed({ message: "Perfil actualizado correctamente", color: 'success' });
+        setTimeout(() => {
+          setEditFailed({ message: null, color: null })
+        }, 3000)
+      })
+      .catch((response => setEditFailed({ message: response.message, color: 'error' })));
     e.target.reset();
+  };
+
+  // Cambiar la contraseña
+  const handleSubmitPassword = (e) => {
+    e.preventDefault();
+    console.log(newPass)
+    serverRequest(`edituserprofile/${user._id}`, "PATCH", { password: newPass })
+      .then((response) => {
+        setJWT(response.token);
+        // setUser(response);
+        setEditFailed({ message: "Perfil actualizado correctamente", color: 'success' });
+        setOpenModalPass(!openModalPass);
+        setTimeout(() => {
+          setEditFailed({ message: null, color: null });
+        }, 2000)
+      })
+      .catch((response => setEditFailed({ message: response.message, color: 'error' })));
+  };
+
+  // eliminar mi cuenta de usuario
+  const handleDelete = (e) => {
+    e.preventDefault();
+    serverRequest(`${sitio}/${user._id}`, "DELETE")
+      .then(response => console.log)
+      .catch((response) => {
+        setDeleteFailed({ message: "Perfil eliminado", color: 'warning' })
+        setTimeout(() => {
+          props.history.push(MYPODCASTS);
+        }, 2000);
+      });
   };
 
   const options = { month: "2-digit", day: "2-digit", year: "numeric" };
@@ -65,11 +123,43 @@ export const EditUserProfile = (props) => {
           onChange={handleChanges}
         />
         <label id="password-label">Password</label>
-        <button className="button-change-pss">Cambiar contraseña</button>
+
+        <button type="button" onClick={handleOpenPass} className="button-change-pss">Cambiar contraseña</button>
+        {openModalPass &&
+          <Modal handleClose={handleClosePass}>
+            <h3>Cambiar contraseña</h3>
+            <input
+              name="password"
+              type="password"
+              placeholder='Nueva contraseña*'
+              onChange={handleNewPass}
+              required
+            />
+            <input
+              name="password"
+              type="password"
+              placeholder='Repite la nueva contraseña*'
+              onChange={handleChanges}
+              required
+            />
+            {(newPass !== editedUser.password) ? <p>*Las contraseñas no coinciden</p> : <button onClick={handleSubmitPassword}>Guardar contraseña</button>}
+            {/* <Avisos flag={editFailed.message} type={editFailed.color} /> */}
+          </Modal>
+        }
         <br />
+        <Avisos flag={editFailed.message} type={editFailed.color} />
         <button>Guardar cambios</button>
       </form>
-      <button className="button-delete">Eliminar cuenta</button>
+      <button type="button" onClick={handleOpenDelete} className="button-delete">Eliminar cuenta</button>
+      {openModalDelete &&
+        <Modal handleClose={handleCloseDelete}>
+          <h3>Eliminar cuenta</h3>
+          <p>¿Estás seguro que quieres eliminar tu cuenta?</p>
+          <button onClick={handleDelete} className="button-confirm-delete">Eliminar</button>
+          <button onClick={handleOpenDelete} className="button-tunain">Cancelar</button>
+          <Avisos flag={deleteFailed.message} type={deleteFailed.color} />
+        </Modal>
+      }
     </div>
   );
 };

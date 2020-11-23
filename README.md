@@ -2,6 +2,7 @@
 
 `git init` inicia un repositorio
 
+
 `git status` muestra estado del repositorio (guardado o no)
 `git add .` guarda todos los cambios de todos los archivos en el "stage"
 `git commit -m "mensaje"` permite guardar el punto de control con un mensaje
@@ -15,8 +16,6 @@
 `gh repo create` crea un repositorio en github
 `gh pr create` genera un pull request en github
 `gh pr merge` merge de la rama con el master en github
-
-## Sprint2 started
 
 # LINEA DE TRABAJO
 
@@ -37,3 +36,4 @@
 - GIT PULL - ACTUALIZO LOS CAMBIOS
 
 - VOLVER A EMPEZAR
+

@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
-import { MensajeError } from "../../Components/MensajeError/MensajeError";
+import { Avisos } from "../../Components/Avisos/Avisos";
+import { PROFILE } from "../../routes/routes";
+
 import "./LogIn.css";
 
 export const LogIn = ({ history }) => {
+
   // Contiene los valores del formulario:
   const [loginUser, setLoginUser] = useState({});
-  const [loginFail, setLoginFail] = useState(null);
+  const [loginFail, setLoginFail] = useState({ message: null, color: null });
+
   // Maneja el estado del formulario:
   const handleInputs = (event) => {
     // Recojo el name y el valor del input:
@@ -18,6 +22,7 @@ export const LogIn = ({ history }) => {
       [name]: value,
     }));
   };
+
   const handleSubmit = (e) => {
     // Prevengo que ser recargue la página:
     e.preventDefault();
@@ -26,9 +31,15 @@ export const LogIn = ({ history }) => {
       .then((response) => {
         //guardar el token en el localStorage en un campo llamado token:
         setJWT(response.token);
-        history.push("/profile");
+        //mensaje success
+        setLoginFail({ message: "Bienvenido de nuevo", color: 'success' });
+        setTimeout(() => {
+          history.push(PROFILE);
+        }, 2000);
       })
-      .catch((response) => setLoginFail(response.message));
+      .catch((response) => {
+        setLoginFail({ message: response.message, color: 'error' });
+      });
     // Reseteo los campos del formulario:
     e.target.reset();
   };
@@ -46,18 +57,17 @@ export const LogIn = ({ history }) => {
           placeholder="Correo electrónico*"
           onChange={handleInputs}
           required
-        />{" "}
-        {/*value={email}*/}
+        />
         <input
           name="password"
           type="password"
           placeholder="Contraseña*"
           onChange={handleInputs}
           required
-        />{" "}
-        {/*value={password}*/}
-        <br />
-        <MensajeError flag={loginFail} />
+        />
+
+        <Avisos flag={loginFail.message} type={loginFail.color} />
+
         <div className="Login-dflex">
           <div className="a-register">
             <span>¿Aún no eres miembro?</span>
@@ -67,10 +77,12 @@ export const LogIn = ({ history }) => {
             <button>Acceder</button>
           </div>
         </div>
+
         <span className="Login-terminos">
           Al iniciar sesión, aceptas nuestros{" "}
           <Link to="/terms">Términos de Servicio y Política de Privacidad</Link>
         </span>
+
       </form>
     </div>
   );
