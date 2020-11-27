@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
-
-import { DecodeToken } from "../../util/DecodeToken";
 import { getToken } from "../../util/LocalStorage.utils";
+import { serverRequest } from "../../helpers/urlBack";
+import { DecodeToken } from "../../util/DecodeToken";
 import { Avisos } from "../../Components/Avisos/Avisos";
 import "./UploadPodcast.css";
 export const UploadPodcast = ({ history }) => {
@@ -14,18 +14,14 @@ export const UploadPodcast = ({ history }) => {
   const [descriptionEl, setDescriptionEl] = useState(null);
   const [categoriesEl, setCategoriesEl] = useState(null);
   const [locationEl, setLocationEl] = useState(null);
+  //Agafo el token per saber quin usuari està pujant el podcast
+  const token = getToken();
+  const decodedToken = DecodeToken(token);
+  const userId = decodedToken.id;
 
   const fileInputEl = useRef(null);
   // Maneja el estado del formulario:
-  const handleInputs = (event) => {
-    // Recojo el name y el valor del input:
-    const { value, name } = event.target;
-    setNewPodcast((prevValue) => ({
-      ...prevValue,
-      [name]: value
-
-    }));
-  };
+  
 
   const onTrackSelected = (files) => {
     const url = `http://localhost:3300/data/podcast`;
@@ -33,6 +29,7 @@ export const UploadPodcast = ({ history }) => {
     const description = descriptionEl;
     const categories = categoriesEl;
     const location = locationEl;
+    
     if (files) {
         const formData = new FormData();
 
@@ -41,7 +38,7 @@ export const UploadPodcast = ({ history }) => {
         formData.append('description', description);
         formData.append('categories', categories);
         formData.append('location', location);
-
+        formData.append('userId', userId);
         const options = {
             method: 'POST',
             body: formData,
