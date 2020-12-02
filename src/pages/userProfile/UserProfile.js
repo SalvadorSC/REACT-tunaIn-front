@@ -5,17 +5,17 @@ import { serverRequest } from "../../helpers/urlBack";
 import { DecodeToken } from "../../util/DecodeToken";
 import { getToken } from "../../util/LocalStorage.utils";
 import { PodcastsUser } from "../../Components/PodcastsUser/PodcastsUser";
+import { FavoritosUser } from "../../Components/FavoritosUser/FavoritosUser";
 import "./UserProfile.css";
 import { Footer } from "../../Components/Footer/Footer";
 
 export const UserProfile = () => {
   const [user, setUser] = useState({});
+  const token = getToken();
+  const decodedToken = DecodeToken(token);
+  const userId = decodedToken.id;
 
   useEffect(() => {
-    const token = getToken();
-    const decodedToken = DecodeToken(token);
-    const userId = decodedToken.id;
-
     serverRequest(`data/user/${userId}`, "GET")
       .then((response) => {
         setUser(response);
@@ -23,57 +23,70 @@ export const UserProfile = () => {
       .catch(console.log);
   }, []);
 
-  const options = { month: "2-digit", day: "2-digit", year: "numeric" };
+  const [isMyPodcastsSelected, setIsMyPodcastsSelected] = useState(true)
+  const [isFavoritosSelected, setIsFavoritosSelected] = useState(false)
+  const [selectedTab, setSelectedTab] = useState(0)
 
+  /* const [favSelected, setFavSelected] = useState("notSelected")
+  const [myPodcastsSelected, setMyPodcastsSelected] = useState("selected") */
+  const favoritos = () => {
+    setSelectedTab(1)
+    /* setFavSelected("selected")
+    setMyPodcastsSelected("notSelected") */
+  }
+  const MisPodcasts = () => {
+    setSelectedTab(0)
+/*  setIsMyPodcastsSelected(true)
+    setIsFavoritosSelected(false) */
+    /* setFavSelected("notSelected")
+    setMyPodcastsSelected("selected") */
+  }
+
+  const options = { month: "2-digit", day: "2-digit", year: "numeric" };
+  console.log("render user profile")
   return (
     <div>
-      <header className="header">
-          <h1>Tu cuenta tunain</h1>
-          <p>Personaliza tus datos y controla todos los detalles de tus podcasts.</p>
-        </header>
-        <body>
+      <body>
         <div className="UserProfile-wrap">
-        <br/>
-        
-        <div className="UserCard-wrap">
-          <div className="BackgroundImage"></div>
-          <h2>Perfil de usuario</h2>
-        
-                <div className="Columns">
+          <br />
 
-                    <img className="RoundAvatar" alt="background" src="https://c0.anyrgb.com/images/434/137/recording-studio-person-woman-microphone-radio-podcast-talking-singing-presenter.jpg"/>
-                    <br/>
-                    <br/>
-                    <div className="UserSectionLine"><h5>Nombre </h5> <p>{user.nombre}</p></div>
-                    <hr/>
-                    <div className="UserSectionLine"><h5>Apellido </h5> <p>{user.username}</p></div>
-                    <hr/>
-                    <div className="UserSectionLine"><h5>Email </h5> <p>{user.email}</p></div>
-                    <hr/>
-                    <div className="UserSectionLine"><h5>Fecha de nacimiento </h5> <p>{new Date(user.fechaNacimiento).toLocaleString("es-ES", options)}</p></div>
-                </div>
+          <div className="UserCard-wrap">
+            <div className={"UserInfo"}>
+              <h2>Tu perfil</h2>
+              <p>Personaliza tus datos y controla todos los detalles de tus podcasts.</p>
+              <br></br>
+              <div className="UserSectionLine"><p>Usuario </p><p className="userInformationDisplayed">{user.username}</p></div>
+              <div className="UserSectionLine"><p>Nombre Completo </p> <p className="userInformationDisplayed">{user.nombre}</p></div>
+              <div className="UserSectionLine"><p>Email </p><p className="userInformationDisplayed">{user.email}</p></div>
+              <div className="UserSectionLine"><p>Fecha de nacimiento </p><p className="userInformationDisplayed">{new Date(user.fechaNacimiento).toLocaleString("es-ES", options)}</p></div>
+            </div>
+            <hr className={"vr"} />
+            <img className="profilePicture" alt="background" src="https://c0.anyrgb.com/images/434/137/recording-studio-person-woman-microphone-radio-podcast-talking-singing-presenter.jpg" />
 
-                <Link
-                  to={{
-                    pathname: "/editUserProfile",
-                    state: {user},
-                  }}
-                >
-                  <button>Editar perfil</button>
-                </Link>
-                <br/> 
-              </div>  
-              <br/> 
-                <div className="UserCard-wrap">
-                <h2>Tus podcasts subidos</h2>
-                <br/>
-                  <PodcastsUser />
-                  <br/>
-                </div>
-                <br/>
-              </div>
-              </body>
-    <Footer/>
-      </div>
+            {/* <Link
+              to={{
+                pathname: "/editUserProfile",
+                state: { user },
+              }}
+            >
+              <button>Editar perfil</button>
+            </Link> */}
+            <br />
+          </div>
+          <hr />
+          <br />
+        </div>
+        <div className="UserPodcasts">
+          <div style={{ display: "flex", width: "50%", justifyContent: "space-between" }}>
+            <h4 className={selectedTab === 0 ? "selected" : "notSelected"} onClick={MisPodcasts}>Tus podcasts subidos</h4>
+            <h4 className={selectedTab === 1 ? "selected" : "notSelected"} onClick={favoritos}>Tus favoritos</h4>
+          </div>
+          <br />
+          {selectedTab === 0 && <PodcastsUser />}
+          {selectedTab === 1 && <FavoritosUser userId={userId} />}
+          <br />
+        </div>
+      </body>
+    </div>
   );
 };

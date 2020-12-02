@@ -1,31 +1,23 @@
-
-.header {
-  height: 270px;
-  background-color: #077594;
-  color: white;
-  padding-top: 150px;
-  text-align: center;
-  }
-
+.main {
+  width: 100%;
+}
 
 .UserProfile-wrap {
   background-color: white;
   min-width: 150px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-
 .UserCard-wrap {
-  width: 75%;
-  background-color: #94d9e4;
-  margin: auto;
   border-radius: 15px;
-  opacity: 0.9;
-  text-align: center;
   display: block;
   position: relative;
-  height: 100%
-  
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.UserInfo {
+  width: 55%;
 }
 
 .row {
@@ -34,59 +26,50 @@
   flex-wrap: wrap;
   width: 100%;
   margin: 10px;
-
 }
-.columns h5 {
-  display: inline-block;
-
-}
-
-.columns p {
-  display: inline-block;
-
-}
-
 
 .UserSectionsColumn1 {
   display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
-  vertical-align: top;
+  justify-content: space-between;
   padding-left: 10px;
 }
 
-.RoundAvatar {
+.profilePicture {
   object-fit: cover;
-  border-radius: 50%;
-  height: 200px;
-  width: 200px;
-}
-
-.UserCard-wrap .BackgroundImage {
-  content: "";
-  background: url(https://mocah.org/uploads/posts/1011930-black-red-photography-music-blue-DJ-compact-disc-disc-jockey-vinyl-laser-light-color-darkness.jpg) center center;
-  opacity: 0.1;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-  filter: blur(8px); 
-  -webkit-filter: blur(8px);
+  border-radius: 10px;
+  margin-top: 50px;
+  margin-right: 50px;
+  height: 220px;
+  width: 220px;
 }
 
 .UserSectionLine {
-  display:flex;
-  margin-left: 200px;
-  margin-right: 200px;
+  display: flex;
   justify-content: space-between;
-
 }
 
-hr
-{
+hr {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vr {
+  width: 1px;
+  height: 20px;
+  display: inline-block;
+}
+
+.userInformationDisplayed {
+  color: rgba(0, 0, 0, 0.5)
+}
+
+.selected {
+  color: black;
+  cursor: pointer;
+}
+
+.notSelected {
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }

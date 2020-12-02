@@ -3,7 +3,6 @@ import './PodcastCard.css';
 import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-
 export const PodcastCard = ({ title, categories, author, img, podcastId, description }) => {
 
   const [podcastWrapClass, setPodcastWrapClass] = useState();

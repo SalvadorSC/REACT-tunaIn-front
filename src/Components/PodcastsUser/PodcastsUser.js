@@ -15,7 +15,7 @@ export const PodcastsUser = () => {
     const userId = decodedToken.id;
 
 
-    if (url === "http://localhost:3000/myPodcasts") {
+    if (url === "http://localhost:3000/myPodcasts" || url === "http://localhost:3000/profile") {
       serverRequest(`data/podcast/?id_author=${userId}`, "GET")
         .then((response) => {
           setListaPodcastsUser(response)

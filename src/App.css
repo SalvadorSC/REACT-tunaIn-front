@@ -4,13 +4,16 @@
 }
 
 .main {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
+  padding: 0 10%
 }
 
 .container {
   display: flex;
-  margin-right: 27.5vw;
+  width: 90%;
+  padding:0;
+  margin-left: 5%;
 }
 
 .container-home {
