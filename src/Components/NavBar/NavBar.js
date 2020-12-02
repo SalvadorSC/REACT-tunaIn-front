@@ -11,7 +11,6 @@ export function NavBar({ setContainerClass }) {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(location);
     if (location.pathname === "/") {
       setNavbarClass("navbar-home");
       setContainerClass("container-home");
