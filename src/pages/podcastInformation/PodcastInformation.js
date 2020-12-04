@@ -51,25 +51,25 @@ export const PodcastInformation = () => {
 
   return (
     <>
-      <div className="PodcastsUser-wrap">
+      <div className="UserProfile-wrap">
         <br />
-        <h1>{podcast.title}</h1>
-        <p>{podcast.categories}</p>
-        <p>{podcast.description}</p>
-        <p>podcast id</p>
-        <p>{podcast._id}</p>
-        <p>author</p>
-        <p>{podcast.id_author}</p>
-        <br />
-        <br />
-        <br />
-        <p>{user.nombre}</p>
-        <p>{user.username}</p>
-        <p>{user.email}</p>
-        <p>{user._id}</p>
-        {editPodcastLink()}
+        <div className="UserCard-wrap">
+          <div className={"UserInfo"}>
+            <h2>{podcast.title}</h2>
+            <div><p>Categories: <span className="podcastInformationDisplayed">{podcast.categories}</span></p></div>
+            <div className="UserSectionLine"><p>Description:</p></div>
+            <div className="UserSectionLine"><p className="podcastInformationDisplayed">{podcast.description}</p></div>
+          </div>
+          <div className={"vr"} />
+          <img className="profilePicture" alt="background" src="https://c0.anyrgb.com/images/434/137/recording-studio-person-woman-microphone-radio-podcast-talking-singing-presenter.jpg" />
+          <br />
+        </div>
+        <hr></hr>
+        <div className="PodcastsUser-wrap">
+          <br />
+          {editPodcastLink()}
+        </div>
       </div>
-      {}
     </>
   );
 };
