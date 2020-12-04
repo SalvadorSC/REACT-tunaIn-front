@@ -7,7 +7,7 @@ import { HOME } from "../../routes/routes";
 import { existNumber, existUppercase, validateMaxLength, validateMinLength } from "../../util/FormValidator";
 import { inputValidation } from "../../controllers/inputValidation";
 import "./RegisterForm.css";
-
+import {Button} from '../../Components/ButtonFlex/ButtonFlex';
 export const RegisterForm = ({ history }) => {
   // Contiene los valores del formulario:
   const [newUser, setNewUser] = useState({});
@@ -139,7 +139,7 @@ export const RegisterForm = ({ history }) => {
             <Link to="/Login">Inicia sesión</Link>
           </div>
           <div>
-            <button>Regístrate</button>
+            <Button>Regístrate</Button>
           </div>
         </div>
 

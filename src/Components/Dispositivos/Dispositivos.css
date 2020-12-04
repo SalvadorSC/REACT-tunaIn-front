@@ -34,26 +34,3 @@
     margin: 20px 0 0;
 }
 
-.download-apple {
-    background-color: black;
-    border: none;
-    color: white;
-}
-
-.download-apple:hover {
-    background-color: #fbfef9;
-    border: solid 2px black;
-    color: black;
-}
-
-.download-google {
-    background-color: #077594;
-    color: white;
-    border: none;
-}
-  
-.download-google:hover {
-    background-color: #fbfef9;
-    border: solid 2px #077594;
-    color: #077594;
-}

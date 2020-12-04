@@ -9,7 +9,7 @@ import { PodcastsDestacados } from "../../Components/PodcastsDestacados/Podcasts
 import { Premium } from "../../Components/Premium/Premium";
 import { Carousel } from '../../Components/Carousel/Carousel';
 import { Dispositivos } from "../../Components/Dispositivos/Dispositivos";
-
+//import {Button} from '../../Components/ButtonFlex/ButtonFlex';
 // const SPLASHBASE_URL = new URL('http://www.splashbase.co/api/v1/images/search?query=music');
 
 export const Home = () => {

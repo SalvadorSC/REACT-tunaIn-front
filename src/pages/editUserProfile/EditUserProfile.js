@@ -5,6 +5,7 @@ import { Avisos } from "../../Components/Avisos/Avisos";
 import { MYPODCASTS } from "../../routes/routes";
 import { Modal } from "../../Components/Modal/Modal";
 import { setJWT } from "../../util/LocalStorage.utils";
+import {Button} from '../../Components/ButtonFlex/ButtonFlex';
 
 export const EditUserProfile = (props) => {
   const [user, setUser] = useState({});
@@ -124,7 +125,7 @@ export const EditUserProfile = (props) => {
         />
         <label id="password-label">Password</label>
 
-        <button type="button" onClick={handleOpenPass} className="button-change-pss">Cambiar contraseña</button>
+        <Button type="button" onClick={handleOpenPass} buttonStyle="btn--primary--solid">Cambiar contraseña</Button>
         {openModalPass &&
           <Modal handleClose={handleClosePass}>
             <h3>Cambiar contraseña</h3>
@@ -148,15 +149,15 @@ export const EditUserProfile = (props) => {
         }
         <br />
         <Avisos flag={editFailed.message} type={editFailed.color} />
-        <button>Guardar cambios</button>
+        <Button buttonStyle="btn--primary--solid">Guardar cambios</Button>
       </form>
-      <button type="button" onClick={handleOpenDelete} className="button-delete">Eliminar cuenta</button>
+      <Button type="button" onClick={handleOpenDelete} buttonStyle="btn--primary--solid">Eliminar cuenta</Button>
       {openModalDelete &&
         <Modal handleClose={handleCloseDelete}>
           <h3>Eliminar cuenta</h3>
           <p>¿Estás seguro que quieres eliminar tu cuenta?</p>
-          <button onClick={handleDelete} className="button-confirm-delete">Eliminar</button>
-          <button onClick={handleOpenDelete} className="button-tunain">Cancelar</button>
+          <Button onClick={handleDelete} buttonStyle="btn--primary--solid">Eliminar</Button>
+          <Button onClick={handleOpenDelete} buttonStyle="btn--primary--solid">Cancelar</Button>
           <Avisos flag={deleteFailed.message} type={deleteFailed.color} />
         </Modal>
       }

@@ -7,6 +7,7 @@ import { getToken } from "../../util/LocalStorage.utils";
 import { PodcastsUser } from "../../Components/PodcastsUser/PodcastsUser";
 import "./UserProfile.css";
 import { Footer } from "../../Components/Footer/Footer";
+import {Button} from '../../Components/ButtonFlex/ButtonFlex';
 
 export const UserProfile = () => {
   const [user, setUser] = useState({});
@@ -59,7 +60,7 @@ export const UserProfile = () => {
                     state: {user},
                   }}
                 >
-                  <button>Editar perfil</button>
+                  <Button>Editar perfil</Button>
                 </Link>
                 <br/> 
               </div>  
@@ -70,6 +71,7 @@ export const UserProfile = () => {
                   <PodcastsUser />
                   <br/>
                 </div>
+                <br/>
                 <br/>
               </div>
               </body>
