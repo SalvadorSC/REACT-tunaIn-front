@@ -15,16 +15,18 @@ export const UploadPodcast = ({ history }) => {
   const [categoriesEl, setCategoriesEl] = useState(null);
   const [locationEl, setLocationEl] = useState(null);
   //Agafo el token per saber quin usuari està pujant el podcast
-  const token = getToken();
-  const decodedToken = DecodeToken(token);
-  const userId = decodedToken.id;
+ 
+  
 
   const fileInputEl = useRef(null);
   // Maneja el estado del formulario:
   
 
-  const onTrackSelected = (files) => {
-    const url = `http://localhost:3300/data/podcast`;
+  const onTrackSelected = () => {
+    const files = fileInputEl.current.files;
+    const token = getToken();
+    const decodedToken = DecodeToken(token);
+    const url = `http://localhost:3300/track`;
     const title = titleEl;
     const description = descriptionEl;
     const categories = categoriesEl;
@@ -38,11 +40,13 @@ export const UploadPodcast = ({ history }) => {
         formData.append('description', description);
         formData.append('categories', categories);
         formData.append('location', location);
-        formData.append('userId', userId);
+        
         const options = {
             method: 'POST',
             body: formData,
-            headers: new Headers({}),
+            headers: {
+              'Authorization':'Bearer ' + JSON.parse(token) 
+            },
             mode: 'cors',
         };
 
@@ -68,7 +72,7 @@ export const UploadPodcast = ({ history }) => {
         y recomendaciones personalizadas basadas en tu escucha. (Solo toma 30
         segundos)
       </p>
-      <form onSubmit={onTrackSelected}>
+      <div>
         <input
           name="title"
           type="text"
@@ -95,25 +99,24 @@ export const UploadPodcast = ({ history }) => {
           placeholder="Location*"
           onChange={(e) => setLocationEl(e.target.value)}
         />{" "}
-        <label className="upload_button" htmlFor="fileupload">
+        
         <input
           type="file"
           name="track"
           id="fileupload"
           accept=".mp3, audio/*"
           ref={fileInputEl}
-          onChange={() =>onTrackSelected(fileInputEl.current.files)}
 
         />{" "}
-        </label>
+      
         <br />
         <Avisos flag={registerFail} />
         <div className="RegisterForm-dflex">
           <div>
-            <button>Guardar</button>
+            <button onClick={onTrackSelected} >Submit</button>
           </div>
         </div>
-      </form>
+      </div>
       
     </div>
   );
