@@ -1,44 +1,68 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { getToken } from "../../util/LocalStorage.utils";
 import { serverRequest } from "../../helpers/urlBack";
 import { DecodeToken } from "../../util/DecodeToken";
-import { getToken } from "../../util/LocalStorage.utils";
 import { Avisos } from "../../Components/Avisos/Avisos";
 import "./UploadPodcast.css";
-
 export const UploadPodcast = ({ history }) => {
   // Contiene los valores del formulario:
   const [newPodcast, setNewPodcast] = useState({});
   const [registerFail, setRegisterFail] = useState(null);
+  
+  
+  const [titleEl, setTitleEl] = useState(null);
+  const [descriptionEl, setDescriptionEl] = useState(null);
+  const [categoriesEl, setCategoriesEl] = useState(null);
+  const [locationEl, setLocationEl] = useState(null);
+  //Agafo el token per saber quin usuari està pujant el podcast
+ 
+  
+
+  const fileInputEl = useRef(null);
   // Maneja el estado del formulario:
-  const handleInputs = (event) => {
-    // Recojo el name y el valor del input:
-    const { value, name } = event.target;
-    setNewPodcast((prevValue) => ({
-      ...prevValue,
-      [name]: value,
-    }));
-  };
-  const handleSubmit = (e) => {
-    // Prevengo que ser recargue la página:
-    e.preventDefault();
+  
+
+  const onTrackSelected = () => {
+    const files = fileInputEl.current.files;
     const token = getToken();
     const decodedToken = DecodeToken(token);
-    const userId = decodedToken.id;
-    const newPodcastWithUserID = {
-      ...newPodcast,
-      "id_author": userId
+    const url = `http://localhost:3300/track`;
+    const title = titleEl;
+    const description = descriptionEl;
+    const categories = categoriesEl;
+    const location = locationEl;
+    
+    if (files) {
+        const formData = new FormData();
+
+        formData.append('track', files[0]);
+        formData.append('name', title);
+        formData.append('description', description);
+        formData.append('categories', categories);
+        formData.append('location', location);
+        
+        const options = {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Authorization':'Bearer ' + JSON.parse(token) 
+            },
+            mode: 'cors',
+        };
+
+        fetch(url, options)
+            .then((response) => {
+                if (response.status === 200) {
+                    return response.json();
+                }
+                return Promise.reject(response.status);
+            })
+            .then((payload) => {
+                console.log(`Saved song with id: ${payload}`);
+            })
+            .catch((error) => console.log(error));
     }
-    // Hago una petición post al servidor:
-    serverRequest("data/podcast", "POST", newPodcastWithUserID)
-      .then((response) => {
-        if (response.ok) { history.push("/home"); }
-        //guardar el token en el localStorage en un campo llamado token:
-        else { throw Error(response) }
-      })
-      .catch((response) => setRegisterFail(response.error));
-    // Reseteo los campos del formulario:
-    e.target.reset();
-  };
+};
 
   return (
     <div className="RegisterForm-wrap">
@@ -48,47 +72,52 @@ export const UploadPodcast = ({ history }) => {
         y recomendaciones personalizadas basadas en tu escucha. (Solo toma 30
         segundos)
       </p>
-      <form onSubmit={handleSubmit}>
+      <div>
         <input
           name="title"
           type="text"
           placeholder="Titulo*"
-          onChange={handleInputs}
+          onChange={(e) => setTitleEl(e.target.value)}
           required
         />{" "}
         <input
           name="description"
           type="text"
           placeholder="Descripción*"
-          onChange={handleInputs}
+          onChange={(e) => setDescriptionEl(e.target.value)}
           required
         />{" "}
         <input
           name="categories"
           type="text"
           placeholder="Categorias*"
-          onChange={handleInputs}
+          onChange={(e) => setCategoriesEl(e.target.value)}
         />{" "}
         <input
           name="location"
           type="location"
           placeholder="Location*"
-          onChange={handleInputs}
+          onChange={(e) => setLocationEl(e.target.value)}
         />{" "}
+        
         <input
-          name="audio"
           type="file"
-          onChange={handleInputs}
+          name="track"
+          id="fileupload"
+          accept=".mp3, audio/*"
+          ref={fileInputEl}
 
         />{" "}
+      
         <br />
         <Avisos flag={registerFail} />
         <div className="RegisterForm-dflex">
           <div>
-            <button>Submit</button>
+            <button onClick={onTrackSelected} >Submit</button>
           </div>
         </div>
-      </form>
+      </div>
+      
     </div>
   );
 };
