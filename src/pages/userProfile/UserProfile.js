@@ -8,6 +8,7 @@ import { PodcastsUser } from "../../Components/PodcastsUser/PodcastsUser";
 import { FavoritosUser } from "../../Components/FavoritosUser/FavoritosUser";
 import "./UserProfile.css";
 import { Footer } from "../../Components/Footer/Footer";
+import {Button} from '../../Components/ButtonFlex/ButtonFlex';
 
 export const UserProfile = () => {
   const [user, setUser] = useState({});
@@ -48,6 +49,7 @@ export const UserProfile = () => {
     <div>
       <body>
         <div className="UserProfile-wrap">
+
           <br />
           <div className="UserCard-wrap">
             <div className={"UserInfo"}>
@@ -88,5 +90,6 @@ export const UserProfile = () => {
         </div>
       </body>
     </div>
+
   );
 };

@@ -19,7 +19,7 @@ export const UploadPodcast = ({ history }) => {
     }));
   };
   const handleSubmit = (e) => {
-    // Prevengo que ser recargue la página:
+    // Prevengo que se recargue la página:
     e.preventDefault();
     const token = getToken();
     const decodedToken = DecodeToken(token);

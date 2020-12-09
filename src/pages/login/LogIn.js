@@ -4,7 +4,7 @@ import { serverRequest } from "../../helpers/urlBack";
 import { setJWT } from "../../util/LocalStorage.utils";
 import { Avisos } from "../../Components/Avisos/Avisos";
 import { PROFILE } from "../../routes/routes";
-
+import {Button} from '../../Components/ButtonFlex/ButtonFlex';
 import "./LogIn.css";
 
 export const LogIn = ({ history }) => {
@@ -74,7 +74,7 @@ export const LogIn = ({ history }) => {
             <Link to="/register">Regístrate</Link>
           </div>
           <div>
-            <button>Acceder</button>
+            <Button>Acceder</Button>
           </div>
         </div>
 

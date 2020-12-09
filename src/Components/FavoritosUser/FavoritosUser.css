@@ -36,8 +36,6 @@
 .icon-wrapper {
   width: 200px;
   height: 200px;
-  top: 0;
-  position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
