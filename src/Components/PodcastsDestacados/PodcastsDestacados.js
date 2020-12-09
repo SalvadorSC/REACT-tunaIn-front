@@ -2,6 +2,7 @@ import React from "react";
 import { PodcastCard } from "../PodcastCard/PodcastCard";
 import "./PodcastsDestacados.css";
 
+
 export const PodcastsDestacados = () => {
   const ListaPodcastFake = [
     {
@@ -62,7 +63,7 @@ export const PodcastsDestacados = () => {
           categories={podcast.categories}
           author={podcast.author}
           img={podcast.img}
-        />
+        /> 
       ))}
     </div>
   );

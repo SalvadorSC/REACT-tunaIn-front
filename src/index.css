@@ -113,3 +113,7 @@ label {
 input[type="radio"]:checked + label span {
   background: #38454e -57px top no-repeat;
 }
+
+.rhap_container, .rhap_container *:focus {
+  outline: none; 
+}

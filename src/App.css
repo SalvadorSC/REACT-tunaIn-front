@@ -16,3 +16,6 @@
 .container-home {
   display: flex;
 }
+.rhap_container, .rhap_container *:focus {
+  outline: none; 
+}
