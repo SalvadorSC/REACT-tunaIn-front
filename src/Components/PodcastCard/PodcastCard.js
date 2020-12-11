@@ -75,7 +75,7 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
         </Button>
 
         {/* FAVORITE ICON BUTTON  */}
-        <Button onClick={clickFavorites(podcastId)}
+        <Button onClick={() => clickFavorites(podcastId)}
                 type='button' 
                 buttonStyle={iconFavoriteOnClick ? 'btn--iconClicked--outline' : 'btn--icon--outline'}
               > 
