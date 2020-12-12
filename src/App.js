@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { UserProfile } from "./pages/userProfile/UserProfile";
@@ -18,7 +18,7 @@ import { getToken } from "./util/LocalStorage.utils";
 import { Footer } from "./Components/Footer/Footer";
 import { Playbar } from "./Components/Playbar/Playbar";
 
-
+export const PodcastContext = createContext();
 export default function App() {
 
   const PrivateRoute = ({ component: Component, path }) => (
@@ -27,11 +27,14 @@ export default function App() {
       render={() => getToken() ? <Component /> : <Redirect to={LOGIN} />}
     />
   )
+  
+  const [podcast, setPodcast] = useState();
 
   const [containerClass, setContainerClass] = useState();
 
   return (
     <Router>
+      <PodcastContext.Provider value={{podcast, setPodcast}}>
       <NavBar setContainerClass={setContainerClass} />
       <div className={containerClass}>
         <div className="main">
@@ -56,6 +59,9 @@ export default function App() {
       </div>
           <Playbar />
           <Footer />
+          </PodcastContext.Provider>
       </Router>
   );
-}
+
+} //usecontext presentación viernes pasado
+  //
