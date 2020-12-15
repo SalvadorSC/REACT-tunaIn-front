@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { UserProfile } from "./pages/userProfile/UserProfile";
@@ -16,6 +16,8 @@ import { PodcastList } from "./pages/podcastList/PodcastList";
 import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST } from "./routes/routes";
 import { getToken } from "./util/LocalStorage.utils";
 import { Footer } from "./Components/Footer/Footer";
+import { Playbar } from "./Components/Playbar/Playbar";
+import {PlaybarContextProvider} from './contexts/playbar';
 
 export default function App() {
 
@@ -25,11 +27,13 @@ export default function App() {
       render={() => getToken() ? <Component /> : <Redirect to={LOGIN} />}
     />
   )
+  
 
   const [containerClass, setContainerClass] = useState();
 
   return (
     <Router>
+      <PlaybarContextProvider>
       <NavBar setContainerClass={setContainerClass} />
       <div className={containerClass}>
         <div className="main">
@@ -50,8 +54,13 @@ export default function App() {
 
           </Switch>
         </div>
+        
       </div>
-        <Footer />
-    </Router>
+          <Playbar />
+          <Footer />
+          </PlaybarContextProvider>
+      </Router>
   );
-}
+
+} //usecontext presentación viernes pasado
+  //

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from '../ButtonFlex/ButtonFlex';
 import './Dispositivos.css'
 
 export const Dispositivos = () => {
@@ -11,8 +12,8 @@ export const Dispositivos = () => {
                 <h1>DISPONIBLE EN TODOS TUS DISPOSITIVOS</h1>
                 <h4>Disfruta de tu audio exactamente donde, cuando y como quieras.</h4>
                 <p>TuneIn está disponible en cientos de dispositivos domésticos, de automóviles y portátiles, y funciona con Alexa y Google Home.</p>
-                <button type="button" className="download-apple"><i className="fab fa-apple"></i> Download</button>
-                <button type="button" className="download-google"><i className="fab fa-google-play"></i> Download</button>
+                <Button type="button" buttonStyle='btn--iconClicked--outline'><i className="fab fa-apple"></i> Download</Button>
+                <Button type="button" buttonStyle='btn--iconClicked--outline'><i className="fab fa-google-play"></i> Download</Button>
             </div>
         </div>
     )
