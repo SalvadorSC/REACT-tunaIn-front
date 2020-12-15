@@ -9,6 +9,8 @@
   /* margin-bottom: 30px; */
   overflow: hidden;
   position: relative;
+  background-color: transparent !important;
+
 }
 
 .PodcastCard-img {
@@ -32,6 +34,16 @@
   align-items: center;
   color: transparent;
   transition: all 250ms ease;
+}
+
+.btn--icon--outline {
+  font-size: 20px;
+  color: transparent;
+  background-color: transparent;
+  outline: none;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: green;
+  background-color: transparent !important;
 }
 
 /*.play-icon {

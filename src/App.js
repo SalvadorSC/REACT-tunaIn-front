@@ -17,8 +17,8 @@ import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, POD
 import { getToken } from "./util/LocalStorage.utils";
 import { Footer } from "./Components/Footer/Footer";
 import { Playbar } from "./Components/Playbar/Playbar";
+import {PlaybarContextProvider} from './contexts/playbar';
 
-export const PodcastContext = createContext();
 export default function App() {
 
   const PrivateRoute = ({ component: Component, path }) => (
@@ -28,13 +28,12 @@ export default function App() {
     />
   )
   
-  const [podcast, setPodcast] = useState();
 
   const [containerClass, setContainerClass] = useState();
 
   return (
     <Router>
-      <PodcastContext.Provider value={{podcast, setPodcast}}>
+      <PlaybarContextProvider>
       <NavBar setContainerClass={setContainerClass} />
       <div className={containerClass}>
         <div className="main">
@@ -59,7 +58,7 @@ export default function App() {
       </div>
           <Playbar />
           <Footer />
-          </PodcastContext.Provider>
+          </PlaybarContextProvider>
       </Router>
   );
 

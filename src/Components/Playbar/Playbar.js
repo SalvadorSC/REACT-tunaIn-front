@@ -7,60 +7,65 @@ import { PodcastCard } from "../PodcastCard/PodcastCard";
 import { PodcastContext } from '../../App';
 import { serverRequest } from "../../helpers/urlBack";
 import { Podcast, PodcastsDestacados } from "../PodcastsDestacados/PodcastsDestacados";
+import { usePlaybarContext } from '../../contexts/playbar';
 
 
 export const Playbar = () => {
 
-  const podcastId = ["juan", "maria", "jimi", "lola", "pepe"];
-  const [currentPodcast, setCurrentPodcast] = useState(0);
-  const podcastInfo= useContext(PodcastContext);
-  console.log(podcastInfo.podcast);
+  const playbarContext = usePlaybarContext();
+  const podcast = playbarContext.playbarPodcast;
   const handleClickNext = () => {
 
+    /*
     if(currentPodcast < podcastId.length -1) {
       setCurrentPodcast(currentPodcast +1);
-    }
+    }*/
   }
 
   const handleClickPrev = () => {
-
+/*
     if(currentPodcast > 0) {
       setCurrentPodcast(currentPodcast -1);
-    }
+    }*/
   }
   useEffect(() => {
-    if (podcastInfo.podcast) {
+    /*
+    if (playbarContext.playbarPodcast) {
       serverRequest(`data/user/${podcastId}`, "GET")
         .then((response) => {
           //setPodcastId(response)
         })
-        .catch(console.log);
-      }
-  }, [podcastInfo.podcast]);
+      }*/
+  }, [playbarContext.playbarPodcast]);
 
   return(
-        <div className = "fix-playbar">
-        <div className = "Playbar-wrap">
-        <div className="Playbar-img"><img src= "https://images.unsplash.com/photo-1582246915745-10e34377da98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1275&q=80" />
-        </div>
-        <div className="title">
-                 
-        <div className = "titulo-playbar">Título</div>
+    <div>
+{podcast && (<div className = "fix-playbar">
+    <div className = "Playbar-wrap">
+    <div className="Playbar-img">{podcast && (podcast.img)}</div>
+    {/* <img src= "https://images.unsplash.com/photo-1582246915745-10e34377da98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1275&q=80" /> */}
+    
+    <div className="title">
+             
+<div className = "titulo-playbar">{podcast && (podcast.title)}</div>
+    
+   <div className = "autor-playbar">{podcast && (podcast.author)}</div>
+   <div className = "categoria-playbar">{podcast && (podcast.categories)} </div>
+    </div>  
+    <AudioPlayer
+    onClickNext={handleClickNext}
+    onClickPrevious={handleClickPrev}
+    showSkipControls={true} showJumpControls={false}
+    customAdditionalControls={[]}
+    //autoPlay
+    src={`http://localhost:3300/data/podcastId/${podcast.id}`}  //podcastSource
+    onPlay={e => console.log("onPlay")}
+    /> 
+    </div>
+    </div>)}
+    </div>
+    
         
-       <div className = "autor-playbar"> Autor </div>
-       <div className = "categoria-playbar"> Categoría </div>
-        </div>  
-        <AudioPlayer
-        onClickNext={handleClickNext}
-        onClickPrevious={handleClickPrev}
-        showSkipControls={true} showJumpControls={false}
-        customAdditionalControls={[]}
-        //autoPlay
-        src={'http://localhost:3300/data/podcastId/${currentPodcast}'}  //podcastSource
-        onPlay={e => console.log("onPlay")}
-        /> 
-        </div>
-        </div>
   )
   }
 

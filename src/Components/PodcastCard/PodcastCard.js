@@ -7,11 +7,12 @@ import { serverRequest } from "../../helpers/urlBack";
 import { DecodeToken } from "../../util/DecodeToken";
 import { getToken } from "../../util/LocalStorage.utils";
 import AudioPlayer from 'react-h5-audio-player';
-import {PodcastContext} from '../../App';
+import { usePlaybarContext } from "../../contexts/playbar";
 
 
 
-export const PodcastCard = ({ title, categories, author, img, podcastId, description }) => {
+export const PodcastCard = (props) => {
+  const { title, categories, author, img, podcastId, description } = props;
   const [podcastWrapClass, setPodcastWrapClass] = useState();
   const [podcastAuthor, setPodcastAuthor] = useState(undefined);
   const [favoritosUsuario, setFavoritosUsuario] = useState(undefined);
@@ -23,10 +24,7 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
   let history = useHistory();
   const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);
   const [iconPlayOnClick, setIconPlayOnClick] = useState(false);
-  const podcastInfo= useContext(PodcastContext);
-  const setPodcast= podcastInfo.setPodcast;
-
-console.log (podcastInfo);
+  const playbar = usePlaybarContext();
 
   useEffect(() => {
     serverRequest(`data/favoritos/?id_podcast=${podcastId}&&id_author=${userId}`, "GET")
@@ -88,10 +86,8 @@ console.log (podcastInfo);
     }
   }
 
-  function playPodcast(podcastId) {
-    console.log(podcastId);
-    //AudioPlayer();
-    setPodcast(podcastId);
+  function playPodcast() {
+    playbar.setPlaybarPodcast(props);
   }
  
   /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */
