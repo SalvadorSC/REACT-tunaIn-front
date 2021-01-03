@@ -14,43 +14,51 @@ export const Buscador = () => {
       setBuscadorClass("buscador");
     }
   }, [url]);
-
-  const [search, setSearch] = useState({})
-  const [listaBusquedas, setListaBusquedas] = useState();
+  const [updateRender, setUpdateRender] = useState(false);
+  const [search, setSearch] = useState("Buscar podcasts, radios y mucho más")
+  const [listaBusquedas, setListaBusquedas] = useState([]);
   const handleSearch = (e) => {
     setSearch(e.target.value);
   }
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    serverRequest(`data/podcast/?title=${search}`, 'GET')
-      .then(response => console.log(response))
+  useEffect(() => {
+    serverRequest(`user/${search}`, 'GET')
+      .then((response) => {
+        setListaBusquedas(response);
+      })
+      
       //En el then redirigir a página "resultados" donde se mostrarán los resultados de la búsqueda
       .catch(response => console.log(response))
+    console.log('lista busquedas changed ');
+  }, [search]);
+  const updateSearch = (e) => {
+  
   }
 
 
   return (
-
-    <form onSubmit={handleSubmit}>
+   
+    <form>
       <div className={buscadorClass}>
         <div className={"buscadorStyle"}>
-          <input placeholder="Buscar podcasts, radios y mucho más" onChange={handleSearch} className='buscador-input' />
+          <input placeholder="Buscar podcasts, radios y mucho más" value={search} onChange={event => setSearch(event.target.value)} className='buscador-input' />
           <i className="fas fa-search fa-2x lupita" />
         </div>
       </div>
+     
       <div className={"resultadosbusqueda"}>
-        {/* {listaBusquedas.map(podcast =>
-          (
-            <p
-              podcastId={podcast._id}
-              title={podcast.title}
-              categories={podcast.categories}
-              description={podcast.description}
-              author={podcast.id_author}
-              img={"https://images.unsplash.com/photo-1604160450925-0eecf551fa86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2551&q=80"}
-            ></p>
-          ))} */}
-      </div>
+       
+        {listaBusquedas.map(v =>{
+            return( 
+            <div class="autoComplete" onClick={() => setSearch(v.nombre)}>
+              <span>
+              {v.nombre}
+              </span>
+            </div>
+          );
+        })}
+       </div>
+       
+   
     </form>
-  )
-}
+    )
+  };
