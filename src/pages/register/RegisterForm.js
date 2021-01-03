@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
-import { setJWT } from "../../util/LocalStorage.utils";
+import {setSession} from "../../util/LocalStorage.utils";
 import { Avisos } from "../../Components/Avisos/Avisos";
 import { HOME } from "../../routes/routes";
 import { existNumber, existUppercase, validateMaxLength, validateMinLength } from "../../util/FormValidator";
@@ -42,7 +42,7 @@ export const RegisterForm = ({ history }) => {
     serverRequest("register", "POST", newUser)
       .then((response) => {
         //guardar el token en el localStorage en un campo llamado token:
-        setJWT(response.token);
+        setSession(response);
         setRegisterFail({ message: "Bienvenido a TunaIn", color: 'success' });
         setTimeout(() => {
           history.push(HOME);

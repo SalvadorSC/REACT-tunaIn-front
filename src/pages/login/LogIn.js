@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
-import { setJWT } from "../../util/LocalStorage.utils";
+import {setSession} from "../../util/LocalStorage.utils";
 import { Avisos } from "../../Components/Avisos/Avisos";
 import { PROFILE } from "../../routes/routes";
 import {Button} from '../../Components/ButtonFlex/ButtonFlex';
@@ -30,7 +30,7 @@ export const LogIn = ({ history }) => {
     serverRequest("login", "POST", loginUser)
       .then((response) => {
         //guardar el token en el localStorage en un campo llamado token:
-        setJWT(response.token);
+        setSession(response);
         //mensaje success
         setLoginFail({ message: "Bienvenido de nuevo", color: 'success' });
         setTimeout(() => {

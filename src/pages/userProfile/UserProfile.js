@@ -2,8 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
-import { DecodeToken } from "../../util/DecodeToken";
-import { getToken } from "../../util/LocalStorage.utils";
+import {getUserId} from "../../util/LocalStorage.utils";
 import { PodcastsUser } from "../../Components/PodcastsUser/PodcastsUser";
 import { FavoritosUser } from "../../Components/FavoritosUser/FavoritosUser";
 import "./UserProfile.css";
@@ -12,16 +11,14 @@ import {Button} from '../../Components/ButtonFlex/ButtonFlex';
 
 export const UserProfile = () => {
   const [user, setUser] = useState({});
-  const token = getToken();
-  const decodedToken = DecodeToken(token);
-  const userId = decodedToken.id;
+  const userId = getUserId();
 
   useEffect(() => {
     serverRequest(`data/user/${userId}`, "GET")
       .then((response) => {
         setUser(response);
       })
-      .catch(console.log);
+      .catch('ERROR');
   }, []);
 
   const [isMyPodcastsSelected, setIsMyPodcastsSelected] = useState(true)

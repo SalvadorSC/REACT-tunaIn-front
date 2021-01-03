@@ -1,6 +1,8 @@
-import { getToken } from "../util/LocalStorage.utils";
+import {getToken, hasSession} from "../util/LocalStorage.utils";
+
 export const serverRequest = (resources, method, body) => {
-    const token = getToken();
+    //const token = getToken();
+    const token = hasSession() ? getToken() : ''
     const url = `http://localhost:3300/${resources}`;
     const JSONBody = JSON.stringify(body);
     const options = {
@@ -8,21 +10,19 @@ export const serverRequest = (resources, method, body) => {
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + JSON.parse(token)
+            'Authorization': 'Bearer ' + token
             // 'Authoritation': token
             // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSONBody
     }
 
-    let response
     return fetch(url, options)
         .catch(error => (error))
         .then(res => {
             if (res.status >= 400) {
                 return Promise.reject(res);
             }
-            debugger;
             if (method === 'DELETE') {
                 return Promise.resolve();
             }

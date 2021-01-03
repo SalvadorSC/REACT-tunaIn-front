@@ -1,10 +1,9 @@
 import React, { useRef, useState } from "react";
-import { getToken } from "../../util/LocalStorage.utils";
-import { serverRequest } from "../../helpers/urlBack";
-import { DecodeToken } from "../../util/DecodeToken";
+import {getToken} from "../../util/LocalStorage.utils";
 import { Avisos } from "../../Components/Avisos/Avisos";
 import "./UploadPodcast.css";
 export const UploadPodcast = ({ history }) => {
+    const token = getToken();
   // Contiene los valores del formulario:
   const [newPodcast, setNewPodcast] = useState({});
   const [registerFail, setRegisterFail] = useState(null);
@@ -24,8 +23,6 @@ export const UploadPodcast = ({ history }) => {
  
   const onTrackSelected = () => {
     const files = fileInputEl.current.files;
-    const token = getToken();
-    const decodedToken = DecodeToken(token);
     const url = `http://localhost:3300/track`;
     const title = titleEl;
     const description = descriptionEl;

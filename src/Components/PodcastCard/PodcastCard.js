@@ -4,8 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from '../ButtonFlex/ButtonFlex';
 import { serverRequest } from "../../helpers/urlBack";
-import { DecodeToken } from "../../util/DecodeToken";
-import { getToken } from "../../util/LocalStorage.utils";
+import {getUserId, hasSession} from "../../util/LocalStorage.utils";
 
 export const PodcastCard = ({ title, categories, author, img, podcastId, description }) => {
   const [podcastWrapClass, setPodcastWrapClass] = useState();
@@ -13,16 +12,16 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
   const [favoritosUsuario, setFavoritosUsuario] = useState(undefined);
   const [podcastEliminado, setPodcastEliminado] = useState({});
   const url = window.location.href;
-  const token = getToken();
-  const decodedToken = DecodeToken(token);
-  const userId = decodedToken.id;
+  let userId;
+  if(hasSession()){
+      userId = getUserId();
+  }
   let history = useHistory();
   const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);
 
   useEffect(() => {
     serverRequest(`data/favoritos/?id_podcast=${podcastId}&&id_author=${userId}`, "GET")
       .then((response) => {
-        debugger;
         setFavoritosUsuario(response[0]);
         console.log(favoritosUsuario);
         console.log("ANALIZED USER ^");
@@ -35,7 +34,6 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
   }, [])
 
   function clickFavorites() {
-    debugger;
     if (!favoritosUsuario) {
       const newFavorite = {
         id_podcast: podcastId,
@@ -47,7 +45,6 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
           console.log(favoritosUsuario + " FAVORITOS USER")
           console.log("CREADO")
           setIconFavoriteOnClick(true);
-          debugger;
           setFavoritosUsuario(response);
         })
 /*       serverRequest(`data/favoritos/?id_author=${userId}`, "GET")

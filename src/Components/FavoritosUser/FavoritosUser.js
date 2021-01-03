@@ -3,17 +3,14 @@ import { PodcastCard } from "../PodcastCard/PodcastCard";
 import "./FavoritosUser.css";
 import { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
-import { DecodeToken } from "../../util/DecodeToken";
-import { getToken } from "../../util/LocalStorage.utils";
+
 
 export const FavoritosUser = (props) => {
   const userId = props.userId
   const [listaFavoritosUser, setListaFavoritosUser] = useState([]);
   /*  const [idAuthor, setIdAuthor] = useState({}); */
   const [listaPodcastsPrint, setListaPodcastsPrint] = useState([])
-  /*   const token = getToken();
-    const decodedToken = DecodeToken(token);
-    const userId = decodedToken.id; */
+
 
   useEffect(() => {
     if (userId) {
