@@ -2,7 +2,7 @@ import {getToken, hasSession} from "../util/LocalStorage.utils";
 
 export const serverRequest = (resources, method, body) => {
     //const token = getToken();
-    const token = hasSession() ? getToken() : ''
+    const token = hasSession() ? getToken() : '';
     const url = `http://localhost:3300/${resources}`;
     const JSONBody = JSON.stringify(body);
     const options = {

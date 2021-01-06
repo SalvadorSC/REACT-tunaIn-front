@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from '../ButtonFlex/ButtonFlex';
 import { serverRequest } from "../../helpers/urlBack";
-import {getUserId, hasSession} from "../../util/LocalStorage.utils";
+import {GetUserId, hasSession} from "../../util/LocalStorage.utils";
 
 export const PodcastCard = ({ title, categories, author, img, podcastId, description }) => {
   const [podcastWrapClass, setPodcastWrapClass] = useState();
@@ -14,7 +14,7 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
   const url = window.location.href;
   let userId;
   if(hasSession()){
-      userId = getUserId();
+      userId = GetUserId();
   }
   let history = useHistory();
   const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);

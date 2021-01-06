@@ -1,3 +1,7 @@
+import react from 'react';
+import {useHistory} from "react-router-dom";
+import {HOME, LOGIN} from "../routes/routes";
+
 export const setSession = (response) => {
 
      localStorage.setItem('tuna-in-session-data', JSON.stringify(response));
@@ -13,15 +17,21 @@ export const hasSession = () => {
 
 export const getToken = () => {
     const sessionData = getSession();
-    return sessionData;
+    return sessionData.token;
 };
 
-export const getUserId = () => {
+export const GetUserId = () => {
+    const history = useHistory();
     const sessionData = getSession();
-    const user = sessionData.user;
-    return user._id;
+    if (sessionData){
+    const user = sessionData.user._id;
+    return user;
+
+    }else {
+        history.push(LOGIN);
+    }
 }
 
 export const deleteToken = () => {
-    localStorage.removeItem('JWT_KEY');
+    localStorage.removeItem('tuna-in-session-data', "token");
 }

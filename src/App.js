@@ -22,7 +22,7 @@ export default function App() {
   const PrivateRoute = ({ component: Component, path }) => (
     <Route
       path={path}
-      render={() => getToken() ? <Component /> : <Redirect to={LOGIN} />}
+      render={() => getToken ? <Component /> : <Redirect to={LOGIN} />}
     />
   )
 
