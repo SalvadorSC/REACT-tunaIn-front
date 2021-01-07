@@ -1,143 +1,184 @@
 import React from "react";
 import './PodcastCard.css';
-import { Link, useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Button } from '../ButtonFlex/ButtonFlex';
-import { serverRequest } from "../../helpers/urlBack";
+import {Link, useHistory} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {Button} from '../ButtonFlex/ButtonFlex';
+import {serverRequest} from "../../helpers/urlBack";
 import {GetUserId, hasSession} from "../../util/LocalStorage.utils";
+import {CenterModal} from "../CenterModal/CenterModal";
+import {Modal} from "react-bootstrap";
 
-export const PodcastCard = ({ title, categories, author, img, podcastId, description }) => {
-  const [podcastWrapClass, setPodcastWrapClass] = useState();
-  const [podcastAuthor, setPodcastAuthor] = useState(undefined);
-  const [favoritosUsuario, setFavoritosUsuario] = useState(undefined);
-  const [podcastEliminado, setPodcastEliminado] = useState({});
-  const url = window.location.href;
-  let userId;
-  if(hasSession()){
-      userId = GetUserId();
-  }
-  let history = useHistory();
-  const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);
 
-  useEffect(() => {
-    serverRequest(`data/favoritos/?id_podcast=${podcastId}&&id_author=${userId}`, "GET")
-      .then((response) => {
-        setFavoritosUsuario(response[0]);
-        console.log(favoritosUsuario);
-        console.log("ANALIZED USER ^");
-        if (response.length > 0) {
-          console.log("PODCAST ID " + podcastId)
-          setIconFavoriteOnClick(true);
+export const PodcastCard = ({title, categories, author, img, podcastId, description}) => {
+    const [podcastWrapClass, setPodcastWrapClass] = useState();
+    const [podcastAuthor, setPodcastAuthor] = useState(undefined);
+    const [favoritosUsuario, setFavoritosUsuario] = useState(undefined);
+    const [podcastEliminado, setPodcastEliminado] = useState({});
+    const url = window.location.href;
+
+    let userId;
+    if (hasSession()) {
+        userId = GetUserId();
+    }
+    let history = useHistory();
+    const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);
+
+
+    useEffect(() => {
+        serverRequest(`data/favoritos/?id_podcast=${podcastId}&&id_author=${userId}`, "GET")
+            .then((response) => {
+                setFavoritosUsuario(response[0]);
+                console.log(favoritosUsuario);
+                console.log("ANALIZED USER ^");
+                if (response.length > 0) {
+                    console.log("PODCAST ID " + podcastId)
+                    setIconFavoriteOnClick(true);
+                }
+            })
+            .catch(console.log);
+    }, [])
+
+    function clickFavorites() {
+        if (!favoritosUsuario) {
+            const newFavorite = {
+                id_podcast: podcastId,
+                id_author: userId
+            };
+            console.log(newFavorite)
+            serverRequest("data/favoritos/", "POST", newFavorite)
+                .then((response) => {
+                    console.log(favoritosUsuario + " FAVORITOS USER")
+                    console.log("CREADO")
+                    setIconFavoriteOnClick(true);
+                    setFavoritosUsuario(response);
+                })
+            /*       serverRequest(`data/favoritos/?id_author=${userId}`, "GET")
+                    .then((response) => {
+                      setFavoritosUsuario(response)
+                    }) */
+        } else if (favoritosUsuario && favoritosUsuario._id) {
+            console.log("yes")
+            serverRequest(`data/favoritos/${favoritosUsuario._id}`, "DELETE")
+                .then(response => {
+                    console.log(response);
+                    setIconFavoriteOnClick(false);
+                    setFavoritosUsuario(undefined);
+                });
+            /*
+
+                  serverRequest(`data/favoritos/?id_podcast=${podcastId}`, "GET")
+                    .then(response => {
+                      debugger;
+                      serverRequest(`data/favoritos/${response[0]._id}`, "DELETE")
+                      .then(response => console.log(response));
+                    })
+                  console.log("yes")
+                  setIconFavoriteOnClick(false)
+                  serverRequest(`data/favoritos/?id_author=${userId}`, "GET")
+                    .then((response) => {
+                      setFavoritosUsuario(response)
+                    }) */
         }
-      })
-      .catch(console.log);
-  }, [])
-
-  function clickFavorites() {
-    if (!favoritosUsuario) {
-      const newFavorite = {
-        id_podcast: podcastId,
-        id_author: userId
-      };
-      console.log(newFavorite)
-      serverRequest("data/favoritos/", "POST", newFavorite)
-        .then((response) => {
-          console.log(favoritosUsuario + " FAVORITOS USER")
-          console.log("CREADO")
-          setIconFavoriteOnClick(true);
-          setFavoritosUsuario(response);
-        })
-/*       serverRequest(`data/favoritos/?id_author=${userId}`, "GET")
-        .then((response) => {
-          setFavoritosUsuario(response)
-        }) */
-    }
-    else if (favoritosUsuario && favoritosUsuario._id) {
-      console.log("yes")
-      serverRequest(`data/favoritos/${favoritosUsuario._id}`, "DELETE")
-        .then(response => {
-          console.log(response);
-          setIconFavoriteOnClick(false);
-          setFavoritosUsuario(undefined);
-        });
-/* 
-
-      serverRequest(`data/favoritos/?id_podcast=${podcastId}`, "GET")
-        .then(response => {
-          debugger;
-          serverRequest(`data/favoritos/${response[0]._id}`, "DELETE")
-          .then(response => console.log(response));
-        })
-      console.log("yes")
-      setIconFavoriteOnClick(false)
-      serverRequest(`data/favoritos/?id_author=${userId}`, "GET")
-        .then((response) => {
-          setFavoritosUsuario(response)
-        }) */
-    }
-  }
-
-
-  /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */
-  /* useEffect(() => {
-    serverRequest(`data/user/${author}`, "GET")
-        .then((response) => {
-          setPodcastAuthor(response)
-        })
-        .catch(console.log);
-  }, []) */
-
-  function handleClick() {
-    history.push(`/PodcastInformation/${podcastId}`);
-  }
-
-  useEffect(() => {
-    if (url === "http://localhost:3000/") {
-      setPodcastWrapClass("PodcastCard-wrap");
     }
 
-    else {
-      setPodcastWrapClass("PodcastCard-wrap-MyPodcasts");
+    function App(props) {
+        const [showModal, setShow] = useState(false);
+
+        const handleClose = () => setShow(false);
+        const handleShow = () => setShow(props);
+        return (
+            <>
+                <div
+                    className="d-flex align-items-center justify-content-center"
+                    style={{ height: "100vh" }}
+                >
+                    <Button variant="primary" onClick={handleShow}>
+                        Launch demo modal
+                    </Button>
+                </div>
+                <Modal show={showModal} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Modal heading</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={handleClose}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
+        );
     }
-  }, [url]);
 
-  return (
-    <div className={podcastWrapClass}>
-      <div style={{ backgroundImage: `url(${img})` }} className="PodcastCard-img">
-        {/* <img src={img} alt={title} /> */}
-      </div>
-      <div className="icon-wrapper">
 
-        {/*LINK ICON */}
-        <Button onClick=''
-          type='button'
-          buttonStyle='btn--icon--outline'
-        >
-          <i className="fas fa-ellipsis-h icon-mini" />
-        </Button>
+    /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */
 
-        {/* PLAY ICON */}
-        <Button onClick=''
-          type='button'
-          buttonStyle='btn--icon--outline'
-        ><i className='fas fa-play play-icon'></i>
-        </Button>
+    /* useEffect(() => {
+      serverRequest(`data/user/${author}`, "GET")
+          .then((response) => {
+            setPodcastAuthor(response)
+          })
+          .catch(console.log);
+    }, []) */
 
-        {/* FAVORITE ICON BUTTON  */}
-        <Button onClick={clickFavorites}
-          type='button' children={podcastId}
-          buttonStyle={iconFavoriteOnClick ? 'btn--iconClicked--outline' : 'btn--icon--outline'}
-        >
-          <i className="fas fa-heart" />
-        </Button>
-      </div>
-      <div className="PodcastCard-text">
-        <Link className="PostcastCard-title" onClick={handleClick}>{title}</Link>
-        <p className="PostcastCard-author">{author}</p>
-        <p className="PostcastCard-duration">{categories}</p>
-        <p className="PostcastCard-description">{description}</p>
-        <p className="PostcastCard-description">{podcastId}</p>
-      </div>
-    </div>
-  );
+    function handleClick() {
+        history.push(`/PodcastInformation/${podcastId}`);
+    }
+
+    useEffect(() => {
+        if (url === "http://localhost:3000/") {
+            setPodcastWrapClass("PodcastCard-wrap");
+        } else {
+            setPodcastWrapClass("PodcastCard-wrap-MyPodcasts");
+        }
+    }, [url]);
+
+    return (
+        <div className={podcastWrapClass}>
+            <div style={{backgroundImage: `url(${img})`}} className="PodcastCard-img">
+                {/* <img src={img} alt={title} /> */}
+            </div>
+            <div className="icon-wrapper">
+
+                {/*LINK ICON */}
+                <Button onClick=''
+                        type='button'
+                        buttonStyle='btn--icon--outline'
+                >
+                    <i className="fas fa-ellipsis-h icon-mini"/>
+                </Button>
+
+                {/* PLAY ICON */}
+                <Button onClick=''
+                        type='button'
+                        buttonStyle='btn--icon--outline'
+                ><i className='fas fa-play play-icon'></i>
+                </Button>
+                {/* Add to Playlist */}
+                <Button onClick={() => {App(true)}}
+                        type='button'
+                        buttonStyle='btn--icon--outline'
+                ><i className='fas fa-plus'></i>
+                </Button>
+                {/* FAVORITE ICON BUTTON  */}
+                <Button onClick={clickFavorites}
+                        type='button' children={podcastId}
+                        buttonStyle={iconFavoriteOnClick ? 'btn--iconClicked--outline' : 'btn--icon--outline'}
+                >
+                    <i className="fas fa-heart"/>
+                </Button>
+            </div>
+            <div className="PodcastCard-text">
+                <Link className="PostcastCard-title" onClick={handleClick}>{title}</Link>
+                <p className="PostcastCard-author">{author}</p>
+                <p className="PostcastCard-duration">{categories}</p>
+                <p className="PostcastCard-description">{description}</p>
+                <p className="PostcastCard-description">{podcastId}</p>
+            </div>
+        </div>
+    );
 };
