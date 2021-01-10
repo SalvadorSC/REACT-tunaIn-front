@@ -6,6 +6,7 @@ import {Button} from '../ButtonFlex/ButtonFlex';
 import {serverRequest} from "../../helpers/urlBack";
 import {GetUserId, hasSession} from "../../util/LocalStorage.utils";
 import Modal from "react-bootstrap/Modal";
+import {InputGroup} from "react-bootstrap";
 
 
 export const PodcastCard = ({title, categories, author, img, podcastId, description}) => {
@@ -17,7 +18,9 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
+    const [showModal2, setShowModal2] = useState(false);
+    const handleCloseModal2 = () => setShowModal2(false);
+    const handleShowModal2 = () => setShowModal2(true);
 
     let userId;
     if (hasSession()) {
@@ -40,6 +43,7 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
             })
             .catch(console.log);
     }, [])
+
 
     function clickFavorites() {
         if (!favoritosUsuario) {
@@ -159,10 +163,39 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                         <Modal.Title>Quieres crear una Playlist o seleccionar alguna creada?</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <button className="modalButton">Crear Nueva PlayList</button> <button className="modalButton">Seleccionar una nueva Playlist</button>
+                        <button onClick={handleShowModal2} className="modalButton">Crear Nueva PlayList</button>
+                        <button className="modalButton">Seleccionar una Playlist</button>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
+                            Cerrar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
+
+            {/* Second Modal */}
+
+            <>
+                <Modal
+                    show={showModal2}
+                    onHide={handleCloseModal2}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header className="modalHeader">
+                        <Modal.Title>Quieres </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <input action="/action_page.php"></input>
+                            <label htmlFor="fname">First name:</label>
+                            <input type="text" id="fname" name="fname"></input><br/>
+                                <label htmlFor="lname">Last name:</label>
+                                <input type="text" id="lname" name="lname"></input><br/>
+                                    <input type="submit" value="Submit"></input>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleCloseModal2}>
                             Cerrar
                         </Button>
                     </Modal.Footer>
