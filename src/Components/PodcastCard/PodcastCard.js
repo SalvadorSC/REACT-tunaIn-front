@@ -5,8 +5,7 @@ import {useEffect, useState} from "react";
 import {Button} from '../ButtonFlex/ButtonFlex';
 import {serverRequest} from "../../helpers/urlBack";
 import {GetUserId, hasSession} from "../../util/LocalStorage.utils";
-import {CenterModal} from "../CenterModal/CenterModal";
-import {Modal} from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
 
 
 export const PodcastCard = ({title, categories, author, img, podcastId, description}) => {
@@ -15,6 +14,10 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
     const [favoritosUsuario, setFavoritosUsuario] = useState(undefined);
     const [podcastEliminado, setPodcastEliminado] = useState({});
     const url = window.location.href;
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
 
     let userId;
     if (hasSession()) {
@@ -81,40 +84,6 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
         }
     }
 
-    function App(props) {
-        const [showModal, setShow] = useState(false);
-
-        const handleClose = () => setShow(false);
-        const handleShow = () => setShow(props);
-        return (
-            <>
-                <div
-                    className="d-flex align-items-center justify-content-center"
-                    style={{ height: "100vh" }}
-                >
-                    <Button variant="primary" onClick={handleShow}>
-                        Launch demo modal
-                    </Button>
-                </div>
-                <Modal show={showModal} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </>
-        );
-    }
-
-
     /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */
 
     /* useEffect(() => {
@@ -159,7 +128,7 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                 ><i className='fas fa-play play-icon'></i>
                 </Button>
                 {/* Add to Playlist */}
-                <Button onClick={() => {App(true)}}
+                <Button onClick={handleShow}
                         type='button'
                         buttonStyle='btn--icon--outline'
                 ><i className='fas fa-plus'></i>
@@ -179,6 +148,26 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                 <p className="PostcastCard-description">{description}</p>
                 <p className="PostcastCard-description">{podcastId}</p>
             </div>
+            <>
+                <Modal
+                    show={show}
+                    onHide={handleClose}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header className="modalHeader">
+                        <Modal.Title>Quieres crear una Playlist o seleccionar alguna creada?</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <button className="modalButton">Crear Nueva PlayList</button> <button className="modalButton">Seleccionar una nueva Playlist</button>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Cerrar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
         </div>
     );
 };
