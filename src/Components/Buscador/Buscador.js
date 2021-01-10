@@ -1,64 +1,106 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { serverRequest } from '../../helpers/urlBack';
+import { useHistory } from 'react-router-dom';
 import './Buscador.css';
+import { useParams } from "react-router-dom";
 
 export const Buscador = () => {
+  const [contenedorClass, setContenedorClass] = useState();
   const [buscadorClass, setBuscadorClass] = useState();
-  const url = window.location.href;
+  const [display, setDisplay] = useState(false);
+  const url = window.location.href;  
+  const [listaBusquedas, setListaBusquedas] = useState([]);
+  const history = useHistory();
+  const { urlSearch } = useParams();
+  const [search, setSearch] = useState(urlSearch)
+
 
   useEffect(() => {
     if (url === "http://localhost:3000/") {
       setBuscadorClass("buscador-home");
+      setContenedorClass("buscadorStyle");
     }
     else {
       setBuscadorClass("buscador");
+      setContenedorClass("buscadorPage");
     }
   }, [url]);
-  const [updateRender, setUpdateRender] = useState(false);
-  const [search, setSearch] = useState("Buscar podcasts, radios y mucho más")
-  const [listaBusquedas, setListaBusquedas] = useState([]);
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  }
+
   useEffect(() => {
+    if (url === "http://localhost:3000/"){
     serverRequest(`user/${search}`, 'GET')
       .then((response) => {
         setListaBusquedas(response);
       })
-      
-      //En el then redirigir a página "resultados" donde se mostrarán los resultados de la búsqueda
       .catch(response => console.log(response))
-    console.log('lista busquedas changed ');
+    }else{
+      history.push(`/search/${search}`);
+    }
   }, [search]);
+
+  const setUser = user => {
+    setSearch(user);
+    history.push(`/search/${user}`);
+  }
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  }
+  
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      history.push(`/search/${search}`);
+    };
+  
+  let menuRef = useRef(null);
+  const itemEls = useRef(new Array())
+  useEffect(() =>{
+    document.addEventListener("mousedown", (event) => {
+    if(menuRef && menuRef.current) { 
+      if(!menuRef.current.contains(event.target)){
+      setDisplay(false);
+      }
+    }
+    });
+  });
+
   const updateSearch = (e) => {
   
   }
-
+ const modDisplay = () => {
+  if (url === "http://localhost:3000/") {
+    setDisplay(!display);
+  }
+ }
 
   return (
    
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className={buscadorClass}>
-        <div className={"buscadorStyle"}>
-          <input placeholder="Buscar podcasts, radios y mucho más" value={search} onChange={event => setSearch(event.target.value)} className='buscador-input' />
+        <div className={contenedorClass}>
+          <input 
+          placeholder="Buscar podcasts, radios y mucho más" 
+          value={search} 
+          onChange={event => setSearch(event.target.value)} 
+          className='buscador-input' 
+          onClick={()=>modDisplay()}
+          />
           <i className="fas fa-search fa-2x lupita" />
         </div>
       </div>
-     
-      <div className={"resultadosbusqueda"}>
-       
+     {display && search !== "" && (
+      <span  ref={menuRef} className={"resultadosbusqueda"}>
         {listaBusquedas.map(v =>{
             return( 
-            <div class="autoComplete" onClick={() => setSearch(v.nombre)}>
+            <div  onClick={() => setUser(v.nombre)}class="autoComplete">
               <span>
               {v.nombre}
               </span>
             </div>
           );
         })}
-       </div>
-       
-   
+       </span>
+    )}
     </form>
+    
     )
   };
