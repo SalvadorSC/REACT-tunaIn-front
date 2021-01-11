@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
-import {getToken, GetUserId, setSession} from "../../util/LocalStorage.utils";
+import {getToken, getUserId, setSession} from "../../util/LocalStorage.utils";
 import { Avisos } from "../../Components/Avisos/Avisos";
 import {HOME, PROFILE} from "../../routes/routes";
 import { existNumber, existUppercase, validateMaxLength, validateMinLength } from "../../util/FormValidator";
@@ -10,7 +10,7 @@ import "./RegisterForm.css";
 import {Button} from '../../Components/ButtonFlex/ButtonFlex';
 export const RegisterForm = () => {
   const history = useHistory();
-  if (GetUserId()){
+  if (getUserId()){
     history.push(PROFILE);
   }
   // Contiene los valores del formulario:

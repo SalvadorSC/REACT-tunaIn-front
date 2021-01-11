@@ -3,12 +3,12 @@ import { PodcastCard } from "../PodcastCard/PodcastCard";
 import "./PodcastsUser.css";
 import { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
-import {GetUserId, setSession} from "../../util/LocalStorage.utils";
+import {getUserId, setSession} from "../../util/LocalStorage.utils";
 
 export const PodcastsUser = () => {
   const [listaPodcastsUser, setListaPodcastsUser] = useState([]);
   const url = window.location.href;
-  const userId = GetUserId();
+  const userId = getUserId();
   useEffect(() => {
 
 

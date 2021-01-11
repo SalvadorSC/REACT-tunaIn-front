@@ -1,13 +1,18 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import {serverRequest} from "../../helpers/urlBack";
-import {getToken, GetUserId, setSession} from "../../util/LocalStorage.utils";
+import {getToken, getUserId, hasSession, setSession} from "../../util/LocalStorage.utils";
 import {Avisos} from "../../Components/Avisos/Avisos";
 import {PROFILE, LOGIN} from "../../routes/routes";
 import {Button} from '../../Components/ButtonFlex/ButtonFlex';
 import "./LogIn.css";
 export const LogIn = () => {
     const history = useHistory();
+
+    if(hasSession()){
+        history.push(PROFILE);
+    }
+
     // Contiene los valores del formulario:
     const [loginUser, setLoginUser] = useState({});
     const [loginFail, setLoginFail] = useState({message: null, color: null});

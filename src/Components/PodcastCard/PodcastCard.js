@@ -4,9 +4,9 @@ import {Link, useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Button} from '../ButtonFlex/ButtonFlex';
 import {serverRequest} from "../../helpers/urlBack";
-import {GetUserId, hasSession} from "../../util/LocalStorage.utils";
+import {getUserId, hasSession} from "../../util/LocalStorage.utils";
 import Modal from "react-bootstrap/Modal";
-import {InputGroup} from "react-bootstrap";
+
 
 
 export const PodcastCard = ({title, categories, author, img, podcastId, description}) => {
@@ -21,10 +21,11 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
     const [showModal2, setShowModal2] = useState(false);
     const handleCloseModal2 = () => setShowModal2(false);
     const handleShowModal2 = () => setShowModal2(true);
+    const [data, setData] = useState(undefined);
 
     let userId;
     if (hasSession()) {
-        userId = GetUserId();
+        userId = getUserId();
     }
     let history = useHistory();
     const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);
@@ -184,15 +185,11 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                     keyboard={false}
                 >
                     <Modal.Header className="modalHeader">
-                        <Modal.Title>Quieres </Modal.Title>
+                        <Modal.Title>Nueva PlayList </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <input action="/action_page.php"></input>
-                            <label htmlFor="fname">First name:</label>
-                            <input type="text" id="fname" name="fname"></input><br/>
-                                <label htmlFor="lname">Last name:</label>
-                                <input type="text" id="lname" name="lname"></input><br/>
-                                    <input type="submit" value="Submit"></input>
+                        <input placeholder="Introduce el nombre"></input>
+                        <button className="modalButton"  onClick={setData} type="submit" value="Submit">Enviar</button>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleCloseModal2}>

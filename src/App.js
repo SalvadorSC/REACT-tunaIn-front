@@ -14,17 +14,23 @@ import { PodcastInformation } from "./pages/podcastInformation/PodcastInformatio
 import { EditPodcastInformation } from "./pages/editPodcastInformation/EditPodcastInformation";
 import { PodcastList } from "./pages/podcastList/PodcastList";
 import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST } from "./routes/routes";
-import { getToken } from "./util/LocalStorage.utils";
+import {getToken, hasSession} from "./util/LocalStorage.utils";
 import { Footer } from "./Components/Footer/Footer";
 
 export default function App() {
 
-  const PrivateRoute = ({ component: Component, path }) => (
-    <Route
-      path={path}
-      render={() => getToken ? <Component /> : <Redirect to={LOGIN} />}
-    />
-  )
+  const PrivateRoute = ({ component: Component, path }) => {
+   if(!hasSession()){
+     return (
+         <Redirect to={LOGIN} />
+     )
+   }
+
+    return (<Route
+        path={path}
+        render={() => <Component />  }
+    />)
+  }
 
   const [containerClass, setContainerClass] = useState();
   const [mainClass, setMainClass] = useState();

@@ -2,14 +2,14 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
-import {GetUserId} from "../../util/LocalStorage.utils";
+import {getUserId} from "../../util/LocalStorage.utils";
 import "./PodcastInformation.css";
 
 export const PodcastInformation = () => {
   const [user, setUser] = useState({});
   const [podcast, setPodcast] = useState({});
   const history = useHistory();
-  const userId = GetUserId();
+  const userId = getUserId();
 
   function handleClick() {
     history.push(`/editPodcastInformation/${podcastId}`);

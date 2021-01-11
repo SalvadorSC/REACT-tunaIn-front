@@ -1,37 +1,33 @@
-import react from 'react';
-import {useHistory} from "react-router-dom";
-import {HOME, LOGIN} from "../routes/routes";
 
 export const setSession = (response) => {
 
      localStorage.setItem('tuna-in-session-data', JSON.stringify(response));
 };
 
-const getSession = () => {
+export const getSession = () => {
     return JSON.parse(localStorage.getItem('tuna-in-session-data'));
 }
 
 export const hasSession = () => {
-    return localStorage.getItem('tuna-in-session-data') !== null;
+    return getSession() !== null;
 }
 
 export const getToken = () => {
     const sessionData = getSession();
+    if(!sessionData){
+        return undefined;
+    }
     return sessionData.token;
 };
 
-export const GetUserId = () => {
-    const history = useHistory();
-    const sessionData = getSession();
-    if (sessionData){
-    const user = sessionData.user._id;
-    return user;
-
-    }else {
-        history.push(LOGIN);
+export const getUserId = () => {
+    if(hasSession()){
+        return getSession().user._id;
+    }else{
+        return undefined;
     }
 }
 
 export const deleteToken = () => {
-    localStorage.removeItem('tuna-in-session-data', "token");
+    localStorage.removeItem('tuna-in-session-data');
 }
