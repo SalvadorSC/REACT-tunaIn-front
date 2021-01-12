@@ -6,7 +6,7 @@ import {Button} from '../ButtonFlex/ButtonFlex';
 import {serverRequest} from "../../helpers/urlBack";
 import {getUserId, hasSession} from "../../util/LocalStorage.utils";
 import Modal from "react-bootstrap/Modal";
-
+import {playlists} from "../../util/dummyDataPlaylist";
 
 
 export const PodcastCard = ({title, categories, author, img, podcastId, description}) => {
@@ -89,6 +89,11 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
         }
     }
 
+    const playlistHandler = (e) => {
+        e.preventDefault();
+        setData(e.target.name.value)
+        console.log(data);
+    }
     /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */
 
     /* useEffect(() => {
@@ -188,8 +193,10 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                         <Modal.Title>Nueva PlayList </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <input placeholder="Introduce el nombre"></input>
-                        <button className="modalButton"  onClick={setData} type="submit" value="Submit">Enviar</button>
+                        <form onSubmit={playlistHandler}>
+                        <input type="text" name="name" placeholder="Introduce el nombre"></input>
+                        <button className="modalButton" type="submit">Enviar</button>
+                            </form>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleCloseModal2}>
