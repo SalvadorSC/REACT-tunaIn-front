@@ -91,7 +91,7 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
 
     const playlistHandler = (e) => {
         e.preventDefault();
-        setData(e.target.name.value)
+        setData(e.target.value)
         console.log(data);
     }
     /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */
@@ -193,10 +193,8 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                         <Modal.Title>Nueva PlayList </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form onSubmit={playlistHandler}>
-                        <input type="text" name="name" placeholder="Introduce el nombre"></input>
+                        <input type="text" value={data} onChange={playlistHandler} placeholder="Introduce el nombre"></input>
                         <button className="modalButton" type="submit">Enviar</button>
-                            </form>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleCloseModal2}>
