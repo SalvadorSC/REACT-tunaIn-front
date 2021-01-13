@@ -19,9 +19,18 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [showModal2, setShowModal2] = useState(false);
-    const handleCloseModal2 = () => setShowModal2(false);
+    const handleCloseModal2 = () => {
+        setShowModal2(false);
+        setData({
+            playlist: "",
+            podcast: [],
+        });
+    }
     const handleShowModal2 = () => setShowModal2(true);
-    const [data, setData] = useState(undefined);
+    const [data, setData] = useState({
+        playlist: "",
+        podcast: [],
+    });
 
     let userId;
     if (hasSession()) {
@@ -89,11 +98,12 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
         }
     }
 
-    const playlistHandler = (e) => {
+    const playlistHandler = e => {
         e.preventDefault();
-        setData(e.target.value)
+        setData(prevData => ({ ...prevData, playlist: e.target.value }));
         console.log(data);
     }
+
     /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */
 
     /* useEffect(() => {
@@ -193,8 +203,8 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                         <Modal.Title>Nueva PlayList </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <input type="text" value={data} onChange={playlistHandler} placeholder="Introduce el nombre"></input>
-                        <button className="modalButton" type="submit">Enviar</button>
+                        <input type="text" value={data.playlist} onChange={playlistHandler} placeholder="Introduce el nombre"></input>
+                        <button onClick={handleCloseModal2} className="modalButton" type="submit">Enviar</button>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleCloseModal2}>
@@ -204,5 +214,8 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                 </Modal>
             </>
         </div>
+
     );
+
 };
+
