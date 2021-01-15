@@ -6,7 +6,7 @@ import {Button} from '../ButtonFlex/ButtonFlex';
 import {serverRequest} from "../../helpers/urlBack";
 import {getUserId, hasSession} from "../../util/LocalStorage.utils";
 import Modal from "react-bootstrap/Modal";
-import {playlists} from "../../util/dummyDataPlaylist";
+
 
 
 export const PodcastCard = ({title, categories, author, img, podcastId, description}) => {
@@ -23,13 +23,13 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
         setShowModal2(false);
         setData({
             playlist: "",
-            podcast: [],
+            podcast: "",
         });
     }
     const handleShowModal2 = () => setShowModal2(true);
     const [data, setData] = useState({
         playlist: "",
-        podcast: [],
+        podcast: "",
     });
 
     let userId;
@@ -100,8 +100,9 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
 
     const playlistHandler = e => {
         e.preventDefault();
-        setData(prevData => ({ ...prevData, playlist: e.target.value }));
-        console.log(data);
+        setData( {playlist: e.target.value, podcast: podcastId });
+
+
     }
 
     /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */
