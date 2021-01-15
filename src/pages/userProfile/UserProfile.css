@@ -66,11 +66,24 @@ hr {
 }
 
 .selected {
+  background-color: #97bd74;
+  margin: 5px;
+  padding: 10px;
   color: black;
   cursor: pointer;
+  -moz-box-shadow: 0px -10px 5px #888;
+  -webkit-box-shadow: 0px -10px 5px #888;
+  box-shadow: 0px -10px 5px #888;
+  z-index: 0;
 }
 
 .notSelected {
+  background-color: #c8e1a3;
   color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
   cursor: pointer;
+  -moz-box-shadow: 0px -10px 5px #888;
+  -webkit-box-shadow: 0px -10px 5px #888;
+  box-shadow: 0px -10px 5px #888;
+  z-index: 1;
 }

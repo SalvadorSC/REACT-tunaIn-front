@@ -2,14 +2,14 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
-import { DecodeToken } from "../../util/DecodeToken";
-import { getToken } from "../../util/LocalStorage.utils";
+import {getUserId} from "../../util/LocalStorage.utils";
 import "./PodcastInformation.css";
 
 export const PodcastInformation = () => {
   const [user, setUser] = useState({});
   const [podcast, setPodcast] = useState({});
   let history = useHistory();
+  const userId = getUserId();
 
   function handleClick() {
     history.push(`/editPodcastInformation/${podcastId}`);
@@ -27,13 +27,9 @@ export const PodcastInformation = () => {
 
 
   useEffect(() => {
-    const token = getToken();
-    const decodedToken = DecodeToken(token);
-    const userId = decodedToken.id;
-
     serverRequest(`data/user/${userId}`, "GET")
       .then((response) => {
-        setUser(response);
+
       })
       .catch(console.log);
   }, []);

@@ -3,18 +3,20 @@ import { PodcastCard } from "../PodcastCard/PodcastCard";
 import "./PodcastsUser.css";
 import { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
-import { DecodeToken } from "../../util/DecodeToken";
-import { getToken } from "../../util/LocalStorage.utils";
+import {getUserId, setSession} from "../../util/LocalStorage.utils";
 
 export const PodcastsUser = () => {
   const [listaPodcastsUser, setListaPodcastsUser] = useState([]);
   const url = window.location.href;
+  const userId = getUserId();
   useEffect(() => {
+
     const token = getToken();
     const decodedToken = DecodeToken(token);
     const userId = decodedToken.id;
     console.log("->");
     console.log(`data/podcast/?id_author=${userId}`);
+
     if (url === "http://localhost:3000/myPodcasts" || url === "http://localhost:3000/profile") {
       serverRequest(`data/podcast/?id_author=${userId}`, "GET")
         .then((response) => {
