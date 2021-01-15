@@ -3,18 +3,6 @@ import { serverRequest } from '../../helpers/urlBack';
 import './Buscador.css';
 
 export const Buscador = () => {
-  const [search, setSearch] = useState({})
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  }
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    serverRequest(`data/podcast/${search}`, 'GET')
-      .then(response => console.log(response))
-      //En el then redirigir a página "resultados" donde se mostrarán los resultados de la búsqueda
-      .catch(response => console.log(response))
-  }
-
   const [buscadorClass, setBuscadorClass] = useState();
   const url = window.location.href;
 
@@ -26,14 +14,51 @@ export const Buscador = () => {
       setBuscadorClass("buscador");
     }
   }, [url]);
+  const [updateRender, setUpdateRender] = useState(false);
+  const [search, setSearch] = useState("Buscar podcasts, radios y mucho más")
+  const [listaBusquedas, setListaBusquedas] = useState([]);
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  }
+  useEffect(() => {
+    serverRequest(`user/${search}`, 'GET')
+      .then((response) => {
+        setListaBusquedas(response);
+      })
+      
+      //En el then redirigir a página "resultados" donde se mostrarán los resultados de la búsqueda
+      .catch(response => console.log(response))
+    console.log('lista busquedas changed ');
+  }, [search]);
+  const updateSearch = (e) => {
+  
+  }
+
+
   return (
-
-    <form onSubmit={handleSubmit}>
+   
+    <form>
       <div className={buscadorClass}>
-        <input placeholder="Buscar podcasts, radios y mucho más" onChange={handleSearch} className='buscador-input' />
-        <i className="fas fa-search fa-2x" />
+        <div className={"buscadorStyle"}>
+          <input placeholder="Buscar podcasts, radios y mucho más" value={search} onChange={event => setSearch(event.target.value)} className='buscador-input' />
+          <i className="fas fa-search fa-2x lupita" />
+        </div>
       </div>
+     
+      <div className={"resultadosbusqueda"}>
+       
+        {listaBusquedas.map(v =>{
+            return( 
+            <div class="autoComplete" onClick={() => setSearch(v.nombre)}>
+              <span>
+              {v.nombre}
+              </span>
+            </div>
+          );
+        })}
+       </div>
+       
+   
     </form>
-
-  )
-}
+    )
+  };

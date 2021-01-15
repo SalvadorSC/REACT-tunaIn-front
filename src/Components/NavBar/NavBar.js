@@ -5,7 +5,7 @@ import "./NavBar.css";
 import { useState, useEffect } from "react";
 
 
-export function NavBar({ setContainerClass }) {
+export function NavBar({ setContainerClass, setMainClass }) {
   const [navbarClass, setNavbarClass] = useState('');
   // const url = window.location.href;
   const location = useLocation();
@@ -14,10 +14,13 @@ export function NavBar({ setContainerClass }) {
     if (location.pathname === "/") {
       setNavbarClass("navbar-home");
       setContainerClass("container-home");
+      setMainClass("main-home");
+
     }
     else {
       setNavbarClass("navbar");
       setContainerClass("container");
+      setMainClass("main");
     }
   }, [location]);
 

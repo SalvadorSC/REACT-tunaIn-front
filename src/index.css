@@ -1,5 +1,4 @@
 body {
-  background-color: #fbfef9;
   font-family: "Poppins", Arial, sans-serif;
   font-size: calc(10px + 2vmin);
   color: #333;
@@ -12,12 +11,8 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
@@ -61,7 +56,7 @@ button {
 }
 
 button:hover {
-  background-color: rgb(255, 204, 203);
+  background-color: #97BD74;
   color: rgb(255, 117, 112);
   /* color: white; */
 }
@@ -110,6 +105,6 @@ label {
   vertical-align: middle;
 }
 
-input[type="radio"]:checked + label span {
+input[type="radio"]:checked+label span {
   background: #38454e -57px top no-repeat;
 }

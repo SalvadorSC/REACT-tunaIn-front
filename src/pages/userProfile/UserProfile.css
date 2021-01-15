@@ -8,16 +8,16 @@
 }
 
 .UserCard-wrap {
-  border-radius: 15px;
-  display: block;
   position: relative;
   height: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
 .UserInfo {
   width: 55%;
+  margin-right: 25%;
 }
 
 .row {
@@ -37,10 +37,9 @@
 .profilePicture {
   object-fit: cover;
   border-radius: 10px;
-  margin-top: 50px;
-  margin-right: 50px;
-  height: 220px;
-  width: 220px;
+  height: 150px;
+  margin-top:50px;
+  width: 150px;
 }
 
 .UserSectionLine {
@@ -55,9 +54,11 @@ hr {
 }
 
 .vr {
-  width: 1px;
-  height: 20px;
-  display: inline-block;
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
+  height: 75%;
+  position: absolute;
+  left: 80%;
+  top: 24%;
 }
 
 .userInformationDisplayed {

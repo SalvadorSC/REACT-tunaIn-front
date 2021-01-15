@@ -27,12 +27,12 @@ export default function App() {
   )
 
   const [containerClass, setContainerClass] = useState();
-
+  const [mainClass, setMainClass] = useState();
   return (
     <Router>
-      <NavBar setContainerClass={setContainerClass} />
+      <NavBar setContainerClass={setContainerClass} setMainClass={setMainClass} />
       <div className={containerClass}>
-        <div className="main">
+        <div className={mainClass}>
           <Switch>
             {/* <Route path="/about" component={About} /> */}
             <Route path="/uploadpodcast" component={UploadPodcast} />
@@ -51,7 +51,7 @@ export default function App() {
           </Switch>
         </div>
       </div>
-        <Footer />
+      <Footer />
     </Router>
   );
 }
