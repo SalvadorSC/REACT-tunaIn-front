@@ -1,3 +1,5 @@
-.UserProfile-wrap {
-  padding-top: 50px;
+.podcastInformationDisplayed{
+  display:inline-block;
+  color: rgba(0, 0, 0, 0.5);
+  
 }

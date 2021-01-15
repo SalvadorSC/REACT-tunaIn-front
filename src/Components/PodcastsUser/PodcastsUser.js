@@ -13,8 +13,8 @@ export const PodcastsUser = () => {
     const token = getToken();
     const decodedToken = DecodeToken(token);
     const userId = decodedToken.id;
-
-
+    console.log("->");
+    console.log(`data/podcast/?id_author=${userId}`);
     if (url === "http://localhost:3000/myPodcasts" || url === "http://localhost:3000/profile") {
       serverRequest(`data/podcast/?id_author=${userId}`, "GET")
         .then((response) => {
