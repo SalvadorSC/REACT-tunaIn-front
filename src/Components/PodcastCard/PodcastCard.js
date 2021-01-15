@@ -101,8 +101,7 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
     const playlistHandler = e => {
         e.preventDefault();
         setData( {playlist: e.target.value, podcast: podcastId });
-
-
+        console.log(data);
     }
 
     /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */
