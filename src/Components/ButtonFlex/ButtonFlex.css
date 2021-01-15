@@ -1,0 +1,30 @@
+/* STYLES BUTTON */
+
+/*DEFAUT STYLE BUTTON */
+.btn--primary--solid{
+  color: #97BD74;
+  background-color: honeydew;
+}
+ /* Small Icon buttons */
+.btn--icon--outline{
+  font-size: 20px;
+  color: transparent;
+  background-color: transparent;
+  outline: none;  
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #97BD74;
+}
+.btn--iconClicked--outline{
+  font-size: 20px;
+  color: #97BD74;
+  outline: none;
+}
+
+
+/*SIZES BUTTON */
+/* DEFAULT SIZES BUTTON */
+
+
+
+
+/* EFFECTS BUTTON*/
