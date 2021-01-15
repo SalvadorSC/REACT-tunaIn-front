@@ -6,7 +6,7 @@ import {Button} from '../ButtonFlex/ButtonFlex';
 import {serverRequest} from "../../helpers/urlBack";
 import {getUserId, hasSession} from "../../util/LocalStorage.utils";
 import Modal from "react-bootstrap/Modal";
-
+import { getToken } from "../../util/LocalStorage.utils";
 
 
 export const PodcastCard = ({title, categories, author, img, podcastId, description}) => {
@@ -24,6 +24,64 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
         setData({
             playlist: "",
             podcast: "",
+
+  const token = getToken();
+  let history = useHistory();
+  const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);
+
+  useEffect(() => {
+    serverRequest(`data/favoritos/?id_podcast=${podcastId}&&id_author=${userId}`, "GET")
+      .then((response) => {
+
+ 
+        setFavoritosUsuario(response[0]);
+        console.log(favoritosUsuario);
+        console.log("ANALIZED USER ^");
+        if (response.length > 0) {
+          console.log("PODCAST ID " + podcastId)
+        setFavoritosUsuario(response[0]);
+        /* console.log(favoritosUsuario);
+        console.log("ANALIZED USER ^"); */
+        if (response.length > 0) {
+          /* console.log("PODCAST ID " + podcastId) */
+
+          setIconFavoriteOnClick(true);
+        }
+      })
+      .catch(console.log);
+  }, [])
+
+  function clickFavorites() {
+
+
+
+    if (!favoritosUsuario) {
+      const newFavorite = {
+        id_podcast: podcastId,
+        id_author: userId
+      };
+      console.log(newFavorite)
+      serverRequest("data/favoritos/", "POST", newFavorite)
+        .then((response) => {
+          console.log(favoritosUsuario + " FAVORITOS USER")
+          console.log("CREADO")
+          setIconFavoriteOnClick(true);
+
+          setFavoritosUsuario(response);
+        })
+/*       serverRequest(`data/favoritos/?id_author=${userId}`, "GET")
+        .then((response) => {
+          setFavoritosUsuario(response)
+        }) */
+    }
+    else if (favoritosUsuario && favoritosUsuario._id) {
+      console.log("yes")
+      serverRequest(`data/favoritos/${favoritosUsuario._id}`, "DELETE")
+        .then(response => {
+          console.log(response);
+          setIconFavoriteOnClick(false);
+          setFavoritosUsuario(undefined);
+
         });
     }
     const handleShowModal2 = () => setShowModal2(true);

@@ -1,0 +1,76 @@
+.main {
+  width: 100%;
+}
+
+.UserProfile-wrap {
+  background-color: white;
+  min-width: 150px;
+}
+
+.UserCard-wrap {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.UserInfo {
+  width: 55%;
+  margin-right: 25%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 10px;
+}
+
+.UserSectionsColumn1 {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+}
+
+.profilePicture {
+  object-fit: cover;
+  border-radius: 10px;
+  height: 150px;
+  width: 150px;
+  margin-top:50px;
+}
+
+.UserSectionLine {
+  display: flex;
+  justify-content: space-between;
+}
+
+hr {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vr {
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
+  height: 70%;
+  position: absolute;
+  left: 80%;
+  top: 24%;
+}
+
+.userInformationDisplayed {
+  color: rgba(0, 0, 0, 0.5)
+}
+
+.selected {
+  color: black;
+  cursor: pointer;
+}
+
+.notSelected {
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}

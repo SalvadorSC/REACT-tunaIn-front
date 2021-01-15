@@ -52,7 +52,7 @@ export const PodcastInformation = () => {
         <br />
         <br />
         <div className="Pod-wrap">
-            <img className="Pod-wrap__image" src="https://images.unsplash.com/photo-1604160450925-0eecf551fa86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2551&q=80"></img>
+            <img className="Pod-wrap__image" src="https://images.unsplash.com/photo-1604160450925-0eecf551fa86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2551&q=80"/>
             <div className="Pod-wrap__text">
                 <h1>{podcast.title}</h1>
                 <p>{podcast.categories}</p>
