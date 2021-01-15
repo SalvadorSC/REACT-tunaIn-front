@@ -33,3 +33,6 @@
 podCasts:hover {
     cursor: pointer;
 }
+.usersBlock a{
+    color:black;
+}

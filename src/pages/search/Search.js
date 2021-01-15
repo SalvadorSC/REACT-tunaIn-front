@@ -24,7 +24,9 @@ export const Search = () => {
     const [visibleItems, setVisibleItems] = useState(3);
     const url = window.location.href;  
     const listPodcast = [];
-    
+    const arrayHowManyToShow = new Array(10);
+    for (let i=0; i<arrayHowManyToShow.length; ++i) arrayHowManyToShow[i] = 3;
+    const [arrayTest, setArrayTest] = useState([3]);
     const { urlSearch } = useParams();
     const search = urlSearch;
     //poner una const de array
@@ -45,14 +47,23 @@ export const Search = () => {
         serverRequest(`data/podcast/?id_author=${v._id}`, 'GET')
         .then((response) => {
            //listaPodcastAuthor.push(response);
+
            setListaPodcastAuthor(state => [...state, response])
+         
         })
         .catch(response => console.log(response))
        })
   }, [listaBusquedas]);
 
-  const showMoreItems = () => {
-    setVisibleItems((prevValue) => prevValue + 3)
+  const showMoreItems = (num) => {
+    let oldItem = arrayHowManyToShow[num];
+    arrayHowManyToShow[num] = oldItem + 3;
+    setArrayTest(elements => [...elements, arrayHowManyToShow]);
+    
+    console.log("array entero");
+    console.log(arrayTest);
+    console.log("elemeto pos ");
+    console.log(arrayTest[1]);
   };
     return (
         <>
@@ -68,23 +79,19 @@ export const Search = () => {
             {listaBusquedas.map(v =>{
                 return( 
                 <div class="usersBlock">
-                 
-                    
-                    {console.log("listaBusquedas")}
-                    {console.log(listaBusquedas)}
-                <img width="70px" height="70px" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"></img>
-                <span>
-                {v.nombre}
-                {setUserPodCast}
-                </span>
+                <a href = "/#">   
+                    <img width="70px" height="70px" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"></img>
+                    <span>
+                        {v.nombre}
+                        {setUserPodCast}
+                    </span>
+                </a>
                 </div>
             );
             })}
         </div>
 
         <div className="podCastBlock">
-             {console.log("condicional para entrar")}
-            {console.log(listaBusquedas)}
             {listaBusquedas !== undefined && listaBusquedas.length > 0 &&(
             <div>
             {listaPodcastAuthor.map((v, i) =>{
@@ -93,10 +100,15 @@ export const Search = () => {
                     {listaBusquedas[i] !== undefined && listaPodcastAuthor[i].length > 0 &&(
                     <div>
                         <h3>PodCasts by {listaBusquedas[i].nombre}</h3>  
-                       
-                        {listaPodcastAuthor[i].slice(0,visibleItems).map((v, i) =>{
+                        {console.log("ListaPodCastAuthor")}
+                        {console.log(listaPodcastAuthor)}
+                        {console.log("listaBusquedas")}
+                        {console.log(listaBusquedas)}
+                        {console.log("-------")}
+                        {console.log(arrayTest[i])}
+                        {listaPodcastAuthor[i].slice(0,3).map((v, i) =>{
                             return(
-                        <a href = "/PodcastInformation/5fcfcda1828f663294db76f8">   
+                        <a href = {"/PodcastInformation/" + listaPodcastAuthor._id}>   
                             <div class="podCasts">
                                 <div>
                                     <img width="70px" height="70px" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"></img>
@@ -113,7 +125,9 @@ export const Search = () => {
                         </a>    
                                 )
                         })/*map*/}
-                        <button class="showMore" onClick={showMoreItems}>Ver más<ArrowDropDownIcon /></button>
+                        {listaPodcastAuthor[i].length > 3 && visibleItems <= listaPodcastAuthor[i].length-1 &&(
+                        <button id={"showmore" + [i]} class="showMore"onClick={() => showMoreItems(i)}>Ver más<ArrowDropDownIcon /></button>
+                        )}
                     </div>
                     )}
                         
