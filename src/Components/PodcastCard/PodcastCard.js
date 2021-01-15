@@ -22,12 +22,19 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
   useEffect(() => {
     serverRequest(`data/favoritos/?id_podcast=${podcastId}&&id_author=${userId}`, "GET")
       .then((response) => {
-        debugger;
+
+ 
         setFavoritosUsuario(response[0]);
         console.log(favoritosUsuario);
         console.log("ANALIZED USER ^");
         if (response.length > 0) {
           console.log("PODCAST ID " + podcastId)
+        setFavoritosUsuario(response[0]);
+        /* console.log(favoritosUsuario);
+        console.log("ANALIZED USER ^"); */
+        if (response.length > 0) {
+          /* console.log("PODCAST ID " + podcastId) */
+
           setIconFavoriteOnClick(true);
         }
       })
@@ -35,7 +42,9 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
   }, [])
 
   function clickFavorites() {
-    debugger;
+
+
+
     if (!favoritosUsuario) {
       const newFavorite = {
         id_podcast: podcastId,
@@ -47,7 +56,7 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
           console.log(favoritosUsuario + " FAVORITOS USER")
           console.log("CREADO")
           setIconFavoriteOnClick(true);
-          debugger;
+
           setFavoritosUsuario(response);
         })
 /*       serverRequest(`data/favoritos/?id_author=${userId}`, "GET")

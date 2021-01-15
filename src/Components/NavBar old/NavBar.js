@@ -5,7 +5,7 @@ import "./NavBar.css";
 import { useState, useEffect } from "react";
 
 
-export function NavBar({ setContainerClass, setMainClass }) {
+export function NavBar({ setContainerClass }) {
   const [navbarClass, setNavbarClass] = useState('');
   // const url = window.location.href;
   const location = useLocation();
@@ -14,13 +14,10 @@ export function NavBar({ setContainerClass, setMainClass }) {
     if (location.pathname === "/") {
       setNavbarClass("navbar-home");
       setContainerClass("container-home");
-      setMainClass("main-home");
-
     }
     else {
       setNavbarClass("navbar");
       setContainerClass("container");
-      setMainClass("main");
     }
   }, [location]);
 
@@ -51,9 +48,6 @@ export function NavBar({ setContainerClass, setMainClass }) {
           </li>
           <li>
             <Link to='/PodcastList'>Podcasts</Link>
-          </li>
-          <li>
-            <Link to='/UserList'>Users</Link>
           </li>
         </ul>
       </div>

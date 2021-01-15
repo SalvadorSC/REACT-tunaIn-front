@@ -1,0 +1,23 @@
+.enlace{
+    color: #333;
+    margin-right: 0;
+    margin-left: auto;
+    margin-bottom: 0;
+    width:fit-content;
+    text-decoration: none;
+}
+
+.enlace:hover{
+    color:black;
+    font-weight: 500;
+}
+
+.UserCard-title:hover{
+    text-decoration: none;
+    color: black
+}
+
+.cartaUsuario{
+    border-radius: 10px;
+    padding: 10px;
+}
