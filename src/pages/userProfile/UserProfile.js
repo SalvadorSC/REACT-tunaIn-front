@@ -8,6 +8,7 @@ import { PodcastsUser } from "../../Components/PodcastsUser/PodcastsUser";
 import { FavoritosUser } from "../../Components/FavoritosUser/FavoritosUser";
 import "./UserProfile.css";
 import { Footer } from "../../Components/Footer/Footer";
+import {Button} from '../../Components/ButtonFlex/ButtonFlex';
 
 export const UserProfile = () => {
   const [user, setUser] = useState({});
@@ -36,8 +37,8 @@ export const UserProfile = () => {
   }
   const MisPodcasts = () => {
     setSelectedTab(0)
-/*  setIsMyPodcastsSelected(true)
-    setIsFavoritosSelected(false) */
+    /*  setIsMyPodcastsSelected(true)
+        setIsFavoritosSelected(false) */
     /* setFavSelected("notSelected")
     setMyPodcastsSelected("selected") */
   }
@@ -48,8 +49,8 @@ export const UserProfile = () => {
     <div>
       <body>
         <div className="UserProfile-wrap">
-          <br />
 
+          <br />
           <div className="UserCard-wrap">
             <div className={"UserInfo"}>
               <h2>Tu perfil</h2>
@@ -60,9 +61,10 @@ export const UserProfile = () => {
               <div className="UserSectionLine"><p>Email </p><p className="userInformationDisplayed">{user.email}</p></div>
               <div className="UserSectionLine"><p>Fecha de nacimiento </p><p className="userInformationDisplayed">{new Date(user.fechaNacimiento).toLocaleString("es-ES", options)}</p></div>
             </div>
-            <hr className={"vr"} />
-            <img className="profilePicture" alt="background" src="https://c0.anyrgb.com/images/434/137/recording-studio-person-woman-microphone-radio-podcast-talking-singing-presenter.jpg" />
-
+            <div>
+              <div className={"vr"} />
+              <img className="profilePicture" alt="background" src="https://c0.anyrgb.com/images/434/137/recording-studio-person-woman-microphone-radio-podcast-talking-singing-presenter.jpg" />
+            </div>
             {/* <Link
               to={{
                 pathname: "/editUserProfile",
@@ -88,5 +90,6 @@ export const UserProfile = () => {
         </div>
       </body>
     </div>
+
   );
 };

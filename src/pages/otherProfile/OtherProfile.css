@@ -38,8 +38,8 @@
   object-fit: cover;
   border-radius: 10px;
   height: 150px;
-  margin-top:50px;
   width: 150px;
+  margin-top:50px;
 }
 
 .UserSectionLine {
@@ -55,7 +55,7 @@ hr {
 
 .vr {
   border-left: 2px solid rgba(0, 0, 0, 0.1);
-  height: 75%;
+  height: 70%;
   position: absolute;
   left: 80%;
   top: 24%;

@@ -20,18 +20,16 @@ export const serverRequest = (resources, method, body) => {
         .catch(error => (error))
         .then(res => {
             if (res.status >= 400) {
-                response = res;
+                return Promise.reject(res);
+            }
+            if (method === 'DELETE') {
+                return Promise.resolve();
             }
             return res.json();
         })
         .then(resJson => {
-            return new Promise((resolve, reject) => {
-                if (response) {
-                    reject(resJson);
-                } else {
-                    resolve(resJson)
-                }
-            });
-        });
+            return Promise.resolve(resJson);
+        })
+        .catch(err => Promise.reject(err));
 
 }
