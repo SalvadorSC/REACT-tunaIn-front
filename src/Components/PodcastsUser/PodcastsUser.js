@@ -3,7 +3,7 @@ import { PodcastCard } from "../PodcastCard/PodcastCard";
 import "./PodcastsUser.css";
 import { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
-import {getUserId, setSession} from "../../util/LocalStorage.utils";
+import {getUserId, setSession, getToken} from "../../util/LocalStorage.utils";
 
 export const PodcastsUser = () => {
   const [listaPodcastsUser, setListaPodcastsUser] = useState([]);
@@ -12,8 +12,7 @@ export const PodcastsUser = () => {
   useEffect(() => {
 
     const token = getToken();
-    const decodedToken = DecodeToken(token);
-    const userId = decodedToken.id;
+    const userId = getUserId();
     console.log("->");
     console.log(`data/podcast/?id_author=${userId}`);
 

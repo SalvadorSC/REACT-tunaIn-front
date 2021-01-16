@@ -1,15 +1,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import {Link, Redirect, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
-import {getToken, getUserId} from "../../util/LocalStorage.utils";
+import {getUserId} from "../../util/LocalStorage.utils";
 import { PodcastsUser } from "../../Components/PodcastsUser/PodcastsUser";
 import { FavoritosUser } from "../../Components/FavoritosUser/FavoritosUser";
 import "./UserProfile.css";
-import { Footer } from "../../Components/Footer/Footer";
 import {Button} from '../../Components/ButtonFlex/ButtonFlex';
 import {deleteToken} from '../../util/LocalStorage.utils';
-import {LOGIN, PROFILE} from "../../routes/routes";
+import {LOGIN} from "../../routes/routes";
 
 export const UserProfile = () => {
   const history = useHistory();
