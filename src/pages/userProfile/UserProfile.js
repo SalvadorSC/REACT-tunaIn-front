@@ -1,24 +1,26 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
-import { DecodeToken } from "../../util/DecodeToken";
-import { getToken } from "../../util/LocalStorage.utils";
+import {getUserId} from "../../util/LocalStorage.utils";
 import { PodcastsUser } from "../../Components/PodcastsUser/PodcastsUser";
 import { FavoritosUser } from "../../Components/FavoritosUser/FavoritosUser";
 import "./UserProfile.css";
-import { Footer } from "../../Components/Footer/Footer";
 import {Button} from '../../Components/ButtonFlex/ButtonFlex';
+import {deleteToken} from '../../util/LocalStorage.utils';
+import {LOGIN} from "../../routes/routes";
 
 export const UserProfile = () => {
+  const history = useHistory();
+
+
   const [user, setUser] = useState({});
-  const token = getToken();
-  const decodedToken = DecodeToken(token);
-  const userId = decodedToken.id;
+  const userId = getUserId();
 
   useEffect(() => {
     serverRequest(`data/user/${userId}`, "GET")
       .then((response) => {
+        console.log(response);
         setUser(response);
       })
       .catch(console.log);
@@ -43,8 +45,19 @@ export const UserProfile = () => {
     setMyPodcastsSelected("selected") */
   }
 
+  const playlist = () => {
+
+
+  }
+
+  const exit = () =>{
+    deleteToken();
+    history.push(LOGIN);
+  }
+
   const options = { month: "2-digit", day: "2-digit", year: "numeric" };
   console.log("render user profile")
+
   return (
     <div>
       <body>
@@ -82,12 +95,14 @@ export const UserProfile = () => {
           <div style={{ display: "flex", width: "50%", justifyContent: "space-between" }}>
             <h4 className={selectedTab === 0 ? "selected" : "notSelected"} onClick={MisPodcasts}>Tus podcasts subidos</h4>
             <h4 className={selectedTab === 1 ? "selected" : "notSelected"} onClick={favoritos}>Tus favoritos</h4>
+            <h4 className={selectedTab === 2 ? "selected" : "notSelected"} onClick={playlist}>Playlist</h4>
           </div>
           <br />
           {selectedTab === 0 && <PodcastsUser />}
           {selectedTab === 1 && <FavoritosUser userId={userId} />}
           <br />
         </div>
+      <Button onClick={exit}>Salir</Button>
       </body>
     </div>
 

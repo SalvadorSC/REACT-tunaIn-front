@@ -1,14 +1,18 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import {Link, useHistory} from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
-import { setJWT } from "../../util/LocalStorage.utils";
+import {getToken, getUserId, setSession} from "../../util/LocalStorage.utils";
 import { Avisos } from "../../Components/Avisos/Avisos";
-import { HOME } from "../../routes/routes";
+import {HOME, PROFILE} from "../../routes/routes";
 import { existNumber, existUppercase, validateMaxLength, validateMinLength } from "../../util/FormValidator";
 import { inputValidation } from "../../controllers/inputValidation";
 import "./RegisterForm.css";
 import {Button} from '../../Components/ButtonFlex/ButtonFlex';
-export const RegisterForm = ({ history }) => {
+export const RegisterForm = () => {
+  const history = useHistory();
+  if (getUserId()){
+    history.push(PROFILE);
+  }
   // Contiene los valores del formulario:
   const [newUser, setNewUser] = useState({});
   const [registerFail, setRegisterFail] = useState({ message: null, color: null });
@@ -42,7 +46,7 @@ export const RegisterForm = ({ history }) => {
     serverRequest("register", "POST", newUser)
       .then((response) => {
         //guardar el token en el localStorage en un campo llamado token:
-        setJWT(response.token);
+        setSession(response);
         setRegisterFail({ message: "Bienvenido a TunaIn", color: 'success' });
         setTimeout(() => {
           history.push(HOME);
