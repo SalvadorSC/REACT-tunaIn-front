@@ -37,6 +37,14 @@
   flex-direction: row;
   align-items: center;
   box-shadow: 1px 2px 5px lightgrey;
+
+}
+.autoComplete:hover{
+  background-color:#077594;
+}
+.resultadosbusqueda{
+  position: absolute;
+  width: 80%;
 }
 
 .lupita{
@@ -59,4 +67,27 @@
 
 option{
   border: none;
+}
+.buscador{ 
+  width: 100%;
+  margin:0 !important;
+  padding: 0;
+  align-items: left;
+}
+.buscadorPage{
+  background-color: rgb(240, 240, 240);
+  border: none;
+  border-radius: 3px;
+  font-family: "Poppins";
+  font-size: 0.9rem;
+  height: 60px;
+  padding: 5px 10px;
+  margin-bottom:0px;
+  padding-right:20px;
+  text-align: left;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 1px 2px 5px lightgrey;
 }

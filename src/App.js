@@ -14,11 +14,14 @@ import { MyPodcasts } from "./pages/myPodcasts/MyPodcasts";
 import { PodcastInformation } from "./pages/podcastInformation/PodcastInformation";
 import { EditPodcastInformation } from "./pages/editPodcastInformation/EditPodcastInformation";
 import { PodcastList } from "./pages/podcastList/PodcastList";
+
+import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST, SEARCH, SEARCHITEM } from "./routes/routes";
+import { getToken } from "./util/LocalStorage.utils";
 import {getToken, hasSession} from "./util/LocalStorage.utils";
 import { UserList } from "./pages/userList/UserList";
 import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST,USERLIST, OTHERPROFILE } from "./routes/routes";
-
 import { Footer } from "./Components/Footer/Footer";
+import { Search } from "./pages/search/Search";
 
 export default function App() {
 
@@ -52,6 +55,8 @@ export default function App() {
             <Route exact path={HOME} component={Home} />
             <Route exact path={TERMS} component={Terms} />
             <Route exact path={MYPODCASTS} component={MyPodcasts} />
+            <Route exact path={SEARCH} component={Search} />
+            <Route exact path={SEARCHITEM} component={Search} />
             <PrivateRoute exact path={PROFILE} component={UserProfile} />
             <PrivateRoute exact path={OTHERPROFILE} component={OtherProfile} />
             <PrivateRoute exact path={PODCASTLIST} component={PodcastList} />
