@@ -22,7 +22,7 @@ export const serverRequest = (resources, method, body) => {
             if (res.status >= 400) {
                 return Promise.reject(res);
             }
-            debugger;
+
             if (method === 'DELETE') {
                 return Promise.resolve();
             }
