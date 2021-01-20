@@ -24,9 +24,8 @@ export const Search = () => {
     const [visibleItems, setVisibleItems] = useState(3);
     const url = window.location.href;  
     const listPodcast = [];
-    const arrayHowManyToShow = new Array(10);
-    for (let i=0; i<arrayHowManyToShow.length; ++i) arrayHowManyToShow[i] = 3;
-    const [arrayTest, setArrayTest] = useState([3]);
+    
+  
     const { urlSearch } = useParams();
     const search = urlSearch;
     //poner una const de array
@@ -54,17 +53,10 @@ export const Search = () => {
         .catch(response => console.log(response))
        })
   }, [listaBusquedas]);
-
-  const showMoreItems = (num) => {
-    let oldItem = arrayHowManyToShow[num];
-    arrayHowManyToShow[num] = oldItem + 3;
-    setArrayTest(elements => [...elements, arrayHowManyToShow]);
-    
-    console.log("array entero");
-    console.log(arrayTest);
-    console.log("elemeto pos ");
-    console.log(arrayTest[1]);
-  };
+  const handleShowMoreOnClick = () => {
+   
+}
+ 
     return (
         <>
         <div className="header">
@@ -80,7 +72,7 @@ export const Search = () => {
                 return( 
                 <div class="usersBlock">
                 <a href = "/#">   
-                    <img width="70px" height="70px" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"></img>
+                    <img width="70px" height="70px" src="https://lh3.googleusercontent.com/proxy/is6LvKciGKa9qKzjp3kGS_xEvI2pJqRolLxRd_7fboIrndFrsBIutwX90ZIEeIKRL2NZNwbPThp_P9Lp2y1l0tljS4XhaWNos4wy"></img>
                     <span>
                         {v.nombre}
                         {setUserPodCast}
@@ -100,18 +92,14 @@ export const Search = () => {
                     {listaBusquedas[i] !== undefined && listaPodcastAuthor[i].length > 0 &&(
                     <div>
                         <h3>PodCasts by {listaBusquedas[i].nombre}</h3>  
-                        {console.log("ListaPodCastAuthor")}
-                        {console.log(listaPodcastAuthor)}
-                        {console.log("listaBusquedas")}
-                        {console.log(listaBusquedas)}
-                        {console.log("-------")}
-                        {console.log(arrayTest[i])}
-                        {listaPodcastAuthor[i].slice(0,3).map((v, i) =>{
+             
+                        {listaPodcastAuthor[i].map((v, i) =>{
                             return(
-                        <a href = {"/PodcastInformation/" + listaPodcastAuthor._id}>   
+                        <a href = {"/PodcastInformation/" + listaPodcastAuthor._id}>
+                           
                             <div class="podCasts">
                                 <div>
-                                    <img width="70px" height="70px" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"></img>
+                                    <img width="70px" height="70px" src="https://i.pinimg.com/originals/1c/e4/c8/1ce4c8a443d1782e1129c1e4c9215645.jpg"></img>
                                 </div>
                                 <div class="podcastContent">
                                     <div class="podcastTitle">
@@ -125,9 +113,7 @@ export const Search = () => {
                         </a>    
                                 )
                         })/*map*/}
-                        {listaPodcastAuthor[i].length > 3 && visibleItems <= listaPodcastAuthor[i].length-1 &&(
-                        <button id={"showmore" + [i]} class="showMore"onClick={() => showMoreItems(i)}>Ver más<ArrowDropDownIcon /></button>
-                        )}
+                        
                     </div>
                     )}
                         
