@@ -14,9 +14,10 @@ import { playerActions } from '../../reducer/playerReducer';
 //import { PlaylistELIS } from '../../';
 
 
+
 export const Playbar = () => {  
 
-  const playbarContext = usePlaybarContext(); //había una x tras el ;
+  const playbarContext = usePlaybarContext(); ///había una x tras el ;
   const podcast = playbarContext.playbarPodcast;
 
    const { state, dispatch } = useContext(PlaybarContext);
