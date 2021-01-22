@@ -1,9 +1,11 @@
-import {getToken, hasSession} from "../util/LocalStorage.utils";
+import { getToken, hasSession } from "../util/LocalStorage.utils";
 
 export const serverRequest = (resources, method, body) => {
     //const token = getToken();
     const token = hasSession() ? getToken() : '';
-    const url = `http://localhost:3300/${resources}`;
+    const API_URL = window.location.hostname === "http://www.tunain.com" ? "tunainblahblah url back" : `http://localhost:3300/`;
+    /* const url = `http://localhost:3300/${resources}`; */
+    const url =  `${API_URL}/${resources}`
     const JSONBody = JSON.stringify(body);
     const options = {
         method: method,

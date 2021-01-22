@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import { PodcastCard } from "../PodcastCard/PodcastCard";
 import "./FavoritosUser.css";
 import { useEffect, useState } from "react";
@@ -8,7 +8,7 @@ import { serverRequest } from "../../helpers/urlBack";
 export const FavoritosUser = (props) => {
   const userId = props.userId
   const [listaFavoritosUser, setListaFavoritosUser] = useState([]);
-  /*  const [idAuthor, setIdAuthor] = useState({}); */
+   const [idAuthor, setIdAuthor] = useState({});
   const [listaPodcastsPrint, setListaPodcastsPrint] = useState([]);
 
 
@@ -27,7 +27,7 @@ export const FavoritosUser = (props) => {
         await serverRequest(`data/podcast/${favorito.id_podcast}`, "GET")
           .then((response) => {
             console.log(response)
-            /* return response; */
+            return response;
             //listaPodcastsPrint.push(response)
             //setListaPodcastsPrint([...listaFavoritosUser, response])
             console.log(userFavoritesWithData);
@@ -61,23 +61,29 @@ export const FavoritosUser = (props) => {
     </div>
   );
 };
-
-/* import React from "react";
+ */
+import React from "react";
 import { PodcastCard } from "../PodcastCard/PodcastCard";
 import "./FavoritosUser.css";
 import { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
-import { DecodeToken } from "../../util/DecodeToken";
+/* import { DecodeToken } from "../../util/DecodeToken"; */
 import { getToken } from "../../util/LocalStorage.utils";
 
 export const FavoritosUser = (props) => {
-  const userId = props.userId
+  /* const userId = props.userId
   const [listaFavoritosUser, setListaFavoritosUser] = useState([]);
     const [idAuthor, setIdAuthor] = useState({}); 
   const [listaPodcastsPrint, setListaPodcastsPrint] = useState([])
      const token = getToken();
     const decodedToken = DecodeToken(token);
-    const userId = decodedToken.id; 
+    const userId = decodedToken.id;  */
+
+    const userId = props.userId
+  const [listaFavoritosUser, setListaFavoritosUser] = useState([]);
+   const [idAuthor, setIdAuthor] = useState({});
+  const [listaPodcastsPrint, setListaPodcastsPrint] = useState([]);
+
 
   useEffect(() => {
     if (userId) {
@@ -125,4 +131,3 @@ export const FavoritosUser = (props) => {
     </div>
   );
 };
- */
