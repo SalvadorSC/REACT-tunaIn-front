@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
+import { DecodeToken } from "../../util/DecodeToken";
 import {getUserId} from "../../util/LocalStorage.utils";
 import "./PodcastInformation.css";
 
@@ -27,8 +28,13 @@ export const PodcastInformation = () => {
 
 
   useEffect(() => {
+    const token = getToken();
+    const decodedToken = DecodeToken(token);
+    const userId = decodedToken.id;
+
     serverRequest(`data/user/${userId}`, "GET")
       .then((response) => {
+        setUser(response);
 
       })
       .catch(console.log);

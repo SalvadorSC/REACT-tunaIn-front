@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import './PodcastCard.css';
 import {Link, useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -6,6 +6,9 @@ import {Button} from '../ButtonFlex/ButtonFlex';
 import {serverRequest} from "../../helpers/urlBack";
 import {getUserId, hasSession} from "../../util/LocalStorage.utils";
 import Modal from "react-bootstrap/Modal";
+import AudioPlayer from 'react-h5-audio-player';
+import { usePlaybarContext } from "../../contexts/playbar";
+
 
 
 export const PodcastCard = ({title, categories, author, img, podcastId, description}) => {
@@ -32,6 +35,7 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
 
     let history = useHistory();
     const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);
+    const playbar = usePlaybarContext();
 
     useEffect(() => {
         serverRequest(`data/favoritos/?id_podcast=${podcastId}&&id_author=${userId}`, "GET")
@@ -130,6 +134,10 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
             console.log(data);
         }
 
+        function playPodcast() {
+            playbar.setPlaybarPodcast({title, categories, author, img, podcastId, description});
+          }
+
         /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */
 
         /* useEffect(() => {
@@ -168,7 +176,7 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                     </Button>
 
                     {/* PLAY ICON */}
-                    <Button onClick=''
+                    <Button onClick={()=>playPodcast(podcastId)}
                             type='button'
                             buttonStyle='btn--icon--outline'
                     ><i className='fas fa-play play-icon'></i>

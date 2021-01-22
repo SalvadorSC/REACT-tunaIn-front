@@ -4,7 +4,7 @@ import "./PodcastsDestacados.css";
 
 
 export const PodcastsDestacados = () => {
-  const ListaPodcastFake = [
+const ListaPodcastFake = [
     {
       title: "Soy el podcast 1",
       categories: "Videojuegos",
@@ -68,3 +68,4 @@ export const PodcastsDestacados = () => {
     </div>
   );
 };
+

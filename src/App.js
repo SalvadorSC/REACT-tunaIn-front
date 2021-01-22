@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { UserProfile } from "./pages/userProfile/UserProfile";
@@ -17,8 +17,9 @@ import { PodcastList } from "./pages/podcastList/PodcastList";
 import {getToken, hasSession} from "./util/LocalStorage.utils";
 import { UserList } from "./pages/userList/UserList";
 import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST,USERLIST, OTHERPROFILE } from "./routes/routes";
-
 import { Footer } from "./Components/Footer/Footer";
+import { Playbar } from "./Components/Playbar/Playbar";
+import { PlaybarContextProvider } from './contexts/playbar';
 
 export default function App() {
 
@@ -39,6 +40,7 @@ export default function App() {
   const [mainClass, setMainClass] = useState();
   return (
     <Router>
+      <PlaybarContextProvider>
       <NavBar setContainerClass={setContainerClass} setMainClass={setMainClass} />
       <div className={containerClass}>
         <div className={mainClass}>
@@ -61,7 +63,9 @@ export default function App() {
           </Switch>
         </div>
       </div>
+      <Playbar />
       <Footer />
+      </PlaybarContextProvider>
     </Router>
   );
 }
