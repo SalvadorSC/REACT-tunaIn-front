@@ -2,40 +2,51 @@ import React, { useState, useEffect, useRef } from 'react'
 import { serverRequest } from '../../helpers/urlBack';
 import { useHistory } from 'react-router-dom';
 import './Buscador.css';
+import { Link, useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
+
 
 export const Buscador = () => {
   const [contenedorClass, setContenedorClass] = useState();
   const [buscadorClass, setBuscadorClass] = useState();
-  const [display, setDisplay] = useState(false);
-  const url = window.location.href;  
-  const [listaBusquedas, setListaBusquedas] = useState([]);
-  const history = useHistory();
-  const { urlSearch } = useParams();
-  const [search, setSearch] = useState(urlSearch)
+  const [buscadorStyleClass, setBuscadorStyleClass] = useState();
+  const [resultadosbusquedaClass, setResultadosbusquedaClass] = useState();
+  const url = window.location.href;
 
 
   useEffect(() => {
     if (url === "http://localhost:3000/") {
-      setBuscadorClass("buscador-home");
-      setContenedorClass("buscadorStyle");
+      setBuscadorStyleClass("buscadorStyle-home");
+      setResultadosbusquedaClass("resultadosbusqueda-home");
     }
     else {
       setBuscadorClass("buscador");
-      setContenedorClass("buscadorPage");
+      setBuscadorStyleClass("buscadorStyle");
+      setResultadosbusquedaClass("resultadosbusqueda");
     }
   }, [url]);
-
+  const [updateRender, setUpdateRender] = useState(false);
+  const [search, setSearch] = useState("")
+  const [listaBusquedas, setListaBusquedas] = useState([]);
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  }
   useEffect(() => {
-    if (url === "http://localhost:3000/"){
-    serverRequest(`user/${search}`, 'GET')
-      .then((response) => {
-        setListaBusquedas(response);
-      })
-      .catch(response => console.log(response))
-    }else{
-      history.push(`/search/${search}`);
+    if (search !== "") {
+      serverRequest(`user/${search}`, 'GET')
+        .then((response) => {
+
+          setListaBusquedas(response);
+        })
+
+        //En el then redirigir a página "resultados" donde se mostrarán los resultados de la búsqueda
+        .catch(response => console.log(response))
     }
+    else{
+      setListaBusquedas([])
+    }
+    console.log('lista busquedas changed ');
+
   }, [search]);
 
   const setUser = user => {
@@ -64,7 +75,14 @@ export const Buscador = () => {
   });
 
   const updateSearch = (e) => {
-  
+
+  }
+
+  let history = useHistory();
+
+
+  function handleClick(id) {
+    history.push(`profile/${id}`);
   }
  const modDisplay = () => {
   if (url === "http://localhost:3000/") {
@@ -72,35 +90,34 @@ export const Buscador = () => {
   }
  }
 
+
   return (
-   
-    <form onSubmit={handleSubmit}>
+
+    <form>
       <div className={buscadorClass}>
-        <div className={contenedorClass}>
-          <input 
-          placeholder="Buscar podcasts, radios y mucho más" 
-          value={search} 
-          onChange={event => setSearch(event.target.value)} 
-          className='buscador-input' 
-          onClick={()=>modDisplay()}
-          />
+        <div className={buscadorStyleClass}>
+          <input placeholder="Buscar podcasts, radios y mucho más" value={search} onChange={event => setSearch(event.target.value)} className='buscador-input' />
           <i className="fas fa-search fa-2x lupita" />
         </div>
       </div>
-     {display && search !== "" && (
-      <span  ref={menuRef} className={"resultadosbusqueda"}>
-        {listaBusquedas.map(v =>{
-            return( 
-            <div  onClick={() => setUser(v.nombre)}class="autoComplete">
-              <span>
-              {v.nombre}
-              </span>
-            </div>
+
+      <div className={resultadosbusquedaClass}>
+        {listaBusquedas.map(v => {
+          return (
+            <>
+              <div class="autoComplete" onClick={() => setSearch(v.nombre)}>
+                <span>
+                  <Link className="UserCard-title" onClick={e => handleClick(v._id)}><p className="enlace">{v.nombre}</p></Link>
+                </span>
+              </div>
+              <hr></hr>
+            </>
           );
         })}
-       </span>
-    )}
+      </div>
+
+
     </form>
-    
-    )
-  };
+  )
+};
+

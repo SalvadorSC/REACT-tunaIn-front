@@ -1,15 +1,15 @@
 import React from "react";
 import './PodcastCard.css';
-import {Link, useHistory} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {Button} from '../ButtonFlex/ButtonFlex';
-import {serverRequest} from "../../helpers/urlBack";
-import {getUserId, hasSession} from "../../util/LocalStorage.utils";
+import { Link, useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Button } from '../ButtonFlex/ButtonFlex';
+import { serverRequest } from "../../helpers/urlBack";
+import { getUserId, hasSession } from "../../util/LocalStorage.utils";
 import Modal from "react-bootstrap/Modal";
 import {CenterModal} from "../CenterModal/CenterModal";
 
 
-export const PodcastCard = ({title, categories, author, img, podcastId, description}) => {
+export const PodcastCard = ({ title, categories, author, img, podcastId, description }) => {
     const [podcastWrapClass, setPodcastWrapClass] = useState();
     const [podcastAuthor, setPodcastAuthor] = useState(undefined);
     const [favoritosUsuario, setFavoritosUsuario] = useState(undefined);
@@ -32,6 +32,10 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
             podcast: "",
         });
     }
+    let userId;
+    if (hasSession()) {
+        userId = getUserId();
+    }
 
     const submitNewPlaylist = () =>{
         handleCloseModal2();
@@ -42,11 +46,9 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
     useEffect(() => {
         serverRequest(`data/favoritos/?id_podcast=${podcastId}&&id_author=${userId}`, "GET")
             .then((response) => {
-
-
                 setFavoritosUsuario(response[0]);
-                console.log(favoritosUsuario);
-                console.log("ANALIZED USER ^");
+                /* console.log(favoritosUsuario);
+                console.log("ANALIZED USER ^"); */
                 if (response.length > 0) {
                     console.log("PODCAST ID " + podcastId)
                     setFavoritosUsuario(response[0]);
@@ -85,6 +87,20 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
             .catch(console.log);
     }, [])
 
+    useEffect(() => {
+        serverRequest(`data/favoritos/?id_podcast=${podcastId}&&id_author=${userId}`, "GET")
+            .then((response) => {
+                setFavoritosUsuario(response[0]);
+                /* console.log(favoritosUsuario);
+                console.log("ANALIZED USER ^"); */
+                if (response.length > 0) {
+                    console.log("PODCAST ID " + podcastId)
+                    setIconFavoriteOnClick(true);
+                }
+            })
+            .catch(console.log);
+    }, [])
+
 
     function clickFavorites() {
         if (!favoritosUsuario) {
@@ -114,7 +130,8 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                 });
             /*
 
-                  serverRequest(`data/favoritos/?id_podcast=${podcastId}`, "GET")
+                 serverRequest(`data/favoritos/?id_podcast=${podcastId}`, "GET")
+
                     .then(response => {
                       debugger;
                       serverRequest(`data/favoritos/${response[0]._id}`, "DELETE")
@@ -131,7 +148,8 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
 
     const playlistHandler = e => {
         e.preventDefault();
-        setData({playlist: e.target.value, podcast: podcastId});
+
+        setData({ playlist: e.target.value, podcast: podcastId });
         console.log(data);
     }
 
@@ -149,6 +167,7 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
         history.push(`/PodcastInformation/${podcastId}`);
     }
 
+
     useEffect(() => {
         if (url === "http://localhost:3000/") {
             setPodcastWrapClass("PodcastCard-wrap");
@@ -159,37 +178,46 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
 
     return (
         <div className={podcastWrapClass}>
-            <div style={{backgroundImage: `url(${img})`}} className="PodcastCard-img">
+          <div style={{ backgroundImage: `url(${img})` }} className="PodcastCard-img">
+
                 {/* <img src={img} alt={title} /> */}
             </div>
             <div className="icon-wrapper">
 
                 {/*LINK ICON */}
                 <Button onClick=''
-                        type='button'
-                        buttonStyle='btn--icon--outline'
+
+                    type='button'
+                    buttonStyle='btn--icon--outline'
                 >
-                    <i className="fas fa-ellipsis-h icon-mini"/>
+                    <i className="fas fa-ellipsis-h icon-mini" />
+
                 </Button>
 
                 {/* PLAY ICON */}
                 <Button onClick=''
-                        type='button'
-                        buttonStyle='btn--icon--outline'
+
+                    type='button'
+                    buttonStyle='btn--icon--outline'
+
                 ><i className='fas fa-play play-icon'></i>
                 </Button>
                 {/* Add to Playlist */}
                 <Button onClick={handleShow}
-                        type='button'
-                        buttonStyle='btn--icon--outline'
+
+                    type='button'
+                    buttonStyle='btn--icon--outline'
+
                 ><i className='fas fa-plus'></i>
                 </Button>
                 {/* FAVORITE ICON BUTTON  */}
                 <Button onClick={clickFavorites}
-                        type='button' children={podcastId}
-                        buttonStyle={iconFavoriteOnClick ? 'btn--iconClicked--outline' : 'btn--icon--outline'}
+
+                    type='button' children={podcastId}
+                    buttonStyle={iconFavoriteOnClick ? 'btn--iconClicked--outline' : 'btn--icon--outline'}
                 >
-                    <i className="fas fa-heart"/>
+                    <i className="fas fa-heart" />
+
                 </Button>
             </div>
             <div className="PodcastCard-text">
@@ -212,12 +240,13 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                     <Modal.Body>
                         <button onClick={handleShowModal2} className="modalButton">Crear Nueva PlayList</button>
                         <button className="modalButton">Seleccionar una Playlist</button>
-                        <button className="modalButton">Eliminar una Playlist</button>
+
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                             Cerrar
-                        </Button>
+                            </Button>
+
                     </Modal.Footer>
                 </Modal>
             </>
@@ -236,14 +265,16 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                     </Modal.Header>
                     <Modal.Body>
                         <input type="text" value={data.playlist} onChange={playlistHandler}
-                               placeholder="Introduce el nombre"></input>
-                        <button onClick={submitNewPlaylist} className="modalButton" type="submit">Enviar
-                        </button>
+
+                            placeholder="Introduce el nombre"></input>
+                        <button onClick={handleCloseModal2} className="modalButton" type="submit">Enviar
+                            </button>
+
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleCloseModal2}>
                             Cerrar
-                        </Button>
+                            </Button>
                     </Modal.Footer>
                 </Modal>
             </>

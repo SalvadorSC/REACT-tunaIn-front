@@ -4,9 +4,11 @@ import { Options } from "../Options/Options";
 
 export const Premium = () => {
     return (
-        <div className="Premium-wrap" >
-            <h1>Ir a Premium</h1>
-            <div className="Premium-options" >
+        <div className="Premium-wrap padding-10" >
+            <div className="padding-10">
+                <h1 className="padding-10">Ir a Premium</h1>
+            </div>
+            <div className="Premium-options padding-10" >
                 <Options
                     account='Gratis'
                     title='0,00€ /mes'

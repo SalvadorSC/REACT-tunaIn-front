@@ -36,8 +36,11 @@
 
 .buttonPosition {
   display: flex;
+  margin: 0 auto;
+  padding: 0 10%;
   position: absolute;
-  width: 80%;
+  width: 100%;
+  z-index: 1;
   height: 60%;
   align-items: center;
   justify-content: space-between;
