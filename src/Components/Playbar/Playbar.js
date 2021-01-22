@@ -51,7 +51,7 @@ export const Playbar = () => {
       showSkipControls={true} showJumpControls={false}
       customAdditionalControls={[]}
       autoPlay
-      src={`http://localhost:3300/data/podcast/${podcast.id}`}  //http://localhost:3300/data/podcast/${podcast.id}    //http://localhost:3300/track/5fd11cf81f36c03fc430d6fb
+      src={`http://localhost:3300/data/podcast/${podcast.id}`}  //http://localhost:3300/data/podcast/${podcast.id}   //http://localhost:3300/track/5fd11cf81f36c03fc430d6fb
       onPlay={e => console.log("onPlay")}
       /> 
       </div>
