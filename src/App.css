@@ -12,7 +12,10 @@
 .main-home{
   width: 100%;
   margin: 0 auto;
-  padding: 0 10%
+}
+
+.padding-10{
+  padding: 0 10%;
 }
 .container {
   display: flex;
@@ -24,3 +27,6 @@
 .container-home {
   display: flex;
 }
+
+
+
