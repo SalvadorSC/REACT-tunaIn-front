@@ -1,0 +1,38 @@
+.podCasts{
+    display:flex;
+    margin:10px auto;
+    font-size:15px;
+}
+.podCastDate{
+    font-size:15px;
+}
+.podcastTitle{
+    font-size:20px;
+}
+.usersBlock{
+    margin: 10px auto;
+}
+.showMore{
+    background-color: transparent;
+    color:#077594;
+    width: 100px;
+    height:0px;
+}
+.showMore:hover{
+    border:0px;
+    border-color:transparent;
+    background-color: transparent;
+    color: #077594;
+}
+.header{
+    margin-top:80px;
+}
+.podCasts {
+    color:black;
+}
+podCasts:hover {
+    cursor: pointer;
+}
+.usersBlock a{
+    color:black;
+}

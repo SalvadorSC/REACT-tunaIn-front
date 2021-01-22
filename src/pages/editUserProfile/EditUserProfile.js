@@ -4,8 +4,8 @@ import "./EditUserProfile.css";
 import { Avisos } from "../../Components/Avisos/Avisos";
 import { MYPODCASTS } from "../../routes/routes";
 import { Modal } from "../../Components/Modal/Modal";
-import { setJWT } from "../../util/LocalStorage.utils";
 import {Button} from '../../Components/ButtonFlex/ButtonFlex';
+import {setSession} from "../../util/LocalStorage.utils";
 
 export const EditUserProfile = (props) => {
   const [user, setUser] = useState({});
@@ -69,7 +69,7 @@ export const EditUserProfile = (props) => {
     console.log(newPass)
     serverRequest(`edituserprofile/${user._id}`, "PATCH", { password: newPass })
       .then((response) => {
-        setJWT(response.token);
+        setSession(response);
         // setUser(response);
         setEditFailed({ message: "Perfil actualizado correctamente", color: 'success' });
         setOpenModalPass(!openModalPass);
