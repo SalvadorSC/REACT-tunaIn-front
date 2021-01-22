@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { serverRequest } from '../../helpers/urlBack';
+import { useHistory } from 'react-router-dom';
 import './Buscador.css';
 import { Link, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 
 export const Buscador = () => {
+  const [contenedorClass, setContenedorClass] = useState();
   const [buscadorClass, setBuscadorClass] = useState();
   const [buscadorStyleClass, setBuscadorStyleClass] = useState();
   const [resultadosbusquedaClass, setResultadosbusquedaClass] = useState();
   const url = window.location.href;
 
+
   useEffect(() => {
     if (url === "http://localhost:3000/") {
-      setBuscadorClass("buscador-home");
       setBuscadorStyleClass("buscadorStyle-home");
       setResultadosbusquedaClass("resultadosbusqueda-home");
     }
@@ -43,7 +46,34 @@ export const Buscador = () => {
       setListaBusquedas([])
     }
     console.log('lista busquedas changed ');
+
   }, [search]);
+
+  const setUser = user => {
+    setSearch(user);
+    history.push(`/search/${user}`);
+  }
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  }
+  
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      history.push(`/search/${search}`);
+    };
+  
+  let menuRef = useRef(null);
+  const itemEls = useRef(new Array())
+  useEffect(() =>{
+    document.addEventListener("mousedown", (event) => {
+    if(menuRef && menuRef.current) { 
+      if(!menuRef.current.contains(event.target)){
+      setDisplay(false);
+      }
+    }
+    });
+  });
+
   const updateSearch = (e) => {
 
   }
@@ -54,7 +84,11 @@ export const Buscador = () => {
   function handleClick(id) {
     history.push(`profile/${id}`);
   }
-
+ const modDisplay = () => {
+  if (url === "http://localhost:3000/") {
+    setDisplay(!display);
+  }
+ }
 
 
   return (
@@ -86,3 +120,4 @@ export const Buscador = () => {
     </form>
   )
 };
+
