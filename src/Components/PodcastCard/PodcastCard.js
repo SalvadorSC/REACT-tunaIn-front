@@ -5,8 +5,7 @@ import {useEffect, useState} from "react";
 import {Button} from '../ButtonFlex/ButtonFlex';
 import {serverRequest} from "../../helpers/urlBack";
 import {getUserId, hasSession} from "../../util/LocalStorage.utils";
-import Modal from "react-bootstrap/Modal";
-import {CenterModal} from "../CenterModal/CenterModal";
+import {ModalPlaylist} from "../ModalPlaylist/ModalPlaylist";
 
 
 export const PodcastCard = ({title, categories, author, img, podcastId, description}) => {
@@ -15,29 +14,35 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
     const [favoritosUsuario, setFavoritosUsuario] = useState(undefined);
     const [podcastEliminado, setPodcastEliminado] = useState({});
     const url = window.location.href;
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const [showModal2, setShowModal2] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
+    const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);
+
+
+    /*  const [show, setShow] = useState(false);
+      const handleClose = () => setShow(false);
+      const handleShow = () => setShow(true);
+      const [showModal2, setShowModal2] = useState(false);*/
     let userId;
     if (hasSession()) {
         userId = getUserId();
     }
 
     let history = useHistory();
-    const handleCloseModal2 = () => {
-        setShowModal2(false);
-        setData({
-            playlist: "",
-            podcast: "",
-        });
-    }
+    /* const handleCloseModal2 = () => {
+         setShowModal2(false);
+         setData({
+             playlist: "",
+             podcast: "",
+         });
+     }*/
 
-    const submitNewPlaylist = () =>{
-        handleCloseModal2();
+    /*   const submitNewPlaylist = () =>{
+           handleCloseModal2()
+       }
 
-    }
-    const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);
+       const selectPlaylist = () =>{
+           console.log("entrooooo");
+       }*/
 
     useEffect(() => {
         serverRequest(`data/favoritos/?id_podcast=${podcastId}&&id_author=${userId}`, "GET")
@@ -64,11 +69,11 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
     }, [])
 
 
-    const handleShowModal2 = () => setShowModal2(true);
-    const [data, setData] = useState({
-        playlist: "",
-        podcast: "",
-    });
+    /* const handleShowModal2 = () => setShowModal2(true);
+     const [data, setData] = useState({
+         playlist: "",
+         podcast: "",
+     });*/
 
 
     useEffect(() => {
@@ -129,11 +134,11 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
         }
     }
 
-    const playlistHandler = e => {
-        e.preventDefault();
-        setData({playlist: e.target.value, podcast: podcastId});
-        console.log(data);
-    }
+    /*  const playlistHandler = e => {
+          e.preventDefault();
+          setData({playlist: e.target.value, podcast: podcastId});
+          console.log(data);
+      }*/
 
     /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */
 
@@ -179,7 +184,7 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                 ><i className='fas fa-play play-icon'></i>
                 </Button>
                 {/* Add to Playlist */}
-                <Button onClick={handleShow}
+                <Button onClick={() => setOpenModal(true)}
                         type='button'
                         buttonStyle='btn--icon--outline'
                 ><i className='fas fa-plus'></i>
@@ -199,54 +204,57 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                 <p className="PostcastCard-description">{description}</p>
                 <p className="PostcastCard-description">{podcastId}</p>
             </div>
-            <>
-                <Modal
-                    show={show}
-                    onHide={handleClose}
-                    backdrop="static"
-                    keyboard={false}
-                >
-                    <Modal.Header className="modalHeader">
-                        <Modal.Title>Quieres crear una Playlist o seleccionar alguna creada?</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <button onClick={handleShowModal2} className="modalButton">Crear Nueva PlayList</button>
-                        <button className="modalButton">Seleccionar una Playlist</button>
-                        <button className="modalButton">Eliminar una Playlist</button>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Cerrar
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </>
 
-            {/* Second Modal */}
+            <ModalPlaylist variant="primary" title="Que quieres hacer ?" podcastId={podcastId} buttons={true} show={openModal} onClose={() => setOpenModal(false)}>
+            </ModalPlaylist>
+            {/*    <Modal*/}
+            {/*        show={show}*/}
+            {/*        onHide={handleClose}*/}
+            {/*        backdrop="static"*/}
+            {/*        keyboard={false}*/}
+            {/*    >*/}
+            {/*        <Modal.Header className="modalHeader">*/}
+            {/*            <Modal.Title>Quieres crear una Playlist o seleccionar alguna creada?</Modal.Title>*/}
+            {/*        </Modal.Header>*/}
+            {/*        <Modal.Body>*/}
+            {/*            <button onClick={handleShowModal2} className="modalButton">Crear Nueva PlayList</button>*/}
+            {/*            <button onClick={selectPlaylist} className="modalButton">Seleccionar una Playlist</button>*/}
+            {/*            <button className="modalButton">Eliminar una Playlist</button>*/}
+            {/*        </Modal.Body>*/}
+            {/*        <Modal.Footer>*/}
+            {/*            <Button variant="secondary" onClick={handleClose}>*/}
+            {/*                Cerrar*/}
+            {/*            </Button>*/}
+            {/*        </Modal.Footer>*/}
+            {/*    </Modal>*/}
 
-            <>
-                <Modal
-                    show={showModal2}
-                    onHide={handleCloseModal2}
-                    backdrop="static"
-                    keyboard={false}
-                >
-                    <Modal.Header className="modalHeader">
-                        <Modal.Title>Nueva PlayList </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <input type="text" value={data.playlist} onChange={playlistHandler}
-                               placeholder="Introduce el nombre"></input>
-                        <button onClick={submitNewPlaylist} className="modalButton" type="submit">Enviar
-                        </button>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseModal2}>
-                            Cerrar
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </>
+
+            {/*Second Modal */}
+
+
+            {/*    <ModalPlaylist show={showModal2} playlist={data.playlist} onHide={handleCloseModal2()} .. />*/}
+            {/*    <Modal*/}
+            {/*        show={showModal2}*/}
+            {/*        onHide={handleCloseModal2}*/}
+            {/*        backdrop="static"*/}
+            {/*        keyboard={false}*/}
+            {/*    >*/}
+            {/*        <Modal.Header className="modalHeader">*/}
+            {/*            <Modal.Title>Nueva PlayList </Modal.Title>*/}
+            {/*        </Modal.Header>*/}
+            {/*        <Modal.Body>*/}
+            {/*            <input type="text" value={data.playlist} onChange={playlistHandler}*/}
+            {/*                   placeholder="Introduce el nombre"></input>*/}
+            {/*            <button onClick={submitNewPlaylist} className="modalButton" type="submit">Enviar*/}
+            {/*            </button>*/}
+            {/*        </Modal.Body>*/}
+            {/*        <Modal.Footer>*/}
+            {/*            <Button variant="secondary" onClick={handleCloseModal2}>*/}
+            {/*                Cerrar*/}
+            {/*            </Button>*/}
+            {/*        </Modal.Footer>*/}
+            {/*    </Modal>*/}
+
         </div>
 
     );

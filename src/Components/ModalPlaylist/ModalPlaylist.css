@@ -1,0 +1,13 @@
+.modalHeader{
+
+}
+.modalBody{
+    display: flex;
+    display: grid;
+}
+
+.modalFooter{
+    display: flex;
+    flex-wrap: unset;
+
+}

@@ -21,7 +21,7 @@ export function CenterModal(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4 style={styles}>Título Podcast</h4>
+                <h4 style={styles}>{props.title}</h4>
                 <h4><AudioPlayer /></h4>
             </Modal.Body>
             <Modal.Footer>

@@ -66,12 +66,4 @@
   color: rgb(167, 167, 167);
 }
 
-.modalButton{
-display: flex;
-justify-content: center;
-  padding: 5px;
-}
 
-.modalHeader{
-  text-align: center;
-}
