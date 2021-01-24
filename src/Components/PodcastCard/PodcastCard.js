@@ -1,5 +1,69 @@
 import React from "react";
-import './PodcastCard.css';
+
+import { Link, useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Button } from '../ButtonFlex/ButtonFlex';
+import { serverRequest } from "../../helpers/urlBack";
+import { DecodeToken } from "../../util/DecodeToken";
+import { getToken } from "../../util/LocalStorage.utils";
+
+export const PodcastCard = ({ title, categories, author, img, podcastId, description }) => {
+  const [podcastWrapClass, setPodcastWrapClass] = useState();
+  const [podcastAuthor, setPodcastAuthor] = useState(undefined);
+  const [favoritosUsuario, setFavoritosUsuario] = useState(undefined);
+  const [podcastEliminado, setPodcastEliminado] = useState({});
+  const url = window.location.href;
+  const token = getToken();
+  const decodedToken = DecodeToken(token);
+  const userId = decodedToken.id;
+  let history = useHistory();
+  const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);
+
+  useEffect(() => {
+    serverRequest(`data/favoritos/?id_podcast=${podcastId}&&id_author=${userId}`, "GET")
+      .then((response) => {
+
+ 
+        setFavoritosUsuario(response[0]);
+        console.log(favoritosUsuario);
+        console.log("ANALIZED USER ^");
+        if (response.length > 0) {
+          console.log("PODCAST ID " + podcastId)
+        setFavoritosUsuario(response[0]);
+        /* console.log(favoritosUsuario);
+        console.log("ANALIZED USER ^"); */
+        if (response.length > 0) {
+          /* console.log("PODCAST ID " + podcastId) */
+
+          setIconFavoriteOnClick(true);
+        }
+      })
+      .catch(console.log);
+  }, [])
+
+  function clickFavorites() {
+
+
+
+    if (!favoritosUsuario) {
+      const newFavorite = {
+        id_podcast: podcastId,
+        id_author: userId
+      };
+      console.log(newFavorite)
+      serverRequest("data/favoritos/", "POST", newFavorite)
+        .then((response) => {
+          console.log(favoritosUsuario + " FAVORITOS USER")
+          console.log("CREADO")
+          setIconFavoriteOnClick(true);
+
+          setFavoritosUsuario(response);
+        })
+/*       serverRequest(`data/favoritos/?id_author=${userId}`, "GET")
+        .then((response) => {
+          setFavoritosUsuario(response)
+        }) */
+
 import {Link, useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Button} from '../ButtonFlex/ButtonFlex';
@@ -22,6 +86,7 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
     let userId;
     if (hasSession()) {
         userId = getUserId();
+
     }
 
     let history = useHistory();

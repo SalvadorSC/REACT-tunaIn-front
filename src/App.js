@@ -14,8 +14,8 @@ import { MyPodcasts } from "./pages/myPodcasts/MyPodcasts";
 import { PodcastInformation } from "./pages/podcastInformation/PodcastInformation";
 import { EditPodcastInformation } from "./pages/editPodcastInformation/EditPodcastInformation";
 import { PodcastList } from "./pages/podcastList/PodcastList";
-
-import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST, SEARCH, SEARCHITEM } from "./routes/routes";
+import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST, SEARCH, SEARCHITEM,USERLIST,OTHERPROFILE } from "./routes/routes";
+import { UserList } from "./pages/userList/UserList";
 import { getToken } from "./util/LocalStorage.utils";
 import {getToken, hasSession} from "./util/LocalStorage.utils";
 import { UserList } from "./pages/userList/UserList";

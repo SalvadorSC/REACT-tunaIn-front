@@ -4,6 +4,8 @@ import { Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from '../ButtonFlex/ButtonFlex';
 import { serverRequest } from "../../helpers/urlBack";
+import { DecodeToken } from "../../util/DecodeToken";
+
 import { getToken } from "../../util/LocalStorage.utils";
 
 export const UserCard = ({ userId, nombre, username, email, img }) => {
