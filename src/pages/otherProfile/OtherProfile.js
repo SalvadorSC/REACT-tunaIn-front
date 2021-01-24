@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { DecodeToken } from "../../util/DecodeToken";
 import { getToken } from "../../util/LocalStorage.utils";
+import {getToken, getUserId} from "../../util/LocalStorage.utils";
+
 import { PodcastsUser } from "../../Components/PodcastsUser/PodcastsUser";
 import { FavoritosUser } from "../../Components/FavoritosUser/FavoritosUser";
 import "./OtherProfile.css";
@@ -19,8 +21,12 @@ export const OtherProfile = () => {
 
 
   const token = getToken();
+
   const decodedToken = DecodeToken(token);
   const loggedUserId = decodedToken.id;
+  const decodedToken = getToken();
+  const loggedUserId = getUserId();
+
   var str = window.location.href
   var res = str.split("profile/");
   const userId = res[1];

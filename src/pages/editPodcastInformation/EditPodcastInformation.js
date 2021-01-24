@@ -40,7 +40,6 @@ export const EditPodcastInformation = () => {
     e.preventDefault();
     serverRequest(`${sitio}/${podcastId}`, "PUT", editedPodcast)
       .then((response) => {
-        console.log(response)
         setPodcast(response);
         setEditFailed({ message: "Podcast actualizado correctamente", color: 'success' });
         setTimeout(() => {
