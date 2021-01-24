@@ -18,10 +18,7 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
     const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);
 
 
-    /*  const [show, setShow] = useState(false);
-      const handleClose = () => setShow(false);
-      const handleShow = () => setShow(true);
-      const [showModal2, setShowModal2] = useState(false);*/
+
     let userId;
     if (hasSession()) {
         userId = getUserId();

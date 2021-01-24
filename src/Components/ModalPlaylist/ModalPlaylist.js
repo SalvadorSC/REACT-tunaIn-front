@@ -1,6 +1,10 @@
 import React, {useState} from "react";
 import {Button, Modal} from "react-bootstrap";
 import "./ModalPlaylist.css";
+import {serverRequest} from "../../helpers/urlBack";
+import {getUserId, setSession} from "../../util/LocalStorage.utils";
+import {PROFILE} from "../../routes/routes";
+import {useHistory} from "react-router-dom";
 
 export const ModalPlaylist = (props) => {
     const {show, onClose, buttons, title, podcastId} = props;
@@ -8,23 +12,85 @@ export const ModalPlaylist = (props) => {
     const [openModalNew, setOpenModalNew] = useState(false);
     const [openModalNewSelect, setOpenModalNewSelect] = useState(false);
     const [openModalDelete, setOpenModalDelete] = useState(false);
-    const [data, setData] = useState("");
-
-    const playlistHandler = e => {
-        e.preventDefault();
-        setData({playlist: e.target.value, podcast: podcastId});
-        console.log(data);
-    }
-
+    const [data, setData] = useState({
+        title: "",
+        description: "",
+        user: "",
+        list: "",
+    });
+    const [listPlaylist, setListPlaylist] = useState({
+        title: [],
+        description: [],
+    });
+    const userId = getUserId();
+    const history = useHistory();
     const handleCloseModal2 = () => {
         setData({
-            playlist: "",
-            podcast: "",
+            title: "",
+            description: "",
+            user: "",
+            list: "",
         });
     }
-    const submitNewPlaylist = () => {
+
+    const saveName = (e) => {
+        e.preventDefault();
+        const value = e.target.value;
+        setData({
+
+            [e.target.name]: value
+        });
 
     }
+    const submitNewPlaylist = e => {
+        e.preventDefault();
+        const value = e.target.value;
+        setData({
+            ...data,
+            [e.target.name]: value,
+            list: podcastId,
+            user: userId,
+        });
+        console.log(data);
+        serverRequest("playlist", "POST", data)
+            .then((response) => {
+                //mensaje success
+                alert("Playlist Guardada con Exito");
+
+            })
+            .catch((response) => {
+                console.log(response);
+            });
+
+    };
+
+    const selectPlaylist = () => {
+
+        serverRequest("playlist", "GET")
+            .then((response) => {
+                console.log(response);
+                for (let i = 0; i < response.length; i++) {
+                    setListPlaylist({
+                        ...listPlaylist,
+                        title: title.push(response[i].title),
+                        description: description.push(response[i].description),
+                    })
+                    console.log(listPlaylist);
+                }
+
+            })
+            .catch((response) => {
+                console.log(response);
+            });
+
+    }
+
+    const deletePlaylist = (e) => {
+
+        console.log("delete");
+
+    }
+
 
     return (
         <>
@@ -44,22 +110,21 @@ export const ModalPlaylist = (props) => {
                             setOpenModalNew(true)
                         }}>Crear Nueva PlayList
                         </button>
-                        <button onClick={()=>{
+                        <button onClick={() => {
                             onClose();
                             setOpenModalNewSelect(true);
-                        }}>Seleccionar una Playlist</button>
-                        <button onClick={()=>{
+                        }}>Seleccionar una Playlist
+                        </button>
+                        <button onClick={() => {
                             onClose();
                             setOpenModalDelete(true);
-                        }}>Eliminar una Playlist</button>
+                        }}>Eliminar una Playlist
+                        </button>
                     </>
                 </Modal.Body>
                 <Modal.Footer className="modalFooter">
                     <Button onClick={onClose} variant="secondary">
                         Cerrar
-                    </Button>
-                    <Button variant="primary">
-                        Enviar
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -76,8 +141,11 @@ export const ModalPlaylist = (props) => {
                 </Modal.Header>
                 <Modal.Body className="modalBody">
 
-                    <input type="text" value={data.playlist} onChange={playlistHandler}
+                    <input name="title" type="text" value={data.playlist} onChange={saveName}
                            placeholder="Introduce el nombre"></input>
+
+                    <input name="description" type="text" value={data.description} onChange={submitNewPlaylist}
+                           placeholder="Introduce la descripción"></input>
                 </Modal.Body>
                 <Modal.Footer className="modalFooter">
                     <Button onClick={() => {
@@ -86,7 +154,7 @@ export const ModalPlaylist = (props) => {
                     }} variant="secondary">
                         Cerrar
                     </Button>
-                    <Button variant="primary" onClick={submitNewPlaylist}>
+                    <Button variant="primary" type="submit" onClick={submitNewPlaylist}>
                         Enviar
                     </Button>
                 </Modal.Footer>
@@ -109,45 +177,44 @@ export const ModalPlaylist = (props) => {
                 <Modal.Footer className="modalFooter">
                     <Button onClick={() => {
                         setOpenModalNewSelect(false);
+                        selectPlaylist();
 
                     }} variant="secondary">
                         Cerrar
-                    </Button>
-                    <Button variant="primary" >
-                        Enviar
                     </Button>
                 </Modal.Footer>
             </Modal>
 
 
-    {/*Delete Playlist*/}
+            {/*Delete Playlist*/}
 
-    <Modal
-        show={openModalDelete}
-        onHide={onClose}
-        backdrop="static"
-        keyboard={false}
-    >
-        <Modal.Header className="modalHeader">
-            <Modal.Title>Selecciona una Playlist</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="modalBody">
-            {data.playlist}
-        </Modal.Body>
-        <Modal.Footer className="modalFooter">
-            <Button onClick={() => {
-                setOpenModalDelete(false);
+            <Modal
+                show={openModalDelete}
+                onHide={onClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header className="modalHeader">
+                    <Modal.Title>Selecciona una Playlist</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="modalBody">
+                    {data.playlist}
+                </Modal.Body>
+                <Modal.Footer className="modalFooter">
+                    <Button onClick={(e) => {
+                        setOpenModalDelete(false);
+                        deletePlaylist(e);
 
-            }} variant="secondary">
-                Cerrar
-            </Button>
-            <Button variant="primary" >
-                Enviar
-            </Button>
-        </Modal.Footer>
-    </Modal>
+                    }} variant="secondary">
+                        Cerrar
+                    </Button>
+                    <Button variant="primary">
+                        Enviar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
-</>
+        </>
 
     );
 }
