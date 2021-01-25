@@ -20,21 +20,18 @@ export const serverRequest = (resources, method, body) => {
         body: JSONBody
     }
 
-    return fetch(url, options)
-        .catch(error => (error))
-        .then(res => {
-            if (res.status >= 400) {
-                return Promise.reject(res);
-            }
+    let response = undefined;
 
-            if (method === 'DELETE') {
-                return Promise.resolve();
-            }
+    return fetch(url, options)
+        .then(res => {
+            response = res;
             return res.json();
         })
         .then(resJson => {
+            if(response.status >= 400){
+                return Promise.reject(resJson);
+            }
             return Promise.resolve(resJson);
         })
-        .catch(err => Promise.reject(err));
 
 }
