@@ -138,7 +138,7 @@ export const RegisterForm = () => {
           <label htmlFor="otro">Otro</label>
         </div>
 
-        <Avisos flag={registerFail.message} type={registerFail.color} />
+        /*<Avisos flag={registerFail.message} type={registerFail.color} />*/
 
         <div className="RegisterForm-dflex">
           <div className="a-login">
