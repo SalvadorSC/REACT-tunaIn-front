@@ -1,5 +1,5 @@
 import { getToken, hasSession } from "../util/LocalStorage.utils";
-const API_URL = window.location.hostname === "tuna-in.netlify.app" ? "https://tunain3.herokuapp.com/" : `http://localhost:3300`;
+const API_URL = window.location.hostname === "tuna-in.netlify.app" ? "https://tunain3.herokuapp.com" : `http://localhost:3300`;
 
 export const serverRequest = (resources, method, body) => {
     //const token = getToken();
