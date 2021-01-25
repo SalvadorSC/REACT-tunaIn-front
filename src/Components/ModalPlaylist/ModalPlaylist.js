@@ -12,17 +12,17 @@ export const ModalPlaylist = (props) => {
     const [openModalNew, setOpenModalNew] = useState(false);
     const [openModalNewSelect, setOpenModalNewSelect] = useState(false);
     const [openModalDelete, setOpenModalDelete] = useState(false);
+    const userId = getUserId();
     const [data, setData] = useState({
         title: "",
         description: "",
-        user: "",
-        list: "",
+        user: userId,
+        list: podcastId,
     });
     const [listPlaylist, setListPlaylist] = useState({
         title: [],
         description: [],
     });
-    const userId = getUserId();
     const history = useHistory();
     const handleCloseModal2 = () => {
         setData({
@@ -37,20 +37,23 @@ export const ModalPlaylist = (props) => {
         e.preventDefault();
         const value = e.target.value;
         setData({
-
+             ...data,
             [e.target.name]: value
         });
 
     }
-    const submitNewPlaylist = e => {
+
+    const saveDescription = (e) => {
         e.preventDefault();
         const value = e.target.value;
         setData({
             ...data,
-            [e.target.name]: value,
-            list: podcastId,
-            user: userId,
+            [e.target.name]: value
         });
+
+    }
+
+    const submitNewPlaylist = () => {
         console.log(data);
         serverRequest("playlist", "POST", data)
             .then((response) => {
@@ -61,6 +64,8 @@ export const ModalPlaylist = (props) => {
             .catch((response) => {
                 console.log(response);
             });
+        setOpenModalNew(false);
+
 
     };
 
@@ -68,15 +73,16 @@ export const ModalPlaylist = (props) => {
 
         serverRequest("playlist", "GET")
             .then((response) => {
+                setListPlaylist(response);
                 console.log(response);
-                for (let i = 0; i < response.length; i++) {
+              /*  for (let i = 0; i < response.length; i++) {
                     setListPlaylist({
                         ...listPlaylist,
-                        title: title.push(response[i].title),
-                        description: description.push(response[i].description),
+                        title: response[i].title,
+                  //      description: description.push(response[i].description),
                     })
                     console.log(listPlaylist);
-                }
+                }*/
 
             })
             .catch((response) => {
@@ -111,6 +117,7 @@ export const ModalPlaylist = (props) => {
                         }}>Crear Nueva PlayList
                         </button>
                         <button onClick={() => {
+                            selectPlaylist();
                             onClose();
                             setOpenModalNewSelect(true);
                         }}>Seleccionar una Playlist
@@ -144,7 +151,7 @@ export const ModalPlaylist = (props) => {
                     <input name="title" type="text" value={data.playlist} onChange={saveName}
                            placeholder="Introduce el nombre"></input>
 
-                    <input name="description" type="text" value={data.description} onChange={submitNewPlaylist}
+                    <input name="description" type="text" value={data.description} onChange={saveDescription}
                            placeholder="Introduce la descripción"></input>
                 </Modal.Body>
                 <Modal.Footer className="modalFooter">
@@ -172,13 +179,11 @@ export const ModalPlaylist = (props) => {
                     <Modal.Title>Selecciona una Playlist</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="modalBody">
-                    {data.playlist}
+                    <p>{listPlaylist[0].description}</p>
                 </Modal.Body>
                 <Modal.Footer className="modalFooter">
                     <Button onClick={() => {
                         setOpenModalNewSelect(false);
-                        selectPlaylist();
-
                     }} variant="secondary">
                         Cerrar
                     </Button>
