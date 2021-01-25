@@ -11,7 +11,7 @@ export const Buscador = () => {
   const url = window.location.href;
 
   useEffect(() => {
-    if (url === "http://localhost:3000/") {
+    if (url === "http://localhost:3000/" || "https://relaxed-tereshkova-bc287f.netlify.app/") {
       setBuscadorClass("buscador-home");
       setBuscadorStyleClass("buscadorStyle-home");
       setResultadosbusquedaClass("resultadosbusqueda-home");
