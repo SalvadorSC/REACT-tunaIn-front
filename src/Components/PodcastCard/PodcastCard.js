@@ -32,7 +32,6 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
             podcast: "",
         });
     }
-    let userId;
     if (hasSession()) {
         userId = getUserId();
     }

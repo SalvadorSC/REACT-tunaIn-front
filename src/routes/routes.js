@@ -14,4 +14,3 @@ export const PODCASTLIST = '/podcastList';
 export const SEARCH = '/search';
 export const SEARCHITEM = '/search/:urlSearch';
 export const USERLIST = '/userList';
-export const PODCASTLIST = '/podcastList';

@@ -1,9 +1,9 @@
 import { getToken, hasSession } from "../util/LocalStorage.utils";
+const API_URL = window.location.hostname === "tuna-in.netlify.app" ? "https://tunain3.herokuapp.com/" : `http://localhost:3300`;
 
 export const serverRequest = (resources, method, body) => {
     //const token = getToken();
     const token = hasSession() ? getToken() : '';
-    const API_URL = window.location.hostname === "tuna-in.netlify.app" ? "https://tunain3.herokuapp.com/" : `http://localhost:3300/`;
     /* const url = `http://localhost:3300/${resources}`; */
     const url =  `${API_URL}/${resources}`
     const JSONBody = JSON.stringify(body);
@@ -13,7 +13,8 @@ export const serverRequest = (resources, method, body) => {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token
-            // 'Authoritation': token
+            
+            // 'Authorization': token
             // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSONBody

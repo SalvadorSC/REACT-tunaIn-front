@@ -11,7 +11,7 @@ import { Premium } from "../../Components/Premium/Premium";
 import { Carousel } from '../../Components/Carousel/Carousel';
 import { Dispositivos } from "../../Components/Dispositivos/Dispositivos";
 import { useParams } from "react-router-dom";
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+/* import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'; */
 //import {Button} from '../../Components/ButtonFlex/ButtonFlex';
 // const SPLASHBASE_URL = new URL('http://www.splashbase.co/api/v1/images/search?query=music');
 
