@@ -1,13 +1,40 @@
-.modalHeader{
-
+.modalHeader {
+background-color: #657152;
+    display: block;
+    text-align: center;
 }
-.modalBody{
+
+.modalBody {
+   /* background-color: #47686b;*/
     display: flex;
     display: grid;
 }
 
-.modalFooter{
+.modalFooter {
     display: flex;
     flex-wrap: unset;
 
+}
+
+.modalP {
+    font-size: 23px;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    background-color: gray;
+
+}
+
+p{
+    font-size: 23px;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+
+
+}
+
+.modalButton {
+    margin-left: 110px;
+    background-color: #fe8b86;
 }

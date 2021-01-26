@@ -19,10 +19,7 @@ export const ModalPlaylist = (props) => {
         user: userId,
         list: podcastId,
     });
-    const [listPlaylist, setListPlaylist] = useState({
-        title: [],
-        description: [],
-    });
+    const [listPlaylist, setListPlaylist] = useState([]);
     const history = useHistory();
     const handleCloseModal2 = () => {
         setData({
@@ -37,7 +34,7 @@ export const ModalPlaylist = (props) => {
         e.preventDefault();
         const value = e.target.value;
         setData({
-             ...data,
+            ...data,
             [e.target.name]: value
         });
 
@@ -54,17 +51,22 @@ export const ModalPlaylist = (props) => {
     }
 
     const submitNewPlaylist = () => {
-        console.log(data);
-        serverRequest("playlist", "POST", data)
-            .then((response) => {
-                //mensaje success
-                alert("Playlist Guardada con Exito");
+        if (!data.title) {
+            alert("title is missing");
+        } else if (!data.description) {
+            alert("description is missing");
+        } else {
+            serverRequest("playlist", "POST", data)
+                .then((response) => {
+                    //mensaje success
+                    alert("Playlist Guardada con Exito");
 
-            })
-            .catch((response) => {
-                console.log(response);
-            });
-        setOpenModalNew(false);
+                })
+                .catch((response) => {
+                    console.log(response);
+                });
+            setOpenModalNew(false);
+        }
 
 
     };
@@ -74,15 +76,15 @@ export const ModalPlaylist = (props) => {
         serverRequest("playlist", "GET")
             .then((response) => {
                 setListPlaylist(response);
-                console.log(response);
-              /*  for (let i = 0; i < response.length; i++) {
-                    setListPlaylist({
-                        ...listPlaylist,
-                        title: response[i].title,
-                  //      description: description.push(response[i].description),
-                    })
-                    console.log(listPlaylist);
-                }*/
+                console.log(listPlaylist);
+                /*  for (let i = 0; i < response.length; i++) {
+                      setListPlaylist({
+                          ...listPlaylist,
+                          title: response[i].title,
+                    //      description: description.push(response[i].description),
+                      })
+                      console.log(listPlaylist);
+                  }*/
 
             })
             .catch((response) => {
@@ -149,7 +151,7 @@ export const ModalPlaylist = (props) => {
                 <Modal.Body className="modalBody">
 
                     <input name="title" type="text" value={data.playlist} onChange={saveName}
-                           placeholder="Introduce el nombre"></input>
+                           placeholder="Introduce el nombre" required></input>
 
                     <input name="description" type="text" value={data.description} onChange={saveDescription}
                            placeholder="Introduce la descripción"></input>
@@ -179,7 +181,15 @@ export const ModalPlaylist = (props) => {
                     <Modal.Title>Selecciona una Playlist</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="modalBody">
-                    <p>{listPlaylist[0].description}</p>
+                    {listPlaylist.map(playlist => (
+                        <div>
+                            <p className="modalP">Título:</p>
+                            <button className="modalButton">{playlist.title}</button>
+                            <p className="modalP">Descripción:</p>
+                            <p>{playlist.description}</p>
+                            <hr></hr>
+                        </div>))
+                    }
                 </Modal.Body>
                 <Modal.Footer className="modalFooter">
                     <Button onClick={() => {
