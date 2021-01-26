@@ -24,15 +24,19 @@ background-color: #3fcffa;
     background-color: gray;
 
 }
+hr {
+    height: 3px;
+    width: 50%;
+    background-color: black;
+}
 
-/*p{
-    font-size: 15px;
+.modalPDescripcion {
+    font-size: 18px;
     color: black;
     text-align: center;
     font-weight: bold;
 
-
-}*/
+}
 
 .modalButton {
     margin-left: 110px;

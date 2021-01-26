@@ -77,14 +77,27 @@ export const ModalPlaylist = (props) => {
             .then((response) => {
                 setListPlaylist(response);
                 console.log(listPlaylist);
-                /*  for (let i = 0; i < response.length; i++) {
-                      setListPlaylist({
-                          ...listPlaylist,
-                          title: response[i].title,
-                    //      description: description.push(response[i].description),
-                      })
-                      console.log(listPlaylist);
-                  }*/
+            })
+            .catch((response) => {
+                console.log(response);
+            });
+
+    }
+
+    const playlistSelected = (_id, podcastId) => {
+        console.log(_id, podcastId);
+        const body = {
+            list: podcastId,
+            _id: _id,
+
+        }
+
+        serverRequest(`playlist/?playlistId=${body._id}&&podcast=${body.list}`, "PUT",body)
+            .then((response) => {
+              if (response.ok){
+                  console.log(response)
+              }
+
 
             })
             .catch((response) => {
@@ -92,6 +105,7 @@ export const ModalPlaylist = (props) => {
             });
 
     }
+
 
     const deletePlaylist = (e) => {
 
@@ -184,9 +198,11 @@ export const ModalPlaylist = (props) => {
                     {listPlaylist.map(playlist => (
                         <div>
                             <p className="modalP">Título:</p>
-                            <button className="modalButton">{playlist.title}</button>
+                            <button onClick={() => {
+                                playlistSelected(playlist._id, podcastId)
+                            }} className="modalButton">{playlist.title}</button>
                             <p className="modalP">Descripción:</p>
-                            <p>{playlist.description}</p>
+                            <p className="modalPDescripcion">{playlist.description}</p>
                             <hr></hr>
                         </div>))
                     }
