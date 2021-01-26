@@ -1,5 +1,5 @@
 .modalHeader {
-background-color: #657152;
+background-color: #3fcffa;
     display: block;
     text-align: center;
 }
@@ -25,14 +25,14 @@ background-color: #657152;
 
 }
 
-p{
-    font-size: 23px;
+/*p{
+    font-size: 15px;
     color: black;
     text-align: center;
     font-weight: bold;
 
 
-}
+}*/
 
 .modalButton {
     margin-left: 110px;
