@@ -11,6 +11,7 @@ export const ModalPlaylist = (props) => {
     const [openModalNewSelect, setOpenModalNewSelect] = useState(false);
     const [openModalDelete, setOpenModalDelete] = useState(false);
     const userId = getUserId();
+    const [forceReload, setForceReload] = useState(true);
     const [data, setData] = useState({
         title: "",
         description: "",
@@ -18,12 +19,12 @@ export const ModalPlaylist = (props) => {
         list: podcastId,
     });
     const [listPlaylist, setListPlaylist] = useState([]);
-    const handleCloseModal2 = () => {
+    const  = () => {
         setData({
             title: "",
             description: "",
             user: "",
-            list: [],
+            list: "",
         });
     }
 
@@ -38,7 +39,7 @@ export const ModalPlaylist = (props) => {
             });
 
 
-    }, [listPlaylist])
+    }, [forceReload])
 
     const saveName = (e) => {
         e.preventDefault();
@@ -89,8 +90,9 @@ export const ModalPlaylist = (props) => {
 
         serverRequest(`playlist/${_id}/podcast`, "PUT", body)
             .then((response) => {
-                if (response.ok) {
+                if (response) {
                     console.log(response)
+                    setForceReload(!forceReload);
                     setOpenModalNewSelect(false);
                 }
 
@@ -108,7 +110,7 @@ export const ModalPlaylist = (props) => {
             .then((response) => {
                 if (response) {
                     console.log(response)
-
+                    setForceReload(!forceReload);
                 }
 
 
