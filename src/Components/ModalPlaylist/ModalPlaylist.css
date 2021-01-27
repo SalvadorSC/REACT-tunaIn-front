@@ -1,0 +1,45 @@
+.modalHeader {
+background-color: #3fcffa;
+    display: block;
+    text-align: center;
+}
+
+.modalBody {
+   /* background-color: #47686b;*/
+    display: flex;
+    display: grid;
+}
+
+.modalFooter {
+    display: flex;
+    flex-wrap: unset;
+
+}
+
+.modalP {
+    font-size: 23px;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    background-color: gray;
+
+}
+hr {
+    height: 3px;
+    width: 50%;
+    background-color: black;
+}
+
+.modalPDescripcion {
+    font-size: 18px;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.modalButton {
+    color: chartreuse;
+    margin-left: 110px;
+    background-color: #fe8b86;
+}
