@@ -45,15 +45,10 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
         serverRequest(`data/favoritos/?id_podcast=${podcastId}&&id_author=${userId}`, "GET")
             .then((response) => {
                 setFavoritosUsuario(response[0]);
-                /* console.log(favoritosUsuario);
-                console.log("ANALIZED USER ^"); */
                 if (response.length > 0) {
                     console.log("PODCAST ID " + podcastId)
                     setFavoritosUsuario(response[0]);
-                    /* console.log(favoritosUsuario);
-                    console.log("ANALIZED USER ^"); */
                     if (response.length > 0) {
-                        /* console.log("PODCAST ID " + podcastId) */
 
                         setIconFavoriteOnClick(true);
                     }
