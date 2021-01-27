@@ -8,27 +8,38 @@ import { PodcastContext } from '../../App';
 import { serverRequest } from "../../helpers/urlBack";
 import { Podcast, PodcastsDestacados, ListaPodcastFake } from "../PodcastsDestacados/PodcastsDestacados";
 import { usePlaybarContext, PlaybarContext } from '../../contexts/playbar';
-import { usePlaylistContext } from '../../contexts/playlist';
+import { usePlaylistContext, PlaylistContext } from '../../contexts/playlist';
 import { playerActions } from '../../reducer/playerReducer';
-
 //import { PlaylistELIS } from '../../';
 
-
-
 export const Playbar = () => {  
-
+  
   const playbarContext = usePlaybarContext(); ///había una x tras el ;
   const podcast = playbarContext.playbarPodcast;
 
    const { state, dispatch } = useContext(PlaybarContext);
   
-    const handleClickNext = () => {
+    const HandleClickNext = () => {
       dispatch({ type: playerActions.REPRODUCE_NEXT });
     };
-    const handleClickPrev = () => {
+    const HandleClickPrev = () => {
       console.log('Next');
       dispatch({ type: playerActions.PREV_SONG });
-    };
+    }
+
+  /* const playlistContext = usePlaylistContext(); ///había una x tras el ;
+    const podcast = playlistContext.playlistPodcast;
+    
+    const { state, dispatch } = useContext(PlaylistContext);
+      
+      const HandleClickNext = () => {
+         dispatch({ type: playerActions.REPRODUCE_NEXT });
+      };
+      const HandleClickPrev = () => {
+        console.log('Next');
+        dispatch({ type: playerActions.PREV_SONG }); */
+
+  
     
     return(
 
@@ -46,9 +57,9 @@ export const Playbar = () => {
      <div className = "categoria-playbar">{podcast && (podcast.categories)} </div>
       </div>  
       <AudioPlayer
-      onClickNext={handleClickNext} 
+      onClickNext={HandleClickNext} 
 
-      onClickPrevious={handleClickPrev}
+      onClickPrevious={HandleClickPrev}
       showSkipControls={true} showJumpControls={false}
       customAdditionalControls={[]}
       autoPlay
@@ -62,6 +73,8 @@ export const Playbar = () => {
           
     );
     
+  }
+
     /*return (
       <div className="player-wrapper">
         <AudioPlayer
@@ -162,7 +175,7 @@ export const Playbar = () => {
     
         
   );*/
-  }
+  
 
 
  

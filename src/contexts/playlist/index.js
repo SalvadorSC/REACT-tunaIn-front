@@ -2,7 +2,7 @@
 import { faUnderline } from '@fortawesome/free-solid-svg-icons';
 import {createContext, useContext, useState} from 'react';
 
-const PlaylistContext = createContext();
+export const PlaylistContext = createContext();
 
 export const PlaylistContextProvider = (props) =>{
     const [playlistPodcast, setPlaylistPodcast] = useState(undefined);

@@ -20,6 +20,7 @@ import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, POD
 import { Footer } from "./Components/Footer/Footer";
 import { Playbar } from "./Components/Playbar/Playbar";
 import { PlaybarContextProvider } from './contexts/playbar';
+import { PlaylistContextProvider } from './contexts/playlist';
 
 export default function App() {
 
@@ -41,6 +42,7 @@ export default function App() {
   return (
     <Router>
       <PlaybarContextProvider>
+      <PlaylistContextProvider>
       <NavBar setContainerClass={setContainerClass} setMainClass={setMainClass} />
       <div className={containerClass}>
         <div className={mainClass}>
@@ -65,6 +67,7 @@ export default function App() {
       </div>
       <Playbar />
       <Footer />
+      </PlaylistContextProvider>
       </PlaybarContextProvider>
     </Router>
   );
