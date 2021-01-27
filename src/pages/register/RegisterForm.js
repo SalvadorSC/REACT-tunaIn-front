@@ -52,7 +52,10 @@ export const RegisterForm = () => {
           history.push(HOME);
         }, 2000);
       })
-      .catch((response) => setRegisterFail(response.error));
+      .catch((response) =>{
+        debugger;
+        setRegisterFail(response.error)
+      });
     // Reseteo los campos del formulario:
     e.target.reset();
   };

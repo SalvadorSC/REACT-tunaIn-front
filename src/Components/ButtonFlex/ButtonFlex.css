@@ -2,8 +2,10 @@
 
 /*DEFAUT STYLE BUTTON */
 .btn--primary--solid{
-  color: #97BD74;
-  background-color: honeydew;
+  color: honeydew;
+  background-color: #97BD74;
+  outline: none;
+
 }
  /* Small Icon buttons */
 .btn--icon--outline{
@@ -16,7 +18,8 @@
 }
 .btn--iconClicked--outline{
   font-size: 20px;
-  color: #97BD74;
+  background-color: #97BD74;
+  color: honeydew;
   outline: none;
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
-import {getToken, getUserId} from "../../util/LocalStorage.utils";
+import { getToken, getUserId } from "../../util/LocalStorage.utils";
 import { PodcastsUser } from "../../Components/PodcastsUser/PodcastsUser";
 import { FavoritosUser } from "../../Components/FavoritosUser/FavoritosUser";
 import "./OtherProfile.css";
