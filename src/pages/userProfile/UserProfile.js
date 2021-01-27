@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import { getUserId } from "../../util/LocalStorage.utils";
 import { PodcastsUser } from "../../Components/PodcastsUser/PodcastsUser";
@@ -26,28 +26,17 @@ export const UserProfile = () => {
       .catch(console.log);
   }, []);
 
-  const [isMyPodcastsSelected, setIsMyPodcastsSelected] = useState(true)
-  const [isFavoritosSelected, setIsFavoritosSelected] = useState(false)
   const [selectedTab, setSelectedTab] = useState(0)
 
-  /* const [favSelected, setFavSelected] = useState("notSelected")
-  const [myPodcastsSelected, setMyPodcastsSelected] = useState("selected") */
   const favoritos = () => {
     setSelectedTab(1)
-    /* setFavSelected("selected")
-    setMyPodcastsSelected("notSelected") */
   }
   const MisPodcasts = () => {
     setSelectedTab(0)
-    /*  setIsMyPodcastsSelected(true)
-        setIsFavoritosSelected(false) */
-    /* setFavSelected("notSelected")
-    setMyPodcastsSelected("selected") */
   }
 
   const playlist = () => {
-
-
+    setSelectedTab(2)
   }
 
   const exit = () => {
@@ -76,24 +65,24 @@ export const UserProfile = () => {
             <div className={"vr"} />
             <img className="profilePicture" alt="background" src="https://c0.anyrgb.com/images/434/137/recording-studio-person-woman-microphone-radio-podcast-talking-singing-presenter.jpg" />
           </div>
-          {/* <Link
-              to={{
-                pathname: "/editUserProfile",
-                state: { user },
-              }}
-            >
-              <button>Editar perfil</button>
-            </Link> */}
           <br />
         </div>
         <hr />
         <br />
       </div>
       <div className="UserPodcasts">
-        <div style={{ display: "flex", width: "50%", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
           <h4 className={selectedTab === 0 ? "selected" : "notSelected"} onClick={MisPodcasts}>Tus podcasts subidos</h4>
           <h4 className={selectedTab === 1 ? "selected" : "notSelected"} onClick={favoritos}>Tus favoritos</h4>
           <h4 className={selectedTab === 2 ? "selected" : "notSelected"} onClick={playlist}>Playlist</h4>
+          <Link
+            to={{
+              pathname: "/uploadPodcast",
+              state: { user },
+            }}
+          >
+            Subir podcast
+          </Link>
         </div>
         <br />
         {selectedTab === 0 && <PodcastsUser />}

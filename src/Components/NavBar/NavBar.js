@@ -5,7 +5,7 @@ import "./NavBar.css";
 import { useState, useEffect } from "react";
 import { getToken, getUserId, hasSession, setSession } from "../../util/LocalStorage.utils";
 
-export function NavBar({ setContainerClass, setMainClass, setFooterClass }) {
+export function NavBar({ setContainerClass, setMainClass, setFooterClass, buscadorClass, buscadorStyleClass, resultadosbusquedaClass }) {
   const [navbarClass, setNavbarClass] = useState('');
   const [nameClass, setNameClass] = useState('');
   const [navbarLogoClass, setNavbarLogoClass] = useState('');
@@ -21,7 +21,6 @@ export function NavBar({ setContainerClass, setMainClass, setFooterClass }) {
       setMainClass("main-home");
       setFooterClass("footer-home");
       setNameClass("name-home");
-
     }
     else {
       setNavbarLogoClass("navbarLogo");

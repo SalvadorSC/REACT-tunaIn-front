@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { serverRequest } from '../../helpers/urlBack';
 // import { Button } from "react-bootstrap";
-// import { CenterModal } from "../../Components/CenterModal/CenterModal";
 import "./Search.css";
 import { Buscador } from "../../Components/Buscador/Buscador";
 import { CallToAction } from "../../Components/CallToAction/CallToAction";
@@ -128,13 +127,7 @@ export const Search = () => {
     
   
         
-            {/* <Button variant="primary" onClick={() => setModalShow(true)}>
-
-        TunaIn Podcast Player
-      </Button>
-        //Pep10/01/2021
-      <CenterModal show={modalShow} onHide={() => setModalShow(false)} />
-      <CenterModal /> */}
+            
         </>
     );
 };

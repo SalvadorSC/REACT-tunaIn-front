@@ -6,7 +6,6 @@ import { Button } from '../ButtonFlex/ButtonFlex';
 import { serverRequest } from "../../helpers/urlBack";
 import { getUserId, hasSession } from "../../util/LocalStorage.utils";
 import Modal from "react-bootstrap/Modal";
-import {CenterModal} from "../CenterModal/CenterModal";
 
 
 export const PodcastCard = ({ title, categories, author, img, podcastId, description }) => {

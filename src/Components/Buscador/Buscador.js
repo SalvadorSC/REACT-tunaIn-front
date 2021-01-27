@@ -4,24 +4,19 @@ import './Buscador.css';
 import { Link, useHistory } from "react-router-dom";
 
 
-export const Buscador = () => {
-  const [buscadorClass, setBuscadorClass] = useState();
-  const [buscadorStyleClass, setBuscadorStyleClass] = useState();
-  const [resultadosbusquedaClass, setResultadosbusquedaClass] = useState();
-  const url = window.location.href;
-
-  useEffect(() => {
-    if (url === "http://localhost:3000/" || "https://relaxed-tereshkova-bc287f.netlify.app/") {
-      setBuscadorClass("buscador-home");
-      setBuscadorStyleClass("buscadorStyle-home");
-      setResultadosbusquedaClass("resultadosbusqueda-home");
-    }
-    else {
-      setBuscadorClass("buscador");
-      setBuscadorStyleClass("buscadorStyle");
-      setResultadosbusquedaClass("resultadosbusqueda");
-    }
-  }, [url]);
+export const Buscador = ({buscadorClass, buscadorStyleClass, resultadosbusquedaClass}) => {
+  /* useEffect(() => {
+   if (url === "http://localhost:3000/" || "https://tuna-in.netlify.app/") {
+     setBuscadorClass("buscador-home");
+     setBuscadorStyleClass("buscadorStyle-home");
+     setResultadosbusquedaClass("resultadosbusqueda-home");
+   }
+   else if (!url === "http://localhost:3000/" || "https://tuna-in.netlify.app/"){
+     setBuscadorClass("buscador");
+     setBuscadorStyleClass("buscadorStyle");
+     setResultadosbusquedaClass("resultadosbusqueda");
+   }
+ }, [url]); */
   const [updateRender, setUpdateRender] = useState(false);
   const [search, setSearch] = useState("")
   const [listaBusquedas, setListaBusquedas] = useState([]);
@@ -39,7 +34,7 @@ export const Buscador = () => {
         //En el then redirigir a página "resultados" donde se mostrarán los resultados de la búsqueda
         .catch(response => console.log(response))
     }
-    else{
+    else {
       setListaBusquedas([])
     }
     console.log('lista busquedas changed ');
@@ -60,14 +55,14 @@ export const Buscador = () => {
   return (
 
     <form>
-      <div className={buscadorClass}>
-        <div className={buscadorStyleClass}>
+      <div className={buscadorClass || "buscador"}>
+        <div className={buscadorStyleClass || "buscadorStyle"}>
           <input placeholder="Buscar podcasts, radios y mucho más" value={search} onChange={event => setSearch(event.target.value)} className='buscador-input' />
           <i className="fas fa-search fa-2x lupita" />
         </div>
       </div>
 
-      <div className={resultadosbusquedaClass}>
+      <div className={resultadosbusquedaClass || "resultadosbusqueda"}>
         {listaBusquedas.map(v => {
           return (
             <>
