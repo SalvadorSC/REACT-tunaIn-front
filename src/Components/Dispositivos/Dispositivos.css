@@ -2,7 +2,9 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 80px;
+    /* margin-top: 80px; */
+    background-color: rgba(0, 0, 0, 0.9);
+    height: 600px;
 }
 
 .Dispositivos-img {
@@ -12,13 +14,14 @@
 
 .Dispositivos-wrap img {
     width: 40%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
 }
 
 .Dispositivos-text {
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding: 60px 70px;
     align-items: flex-start;
 }
 
@@ -34,3 +37,13 @@
     margin: 20px 0 0;
 }
 
+.container-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.container-buttons div {
+    width: 10%;
+}

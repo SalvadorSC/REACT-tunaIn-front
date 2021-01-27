@@ -12,15 +12,22 @@
 .main-home{
   width: 100%;
   margin: 0 auto;
-  padding: 0 10%
+}
+
+.padding-10{
+  padding: 0 10%;
 }
 .container {
   display: flex;
   width: 90%;
   padding:0;
   margin-left: 5%;
+  grid-template-columns: 50px 50px 50px 50px;
 }
 
 .container-home {
   display: flex;
 }
+
+
+
