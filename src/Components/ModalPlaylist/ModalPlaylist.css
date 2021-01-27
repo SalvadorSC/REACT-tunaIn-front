@@ -39,6 +39,7 @@ hr {
 }
 
 .modalButton {
+    color: chartreuse;
     margin-left: 110px;
     background-color: #fe8b86;
 }

@@ -23,7 +23,7 @@ export const ModalPlaylist = (props) => {
             title: "",
             description: "",
             user: "",
-            list: "",
+            list: [],
         });
     }
 
@@ -204,7 +204,8 @@ export const ModalPlaylist = (props) => {
                         <div>
                             <p className="modalP">Título:</p>
                             <button onClick={() => {
-                                playlistSelected(playlist._id, podcastId)
+                                playlistSelected(playlist._id, podcastId);
+                                setOpenModalNewSelect(false);
                             }} className="modalButton">{playlist.title}</button>
                             <p className="modalP">Descripción:</p>
                             <p className="modalPDescripcion">{playlist.description}</p>
@@ -237,9 +238,9 @@ export const ModalPlaylist = (props) => {
                     {listPlaylist.map(playlist => (
                         <div>
                             <p className="modalP">Título:</p>
-                            <button onClick={() => {
+                            <button className="modalButton" onClick={() => {
                                 deletePlaylist(playlist._id)
-                            }} className="modalButton">{playlist.title}</button>
+                            }}>{playlist.title}</button>
                             <p className="modalP">Descripción:</p>
                             <p className="modalPDescripcion">{playlist.description}</p>
                             <hr></hr>
@@ -249,13 +250,9 @@ export const ModalPlaylist = (props) => {
                 <Modal.Footer className="modalFooter">
                     <Button onClick={(e) => {
                         setOpenModalDelete(false);
-                        deletePlaylist(e);
 
                     }} variant="secondary">
                         Cerrar
-                    </Button>
-                    <Button variant="primary">
-                        Enviar
                     </Button>
                 </Modal.Footer>
             </Modal>
