@@ -5,8 +5,7 @@ background-color: #3fcffa;
 }
 
 .modalBody {
-   /* background-color: #47686b;*/
-    display: flex;
+
     display: grid;
 }
 
