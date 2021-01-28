@@ -8,6 +8,7 @@ import "./PodcastInformation.css";
 export const PodcastInformation = () => {
   const [user, setUser] = useState({});
   const [podcast, setPodcast] = useState({});
+  const [comment, setComment] = useState();
   const history = useHistory();
   const userId = getUserId();
 
@@ -34,6 +35,17 @@ export const PodcastInformation = () => {
       })
       .catch(console.log);
   }, []);
+
+  useEffect(() => {
+
+    serverRequest(`/comment/${podcastId}`, "GET")
+        .then((response) => {
+          setComment(response);
+          console.log(response);
+        })
+        .catch(console.log);
+  }, []);
+
 
   const editPodcastLink = () => {
     if (user._id === podcast.id_author) {
@@ -62,6 +74,9 @@ export const PodcastInformation = () => {
           <br />
         </div>
         <hr></hr>
+        <div>
+          <p>{comment}</p>
+        </div>
         <div className="PodcastsUser-wrap">
           <br />
           {editPodcastLink()}
