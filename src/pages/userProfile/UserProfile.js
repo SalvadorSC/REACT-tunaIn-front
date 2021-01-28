@@ -37,6 +37,7 @@ export const UserProfile = () => {
 
   const playlist = () => {
     setSelectedTab(2)
+
   }
 
   const exit = () => {

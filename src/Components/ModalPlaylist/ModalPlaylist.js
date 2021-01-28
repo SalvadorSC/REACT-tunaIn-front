@@ -19,7 +19,7 @@ export const ModalPlaylist = (props) => {
         list: podcastId,
     });
     const [listPlaylist, setListPlaylist] = useState([]);
-    const  = () => {
+    const  handleCloseModal2= () => {
         setData({
             title: "",
             description: "",
@@ -39,7 +39,7 @@ export const ModalPlaylist = (props) => {
             });
 
 
-    }, [forceReload])
+    }, [])
 
     const saveName = (e) => {
         e.preventDefault();
@@ -108,10 +108,9 @@ export const ModalPlaylist = (props) => {
     const deletePlaylist = (_id) => {
         serverRequest(`playlist/${_id}`, "DELETE")
             .then((response) => {
-                if (response) {
-                    console.log(response)
+
                     setForceReload(!forceReload);
-                }
+
 
 
             })
