@@ -79,3 +79,11 @@ hr {
   cursor: pointer;
   z-index: 1;
 }
+
+.playlistName{
+
+  text-align: center;
+}
+.playlistDiv{
+  background-color: lightgray;
+}
