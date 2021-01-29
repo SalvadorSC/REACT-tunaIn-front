@@ -8,7 +8,7 @@ import "./PodcastInformation.css";
 export const PodcastInformation = () => {
   const [user, setUser] = useState({});
   const [podcast, setPodcast] = useState({});
-  const [comment, setComment] = useState();
+  const [comment, setComment] = useState([]);
   const history = useHistory();
   const userId = getUserId();
 
@@ -38,7 +38,7 @@ export const PodcastInformation = () => {
 
   useEffect(() => {
 
-    serverRequest(`/comment/${podcastId}`, "GET")
+    serverRequest(`comment/${podcastId}`, "GET")
         .then((response) => {
           setComment(response);
           console.log(response);
@@ -75,7 +75,12 @@ export const PodcastInformation = () => {
         </div>
         <hr></hr>
         <div>
-          <p>{comment}</p>
+          {comment.map(comment => (
+          <div>
+            <p>{comment.comment}</p>
+            <hr className="hrModal"></hr>
+          </div>))
+          }
         </div>
         <div className="PodcastsUser-wrap">
           <br />
