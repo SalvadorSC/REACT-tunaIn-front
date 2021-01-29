@@ -89,13 +89,7 @@ export const UserProfile = () => {
                         subidos</h4>
                     <h4 className={selectedTab === 1 ? "selected" : "notSelected"} onClick={favoritos}>Tus
                         favoritos</h4>
-                    <div><h4 className={selectedTab === 2 ? "selected" : "notSelected"}
-                             onClick={playlist}>Playlist</h4>
-                        {selectedTab === 2 && listPlaylist.map(playlist => (
-                            <div className="playlistDiv">
-                                <p className="playlistName">{playlist.title}</p>
-                            </div>))
-                        }</div>
+                    <h4 className={selectedTab === 2 ? "selected" : "notSelected"} onClick={playlist}>Playlist</h4>
                     <Link
                         to={{
                             pathname: "/uploadPodcast",
@@ -108,6 +102,11 @@ export const UserProfile = () => {
                 <br/>
                 {selectedTab === 0 && <PodcastsUser/>}
                 {selectedTab === 1 && <FavoritosUser userId={userId}/>}
+                {selectedTab === 2 && listPlaylist.map(playlist => (
+                    <div className="playlistDiv">
+                        <p className="playlistName">{playlist.title}</p>
+                    </div>))
+                }
                 <br/>
             </div>
             <Button className="salirButton" onClick={exit}>Salir</Button>
