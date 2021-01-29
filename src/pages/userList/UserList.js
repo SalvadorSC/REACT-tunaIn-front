@@ -4,10 +4,9 @@ import { Buscador } from "../../Components/Buscador/Buscador";
 import { UserCard } from "../../Components/UserCard/UserCard";
 import { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export const UserList = () => {
-  let history = useHistory();
   const [listaUsers, setListaUsers] = useState([]);
   const url = window.location.href;
   useEffect(() => {

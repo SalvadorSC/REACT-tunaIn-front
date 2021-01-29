@@ -4,6 +4,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
 import {getUserId} from "../../util/LocalStorage.utils";
 import "./PodcastInformation.css";
+import { formatDistance, subDays } from 'date-fns';
 
 export const PodcastInformation = () => {
   const [user, setUser] = useState({});
@@ -11,7 +12,8 @@ export const PodcastInformation = () => {
   const [comment, setComment] = useState([]);
   const history = useHistory();
   const userId = getUserId();
-
+  const date = formatDistance(subDays(new Date(), 3), new Date())
+console.log(date);
   function handleClick() {
     history.push(`/editPodcastInformation/${podcastId}`);
   }
@@ -77,6 +79,7 @@ export const PodcastInformation = () => {
         <div>
           {comment.map(comment => (
           <div>
+            <h5>{`${user.nombre} escribió:`}</h5>
             <p>{comment.comment}</p>
             <hr className="hrModal"></hr>
           </div>))

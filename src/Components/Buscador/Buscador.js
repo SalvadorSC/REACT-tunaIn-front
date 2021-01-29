@@ -5,24 +5,10 @@ import { Link, useHistory } from "react-router-dom";
 
 
 export const Buscador = ({buscadorClass, buscadorStyleClass, resultadosbusquedaClass}) => {
-  /* useEffect(() => {
-   if (url === "http://localhost:3000/" || "https://tuna-in.netlify.app/") {
-     setBuscadorClass("buscador-home");
-     setBuscadorStyleClass("buscadorStyle-home");
-     setResultadosbusquedaClass("resultadosbusqueda-home");
-   }
-   else if (!url === "http://localhost:3000/" || "https://tuna-in.netlify.app/"){
-     setBuscadorClass("buscador");
-     setBuscadorStyleClass("buscadorStyle");
-     setResultadosbusquedaClass("resultadosbusqueda");
-   }
- }, [url]); */
-  const [updateRender, setUpdateRender] = useState(false);
+
   const [search, setSearch] = useState("")
   const [listaBusquedas, setListaBusquedas] = useState([]);
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  }
+
   useEffect(() => {
     if (search !== "") {
       serverRequest(`user/${search}`, 'GET')
@@ -39,9 +25,7 @@ export const Buscador = ({buscadorClass, buscadorStyleClass, resultadosbusquedaC
     }
     console.log('lista busquedas changed ');
   }, [search]);
-  const updateSearch = (e) => {
 
-  }
 
   let history = useHistory();
 

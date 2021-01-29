@@ -1,11 +1,10 @@
 import React from 'react';
 import './Premium.css';
 import { Options } from "../Options/Options";
-import {useHistory} from "react-router-dom";
-import {REGISTER} from "../../routes/routes";
+
 
 export const Premium = () => {
-    let history = useHistory();
+
     return (
 
         <div className="Premium-wrap padding-10" >
