@@ -46,6 +46,7 @@ export const PodcastInformation = () => {
         console.log(saveComment);
     }
 
+
     useEffect(() => {
         serverRequest(`data/podcast/${podcastId}`, "GET")
             .then((response) => {
@@ -69,8 +70,6 @@ export const PodcastInformation = () => {
         serverRequest(`comment/${podcastId}`, "GET")
             .then((response) => {
                 setComment(response);
-                formatDate = format(response.date, "dd/MM/yyyy");
-                console.log(formatDate);
             })
             .catch(console.log);
     }, []);
@@ -136,7 +135,7 @@ export const PodcastInformation = () => {
                 <div>
                     {comment.map(comment => (
                         <div>
-                            <h5>{`${user.nombre} escribió el ${formatDate}`}</h5>
+                            <h5>{`${user.nombre} escribió el ${formatDate = format(Date.parse(comment.date), "dd,MM,yyyy / h:mm ")}`}</h5>
                             <p>{comment.comment}</p>
                             <hr className="hrModal"></hr>
                         </div>))
