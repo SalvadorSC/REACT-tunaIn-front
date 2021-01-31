@@ -11,6 +11,7 @@ export const PodcastInformation = () => {
     const [user, setUser] = useState({});
     const [podcast, setPodcast] = useState({});
     const [comment, setComment] = useState([]);
+    const [reload, setReload] = useState(false);
     const history = useHistory();
     let {podcastId} = useParams();
     let formatDate = "";
@@ -66,13 +67,13 @@ export const PodcastInformation = () => {
     }, []);
 
     useEffect(() => {
-
         serverRequest(`comment/${podcastId}`, "GET")
             .then((response) => {
                 setComment(response);
             })
             .catch(console.log);
-    }, []);
+                setReload(true);
+    }, [reload]);
 
     const submitNewComment = (e) => {
         e.preventDefault();
