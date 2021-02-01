@@ -29,9 +29,9 @@ export const PodcastInformation = () => {
 
     }
 
-    const resetField = ()=>{
+    const resetField = () => {
         setSaveComment({
-            ...saveComment,
+                ...saveComment,
                 comment: ""
             }
         )
@@ -70,9 +70,9 @@ export const PodcastInformation = () => {
         serverRequest(`comment/${podcastId}`, "GET")
             .then((response) => {
                 setComment(response);
+                console.log(response);
             })
             .catch(console.log);
-                setReload(true);
     }, [reload]);
 
     const submitNewComment = (e) => {
@@ -84,6 +84,7 @@ export const PodcastInformation = () => {
                 .then((response) => {
                     //mensaje success
                     alert("Comentario Guardado con Exito");
+                    reload === false ? setReload(true) : setReload(false);
 
                 })
                 .catch((response) => {
@@ -130,8 +131,8 @@ export const PodcastInformation = () => {
                 }>
 
                     <input name="comment" type="text"
-                           placeholder="Introduce tu comentario"  onChange={handleChange}></input>
-                    <button type = 'submit' placeholder='Enviar' value = 'Submit'>Enviar</button>
+                           placeholder="Introduce tu comentario" onChange={handleChange}></input>
+                    <button type='submit' placeholder='Enviar' value='Submit'>Enviar</button>
                 </form>
                 <div>
                     {comment.map(comment => (
