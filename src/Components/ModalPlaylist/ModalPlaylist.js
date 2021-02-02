@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Button, Modal} from "react-bootstrap";
 import "./ModalPlaylist.css";
 import {serverRequest} from "../../helpers/urlBack";
-import {getUserId, setSession} from "../../util/LocalStorage.utils";
+import {getUserId} from "../../util/LocalStorage.utils";
 
 
 export const ModalPlaylist = (props) => {
@@ -19,7 +19,7 @@ export const ModalPlaylist = (props) => {
         list: podcastId,
     });
     const [listPlaylist, setListPlaylist] = useState([]);
-    const  handleCloseModal2= () => {
+    const handleCloseModal2 = () => {
         setData({
             title: "",
             description: "",
@@ -27,19 +27,21 @@ export const ModalPlaylist = (props) => {
             list: "",
         });
     }
-
     useEffect(() => {
+
         serverRequest("playlist", "GET")
             .then((response) => {
                 setListPlaylist(response);
                 console.log(listPlaylist);
+
             })
             .catch((response) => {
                 console.log(response);
+
             });
 
 
-    }, [])
+    }, [forceReload])
 
     const saveName = (e) => {
         e.preventDefault();
@@ -70,29 +72,32 @@ export const ModalPlaylist = (props) => {
             serverRequest("playlist", "POST", data)
                 .then((response) => {
                     //mensaje success
+
                     alert("Playlist Guardada con Exito");
+
+                    setOpenModalNew(false);
 
                 })
                 .catch((response) => {
                     console.log(response);
                 });
-            setOpenModalNew(false);
         }
-
+        forceReload ? setForceReload(false) : setForceReload(true);
 
     };
 
     const playlistSelected = (_id, podcastId) => {
         console.log(_id, podcastId);
+
         const body = {
             list: [podcastId]
         }
 
+        forceReload ? setForceReload(false) : setForceReload(true);
         serverRequest(`playlist/${_id}/podcast`, "PUT", body)
             .then((response) => {
                 if (response) {
                     console.log(response)
-                    setForceReload(!forceReload);
                     setOpenModalNewSelect(false);
                 }
 
@@ -100,17 +105,16 @@ export const ModalPlaylist = (props) => {
             })
             .catch((response) => {
                 console.log(response);
-            });
 
+            });
     }
 
 
     const deletePlaylist = (_id) => {
+
+        forceReload ? setForceReload(false) : setForceReload(true);
         serverRequest(`playlist/${_id}`, "DELETE")
             .then((response) => {
-
-                    setForceReload(!forceReload);
-
 
 
             })
