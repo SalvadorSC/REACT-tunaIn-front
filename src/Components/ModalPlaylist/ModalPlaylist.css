@@ -23,7 +23,7 @@
     background-color: gray;
 }
 
-hr {
+.hr-Modal {
     height: 3px;
     width: 50%;
     background-color: black;

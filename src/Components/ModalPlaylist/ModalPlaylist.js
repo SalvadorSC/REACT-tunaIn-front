@@ -209,7 +209,7 @@ export const ModalPlaylist = (props) => {
                             }} className="modalButton">{playlist.title}</button>
                             <p className="modalP">Descripción:</p>
                             <p className="modalPDescripcion">{playlist.description}</p>
-                            <hr></hr>
+                            <hr className="hr-Modal"></hr>
                         </div>))
                     }
                 </Modal.Body>
@@ -243,7 +243,7 @@ export const ModalPlaylist = (props) => {
                             }}>{playlist.title}</button>
                             <p className="modalP">Descripción:</p>
                             <p className="modalPDescripcion">{playlist.description}</p>
-                            <hr></hr>
+                            <hr className="hr-Modal"></hr>
                         </div>))
                     }
                 </Modal.Body>
