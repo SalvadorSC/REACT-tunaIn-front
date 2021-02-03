@@ -20,7 +20,7 @@ export const Home = () => {
             <Buscador 
             buscadorClass="buscador-home"
             buscadorStyleClass ="buscadorStyle-home"
-            resultadosbusquedaClass="resultadosbusquedaClass-home"/>
+            resultadosbusquedaClass="resultadosbusqueda-home"/>
             <CallToAction
                 title="TU PLATAFORMA DE REFERENCIA"
                 text1="Escucha los mejores podcasts cerca de ti, accede a las cadenas de radio más populares y también las alternativas. Contenido de tu interés sobre música, deportes, política, humor y mucho más."
