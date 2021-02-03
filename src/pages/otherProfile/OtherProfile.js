@@ -1,24 +1,20 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { serverRequest } from "../../helpers/urlBack";
-import { getToken, getUserId } from "../../util/LocalStorage.utils";
+import { getUserId } from "../../util/LocalStorage.utils";
 import { PodcastsUser } from "../../Components/PodcastsUser/PodcastsUser";
 import { FavoritosUser } from "../../Components/FavoritosUser/FavoritosUser";
 import "./OtherProfile.css";
-import { Footer } from "../../Components/Footer/Footer";
 
 export const OtherProfile = () => {
   const [user, setUser] = useState({});
-  const [podcastAuthor, setPodcastAuthor] = useState(undefined);
   const [followsUsuario, setFollowsUsuario] = useState(undefined);
   const [isLoggedUserFollowing, setIsLoggedUserFollowing] = useState(undefined);
   const [iconFollowOnClick, setIconFollowOnClick] = useState("Seguir");
   const [followGoingToBeDeleted, setFollowGoingToBeDeleted] = useState(undefined);
 
 
-  const token = getToken();
-  const decodedToken = getToken();
+
   const loggedUserId = getUserId();
   var str = window.location.href
   var res = str.split("profile/");
