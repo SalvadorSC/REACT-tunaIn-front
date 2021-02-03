@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
 import "./EditUserProfile.css";
 import { Avisos } from "../../Components/Avisos/Avisos";
+import { useHistory} from "react-router-dom";
+import { getUserId } from "../../util/LocalStorage.utils";
 import { MYPODCASTS } from "../../routes/routes";
 import { Modal } from "../../Components/Modal/Modal";
 import {Button} from '../../Components/ButtonFlex/ButtonFlex';
@@ -33,8 +35,16 @@ export const EditUserProfile = (props) => {
   }
 
   //Recoje los datos del usuario del fetch realizado en userProfile
+  const history = useHistory();
+  const userId = getUserId();
+  console.log(userId)
   useEffect(() => {
-    setUser(props.location.state.user);
+    serverRequest(`data/user/${userId}`, "GET")
+      .then((response) => {
+        console.log(response);
+        setUser(response);
+      })
+      .catch(console.log);
   }, []);
 
   // Maneja el estado del formulario:

@@ -16,7 +16,7 @@ export const PodcastsUser = () => {
     console.log("->");
     console.log(`data/podcast/?id_author=${userId}`);
 
-    if (url === "http://localhost:3000/myPodcasts" || url === "http://localhost:3000/profile") {
+    if (url === "http://localhost:3000/myPodcasts" || url === "http://localhost:3000/profile" || url === "https://tuna-in.netlify.app/profile" || url === "https://tuna-in.netlify.app/myPodcasts" ) {
       serverRequest(`data/podcast/?id_author=${userId}`, "GET")
         .then((response) => {
           setListaPodcastsUser(response)
