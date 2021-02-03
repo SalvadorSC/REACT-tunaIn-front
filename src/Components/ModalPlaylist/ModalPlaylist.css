@@ -5,14 +5,14 @@
 }
 
 .modalBody {
-    /* background-color: #47686b;*/
-    display: flex;
+
     display: grid;
 }
 
 .modalFooter {
     display: flex;
     flex-wrap: unset;
+
 }
 
 .modalP {
@@ -20,10 +20,10 @@
     color: black;
     text-align: center;
     font-weight: bold;
-    background-color: gray;
-}
 
-.hr-Modal {
+
+}
+hrModal {
     height: 3px;
     width: 50%;
     background-color: black;
@@ -33,11 +33,11 @@
     font-size: 18px;
     color: black;
     text-align: center;
-    font-weight: bold;
+
+
 }
 
 .modalButton {
-    color: chartreuse;
+
     margin-left: 110px;
-    background-color: #fe8b86;
 }
