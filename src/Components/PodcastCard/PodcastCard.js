@@ -12,9 +12,7 @@ import {ModalPlaylist} from "../ModalPlaylist/ModalPlaylist";
 
 export const PodcastCard = ({ title, categories, author, img, podcastId, description }) => {
     const [podcastWrapClass, setPodcastWrapClass] = useState();
-    const [podcastAuthor, setPodcastAuthor] = useState(undefined);
     const [favoritosUsuario, setFavoritosUsuario] = useState(undefined);
-    const [podcastEliminado, setPodcastEliminado] = useState({});
     const url = window.location.href;
     const [openModal, setOpenModal] = useState(false);
     const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);
@@ -27,23 +25,6 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
     }
 
     let history = useHistory();
-
-    /* const handleCloseModal2 = () => {
-         setShowModal2(false);
-         setData({
-             playlist: "",
-             podcast: "",
-         });
-     }*/
-
-    /*   const submitNewPlaylist = () =>{
-           handleCloseModal2()
-       }
-
-       const selectPlaylist = () =>{
-           console.log("entrooooo");
-       }*/
-
 
     useEffect(() => {
         serverRequest(`data/favoritos/?id_podcast=${podcastId}&&id_author=${userId}`, "GET")
@@ -61,13 +42,6 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
             .catch(console.log);
 
     }, [])
-
-
-    /* const handleShowModal2 = () => setShowModal2(true);
-     const [data, setData] = useState({
-         playlist: "",
-         podcast: "",
-     });*/
 
 
     useEffect(() => {
@@ -125,40 +99,10 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
                     setIconFavoriteOnClick(false);
                     setFavoritosUsuario(undefined);
                 });
-            /*
 
-                 serverRequest(`data/favoritos/?id_podcast=${podcastId}`, "GET")
-
-                    .then(response => {
-                      debugger;
-                      serverRequest(`data/favoritos/${response[0]._id}`, "DELETE")
-                      .then(response => console.log(response));
-                    })
-                  console.log("yes")
-                  setIconFavoriteOnClick(false)
-                  serverRequest(`data/favoritos/?id_author=${userId}`, "GET")
-                    .then((response) => {
-                      setFavoritosUsuario(response)
-                    }) */
         }
     }
 
-
-    /*  const playlistHandler = e => {
-          e.preventDefault();
-          setData({playlist: e.target.value, podcast: podcastId});
-          console.log(data);
-      }*/
-
-    /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */
-
-    /* useEffect(() => {
-      serverRequest(`data/user/${author}`, "GET")
-          .then((response) => {
-            setPodcastAuthor(response)
-          })
-          .catch(console.log);
-    }, []) */
 
     function handleClick() {
         history.push(`/PodcastInformation/${podcastId}`);
@@ -228,53 +172,7 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
 
             <ModalPlaylist variant="primary" title="Que quieres hacer ?" podcastId={podcastId} buttons={true} show={openModal} onClose={() => setOpenModal(false)}>
             </ModalPlaylist>
-            {/*    <Modal*/}
-            {/*        show={show}*/}
-            {/*        onHide={handleClose}*/}
-            {/*        backdrop="static"*/}
-            {/*        keyboard={false}*/}
-            {/*    >*/}
-            {/*        <Modal.Header className="modalHeader">*/}
-            {/*            <Modal.Title>Quieres crear una Playlist o seleccionar alguna creada?</Modal.Title>*/}
-            {/*        </Modal.Header>*/}
-            {/*        <Modal.Body>*/}
-            {/*            <button onClick={handleShowModal2} className="modalButton">Crear Nueva PlayList</button>*/}
-            {/*            <button onClick={selectPlaylist} className="modalButton">Seleccionar una Playlist</button>*/}
-            {/*            <button className="modalButton">Eliminar una Playlist</button>*/}
-            {/*        </Modal.Body>*/}
-            {/*        <Modal.Footer>*/}
-            {/*            <Button variant="secondary" onClick={handleClose}>*/}
-            {/*                Cerrar*/}
-            {/*            </Button>*/}
-            {/*        </Modal.Footer>*/}
-            {/*    </Modal>*/}
 
-
-            {/*Second Modal */}
-
-
-            {/*    <ModalPlaylist show={showModal2} playlist={data.playlist} onHide={handleCloseModal2()} .. />*/}
-            {/*    <Modal*/}
-            {/*        show={showModal2}*/}
-            {/*        onHide={handleCloseModal2}*/}
-            {/*        backdrop="static"*/}
-            {/*        keyboard={false}*/}
-            {/*    >*/}
-            {/*        <Modal.Header className="modalHeader">*/}
-            {/*            <Modal.Title>Nueva PlayList </Modal.Title>*/}
-            {/*        </Modal.Header>*/}
-            {/*        <Modal.Body>*/}
-            {/*            <input type="text" value={data.playlist} onChange={playlistHandler}*/}
-            {/*                   placeholder="Introduce el nombre"></input>*/}
-            {/*            <button onClick={submitNewPlaylist} className="modalButton" type="submit">Enviar*/}
-            {/*            </button>*/}
-            {/*        </Modal.Body>*/}
-            {/*        <Modal.Footer>*/}
-            {/*            <Button variant="secondary" onClick={handleCloseModal2}>*/}
-            {/*                Cerrar*/}
-            {/*            </Button>*/}
-            {/*        </Modal.Footer>*/}
-            {/*    </Modal>*/}
 
         </div>
 

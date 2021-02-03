@@ -3,15 +3,14 @@ import { PodcastCard } from "../PodcastCard/PodcastCard";
 import "./PodcastsDestacados.css";
 import { useEffect, useState } from "react";
 import { serverRequest } from "../../helpers/urlBack";
-import {getUserId, setSession, getToken} from "../../util/LocalStorage.utils";
+import {getUserId} from "../../util/LocalStorage.utils";
 
 export const PodcastsDestacados = () => {
   const [listaPodcastsUser, setListaPodcastsUser] = useState([]);
   const url = window.location.href;
-  const userId = getUserId();
   useEffect(() => {
 
-    const token = getToken();
+
     const userId = getUserId();
     console.log("->");
     console.log(`data/podcast/?id_author=${userId}`);
