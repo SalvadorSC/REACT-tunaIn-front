@@ -2,30 +2,31 @@ import React, {useState, useContext, useEffect, useReducer} from 'react'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import './Playbar.css'; 
-import { PodcastsUser } from "../PodcastsUser/PodcastsUser";
-import { PodcastCard } from "../PodcastCard/PodcastCard";
-import { PodcastContext } from '../../App';
-import { serverRequest } from "../../helpers/urlBack";
-import { Podcast, PodcastsDestacados, ListaPodcastFake } from "../PodcastsDestacados/PodcastsDestacados";
+//import { PodcastsUser } from "../PodcastsUser/PodcastsUser";
+//import { PodcastCard } from "../PodcastCard/PodcastCard";
+//import { PodcastContext } from '../../App';
+//import { serverRequest } from "../../helpers/urlBack";
+//import { Podcast, PodcastsDestacados, ListaPodcastFake } from "../PodcastsDestacados/PodcastsDestacados";
 import { usePlaybarContext, PlaybarContext } from '../../contexts/playbar';
-import { usePlaylistContext, PlaylistContext } from '../../contexts/playlist';
 import { playerActions } from '../../reducer/playerReducer';
-//import { PlaylistELIS } from '../../';
 
 export const Playbar = () => {  
   
-  const playbarContext = usePlaybarContext(); ///había una x tras el ;
+  const playbarContext = usePlaybarContext(); 
   const podcast = playbarContext.playbarPodcast;
-
-   const { state, dispatch } = useContext(PlaybarContext);
+  //const listPodcast = playbarContext.listPodcast;
+  //let song = listPodcast.length > 0 ? listPodcast [ "http://localhost:3300/track/5fd11cf81f36c03fc430d6fb", "http://localhost:3300/track/5fd11cf81f36c03fc430d6fb", "http://localhost:3300/track/5fd11cf81f36c03fc430d6fb"]:"http://localhost:3300/track/5fd11cf81f36c03fc430d6fb";
   
-    const HandleClickNext = () => {
-      dispatch({ type: playerActions.REPRODUCE_NEXT });
+  const { state, dispatch } = useContext(PlaybarContext);
+   
+    const handleClickNext = () => {
+      dispatch ({ type: playerActions.NEXT_SONG });
     };
-    const HandleClickPrev = () => {
+    
+    const handleClickPrev = () => {
       console.log('Next');
-      dispatch({ type: playerActions.PREV_SONG });
-    }
+      dispatch ({ type: playerActions.PREV_SONG });
+    };
 
   /* const playlistContext = usePlaylistContext(); ///había una x tras el ;
     const podcast = playlistContext.playlistPodcast;
@@ -39,8 +40,7 @@ export const Playbar = () => {
         console.log('Next');
         dispatch({ type: playerActions.PREV_SONG }); */
 
-  
-    
+     console.log(podcast);
     return(
 
       <div>
@@ -57,15 +57,17 @@ export const Playbar = () => {
      <div className = "categoria-playbar">{podcast && (podcast.categories)} </div>
       </div>  
       <AudioPlayer
-      onClickNext={HandleClickNext} 
-
-      onClickPrevious={HandleClickPrev}
+      onClickNext={handleClickNext} 
+      onClickPrevious={handleClickPrev}
       showSkipControls={true} showJumpControls={false}
       customAdditionalControls={[]}
       autoPlay
-      src={`http://localhost:3300/data/podcast/${podcast.id}`}  ///http://localhost:3300/data/podcast/${podcast.id}   //http://localhost:3300/track/5fd11cf81f36c03fc430d6fb
-      onPlay={e => console.log("onPlay")}
+      autoPlayAfterSrcChange
+      src= {`http://localhost:3300/track/${podcast.audio}`}  ///http://localhost:3300/data/podcast/${podcast.id}   //http://localhost:3300/track/5fd11cf81f36c03fc430d6fb
+      onPlay={e => console.log ("onPlay")}
+      onEnded={handleClickNext/*() => {song = listPodcast [1]}*/}
       /> 
+
       </div>
       </div>)}
       </div>
@@ -97,54 +99,7 @@ export const Playbar = () => {
   };*/
   
 
-  /*const handleClickNext = () => {
-
-      if(playbarPodcast < ListaPodcastFake.length -1) {  //podcastId antes que ListaPodc...
-      setPlaybarPodcast(playbarPodcast +1);
-    
-  }
-
-  const handleClickPrev = () => {
-
-    if(playbarPodcast > 0) {
-      setPlaybarPodcast(playbarPodcast -1);
-    }
-  }
-  useEffect(() => {
-    
-    if (playbarContext.playbarPodcast) {
-      serverRequest(`data/user/${ListaPodcastFake}`, "GET") //podcastId
-        .then((response) => {
-          //setPodcastId(response)
-        })
-      }
-  }, [playbarContext.playbarPodcast]);
-
-  /*const playlistContext = usePlaylistContext();x
-  const podcast = playlistContext.playlistPodcast;
-  const handleClickNext = () => {
-
-      if(playlistPodcast < PlaylistELIS.length -1) {  //podcastId antes que ListaPod...
-      setPlaylistPodcast(playlistPodcast +1);
-    
-  }
-
-  const handleClickPrev = () => {
-
-    if(playlistPodcast > 0) {
-      setPlaylistPodcast(playlistPodcast -1);
-    }
-  }
-  useEffect(() => {
-    
-    if (playlistContext.playlistPodcast) {
-      serverRequest(`data/user/${PlaylistELIS}`, "GET") //podcastId
-        .then((response) => {
-          //setPodcastId(response)
-        })
-      }
-  }, [playlistContext.playlistPodcast]);*/
-
+   
   /*return(
 
     <div>
@@ -176,9 +131,66 @@ export const Playbar = () => {
         
   );*/
   
-
-
  
   //http://localhost:3300/data/podcast/${podcast.id}
 
-  ////https://libertaddigital-ondemand.flumotion.com/libertaddigital/ondemand/audio/mp3/high/espana/20/11/10/federico-a-las-8-las-mentiras-del-gobierno-sobre-los-contagios-156517.mp3?awCollectionId=es-la-manana-de-federico&awEpisodeId=6679324&aw_0_1st.subcat=31
+ //---------------------------------------
+
+ /*const Song = () => {
+  const { state, dispatch } = useContext(PlayerContext);
+
+  useEffect(() => {
+    const url = 'http://localhost:3001/song/';
+
+    const options = {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+      }),
+      mode: 'cors',
+    };
+
+    fetch(url, options)
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        }
+        return Promise.reject(response.status);
+      })
+      .then((payload) => {
+        // eslint-disable-next-line no-debugger
+        debugger;
+        dispatch({ type: playerActions.LOAD_SONGS, songs: payload });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-debugger
+        debugger;
+        console.log(error);
+      });
+  }, []);
+
+  return (
+    <div className={styles._songs}>
+      <h1>Playlist</h1>
+      {state.songToReproduce &&
+        state.songToReproduce.map((song, index) => (
+          <div className={styles._song_card}>
+            <span>Name: {song.name}</span>{' '}
+            <input
+              type="button"
+              value="Play"
+              onClick={() => dispatch({ type: playerActions.REPRODUCE_IT_SONG, index })}
+            />{' '}
+            <input
+              type="button"
+              value="Add to player"
+              onClick={() => dispatch({ type: playerActions.ADD_SONG, song })}
+            />
+          </div>
+        ))}
+    </div>
+  );
+};
+
+export default Song;*/
+

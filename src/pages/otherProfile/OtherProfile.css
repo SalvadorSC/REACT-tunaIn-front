@@ -74,3 +74,14 @@ hr {
   color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
+
+.UserPodcasts a{
+  color: grey;
+  cursor: pointer;
+  padding-top: 5px;
+}
+.UserPodcasts a:hover{
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}

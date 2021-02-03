@@ -11,7 +11,7 @@ import { usePlaybarContext } from "../../contexts/playbar";
 
 
 
-export const PodcastCard = ({title, categories, author, img, podcastId, description}) => {
+export const PodcastCard = ({title, categories, author, img, podcastId, description, audio}) => {
     const [podcastWrapClass, setPodcastWrapClass] = useState();
     const [podcastAuthor, setPodcastAuthor] = useState(undefined);
     const [favoritosUsuario, setFavoritosUsuario] = useState(undefined);
@@ -112,7 +112,6 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
                         setFavoritosUsuario(undefined);
                     });
                 /*
-
                       serverRequest(`data/favoritos/?id_podcast=${podcastId}`, "GET")
                         .then(response => {
                           debugger;
@@ -135,7 +134,7 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
         }
 
         function playPodcast() {
-            playbar.setPlaybarPodcast({title, categories, author, img, podcastId, description});
+            playbar.setPlaybarPodcast({title, categories, author, img, podcastId, description, audio});
           }
 
         /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */
@@ -254,6 +253,3 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
         );
 
     };
-
-
-

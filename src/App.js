@@ -14,36 +14,35 @@ import { MyPodcasts } from "./pages/myPodcasts/MyPodcasts";
 import { PodcastInformation } from "./pages/podcastInformation/PodcastInformation";
 import { EditPodcastInformation } from "./pages/editPodcastInformation/EditPodcastInformation";
 import { PodcastList } from "./pages/podcastList/PodcastList";
-import {getToken, hasSession} from "./util/LocalStorage.utils";
+import { hasSession} from "./util/LocalStorage.utils";
 import { UserList } from "./pages/userList/UserList";
-import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST,USERLIST, OTHERPROFILE } from "./routes/routes";
 import { Footer } from "./Components/Footer/Footer";
 import { Playbar } from "./Components/Playbar/Playbar";
 import { PlaybarContextProvider } from './contexts/playbar';
-import { PlaylistContextProvider } from './contexts/playlist';
+import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST, USERLIST, OTHERPROFILE, SEARCH, SEARCHITEM } from "./routes/routes";
+import { Search } from "./pages/search/Search";
 
 export default function App() {
 
   const PrivateRoute = ({ component: Component, path }) => {
-   if(!hasSession()){
-     return (
-         <Redirect to={LOGIN} />
-     )
-   }
+    if (!hasSession()) {
+      return (
+        <Redirect to={LOGIN} />
+      )
+    }
 
     return (<Route
-        path={path}
-        render={() => <Component />  }
+      path={path}
+      render={() => <Component />}
     />)
   }
-
+  const [footerClass, setFooterClass] = useState('');
   const [containerClass, setContainerClass] = useState();
   const [mainClass, setMainClass] = useState();
   return (
     <Router>
       <PlaybarContextProvider>
-      <PlaylistContextProvider>
-      <NavBar setContainerClass={setContainerClass} setMainClass={setMainClass} />
+      <NavBar setContainerClass={setContainerClass} setFooterClass={setFooterClass} setMainClass={setMainClass} />
       <div className={containerClass}>
         <div className={mainClass}>
           <Switch>
@@ -56,6 +55,8 @@ export default function App() {
             <Route exact path={HOME} component={Home} />
             <Route exact path={TERMS} component={Terms} />
             <Route exact path={MYPODCASTS} component={MyPodcasts} />
+            <Route exact path={SEARCH} component={Search} />
+            <Route exact path={SEARCHITEM} component={Search} />
             <PrivateRoute exact path={PROFILE} component={UserProfile} />
             <PrivateRoute exact path={OTHERPROFILE} component={OtherProfile} />
             <PrivateRoute exact path={PODCASTLIST} component={PodcastList} />
@@ -65,9 +66,9 @@ export default function App() {
           </Switch>
         </div>
       </div>
+      
+      <Footer footerClass={footerClass} />
       <Playbar />
-      <Footer />
-      </PlaylistContextProvider>
       </PlaybarContextProvider>
     </Router>
   );

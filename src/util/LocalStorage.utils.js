@@ -22,7 +22,8 @@ export const getToken = () => {
 
 export const getUserId = () => {
     if(hasSession()){
-        return getSession().user._id;
+return getSession().user._id;
+
     }else{
         return undefined;
     }
