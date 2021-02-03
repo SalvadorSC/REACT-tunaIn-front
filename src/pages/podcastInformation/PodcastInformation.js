@@ -4,7 +4,7 @@ import {Link, useParams, useHistory} from "react-router-dom";
 import {serverRequest} from "../../helpers/urlBack";
 import {getUserId} from "../../util/LocalStorage.utils";
 import "./PodcastInformation.css";
-import {formatDistance, subDays, format} from 'date-fns';
+import {format} from 'date-fns';
 
 
 export const PodcastInformation = () => {
@@ -29,14 +29,12 @@ export const PodcastInformation = () => {
 
     }
 
-    const resetField = () => {
-        setSaveComment({
-                ...saveComment,
-                comment: ""
-            }
-        )
+    const handleReset = () => {
+        document.querySelectorAll('input').forEach(
+            input => (input.value = ""));
 
-    }
+    };
+
     const handleChange = (e) => {
         e.preventDefault();
         const value = e.target.value;
@@ -83,7 +81,6 @@ export const PodcastInformation = () => {
             serverRequest(`comment/${podcastId}`, "POST", saveComment)
                 .then((response) => {
                     //mensaje success
-                    alert("Comentario Guardado con Exito");
                     reload === false ? setReload(true) : setReload(false);
 
                 })
@@ -91,6 +88,8 @@ export const PodcastInformation = () => {
                     console.log(response);
                 });
         }
+
+        handleReset();
     }
 
     const editPodcastLink = () => {

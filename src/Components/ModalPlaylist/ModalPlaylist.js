@@ -19,16 +19,15 @@ export const ModalPlaylist = (props) => {
         list: podcastId,
     });
     const [listPlaylist, setListPlaylist] = useState([]);
-    const handleCloseModal2 = () => {
+    const handleCloseModal2 = (e) => {
         setData({
             title: "",
             description: "",
-            user: "",
-            list: "",
+            user: userId,
+            list: podcastId,
         });
     }
     useEffect(() => {
-
         serverRequest("playlist", "GET")
             .then((response) => {
                 setListPlaylist(response);
@@ -63,20 +62,22 @@ export const ModalPlaylist = (props) => {
 
     }
 
+    const handleReset = () => {
+        document.querySelectorAll('input').forEach(
+            input => (input.value = ""));
+
+    };
+
     const submitNewPlaylist = () => {
         if (!data.title) {
-            alert("title is missing");
+            alert("Title is missing");
         } else if (!data.description) {
-            alert("description is missing");
+            alert("Description is missing");
         } else {
             serverRequest("playlist", "POST", data)
                 .then((response) => {
                     //mensaje success
-
-                    alert("Playlist Guardada con Exito");
-
                     setOpenModalNew(false);
-
                 })
                 .catch((response) => {
                     console.log(response);
@@ -88,12 +89,10 @@ export const ModalPlaylist = (props) => {
 
     const playlistSelected = (_id, podcastId) => {
         console.log(_id, podcastId);
-
         const body = {
             list: [podcastId]
         }
 
-        forceReload ? setForceReload(false) : setForceReload(true);
         serverRequest(`playlist/${_id}/podcast`, "PUT", body)
             .then((response) => {
                 if (response) {
@@ -112,7 +111,6 @@ export const ModalPlaylist = (props) => {
 
     const deletePlaylist = (_id) => {
 
-        forceReload ? setForceReload(false) : setForceReload(true);
         serverRequest(`playlist/${_id}`, "DELETE")
             .then((response) => {
 
@@ -122,6 +120,7 @@ export const ModalPlaylist = (props) => {
                 console.log(response);
             });
 
+        forceReload ? setForceReload(false) : setForceReload(true);
     }
 
 
@@ -146,11 +145,13 @@ export const ModalPlaylist = (props) => {
                         <button onClick={() => {
                             onClose();
                             setOpenModalNewSelect(true);
+                            forceReload ? setForceReload(false) : setForceReload(true);
                         }}>Seleccionar una Playlist
                         </button>
                         <button onClick={() => {
                             onClose();
                             setOpenModalDelete(true);
+                            forceReload ? setForceReload(false) : setForceReload(true);
                         }}>Eliminar una Playlist
                         </button>
                     </>
@@ -183,6 +184,7 @@ export const ModalPlaylist = (props) => {
                 <Modal.Footer className="modalFooter">
                     <Button onClick={() => {
                         setOpenModalNew(false);
+                        handleReset();
                         handleCloseModal2();
                     }} variant="secondary">
                         Cerrar
@@ -207,12 +209,12 @@ export const ModalPlaylist = (props) => {
                 <Modal.Body className="modalBody">
                     {listPlaylist.map(playlist => (
                         <div>
-                            <p className="modalP">Título:</p>
+                            <p className="modalP">Título Playlist:</p>
                             <button onClick={() => {
                                 playlistSelected(playlist._id, podcastId);
                                 setOpenModalNewSelect(false);
                             }} className="modalButton">{playlist.title}</button>
-                            <p className="modalP">Descripción:</p>
+                            <p className="modalP">Descripción Playlist:</p>
                             <p className="modalPDescripcion">{playlist.description}</p>
                             <hr className="hrModal"></hr>
                         </div>))

@@ -20,7 +20,7 @@ background-color: #3fcffa;
     color: black;
     text-align: center;
     font-weight: bold;
-    background-color: gray;
+
 
 }
 hrModal {
@@ -33,12 +33,11 @@ hrModal {
     font-size: 18px;
     color: black;
     text-align: center;
-    font-weight: bold;
+
 
 }
 
 .modalButton {
-    color: chartreuse;
-    margin-left: 110px;
-    background-color: #fe8b86;
+
+     margin-left: 110px;
 }
