@@ -30,6 +30,7 @@ export const serverRequest = (resources, method, body) => {
             }
             return res.json();
         })
+
         .then(resJson => {
             if(response.status >= 400){
                 return Promise.reject(resJson);
