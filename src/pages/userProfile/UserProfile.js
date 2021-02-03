@@ -6,9 +6,9 @@ import {getUserId} from "../../util/LocalStorage.utils";
 import {PodcastsUser} from "../../Components/PodcastsUser/PodcastsUser";
 import {FavoritosUser} from "../../Components/FavoritosUser/FavoritosUser";
 import "./UserProfile.css";
-import {Button} from '../../Components/ButtonFlex/ButtonFlex';
-import {deleteToken} from '../../util/LocalStorage.utils';
-import {LOGIN} from "../../routes/routes";
+import { Button } from '../../Components/ButtonFlex/ButtonFlex';
+import { deleteToken } from '../../util/LocalStorage.utils';
+import { LOGIN, EDITUSERPROFILE } from "../../routes/routes";
 
 export const UserProfile = () => {
     const history = useHistory();
@@ -44,7 +44,14 @@ export const UserProfile = () => {
                 console.log(response);
             });
 
-    }
+  const exit = () => {
+    deleteToken();
+    history.push(LOGIN);
+  }
+  const editprofile = () => {
+    deleteToken();
+    history.push(EDITUSERPROFILE);
+  }
 
     const exit = () => {
         deleteToken();
@@ -111,6 +118,14 @@ export const UserProfile = () => {
             </div>
             <Button className="salirButton" onClick={exit}>Salir</Button>
         </div>
+        <br />
+        {selectedTab === 0 && <PodcastsUser />}
+        {selectedTab === 1 && <FavoritosUser userId={userId} />}
+        <br />
+      </div>
+      <Button onClick={editprofile}>Editar Perfil</Button>
+      <Button onClick={exit}>Salir</Button>
+    </div>
 
     );
 };
