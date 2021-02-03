@@ -25,6 +25,9 @@ export const serverRequest = (resources, method, body) => {
     return fetch(url, options)
         .then(res => {
             response = res;
+            if (method === "DELETE"){
+                return res;
+            }
             return res.json();
         })
         .then(resJson => {

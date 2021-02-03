@@ -176,7 +176,7 @@ export const ModalPlaylist = (props) => {
                 <Modal.Body className="modalBody">
 
                     <input name="title" type="text" value={data.playlist} onChange={saveName}
-                           placeholder="Introduce el nombre" required></input>
+                           placeholder="Introduce el nombre"></input>
 
                     <input name="description" type="text" value={data.description} onChange={saveDescription}
                            placeholder="Introduce la descripción"></input>
