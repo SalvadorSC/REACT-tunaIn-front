@@ -12,8 +12,6 @@ import { LOGIN } from "../../routes/routes";
 
 export const UserProfile = () => {
   const history = useHistory();
-
-
   const [user, setUser] = useState({});
   const userId = getUserId();
   console.log(userId)

@@ -1,11 +1,11 @@
 .modalHeader {
-background-color: #3fcffa;
+    background-color: #3fcffa;
     display: block;
     text-align: center;
 }
 
 .modalBody {
-   /* background-color: #47686b;*/
+    /* background-color: #47686b;*/
     display: flex;
     display: grid;
 }
@@ -13,7 +13,6 @@ background-color: #3fcffa;
 .modalFooter {
     display: flex;
     flex-wrap: unset;
-
 }
 
 .modalP {
@@ -22,8 +21,8 @@ background-color: #3fcffa;
     text-align: center;
     font-weight: bold;
     background-color: gray;
-
 }
+
 hr {
     height: 3px;
     width: 50%;
@@ -35,7 +34,6 @@ hr {
     color: black;
     text-align: center;
     font-weight: bold;
-
 }
 
 .modalButton {

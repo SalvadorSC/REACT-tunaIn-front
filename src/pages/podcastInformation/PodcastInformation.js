@@ -34,6 +34,14 @@ export const PodcastInformation = () => {
       })
       .catch(console.log);
   }, []);
+  /* useEffect(() => {
+
+    serverRequest(`data/user/${podcast.id_author}`, "GET")
+      .then((response) => {
+        setPodcastAuthor(response);
+      })
+      .catch(console.log);
+  }, []); */
 
   const editPodcastLink = () => {
     if (user._id === podcast.id_author) {
@@ -52,7 +60,7 @@ export const PodcastInformation = () => {
         <br />
         <div className="UserCard-wrap">
           <div className={"UserInfo"}>
-            <h2>{podcast.title}</h2>
+            <h2>{podcast.title}{/* <span className="podcastAuthorUsername">{user.username}</span>*/}</h2> 
             <div><p>Categories: <span className="podcastInformationDisplayed">{podcast.categories}</span></p></div>
             <div className="UserSectionLine"><p>Description:</p></div>
             <div className="UserSectionLine"><p className="podcastInformationDisplayed">{podcast.description}</p></div>

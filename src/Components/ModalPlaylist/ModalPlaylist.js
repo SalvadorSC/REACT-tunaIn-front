@@ -31,14 +31,14 @@ export const ModalPlaylist = (props) => {
         serverRequest("playlist", "GET")
             .then((response) => {
                 setListPlaylist(response);
-                console.log(listPlaylist);
+                /* console.log(listPlaylist); */
             })
             .catch((response) => {
-                console.log(response);
+                /* console.log(response); */
             });
 
 
-    }, [listPlaylist])
+    }, [/* listPlaylist */])
 
     const saveName = (e) => {
         e.preventDefault();
