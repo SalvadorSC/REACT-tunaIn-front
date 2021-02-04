@@ -56,7 +56,6 @@ export const PodcastInformation = () => {
 
 
     useEffect(() => {
-
         serverRequest(`data/user/${userId}`, "GET")
             .then((response) => {
                 setUser(response);

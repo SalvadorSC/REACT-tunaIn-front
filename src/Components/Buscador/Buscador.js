@@ -60,8 +60,6 @@ export const Buscador = ({buscadorClass, buscadorStyleClass, resultadosbusquedaC
           );
         })}
       </div>
-
-
     </form>
   )
 };

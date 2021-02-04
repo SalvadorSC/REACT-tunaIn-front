@@ -36,7 +36,7 @@ export const UserProfile = () => {
 
   const playlist = () => {
     setSelectedTab(2)
-    serverRequest("playlist", "GET")
+    serverRequest(`playlist/?user=${userId}`, "GET")
       .then((response) => {
         setListPlaylist(response);
       })
