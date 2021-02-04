@@ -134,7 +134,7 @@ export const PodcastCard = ({title, categories, author, img, podcastId, descript
         }
 
         function playPodcast() {
-            playbar.setPlaybarPodcast({title, categories, author, img, podcastId, description, audio});
+            playbar.setPlaybarPodcast([{title, categories, author, img, podcastId, description, audio}]);
           }
 
         /* ESTO ES PARA COGER EL NOMBRE DEL AUTOR */

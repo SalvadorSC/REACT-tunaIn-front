@@ -13,9 +13,10 @@ import { playerActions } from '../../reducer/playerReducer';
 export const Playbar = () => {  
   
   const playbarContext = usePlaybarContext(); 
-  const podcast = playbarContext.playbarPodcast;
-  //const listPodcast = playbarContext.listPodcast;
-  //let song = listPodcast.length > 0 ? listPodcast [ "http://localhost:3300/track/5fd11cf81f36c03fc430d6fb", "http://localhost:3300/track/5fd11cf81f36c03fc430d6fb", "http://localhost:3300/track/5fd11cf81f36c03fc430d6fb"]:"http://localhost:3300/track/5fd11cf81f36c03fc430d6fb";
+  const podcast = playbarContext.playbarPodcast[0];
+
+  console.log(playbarContext.playbarPodcast);
+
   
   const { state, dispatch } = useContext(PlaybarContext);
    
@@ -47,7 +48,7 @@ export const Playbar = () => {
   {podcast && (<div className = "fix-playbar">
       <div className = "Playbar-wrap">
       <div className="Playbar-img">{podcast && (podcast.img)}</div>
-      {/*<img src= "https://images.unsplash.com/photo-1582246915745-10e34377da98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1275&q=80" />*/}
+      {<img src= "http://localhost:3300/${podcast.img}" />}
       
       <div className="title">
                
@@ -63,7 +64,7 @@ export const Playbar = () => {
       customAdditionalControls={[]}
       autoPlay
       autoPlayAfterSrcChange
-      src= {`http://localhost:3300/track/${podcast.audio}`}  ///http://localhost:3300/data/podcast/${podcast.id}   //http://localhost:3300/track/5fd11cf81f36c03fc430d6fb
+      src= {`http://localhost:3300/track/${podcast.audio}`}  ///http://localhost:3300/track/${podcast.audio}   //http://localhost:3300/track/5fd11cf81f36c03fc430d6fb
       onPlay={e => console.log ("onPlay")}
       onEnded={handleClickNext/*() => {song = listPodcast [1]}*/}
       /> 
@@ -72,7 +73,7 @@ export const Playbar = () => {
       </div>)}
       </div>
       
-          
+      //{state.trackToReproduce[state.currentPlay] && state.trackToReproduce[state.currentPlay].trackId}      
     );
     
   }
