@@ -11,52 +11,26 @@ import { usePlaybarContext, PlaybarContext } from '../../contexts/playbar';
 import { playerActions } from '../../reducer/playerReducer';
 
 export const Playbar = () => {  
-  
   const playbarContext = usePlaybarContext(); 
   const podcast = playbarContext.playbarPodcast[0];
 
   console.log(playbarContext.playbarPodcast);
-
   
   const { state, dispatch } = useContext(PlaybarContext);
    
-    const handleClickNext = () => {
-      dispatch ({ type: playerActions.NEXT_SONG });
-    };
-    
-    const handleClickPrev = () => {
-      console.log('Next');
-      dispatch ({ type: playerActions.PREV_SONG });
-    };
+  const handleClickNext = () => {
+    dispatch ({ type: playerActions.NEXT_SONG });
+  };
+  
+  const handleClickPrev = () => {
+    console.log('Next');
+    dispatch ({ type: playerActions.PREV_SONG });
+  };
 
-  /* const playlistContext = usePlaylistContext(); ///había una x tras el ;
-    const podcast = playlistContext.playlistPodcast;
-    
-    const { state, dispatch } = useContext(PlaylistContext);
-      
-      const HandleClickNext = () => {
-         dispatch({ type: playerActions.REPRODUCE_NEXT });
-      };
-      const HandleClickPrev = () => {
-        console.log('Next');
-        dispatch({ type: playerActions.PREV_SONG }); */
+  useEffect(() => console.log(podcast), [podcast]);
 
-     console.log(podcast);
-    return(
-
-      <div>
-  {podcast && (<div className = "fix-playbar">
-      <div className = "Playbar-wrap">
-      <div className="Playbar-img">{podcast && (podcast.img)}</div>
-      {<img src= "http://localhost:3300/${podcast.img}" />}
-      
-      <div className="title">
-               
-  <div className = "titulo-playbar">{podcast && (podcast.title)}</div>
-      
-     <div className = "autor-playbar">{podcast && (podcast.author)}</div>
-     <div className = "categoria-playbar">{podcast && (podcast.categories)} </div>
-      </div>  
+  return podcast ? (
+    <div className = "fix-playbar">
       <AudioPlayer
       onClickNext={handleClickNext} 
       onClickPrevious={handleClickPrev}
@@ -67,16 +41,10 @@ export const Playbar = () => {
       src= {`http://localhost:3300/track/${podcast.audio}`}  ///http://localhost:3300/track/${podcast.audio}   //http://localhost:3300/track/5fd11cf81f36c03fc430d6fb
       onPlay={e => console.log ("onPlay")}
       onEnded={handleClickNext/*() => {song = listPodcast [1]}*/}
-      /> 
-
-      </div>
-      </div>)}
-      </div>
-      
-      //{state.trackToReproduce[state.currentPlay] && state.trackToReproduce[state.currentPlay].trackId}      
-    );
-    
-  }
+      />
+    </div>   
+  ) : null;
+};
 
     /*return (
       <div className="player-wrapper">

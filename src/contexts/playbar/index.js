@@ -6,7 +6,6 @@ export const PlaybarContext = createContext();
 
 export const PlaybarContextProvider = (props) =>{
     const [playbarPodcast, setPlaybarPodcast] = useState([]);  
-    const [listPodcast, setListPodcast] = useState([]);  
     
    /*
     //playbarpodcast
@@ -30,19 +29,20 @@ export const PlaybarContextProvider = (props) =>{
     */
 
     return (
-        <PlaybarContext.Provider value={{playbarPodcast, setPlaybarPodcast, listPodcast, setListPodcast}}>
+        <PlaybarContext.Provider value={{playbarPodcast, setPlaybarPodcast}}>
                 {props.children}
         </PlaybarContext.Provider>
-    )
+        );
 
 }
 
 export const usePlaybarContext = () => {
-    const {playbarPodcast, setPlaybarPodcast, listPodcast, setListPodcast} = useContext(PlaybarContext);
+    const {playbarPodcast, setPlaybarPodcast} = useContext(PlaybarContext);
     
-    return {playbarPodcast, setPlaybarPodcast, listPodcast, setListPodcast}
+    return {playbarPodcast, setPlaybarPodcast}
     
 }
+
 
 
 //---------------------------------------

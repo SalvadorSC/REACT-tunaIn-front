@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Button, Modal} from "react-bootstrap";
 import "./ModalPlaylist.css";
 import {serverRequest} from "../../helpers/urlBack";
-import {getUserId, setSession} from "../../util/LocalStorage.utils";
+import {getUserId} from "../../util/LocalStorage.utils";
 
 
 export const ModalPlaylist = (props) => {
@@ -11,6 +11,7 @@ export const ModalPlaylist = (props) => {
     const [openModalNewSelect, setOpenModalNewSelect] = useState(false);
     const [openModalDelete, setOpenModalDelete] = useState(false);
     const userId = getUserId();
+    const [forceReload, setForceReload] = useState(true);
     const [data, setData] = useState({
         title: "",
         description: "",
@@ -18,27 +19,28 @@ export const ModalPlaylist = (props) => {
         list: podcastId,
     });
     const [listPlaylist, setListPlaylist] = useState([]);
-    const handleCloseModal2 = () => {
+    const handleCloseModal2 = (e) => {
         setData({
             title: "",
             description: "",
-            user: "",
-            list: [],
+            user: userId,
+            list: podcastId,
         });
     }
-
     useEffect(() => {
         serverRequest("playlist", "GET")
             .then((response) => {
                 setListPlaylist(response);
                 console.log(listPlaylist);
+
             })
             .catch((response) => {
                 console.log(response);
+
             });
 
 
-    }, [listPlaylist])
+    }, [forceReload])
 
     const saveName = (e) => {
         e.preventDefault();
@@ -60,24 +62,28 @@ export const ModalPlaylist = (props) => {
 
     }
 
+    const handleReset = () => {
+        document.querySelectorAll('input').forEach(
+            input => (input.value = ""));
+
+    };
+
     const submitNewPlaylist = () => {
         if (!data.title) {
-            alert("title is missing");
+            alert("Title is missing");
         } else if (!data.description) {
-            alert("description is missing");
+            alert("Description is missing");
         } else {
             serverRequest("playlist", "POST", data)
                 .then((response) => {
                     //mensaje success
-                    alert("Playlist Guardada con Exito");
-
+                    setOpenModalNew(false);
                 })
                 .catch((response) => {
                     console.log(response);
                 });
-            setOpenModalNew(false);
         }
-
+        forceReload ? setForceReload(false) : setForceReload(true);
 
     };
 
@@ -89,7 +95,7 @@ export const ModalPlaylist = (props) => {
 
         serverRequest(`playlist/${_id}/podcast`, "PUT", body)
             .then((response) => {
-                if (response.ok) {
+                if (response) {
                     console.log(response)
                     setOpenModalNewSelect(false);
                 }
@@ -98,18 +104,15 @@ export const ModalPlaylist = (props) => {
             })
             .catch((response) => {
                 console.log(response);
-            });
 
+            });
     }
 
 
     const deletePlaylist = (_id) => {
+
         serverRequest(`playlist/${_id}`, "DELETE")
             .then((response) => {
-                if (response) {
-                    console.log(response)
-
-                }
 
 
             })
@@ -117,6 +120,7 @@ export const ModalPlaylist = (props) => {
                 console.log(response);
             });
 
+        forceReload ? setForceReload(false) : setForceReload(true);
     }
 
 
@@ -141,11 +145,13 @@ export const ModalPlaylist = (props) => {
                         <button onClick={() => {
                             onClose();
                             setOpenModalNewSelect(true);
+                            forceReload ? setForceReload(false) : setForceReload(true);
                         }}>Seleccionar una Playlist
                         </button>
                         <button onClick={() => {
                             onClose();
                             setOpenModalDelete(true);
+                            forceReload ? setForceReload(false) : setForceReload(true);
                         }}>Eliminar una Playlist
                         </button>
                     </>
@@ -170,7 +176,7 @@ export const ModalPlaylist = (props) => {
                 <Modal.Body className="modalBody">
 
                     <input name="title" type="text" value={data.playlist} onChange={saveName}
-                           placeholder="Introduce el nombre" required></input>
+                           placeholder="Introduce el nombre"></input>
 
                     <input name="description" type="text" value={data.description} onChange={saveDescription}
                            placeholder="Introduce la descripción"></input>
@@ -178,6 +184,7 @@ export const ModalPlaylist = (props) => {
                 <Modal.Footer className="modalFooter">
                     <Button onClick={() => {
                         setOpenModalNew(false);
+                        handleReset();
                         handleCloseModal2();
                     }} variant="secondary">
                         Cerrar
@@ -202,12 +209,12 @@ export const ModalPlaylist = (props) => {
                 <Modal.Body className="modalBody">
                     {listPlaylist.map(playlist => (
                         <div>
-                            <p className="modalP">Título:</p>
+                            <p className="modalP">Título Playlist:</p>
                             <button onClick={() => {
                                 playlistSelected(playlist._id, podcastId);
                                 setOpenModalNewSelect(false);
                             }} className="modalButton">{playlist.title}</button>
-                            <p className="modalP">Descripción:</p>
+                            <p className="modalP">Descripción Playlist:</p>
                             <p className="modalPDescripcion">{playlist.description}</p>
                             <hr className="hrModal"></hr>
                         </div>))
@@ -261,5 +268,3 @@ export const ModalPlaylist = (props) => {
 
     );
 }
-
-

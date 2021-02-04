@@ -1,35 +1,21 @@
-// import { NavBar } from '../../Components/NavBar/NavBar';
 import React, { useState, useEffect, useRef } from 'react'
 import { serverRequest } from '../../helpers/urlBack';
-// import { Button } from "react-bootstrap";
 import "./Search.css";
 import { Buscador } from "../../Components/Buscador/Buscador";
-import { CallToAction } from "../../Components/CallToAction/CallToAction";
-import { PodcastsDestacados } from "../../Components/PodcastsDestacados/PodcastsDestacados";
-import { Premium } from "../../Components/Premium/Premium";
-import { Carousel } from '../../Components/Carousel/Carousel';
-import { Dispositivos } from "../../Components/Dispositivos/Dispositivos";
 import { useParams } from "react-router-dom";
-/* import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'; */
-//import {Button} from '../../Components/ButtonFlex/ButtonFlex';
-// const SPLASHBASE_URL = new URL('http://www.splashbase.co/api/v1/images/search?query=music');
+
 
 export const Search = () => {
-    // const [imgList, setImgList] = useState([]);
-    // const [modalShow, setModalShow] = React.useState(false);
+
     const [listaBusquedas, setListaBusquedas] = useState([]);
     const [listaPodcastAuthor, setListaPodcastAuthor] = useState([]);
     const [userPodCast, setUserPodCast] = useState([]);
-    const [visibleItems, setVisibleItems] = useState(3);
-    const url = window.location.href;  
-    const listPodcast = [];
-    
+
   
     const { urlSearch } = useParams();
     const search = urlSearch;
     //poner una const de array
     
-    const [display, setDisplay] = useState(true);
 
     useEffect(() => {
     serverRequest(`user/${search}`, 'GET')
@@ -52,9 +38,7 @@ export const Search = () => {
         .catch(response => console.log(response))
        })
   }, [listaBusquedas]);
-  const handleShowMoreOnClick = () => {
-   
-}
+
  
     return (
         <>
@@ -123,11 +107,7 @@ export const Search = () => {
             )}
         </div>
         </div>
-        )} 
-    
-  
-        
-            
+        )}   
         </>
     );
 };

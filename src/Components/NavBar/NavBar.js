@@ -3,7 +3,7 @@ import logo from "../../assets/logo-tuna-noname.svg"; // with import
 import React from "react";
 import "./NavBar.css";
 import { useState, useEffect } from "react";
-import { getToken, getUserId, hasSession, setSession } from "../../util/LocalStorage.utils";
+import { hasSession} from "../../util/LocalStorage.utils";
 
 export function NavBar({ setContainerClass, setMainClass, setFooterClass, buscadorClass, buscadorStyleClass, resultadosbusquedaClass }) {
   const [navbarClass, setNavbarClass] = useState('');
