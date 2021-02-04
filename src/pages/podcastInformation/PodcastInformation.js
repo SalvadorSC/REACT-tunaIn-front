@@ -136,7 +136,8 @@ export const PodcastInformation = () => {
                 <div>
                     {comment.map(comment => (
                         <div>
-                            <h5>{`${user.nombre} escribió el ${formatDate = format(Date.parse(comment.date), "dd,MM,yyyy / h:mm ")}`}</h5>
+                            { comment.date ?  <h5>{`${user.nombre} escribió el ${comment.date && format(new Date(comment.date), "dd,MM,yyyy / h:mm ")}`}</h5> :
+                            <h5>{`${user.nombre} escribió: `}</h5>}
                             <p>{comment.comment}</p>
                             <hr className="hrModal"></hr>
                         </div>))
