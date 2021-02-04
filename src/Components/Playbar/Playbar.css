@@ -1,0 +1,177 @@
+.fix-playbar{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 50
+  
+}
+
+.rhap_container {
+  background-color: white;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  font-family: inherit;
+  width: 100%;
+  padding: 15px 15px;
+  box-shadow: none;
+    
+}
+.Playbar-wrap {
+  border-top: 2px solid #97BD74;
+  display: flex;
+  background-color: white;
+  
+}
+
+.rhap_main-controls{
+  flex: 0 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: -330px;
+}
+.rhap_skip-button{
+  background-color: transparent !important;
+}
+.rhap_play-pause-button{
+  background-color: transparent !important;
+}
+.rhap_progress-section{
+  display: flex;
+  flex: auto;
+  align-items: center;
+  width: 55%;
+  margin-left: 5%;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 12px;
+}
+
+.rhap_container svg {
+  color: #97BD74;
+  
+}
+.rhap_time {
+  color: #97BD74;
+  font-size: 12px;
+}
+
+.rhap_progress-filled {
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  background-color:#97BD74;
+  border-radius: 2px;
+}
+
+.rhap_download-progress {
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  background-color: #C9E1A3;
+  border-radius: 2px;
+}
+
+.rhap_progress-indicator {
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 3;
+  width: 0px;
+  height: 0px;
+  margin-left: -10px;
+  top: -8px;
+  background: #868686;
+  border-radius: 0px;
+  box-shadow: rgba(134, 134, 134, 0.5) 0 0 5px;
+}
+
+.rhap_volume-controls {
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.rhap_volume-bar {
+  box-sizing: border-box;
+  position: absolute;
+  width: 4%;
+  height: 3px;
+  background: #C9E1A3;
+  border-radius: 2px;
+  bottom: 0;
+  margin-bottom: 20px;
+}
+.rhap_volume-indicator {
+  box-sizing: border-box;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  margin-left: 0px;
+  left: 0;
+  top: -2px;
+  background: #97BD74;
+  opacity: 0.9;
+  border-radius: 50px;
+  box-shadow: rgba(134, 134, 134, 0.5) 0 0 3px;
+  cursor: pointer;
+}
+.rhap_volume-button {
+  flex: 0 0 26px;
+  font-size: 20px;
+  width: 26px;
+  height: 20px;
+  color: #868686;
+  margin-right: 6px;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 12px;
+  margin-left: -25px;
+  background-color: transparent !important;
+  
+}
+.Playbar-img {
+  width: 75px;
+  height: 75px;
+  overflow: hidden;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  transition: all 250ms ease;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  margin-left: 20px;
+  margin-right: 0px;
+  display: flex;
+  
+}
+
+.titulo-playbar {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 15px;
+  font-size: 24px;
+  font-style: inherit;
+  color: black;
+}
+
+.autor-playbar {
+  margin-top: 2px;
+  margin-left: 10px;
+  font-size: 12px;
+  font-style: inherit;
+  color: rgb(116, 116, 116);
+}
+
+
+.categoria-playbar {
+  margin-top: 2px;
+  margin-left: 10px;
+  font-size: 12px;
+  font-style: inherit;
+  color: rgb(116, 116, 116);
+}

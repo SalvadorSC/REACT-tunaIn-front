@@ -7,15 +7,17 @@ import {Button} from '../ButtonFlex/ButtonFlex';
 import {serverRequest} from "../../helpers/urlBack";
 import {getUserId, hasSession} from "../../util/LocalStorage.utils";
 import {ModalPlaylist} from "../ModalPlaylist/ModalPlaylist";
+import { usePlaybarContext } from "../../contexts/playbar";
 
 
 
-export const PodcastCard = ({ title, categories, author, img, podcastId, description }) => {
+export const PodcastCard = ({ title, categories, author, img, podcastId, description, audio }) => {
     const [podcastWrapClass, setPodcastWrapClass] = useState();
     const [favoritosUsuario, setFavoritosUsuario] = useState(undefined);
     const url = window.location.href;
     const [openModal, setOpenModal] = useState(false);
     const [iconFavoriteOnClick, setIconFavoriteOnClick] = useState(false);
+    const playbar = usePlaybarContext();
 
 
 
@@ -108,6 +110,9 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
         history.push(`/PodcastInformation/${podcastId}`);
     }
 
+    function playPodcast() {
+        playbar.setPlaybarPodcast([{title, categories, author, img, podcastId, description, audio}]);
+      }
 
     useEffect(() => {
         if (url === "http://localhost:3000/") {
@@ -116,6 +121,8 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
             setPodcastWrapClass("PodcastCard-wrap-MyPodcasts");
         }
     }, [url]);
+
+
 
     return (
         <div className={podcastWrapClass}>
@@ -136,10 +143,9 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
                 </Button>
 
                 {/* PLAY ICON */}
-                <Button onClick=''
-
-                    type='button'
-                    buttonStyle='btn--icon--outline'
+                    <Button onClick={()=>playPodcast(podcastId)}
+                            type='button'
+                            buttonStyle='btn--icon--outline'
 
                 ><i className='fas fa-play play-icon'></i>
                 </Button>
@@ -179,6 +185,3 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
     );
 
 };
-
-
-

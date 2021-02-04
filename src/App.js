@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { UserProfile } from "./pages/userProfile/UserProfile";
@@ -16,9 +16,10 @@ import { EditPodcastInformation } from "./pages/editPodcastInformation/EditPodca
 import { PodcastList } from "./pages/podcastList/PodcastList";
 import { hasSession} from "./util/LocalStorage.utils";
 import { UserList } from "./pages/userList/UserList";
-import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST, USERLIST, OTHERPROFILE, SEARCH, SEARCHITEM } from "./routes/routes";
-
 import { Footer } from "./Components/Footer/Footer";
+import { Playbar } from "./Components/Playbar/Playbar";
+import { PlaybarContextProvider } from './contexts/playbar';
+import { HOME, REGISTER, LOGIN, PROFILE, EDITUSERPROFILE, TERMS, MYPODCASTS, PODCASTINFORMATION, EDITPODCASTINFORMATION, PODCASTLIST, USERLIST, OTHERPROFILE, SEARCH, SEARCHITEM } from "./routes/routes";
 import { Search } from "./pages/search/Search";
 
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
   const [mainClass, setMainClass] = useState();
   return (
     <Router>
+      <PlaybarContextProvider>
       <NavBar setContainerClass={setContainerClass} setFooterClass={setFooterClass} setMainClass={setMainClass} />
       <div className={containerClass}>
         <div className={mainClass}>
@@ -64,7 +66,10 @@ export default function App() {
           </Switch>
         </div>
       </div>
+      
       <Footer footerClass={footerClass} />
+      <Playbar />
+      </PlaybarContextProvider>
     </Router>
   );
 }

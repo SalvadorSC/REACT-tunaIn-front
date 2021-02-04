@@ -28,6 +28,8 @@ export const FavoritosUser = (props) => {
       {listaFavoritosUser && listaFavoritosUser.map(podcast =>
       (
         <PodcastCard
+          audio={podcast.audio}
+
           podcastId={podcast.id_podcast._id}
           title={podcast.id_podcast.title}
           categories={podcast.id_podcast.categories}
