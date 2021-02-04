@@ -109,7 +109,14 @@ export const UserProfile = () => {
           {selectedTab === 1 && <FavoritosUser userId={userId} />}
           {selectedTab === 2 && listPlaylist.map(playlist => (
             <div className="playlistDiv">
-              <p className="playlistName">{playlist.title}</p>
+              <h3 className="playlistName"> {playlist.title}</h3>
+              <Button className="buttonPlay" onClick=''
+
+                      type='button'
+                      buttonStyle='btn--icon--outline'
+
+              ><i className='fas fa-play play-icon'></i>
+              </Button>
             </div>))
           }
           <br />
