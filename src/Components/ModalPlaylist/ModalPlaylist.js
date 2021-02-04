@@ -31,7 +31,6 @@ export const ModalPlaylist = (props) => {
         serverRequest("playlist", "GET")
             .then((response) => {
                 setListPlaylist(response);
-                console.log(listPlaylist);
 
             })
             .catch((response) => {
@@ -88,7 +87,7 @@ export const ModalPlaylist = (props) => {
     };
 
     const playlistSelected = (_id, podcastId) => {
-        console.log(_id, podcastId);
+
         const body = {
             list: [podcastId]
         }
@@ -96,7 +95,7 @@ export const ModalPlaylist = (props) => {
         serverRequest(`playlist/${_id}/podcast`, "PUT", body)
             .then((response) => {
                 if (response) {
-                    console.log(response)
+
                     setOpenModalNewSelect(false);
                 }
 

@@ -14,15 +14,10 @@ export const PodcastInformation = () => {
     const [reload, setReload] = useState(false);
     const history = useHistory();
     let {podcastId} = useParams();
-    let formatDate = "";
     const userId = getUserId();
     const date = new Date();
-    const [saveComment, setSaveComment] = useState({
-        comment: "",
-        user: userId,
-        podcast: podcastId,
-        date: date,
-    });
+    const [saveComment, setSaveComment] = useState();
+
 
     function handleClick() {
         history.push(`/editPodcastInformation/${podcastId}`);
@@ -63,6 +58,14 @@ export const PodcastInformation = () => {
             })
             .catch(console.log);
     }, []);
+
+    useEffect( () => setSaveComment({
+        comment: "",
+        user: userId,
+        podcast: podcastId,
+        date: date,
+        name: user.username,
+    }),[user])
 
     useEffect(() => {
         serverRequest(`comment/${podcastId}`, "GET")
@@ -137,8 +140,8 @@ export const PodcastInformation = () => {
                 <div>
                     {comment.map(comment => (
                         <div>
-                            { comment.date ?  <h5>{`${user.nombre} escribió el ${comment.date && format(new Date(comment.date), "dd,MM,yyyy / h:mm ")}`}</h5> :
-                            <h5>{`${user.nombre} escribió: `}</h5>}
+                            { comment.date ?  <h5>{`${comment.name} escribió el ${comment.date && format(new Date(comment.date), "dd,MM,yyyy / h:mm ")}`}</h5> :
+                            <h5>{`${comment.name} escribió: `}</h5>}
                             <p>{comment.comment}</p>
                             <hr className="hrModal"></hr>
                         </div>))
