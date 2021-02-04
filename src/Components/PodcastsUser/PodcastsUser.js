@@ -37,6 +37,7 @@ export const PodcastsUser = () => {
       {listaPodcastsUser.map(podcast =>
         (
           <PodcastCard
+            audio={podcast.audio}
             podcastId={podcast._id}
             title={podcast.title}
             categories={podcast.categories}

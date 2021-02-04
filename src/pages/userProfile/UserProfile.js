@@ -110,13 +110,15 @@ export const UserProfile = () => {
           {selectedTab === 2 && listPlaylist.map(playlist => (
             <div className="playlistDiv">
               <h3 className="playlistName"> {playlist.title}</h3>
-              <Button className="buttonPlay" onClick=''
+              <div className="buttonPlay">
+              <Button  onClick=''
 
                       type='button'
-                      buttonStyle='btn--icon--outline'
+                      buttonStyle='btn--icon'
 
               ><i className='fas fa-play play-icon'></i>
               </Button>
+                </div>
             </div>))
           }
           <br />

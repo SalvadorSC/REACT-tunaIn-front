@@ -37,10 +37,12 @@ export const PodcastsDestacados = () => {
       {listaPodcastsUser.map(podcast =>
       (
         <PodcastCard
+          audio={podcast.audio}
           title={podcast.title}
           categories={podcast.categories}
           author={podcast.author}
           img={podcast.img}
+          key={podcast._id}
         />
       ))}
     </div>
