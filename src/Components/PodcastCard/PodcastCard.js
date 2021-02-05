@@ -115,7 +115,7 @@ export const PodcastCard = ({ title, categories, author, img, podcastId, descrip
       }
 
     useEffect(() => {
-        if (url === "http://localhost:3000/") {
+        if (url === "http://localhost:3000/" || url === "https://tuna-in.netlify.app/") {
             setPodcastWrapClass("PodcastCard-wrap");
         } else {
             setPodcastWrapClass("PodcastCard-wrap-MyPodcasts");
