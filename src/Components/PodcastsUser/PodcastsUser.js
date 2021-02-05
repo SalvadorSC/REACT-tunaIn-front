@@ -43,7 +43,7 @@ export const PodcastsUser = () => {
             categories={podcast.categories}
             description={podcast.description}
             author={podcast.id_author}
-            img={"https://images.unsplash.com/photo-1604160450925-0eecf551fa86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2551&q=80"}
+            img={"https://source.unsplash.com/random"}
           />
         ))}
     </div>

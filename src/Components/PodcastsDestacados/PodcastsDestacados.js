@@ -41,7 +41,7 @@ export const PodcastsDestacados = () => {
           title={podcast.title}
           categories={podcast.categories}
           author={podcast.author}
-          img={podcast.img}
+          img={"https://source.unsplash.com/1600x900/?podcast"}
           key={podcast._id}
         />
       ))}
